@@ -1,0 +1,105 @@
+<%- include ( './partials/head' ); %>
+<link rel="stylesheet" href="/css/login.css">
+
+</head>
+
+<body class="">
+  <%- include ( './partials/header' ); %>
+  <%- include ( './partials/contacto' ); %>
+  <!--LOGIN-->
+
+  <section class="forms-section container">
+
+    <div class="forms">
+      <div class="form-wrapper is-active">
+        <button type="button" class="switcher switcher-login">
+          Inisiar Sesión
+          <span class="underline"></span>
+        </button>
+
+        <!--------------------LOGIN---------------------------------------------------------------------->
+
+        <form action="/user/login" class="form form-login" method="post">
+          <fieldset>
+            <legend>Ingrese su mail de usuario y contraseña</legend>
+            <div class="input-block">
+              <label for="login-email">E-mail</label>
+              <input id="login-email" type="email" required name="emailLogin">
+              <% if (locals.errors && errors.email) { %>
+              <div class="text-danger">
+                <%= errors.email.msg %>
+              </div>
+              <% } %>
+            </div>
+            <div class="input-block">
+              <label for="login-password">Contraseña</label>
+              <input id="login-password" type="password" required name="passwordLogin">
+            </div>
+            <label class="form-check-label ml-4 recordarme">
+              <input type="checkbox" class="form-check-input" name="remember_user">Recordarme
+            </label>
+          </fieldset>
+
+          <button type="submit" class="btn botones" id="inicioSesion">Inisiar sesión</button>
+        </form>
+      </div>
+      <div class="form-wrapper">
+        <button type="button" class="switcher switcher-signup ">
+          Registrarse
+          <span class="underline"></span>
+        </button>
+        <!---------------------REGISTRO--------------------------------------------------------------------->
+
+        <form class="form form-signup" action="/user/login" class="form form-login" method="post">
+          <fieldset>
+            <legend>Ingrese los siguientes datos.</legend>
+            <div class="input-block">
+              <label for="emailRegister">E-mail</label>
+              <input type="text" name="emailRegister" class="form-control <%= locals.errors && errors.email ? 'is-invalid' : null %>" value="<%= locals.oldData ? oldData.email : null %>">
+              <% if (locals.errors && errors.email) { %>
+              <div class="text-danger">
+                <%= errors.email.msg %>
+              </div>
+              <% } %>
+            </div>
+            <div class="input-block">
+              <label for="nombre">Nombre</label>
+              <input type="text" name="nombre" required>
+            </div>
+            <div class="input-block">
+              <label for="direccionRegister">teléfono (opcional)</label>
+              <input type="number" name="telefono" >
+            </div>
+            <div class="input-block">
+              <label for="passwordRegister">Contraseña</label>
+              <input type="password" name="passwordRegister" class="form-control <%= locals.errors && errors.password ? 'is-invalid' : null %>">
+              <% if (locals.errors && errors.password) { %>
+              <div class="text-danger">
+                <%= errors.password.msg %>
+              </div>
+              <% } %>
+            </div>
+            <div class="input-block">
+              <label for="passwordRegisterConfirm">Confirmar contraseña</label>
+              <input id="passwordRegisterConfirm" type="password" required name="passwordRegisterConfirm">
+            </div>
+          </fieldset>
+          <button type="submit" class="btn botones">Registrarse</button>
+        </form>
+      </div>
+    </div>
+  </section>
+  <script>
+    /************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+    const switchers = [...document.querySelectorAll('.switcher')]
+
+    switchers.forEach(item => {
+      item.addEventListener('click', function() {
+        switchers.forEach(item => item.parentElement.classList.remove('is-active'))
+        this.parentElement.classList.add('is-active')
+      })
+    })
+  </script>
+
+
+  <%- include ( './partials/footer' ); %>

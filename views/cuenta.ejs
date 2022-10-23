@@ -1,0 +1,92 @@
+<%- include ( './partials/head' ); %>
+
+
+    <link rel="stylesheet" href="/css/cuenta.css">
+
+    </head>
+
+    <body class="">
+
+        <%- include ( './partials/header' ); %>
+            <%- include ( './partials/contacto' ); %>
+
+                <section id="miCuenta" class="container">
+                    <article class="row justify-content-between mx-auto">
+                        <div id="misDatos" class="col-lg-3 col-md-12">
+                            <h3 class="botones titulos">Mis Datos</h3>
+                        </div>
+
+                        <div id="misCompras" class="col-lg-3 col-md-12">
+                            <h3 class="botones titulos">Mis Compras</h3>
+                        </div>
+
+
+                        <div id="accionesAdmin" class="col-lg-3 col-md-12">
+                            <h3 class="botones titulos">Administración</h3>
+                        </div>
+                    </article>
+                </section>
+
+                
+                <section id="comprasHistorial" class="container ocultar">
+                    <article class="row mt-2 mb2">
+                        
+                        <article class="producto">
+                            <div class="envcabezadoProducto">
+                                <img src="/images/turnera.png" alt="">
+                            </div>
+                            <div class="content">
+                                <h1>Lorem ipsum dolor</h1>
+                            </div>
+                            <footer class="row pieFechaPrecio">
+                                <h5 class="fecha col-2">15/07/22</h5>
+                                <h3 class="totalPrecio col-2">
+                                    79.99
+                                </h3>
+
+                            </footer>
+                        </article>
+                    </article>
+                   
+                    </article>
+                </section>
+
+
+                <section id="datosUsuarios" class="container ocultar">
+                  
+                        <div class="row cajaDatosUsuario">
+                            <div class="col-3">
+                                <h4 class="labelDatosUser">Nombre de Usuario: </h4>
+                              
+                            </div>
+                            <div class="col-3">
+                                <h4 class="labelDatosUser">Email: </h4>
+                               
+                            </div>
+                            <div class="col-3">
+                                <h4 class="labelDatosUser">Password: </h4>
+                            </div>
+                            <div class="col-3">
+                                <h4 class="labelDatosUser">Dirección de entrega: </h4>
+                            </div>
+                            <div class="col-3">
+                                <h4 class="labelDatosUser">Código postal: </h4>
+                            </div>
+                            <button class="botones col-2 p-2" id="modificarDatosUser">Modificar</button>
+                        </div>
+                    
+                </section>
+
+                <section id="adminProductos" class="container ocultar">
+                    <div class="row justify-content-between">
+                        <a href="/tienda/altaProducto" class="botones titulos col-lg-3 col-md-12 text-center btnAdminProd"> Ingresar un
+                            producto</a>
+                        <a href="/tienda/editProducto" class="botones titulos col-lg-3 col-md-12 text-center btnAdminProd">Editar
+                            Producto</a>
+                        <a href="/tienda" class="botones titulos col-lg-3 col-md-12 text-center btnAdminProd">Eliminar Producto</a>
+                    </div>
+                </section>
+
+
+
+                <%- include ( './partials/footer' ); %>

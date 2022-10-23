@@ -1,0 +1,72 @@
+<%- include ( './partials/head' ); %>
+    <link rel="stylesheet" href="css/detalleProducto.ejs">
+
+    </head>
+
+    <body class="">
+        <%- include ( './partials/header' ); %>
+            <%- include ( './partials/contacto' ); %>
+                <!--TIENDA-->
+                <section class="container-fluid">
+                    <article class="row justify-content-around  contieneFiltros">
+                        <h3 class="col-12 titulos">Filtros</h3>
+                        <div class="col-2">
+                            <label for="categoria">Categoria</label>
+                            <input type="text">
+                        </div>
+
+                        <div class="col-2">
+                            <label for="precio">Precio</label>
+                            <input type="number">
+                        </div>
+
+                        <div class="col-2">
+                            <label for="ombre">Nombre</label>
+                            <input type="text">
+                        </div>
+
+
+                    </article>
+
+                    <article class="container">
+
+                        <div class="row justify-content-around">
+
+                            <%for(let i=0; i<producto.length; i++){%>
+                                <div class="contieneProductos col-lg-3 col-md-6">
+                                    <a href="/tienda/detalle/<%=producto[i].idProductos%>"
+                                        class="linkADetalle animacionProd eliminasEstiloLink">
+                                        <img src="/images/imgProd/<%=producto[i].imagen%>" alt=""
+                                            class="imgProducto img-fluid">
+                                        <div class="detalleProductoTienda">
+                                            <h4 class="nombreProductoTienda titulos">
+                                                <%=producto[i].nombre%>
+                                            </h4>
+                                            <p class="precioProductoTienda">
+                                                <%=producto[i].precio%>.-
+                                            </p>
+                                            <p class="descripcionProductoTienda ">
+                                                <%=producto[i].descripcion%>
+                                            </p>
+                                            <p class="categoriaTienda">
+                                                <%= producto[i].categoria.nombreCategoria %>
+                                            </p>
+                                        </div>
+                                    </a>
+
+                                    <button class="btn botones m-3 float-right ">
+                                        <a href="#" class="eliminasEstiloLink"
+                                            style="color: rgb(255, 245, 238);">Agregar</a></button>
+                                    <button class="btn botones m-3 float-right ">
+                                        <a href="/carrito" class="eliminasEstiloLink"
+                                            style="color: rgb(255, 245, 238);">Comprar</a></button>
+                                </div>
+                                <%}%>
+                        </div>
+                    </article>
+                </section>
+
+
+
+
+                <%- include ( './partials/footer' ); %>

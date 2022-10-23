@@ -1,0 +1,148 @@
+
+#miCuenta h3{
+    width: 60%;
+        padding: 12px 0;
+    border-radius: 10px;
+    text-align: center;
+    margin: 5px;
+}
+#miCuenta article{
+        text-align: -webkit-center;
+    margin: 50px 0;    
+}
+
+
+
+/***********************************DATOS PERSONALES**************************************/
+#datosUsuarios{
+    width: 100%;
+
+}
+.cajaDatosUsuario{
+    box-shadow: 0px 11px 13px 0px rgba(0, 0, 0, 0.51);
+    padding: 25px 15px;
+    justify-content: space-around;    
+    align-items: center;
+    border-radius: 15px;
+height: 150px;
+margin: 50px 0;
+}
+.inputDatosUser{
+    border-radius: 6px;
+    padding: 8px;
+    border: solid 2px #37BBA4;
+}
+/******************************HISTORIAL COMRPAS******************************************/
+.producto {  
+    margin: 20px 0;
+    width: 75%;    
+    position: relative;
+    justify-content: center;
+    box-shadow: 0px 11px 13px 0px rgba(0, 0, 0, 0.51);
+    border-radius: 15px;
+
+}
+#comprasHistorial article{
+    justify-content: center;
+}
+
+.producto img {
+    width: 100%;
+    background-color: #eee;
+
+}
+
+.producto .envcabezadoProducto,
+.producto .content {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-style: none none solid none;
+    float: left;
+}
+
+.producto .envcabezadoProducto {
+    background: #000;
+    margin: 0 1% 20px 0;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    width: 24%;
+    height: 195px;
+}
+
+
+.producto .envcabezadoProducto h3 {
+    background: #37BBA4;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 49px;
+    margin: 0;
+    padding: 0 30px;
+    position: absolute;
+    bottom: -50px;
+    right: 0;
+    left: 0;
+
+}
+.btnrepetirCompra{
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.producto .content {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 140px;
+    padding: 0 20px;
+    width: 75%;
+}
+
+.producto h1 {
+    color: #37BBA4;
+    font-size: 25px;
+    font-weight: 300;
+    margin: 17px 0 20px 0;
+}
+
+.producto footer.content {
+    height: 50px;
+    margin: 6px 0 0 0;
+    padding: 0;
+}
+
+.pieFechaPrecio {
+    justify-content: end;
+    align-items: center;
+}
+.producto footer .totalPrecio{
+    border-left: solid 2px #fff;
+}
+.producto footer .totalPrecio, .fecha {
+    background: #37BBA4;
+    color: #fff;
+    text-align: end;
+    font-weight: 300;
+    line-height: 49px;
+    padding: 0 30px;
+  
+}
+  /****************************ADMINISTRACIÓN PRODUCTOS***********************************************/
+
+  .btnAdminProd{
+    margin: 12px;
+  }
+
+/*-----TABLET---------------------------------------------------------------------------********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+@media(min-width: 390px){
+    #miCuenta h3 {
+        width: 60%;
+        padding: 14px 10px;
+}
+
+}
+
+/*--------------------------------------------------------------------------------------COMPUTADORA-LAPTOP---------------------------------------------------------------------------********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+
+@media(min-width:991px) {}
+

@@ -1,0 +1,31 @@
+<%- include ( './partials/head'); %>
+
+</head>
+
+<body class="">
+    <%- include ( './partials/header'); %>
+    <%- include ( './partials/contacto'); %>
+
+    <!--DETALLE PRODUCTO-->
+    <section class="detalleProducto container p-5 m-auto">
+        <article class="row justify-content-between cajaDetalle">
+            <div class="col-md-6 col-sm-10 contieneImgProdDetalle">
+                <img src="/images/imgProd/<%=producto.imagen%>" alt="" class="imgProductoDetalle">
+            </div>
+            <div class="col-md-6 col-sm-10 contenedorDetalleProd">
+                <h4><%= producto.nombre%></h4>
+                <h4>$<%= producto.precio%></h4>
+                <p><%= producto.descripcion%></p>
+                <p>Categoria: <%= producto.categoria.nombreCategoria %></p>
+                
+                <button class="btn botones m-3 float-right "><a href="#" class="eliminasEstiloLink" style="color: rgb(255, 245, 238);">Agregar</a></button>
+                <button class="btn botones m-3 float-right "><a href="/carrito" class="eliminasEstiloLink" style="color: rgb(255, 245, 238);">Comprar</a></button>
+                <button class="btn botones m-3 float-right "><a href="/tienda/editProducto/<%=producto.idProductos%>" class="eliminasEstiloLink" style="color: rgb(255, 245, 238);">Editar</a></button>
+ 
+            </div>
+
+        </article>
+    </section>
+
+
+    <%- include ( './partials/footer'); %>ñ

@@ -1,0 +1,23 @@
+.editarProductoCaja{   
+    margin: 25px auto;
+    padding: 50px 15px;
+    border-radius: 12px;
+    width: 70%;
+    box-shadow: 0px 11px 13px 0px rgba(0, 0, 0, 0.51);
+}
+
+.imagenProducto{
+    width: 30%;
+}
+.botonesDelEditor{
+        width: 70%;
+        margin: 0 auto;
+}
+.botoneEliminar{
+    background-color: #f75959 !important;
+   
+}
+.botoneEliminar:hover{
+    background-color: #fd2525 !important;
+    color: rgb(255, 245, 238) !important;
+}

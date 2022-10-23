@@ -1,0 +1,154 @@
+<%- include ( './partials/head' ); %>
+<style>
+    .contiene {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 1rem;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 0.5em;
+}
+    .gallery {
+  display: grid;
+  margin: 1em 0;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-rows: 1fr;
+  grid-gap: 1em;
+  grid-auto-flow: dense;
+}
+main{
+    background: #ff700017;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+figure {
+  display: flex;
+  margin: 0;
+}
+
+img {
+  flex: 1;
+  max-width: 100%;
+  object-fit: cover;
+}
+</style>
+    </head>
+
+    <body class="">
+        <%- include ( './partials/header' ); %>
+            <%- include ( './partials/contacto' ); %>
+
+
+
+                <section id="quienesSomos" class="container-fluid">
+                    <div class="row">
+                        <h4 class="col-10 titulos">Somos clip Shop</h4>
+                        <p class="col-12">Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde placeat, harum
+                            nesciunt quas dolore dolores
+                            voluptate eligendi? Tempora debitis itaque dolorum porro consequuntur? Numquam expedita
+                            repellat
+                            asperiores</p>
+                    </div>
+                </section>
+                <section class="container ">
+                    <article class="row justify-content-center">
+
+                        <div class="card mx-1 col-2">
+                            <div class="card-img-top">
+                                <img src="/images/usuarios/user_6.jpg" alt="" class="img-fluid">
+                            </div>
+                            <h3 class="mb-0">Noni</h3>
+                            <span> Fecha de incorporación al equipo</span>
+                            <p class="card-text mb-auto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
+                                libero praesentium beatae, numquam doloribus harum cupiditate </p>
+                            <a href="#" class="stretched-link">Linkedin</a>
+                        </div>
+
+
+                        <div class="card mx-1 col-2">
+                            <div class="card-img-top">
+                                <img src="/images/usuarios/user_3.jpg" alt="" class="img-fluid">
+                            </div>
+                            <h3 class="mb-0">Fcu</h3>
+                            <span> Fecha de incorporación al equipo</span>
+                            <p class="card-text mb-auto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
+                                libero praesentium beatae, numquam doloribus harum cupiditate </p>
+                            <a href="#" class="stretched-link">Linkedin</a>
+                        </div>
+
+
+                        <div class="card mx-1 col-2">
+                            <div class="card-img-top">
+                                <img src="/images/usuarios/user_2.jpg" alt="" class="img-fluid">
+                            </div>
+                            <h3 class="mb-0">Martin</h3>
+                            <span> Fecha de incorporación al equipo</span>
+                            <p class="card-text mb-auto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
+                                libero praesentium beatae, numquam doloribus harum cupiditate </p>
+                            <a href="#" class="stretched-link">Linkedin</a>
+                        </div>
+
+
+                        <div class="card mx-1 col-2">
+                            <div class="card-img-top">
+                                <img src="/images/usuarios/user_5.jpg" alt="" class="img-fluid">
+                            </div>
+                            <h3 class="mb-0">Jose</h3>
+                            <span> Fecha de incorporación al equipo</span>
+                            <p class="card-text mb-auto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
+                                libero praesentium beatae, numquam doloribus harum cupiditate </p>
+                            <a href="#" class="stretched-link">Linkedin</a>
+                        </div>
+                    </article>
+                </section>
+                <section id="galeria" class="container contiene mt-5">
+                    <h2>Galeria de fotos</h2>
+                    <main class="gallery">
+                        <figure>
+                            <img src="/images/user_5.jpg" alt="image" />
+                        </figure>
+                        <figure>
+                            <img src="/images/user_1.jpg" alt="image" />
+                        </figure>
+                        <figure>
+                            <img src="/images/user_2.jpg" alt="image" />
+                        </figure>
+                        <figure>
+                            <img src="/images/user_3.jpg" alt="image" />
+                        </figure>
+                        <figure>
+                            <img src="/images/user_4.jpg" alt="image" />
+                        </figure>  <figure>
+                            <img src="/images/user_5.jpg" alt="image" />
+                        </figure>
+                        <figure>
+                            <img src="/images/user_1.jpg" alt="image" />
+                        </figure>
+                        <figure>
+                            <img src="/images/user_2.jpg" alt="image" />
+                        </figure>
+                        <figure>
+                            <img src="/images/user_3.jpg" alt="image" />
+                        </figure>
+                        <figure>
+                            <img src="/images/user_4.jpg" alt="image" />
+                        </figure>
+                        <figure>
+                            <img src="/images/user_1.jpg" alt="image" />
+                        </figure>
+                        <figure>
+                            <img src="/images/user_2.jpg" alt="image" />
+                        </figure>
+                        <figure>
+                            <img src="/images/user_3.jpg" alt="image" />
+                        </figure>
+                        <figure>
+                            <img src="/images/user_4.jpg" alt="image" />
+                        </figure>
+                    </main>
+                </section>
+
+
+
+                <%- include ( './partials/footer' ); %>

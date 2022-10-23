@@ -1,0 +1,102 @@
+
+    <!--FOOTER-->
+    <footer class="py-5 mt-5 container-fluid bg-light " id="piePagina">
+        <div class="row mx-5">
+            <div class="col-6 col-md-2 mb-3">
+                <h5>Clip Shop</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a href="/" class="nav-link p-0 text-muted">Inicio</a></li>
+                    <li class="nav-item mb-2"><a href="/" class="nav-link p-0 text-muted">Quienes Somos</a></li>
+                    <li class="nav-item mb-2"><a href="/tienda" class="nav-link p-0 text-muted">Tienda</a></li>
+                    <li class="nav-item mb-2"><a href="/login" class="nav-link p-0 text-muted">Iniciar Sesion</a></li>
+
+                </ul>
+            </div>
+
+            <div class="col-6 col-md-2 mb-3">
+                <h5>Tienda</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Embalaje</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Ordena tu oficina</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Etiquetas</a></li>
+                </ul>
+            </div>
+            <div class="col-md-5 offset-md-1 mb-3">
+                <form class="suscribite">
+                    <h5>Subscribite a las novedades</h5>
+                    <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+                        <label for="newsletter1" class="visually-hidden">Email</label>
+                        <input id="newsletter1" type="text" class="form-control" placeholder="Email">
+                        <button class="btn botones" type="button">Subscribirse</button>
+                    </div>
+                </form>
+         
+                <form class="mt-3 contactate">
+                    <h5>Contactate</h5>
+                    <div class="d-flex flex-column flex-sm-row w-100 gap-3">
+                        <div>               
+                            <input id="newsletter1" type="text" class="form-control" placeholder="Email">
+                            <input id="asunto" type="text" class="form-control mt-2" placeholder="Asunto">
+                        </div>
+                            <textarea name="descripcion" id="descripcion" cols="30" rows="4"></textarea>
+                        <div>
+                            <button class="btn botones " type="button">ENVIAR</button>
+                    </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+
+        <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 mx-5 border-top">
+            <p>&copy; 2022- copyright ClipShop - Programadora Ailen Cury</p>
+            <ul class="list-unstyled d-flex">
+                <li class="ms-3">
+                    <a class="link-dark redesFooter" href="#"><img src="/images/red-ws.png" alt="" width="24"
+                            height="24"></a>
+                </li>
+                <li class="ms-3">
+                    <a class="link-dark redesFooter" href="#"><img src="/images/red-face.png" alt="" width="24"
+                            height="24"></a>
+                </li>
+                <li class="ms-3">
+                    <a class="link-dark redesFooter" href="#"><img src="/images/red-ig.png" alt="" width="24"
+                            height="24"></a>
+                </li>
+                <li class="ms-3">
+                    <a class="link-dark redesFooter" href="#"><img src="/images/red-twit.png" alt="" width="24"
+                            height="24"></a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+ 
+    <!--SCRIPT PROPIOS-->
+    <script src="/js/funcionalidad.js"></script>
+ 
+    <script>
+        /*DESPLEGABLES*/
+        $('.toggler, .nav-content a:not(#dropdown-link)').on('click', function () {
+            $('.toggler').toggleClass('change');
+            $('.nav-content').slideToggle();
+            $('.menu-overlay').toggle();
+        });
+
+        $('.menu-overlay').on('click', function () {
+            $('.toggler').removeClass('change');
+            $('.nav-content').slideUp();
+            $('.menu-overlay').hide();
+        });
+    
+        
+    </script>
+</body>
+
+</html>

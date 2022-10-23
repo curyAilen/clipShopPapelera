@@ -1,0 +1,13 @@
+/****************FORMULARIO ALTA PRODUCTO********************/
+#formularioAltaProducto{
+    width: 40%;
+    margin: 50px auto;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0px 11px 13px 0px rgba(0, 0, 0, 0.51);
+}
+#altaPedidoBtn{
+    width: 20%;
+    margin: 50px auto 0 auto;
+
+/****************FORMULARIO Modificación PRODUCTO***********/

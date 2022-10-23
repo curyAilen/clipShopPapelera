@@ -1,0 +1,105 @@
+<%- include ( './partials/head' ); %>
+
+</head>
+
+<body class="">     
+<%- include ( './partials/header'); %>
+        <%- include ( './partials/contacto'); %>
+
+
+            <!--BANNER SLIDE-->
+            <main class="bannersPromociones">
+                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="/images/banner1.png" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="/images/banner2.png" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="/images/banner1.png" class="d-block w-100" alt="...">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">ANTERIOR</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Siguiente</span>
+                    </button>
+                </div>
+            </main>
+            <!--BARRA INFORMATIVA-->
+            <section class="container-fluid">
+                <article class="row filaInformativa">
+                    <div class=" col-md-10 col-lg-3  ">
+                        <div class="botoneraInformativa">
+                            <img src="/images/envioRapido.png" alt="">
+                            <p> Envios rápidos</p>
+                        </div>
+                    </div>
+                    <div class=" col-md-10 col-lg-3  ">
+                        <div class="botoneraInformativa">
+                            <img src="/images/envioRapido.png" alt="">
+                            <p> Todos los medios de pagos</p>
+                        </div>
+                    </div>
+                    <div class=" col-md-10 col-lg-3  ">
+                        <div class="botoneraInformativa">
+                            <img src="/images/envioRapido.png" alt="">
+                            <p> Retiro en el local</p>
+                        </div>
+                    </div>
+                    <div class=" col-md-10 col-lg-3  d-none">
+                        <div class="botoneraInformativa">
+                            <img src="/images/envioRapido.png" alt="">
+                            <p> Conos retornables</p>
+                        </div>
+                    </div>
+                    <div class=" col-md-10 col-lg-3  ">
+                        <div class="botoneraInformativa">
+                            <img src="/images/envioRapido.png" alt="">
+                            <p> Compra segura</p>
+                        </div>
+                    </div>
+                </article>
+            </section>
+            <section id="ofertas">
+                
+            </section>
+            
+            <!--CATEGORIAS -->
+            <section id="categorias" class="container-fluid">
+                <div class="row ">
+                    <article id="categoriaEtiquetas" class="col-4">
+                      <div>
+                            <a href="#">
+                            <h3 class="titulo">Etiquetas </h3>
+                            <img src="/images/etiqueteadora.png" alt="">
+                        </a>
+                    </div>
+                    </article>
+                    <article id="categoriaOrgComercio" class="col-4">
+                      <div>
+                            <a href="#">
+                            <h3 class="titulo">Organiza tu comercio </h3>
+                            <img src="/images/etiqueteadora.png" alt="">
+                        </a>
+                    </div>
+                    </article>
+                    <article id="categoriaEmbalaje" class="col-4">
+                    <div>
+                            <a href="">
+                            <h3 class="titulo">Embalaje </h3>
+                            <img src="/images/etiqueteadora.png" alt="">
+                        </a>
+                    </div>
+                    </article>
+                </div>
+            </section>
+
+            <%- include ( './partials/footer' ); %>

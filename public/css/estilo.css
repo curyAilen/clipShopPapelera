@@ -1,0 +1,356 @@
+/*
+Principal Verde: #37BBA4
+Principal Beige: #A59383
+
+Objetos verde: #00d3a1
+Blancos: #fffcfa
+Amarillos: #f7c959
+Gris/Beiges: #a59384 
+Violeta: #5424B2
+*/ 
+
+
+/***************CSS GENERAL ***************************************************/
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#encabezadoPagina {
+    padding: 0 !important;
+    margin: 0;
+}
+
+
+.ocultar{
+    display: none;
+}
+.mostrar{
+    display: block;
+}
+
+
+/*************TEXTOS*******************/
+
+p,
+a {
+    font-family: 'Fira Sans', sans-serif;
+    color: #a59384;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Noto Sans Display', sans-serif;
+}
+#logo {
+    max-width: 50%;
+}
+
+.titulos {
+    font-size: 1.3rem;
+    font-family: 'Noto Sans Display', sans-serif;
+    font-weight: 800;
+}
+
+#quienesSomos div {
+    width: 75%;
+    padding: 25px 55px;
+    margin: 100px auto;
+    background: #b291241b;
+    box-shadow: 0px 11px 13px 0px rgba(0, 0, 0, 0.51);
+    border-radius: 15px;
+}
+
+#quienesSomos .titulos {
+    font-size: 2rem;
+    color: #37BBA4;
+    text-shadow: 2px 1px 6px #24242434;
+}
+
+#quienesSomos p {
+    font-size: 1.2rem;
+}
+
+
+/*******************BARRA NAV************************/
+
+.ulNavBar {
+    width: 100%;
+}
+
+#barraNav {
+    padding: 10px 50px;
+}
+
+
+/*************BOTONES*******************/
+
+.botones {
+    background-color: #f7c959;
+    border: none;
+    border-radius: 5px;
+  
+    color: rgb(255, 245, 238);
+    font-weight: 600;
+    box-shadow: 0px 11px 13px 0px rgba(0, 0, 0, 0.51);
+}
+
+.botones:hover {
+    transition-duration: 0.8s;
+    background-color: #5424B2;
+    -webkit-animation-name: pulse;
+    animation-name: pulse;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    color: rgb(255, 245, 238);
+}
+
+.eliminasEstiloLink {
+    text-decoration: none;
+    font-family: 'Fira Sans', sans-serif;
+}
+
+.eliminasEstiloLink:hover {
+    text-decoration: none;
+    font-family: 'Fira Sans', sans-serif;
+}
+
+
+/************ANIMACIÓN BOTON HOVER***************/
+
+@-webkit-keyframes pulse {
+    0% {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+    50% {
+        -webkit-transform: scale3d(1.05, 1.05, 1.05);
+        transform: scale3d(1.05, 1.05, 1.05);
+    }
+    100% {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+    50% {
+        -webkit-transform: scale3d(1.05, 1.05, 1.05);
+        transform: scale3d(1.05, 1.05, 1.05);
+    }
+    100% {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+
+/***************CARUSEL HOME***************************************************/
+
+.bannersPromociones {
+    display: none;
+}
+
+
+/***************BOTONERA O BARRA INFORMATIVA ***************************************************/
+
+.filaInformativa {
+    width: 85%;
+    margin: 10px auto;
+}
+
+.filaInformativa div {
+    margin: 5px 0;
+}
+
+.botoneraInformativa {
+    border: solid 2px #fffcfa;
+    background-color: #fffcfa;
+    box-shadow: inset 10px 10px 9px -4px rgba(214, 214, 214, 0.877);
+  
+    border-radius: 10px;
+    align-self: center;
+    text-align: center;
+    display: flex;
+}
+
+.botoneraInformativa img {
+    width: 30%;
+    padding: 10px;
+}
+
+.botoneraInformativa p {
+    font-size: 15px;
+    margin: auto;
+    font-weight: 600;
+}
+
+
+/******************CATEGORIAS HOME*****************************/
+#categorias div{
+justify-content: space-between;
+margin-bottom: 50px;
+
+
+}
+#categorias article div{
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0px 11px 13px 0px rgba(0, 0, 0, 0.51);
+    color: #37bba5;
+    margin: 25px;
+    padding: 21px 31px;
+}
+#categorias article:hover{
+    -webkit-animation-name: pulse;
+    animation-name: pulse;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+#categorias article img {
+    width: 30%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+#categorias a{
+    text-decoration: none;
+}
+#categorias a:hover{
+    color: #5424B2;
+    
+}
+
+
+
+/**************************TIENDA***********************************/
+
+.contieneFiltros {
+    margin: 50px auto;
+}
+
+.contieneFiltros label {
+    font-family: 'Fira Sans', sans-serif;
+    font-weight: 500;
+}
+
+.contieneProductos {
+    transition: transform 1071ms ease-out;
+    box-shadow: 7px 7px 13px 0px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    margin: 10px;
+    padding: 0;
+}
+
+.contieneProductos:hover {
+    transform: translate(-11px, -10px) scale(1.05, 1.05);
+}
+.imgProducto{
+    border-radius: 12px 12px 0 0;
+}
+.categoriaTienda{
+text-align: end;
+padding: 8px 13px;
+background-color: #00d3a25e;
+margin: 0 -20px;
+color: #504e4d;
+}
+.detalleProductoTienda{
+    padding: 0 20px;
+}
+
+.detalleProducto {
+    padding: 15px;
+    margin: 10px;
+}
+
+.nombreProductoTienda {
+    margin-top: 10px;
+    text-align: right;
+}
+
+.precioProductoTienda {
+    font-size: 1.5rem;
+}
+
+
+/*******************DETALLE PRODUCTOS**********************/
+.detalleProducto{
+    height: 500px;
+}
+.cajaDetalle {
+    box-shadow: 0px 11px 13px 0px rgba(0, 0, 0, 0.51);
+    border-radius: 15px;
+    padding: 15px;
+    margin-top: 5%;
+}
+
+.contieneImgProdDetalle {
+    text-align: center;
+}
+
+.imgProductoDetalle {
+    margin: auto;
+    width: 50%;
+}
+
+.contenedorDetalleProd {
+    margin: auto;
+    padding: 10px;
+}
+
+.linkADetalle:hover {
+    color: #a59384;
+}
+
+
+/******************FOOTER*******************************/
+#piePagina .row{
+    align-items: center;
+    justify-content: space-between;
+}
+#piePagina .contactate div{
+    align-self: flex-end;
+}
+
+
+/*-----TABLET---------------------------------------------------------------------------********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+
+@media(min-width: 390px) {
+    /*************LOGO*******************/
+    #logo {
+        max-width: 50%;
+    }
+    .filaInformativa div {
+        margin: 15px auto;
+    }
+    .filaInformativa {
+        margin: 150px auto;
+    }
+}
+
+
+/*--------------------------------------------------------------------------------------COMPUTADORA-LAPTOP---------------------------------------------------------------------------********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+
+@media(min-width:991px) {
+    /***************CARUSEL HOME***************************************************/
+    .bannersPromociones {
+        display: block;
+        box-shadow: 0px 11px 13px 0px rgba(0, 0, 0, 0.51);
+        margin: 15px 0 50px 0;
+    }
+}
