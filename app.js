@@ -1,16 +1,15 @@
 // Librerías, módulos, variables, etc.
 const express = require('express');
 const app = express();
-
+const fs = require("fs");
+const bcrypt = require("bcryptjs");
+const path = require("path");
 const rutasMain = require('./src/routes/main.js');
 const rutasProducto = require('./src/routes/producto.js');
 const rutasUsers = require('./src/routes/user.js');
 const rutasCarrito = require('./src/routes/carrito.js');
 const session = require('express-session');
-const userLogged = require('./src/middlewares/userloggedMiddleware');
-const adminMiddleware = require('./src/middlewares/adminMiddleware');
 const cookies = require('cookie-parser');
-
 const methodOverride = require('method-override');
 
 //Cokkies
@@ -18,9 +17,10 @@ app.use(session(
     {secret: 'Secreto',
     resave: false,
     saveUninitialized: false}));
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 app.use(cookies());
-app.use(userLogged);
-app.use(adminMiddleware)
+
 
 // Configuración vista y form
 app.set('view engine', 'ejs')

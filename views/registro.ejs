@@ -1,0 +1,38 @@
+ <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------REGISTRO------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
+ <div class="form-wrapper">
+    
+  <form class="" action="/user/registro" enctype="multipart/form-data" method="post">
+    <fieldset>
+      <legend>Ingrese los siguientes datos.</legend>
+      <div class="input-block">
+        <label for="emailRegister">E-mail</label>
+        <input type="email" name="email" id="email" placeholder="E-mail" value="<%= locals.old && old.email ? old.email : ''  %>" />
+        <p class="errorEmail erroresRegister"></p>
+      </div>
+      <div class="input-block">
+        <label for="nombre">Nombre</label>
+        <input type="text" name="nombre" required>
+      </div>
+      <div class="input-block">
+        <label for="direccion">Dirección de entrega</label>
+        <input type="text" name="direccion" required>
+      </div>
+      <div>
+        <label for="cp">Elegi tu codigo Postal</label>
+        <input type="text" name="cp">
+      </div>
+      <div class="input-block">
+        <label for="direccionRegister">teléfono (opcional)</label>
+        <input type="number" name="telefono" >
+      </div>
+      <div class="input-block">
+        <label for="clave">Contraseña</label>
+  <input type="password" name="clave" id="clave" placeholder="Contraseña" value="<%= locals.old && old.clave ? old.clave : ''  %>" />
+  <input type="password" name="re-clave" id="re-clave" placeholder="Confirmar contraseña" />
+      </div>
+    </fieldset>
+    <button type="submit" class="btn botones">Registrarse</button>
+  </form> 
+</div>
+</div>
+</section>

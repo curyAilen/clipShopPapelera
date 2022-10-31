@@ -1,26 +1,23 @@
 const express = require('express');
 const router = express.Router();
 const usuarioController = require('../controllers/usuarioController');
-const guestMiddleware = require('../middlewares/guestMiddleware');
-const authMiddleware = require('../middlewares/authMiddleware');
-const updateProfileAuth = require("../middlewares/updateProfileAuth");
-const loginValidations = require("../middlewares/loginValidations");
-const registerValidations = require("../middlewares/registerValidations");
+
+
 
 // Register 
-router.get('/login', guestMiddleware, usuarioController.register);
-
-router.post('/login', registerValidations, usuarioController.registerProcess);
+router.get('/login', usuarioController.register);
+router.post('/login', usuarioController.registerProcess);
 
 // Login
-router.get('/login', guestMiddleware, usuarioController.login);
-router.post('/login', loginValidations, usuarioController.loginprocess);
+router.get('/login', usuarioController.login);
+router.post('/login', usuarioController.loginprocess);
 
 
-//Cuenta
-router.get('/cuenta', authMiddleware, usuarioController.cuenta);
+// Profile
+router.get('/cuenta', usuarioController.cuenta);
+//router.get('/cuenta/edit/:id', updateProfileAuth, usuarioController.editprofile);
 
 // Logout
-router.get('/logout/', usuarioController.logout);
+router.get('/logout', usuarioController.logout);
 
 module.exports = router;

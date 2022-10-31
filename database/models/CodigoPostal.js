@@ -5,8 +5,7 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.INTEGER.UNSIGNED,
             primaryKey: true,
             autoIncrement: true
-        },
-        
+        },        
         barrio: {
             type: dataTypes.STRING(255),
             allowNull: false
@@ -28,10 +27,9 @@ module.exports = (sequelize, dataTypes) => {
     }
     const CodigoPostal = sequelize.define(alias,cols,config);
 
-    
     CodigoPostal.associate = models => {
         CodigoPostal.hasMany(models.Usuario, {
-            as: 'usuario',
+            as: 'usuarios',
             foreignKey: 'FKCodigoPostal'
         });
 

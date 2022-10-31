@@ -5,30 +5,29 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.INTEGER.UNSIGNED,
             primaryKey: true,
             autoIncrement: true
-        },
-        
+        },        
         nombre: {
-            type: dataTypes.STRING(155),
+            type: dataTypes.STRING,
             allowNull: false
         },
         email: {
-            type: dataTypes.STRING(155),
+            type: dataTypes.STRING,
             allowNull: false,
             unique: true
         },
         direccion: {
-            type: dataTypes.STRING(255),
-            allowNull: false,
-            unique: true
+            type: dataTypes.STRING,
+            allowNull: false
+          
         },
         telefono: {
             type: dataTypes.INTEGER,
-            allowNull: true,
-            unique: true
+            allowNull: true
+           
         },
-        FKCodigoPostal:{
-            type: dataTypes.INTEGER,
-            allowNull: false,
+        FKCodigoPostal: {
+            type: dataTypes.INTEGER.UNSIGNED,
+            allowNull: false
         },
         password: {
             type: dataTypes.STRING,
@@ -36,10 +35,9 @@ module.exports = (sequelize, dataTypes) => {
         }, 
         rol: {
             type: dataTypes.STRING,
-            allowNull: false
+            allowNull: true,
+            defaultValue: "user"
         }
-
-
     };
     let config = {
         timestamps: false,
@@ -49,12 +47,11 @@ module.exports = (sequelize, dataTypes) => {
     const Usuario = sequelize.define(alias,cols,config);
 
     Usuario.associate = models => {
-        Usuario.belongsTo(models.CodigoPostal, {
-            as: 'codigoPostal',
+        Usuario.belongsTo(models.Codigopostal, {
+            as: 'codigopostal',
             foreignKey: 'FKCodigoPostal'
         });
 
     };
-
     return Usuario
 };

@@ -8,7 +8,7 @@ const categoria = db.Categoria;
 //1 es oferta
 
 let productoController = {
-    mostrarTienda: (req, res) => {
+    mostrarTienda: (req, res) => { 
         producto.findAll({
             include: [{ association: "categoria" }],
         }).then((producto) => {
