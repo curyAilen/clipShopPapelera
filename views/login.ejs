@@ -47,7 +47,7 @@
             Registrarse
             <span class="underline"></span>
           </button>
-        <form class="form form-signup form form-login" action="/user/login" enctype="multipart/form-data" method="post">
+        <form class="form form-signup form form-login" action="/user/login" enctype="application/x-www-form-urlencoded" method="post">
           <fieldset>
             <legend>Ingrese los siguientes datos.</legend>
             <div class="input-block">
@@ -66,6 +66,8 @@
             <div>
               <label for="cp">Elegi tu codigo Postal</label>
               <input type="text" name="cp">
+              <label for="cp">Elegi tu barrio</label>
+              <input type="text" name="barrio">
             </div>
             <div class="input-block">
               <label for="direccionRegister">teléfono (opcional)</label>

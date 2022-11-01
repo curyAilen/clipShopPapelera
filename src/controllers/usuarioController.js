@@ -17,17 +17,20 @@ registerProcess: (req, res) => {
 		//let passwordEncriptada = bcrypt.hashSync(req.body.clave, 10);
     console.log(req.body)
     console.log(req.body.nombre)
-    let userID = Usuarios.create({
-        nombre: req.body.nombre,
-        email: req.body.email,
-        direccion: req.body.direccion,
-        telefono: req.body.telefono,
-        FKCodigoPostal: req.body.cp,
-        password: req.body.clave
-
-      }
-    )	
-		res.redirect("/perfil/" + userID);
+    db.Codigopostal.findOne( {where : {cp: req.body.cp, barrio: req.body.barrio}})
+    .then((cp)=>{
+      console.log(cp)
+      let userID = Usuarios.create({
+          nombre: req.body.nombre,
+          email: req.body.email,
+          direccion: req.body.direccion,
+          telefono: req.body.telefono,
+          FKCodigoPostal: cp.idCodPost,
+          password: req.body.clave  
+        }
+      )	
+      res.redirect("/");
+    })	
 		} else {
 		res.render("login", {
 			errores: errores.errores,
