@@ -64,10 +64,18 @@
               <input type="text" name="direccion" required>
             </div>
             <div>
-              <label for="cp">Elegi tu codigo Postal</label>
-              <input type="text" name="cp">
+              <label for="">Elegi tu Código postal</label>
+              <select class="form-control" id="cp" name="cp">
+                <% for(let i=0; i< cp.length; i++) { %>
+                  <option value= "<%= cp[i].idCodPost %>" ><%= cp[i].cp %> </option>
+              <% } %>
+              </select>
               <label for="cp">Elegi tu barrio</label>
-              <input type="text" name="barrio">
+              <select class="form-control" id="cp" name="cp">
+                <% for(let i=0; i< cp.length; i++) { %>
+                  <option value= "<%= cp[i].idCodPost %>" ><%= cp[i].barrio %> </option>
+              <% } %>
+              </select>
             </div>
             <div class="input-block">
               <label for="direccionRegister">teléfono (opcional)</label>

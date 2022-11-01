@@ -9,24 +9,28 @@ const Usuarios = db.Usuario;
 
 let usuarioController = {
 register: (req, res) => {
-		return res.render('login');
+  db.Codigopostal.findAll()
+  .then((cp)=>{
+    console.log(cp)
+    return res.render('login',{cp:cp});
+  })
+
 	},
 registerProcess: (req, res) => {
 		let errores = validationResult(req);
 		if (errores.isEmpty()) {
-		//let passwordEncriptada = bcrypt.hashSync(req.body.clave, 10);
+		let passwordEncriptada = bcrypt.hashSync(req.body.clave, 10);
     console.log(req.body)
     console.log(req.body.nombre)
     db.Codigopostal.findOne( {where : {cp: req.body.cp, barrio: req.body.barrio}})
-    .then((cp)=>{
-      console.log(cp)
+    .then((cp)=>{     
       let userID = Usuarios.create({
           nombre: req.body.nombre,
           email: req.body.email,
           direccion: req.body.direccion,
           telefono: req.body.telefono,
           FKCodigoPostal: cp.idCodPost,
-          password: req.body.clave  
+          password: passwordEncriptada 
         }
       )	
       res.redirect("/");
