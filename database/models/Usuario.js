@@ -27,7 +27,7 @@ module.exports = (sequelize, dataTypes) => {
         },
         FKCodigoPostal: {
             type: dataTypes.INTEGER.UNSIGNED,
-            allowNull: false
+            allowNull: true
         },
         password: {
             type: dataTypes.STRING,
