@@ -9,17 +9,13 @@ const Usuarios = db.Usuario;
 
 let usuarioController = {
 register: (req, res) => {
-
     return res.render('login');
-
-
 	},
 registerProcess: (req, res) => {
 		let errores = validationResult(req);
 		if (errores.isEmpty()) {
   
-		let passwordEncriptada = bcrypt.hashSync(req.body.passwordLogin, 10);
-
+		let passwordEncriptada = bcrypt.hashSync(req.body.password, 10);
 
       let userID = Usuarios.create({
           nombre: req.body.nombre,
@@ -28,23 +24,25 @@ registerProcess: (req, res) => {
           telefono: req.body.telefono,
           password: passwordEncriptada 
         }
-      )	
-      res.redirect("/");
+      ).then((userID)=>{
+        console.log(userID)
+        res.redirect("/user/login");
+      })    
 		} else {
 		res.render("login", {
 			errores: errores.errores,
 			old: req.body,
 			titulo: "Registro"
 		})
-	//	console.log(errores)
+
 		}
 },
 loginprocess: (req, res) => {
-    //console.log(req)
+ 
   let loginValidationResult = validationResult(req);
 
   if (loginValidationResult.isEmpty()) {
-    return res.render('home', {
+    return res.render('login', {
       errores: loginValidationResult.mapped(),
       old: req.body,
       titulo: "Login",
@@ -53,13 +51,13 @@ loginprocess: (req, res) => {
   }
   Usuarios.findOne({
     where: {
-      email: req.body.emailLogin
+      email: req.body.email
     }
   }).then((usuario) => {
-//console.log(req.body)
+
     if (
       bcrypt.compareSync(
-        req.body.passwordLogin,
+        req.body.password,
         usuario.password
       )
     ) {

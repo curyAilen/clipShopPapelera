@@ -22,7 +22,7 @@
             <legend>Ingrese su mail de usuario y contraseña</legend>
             <div class="input-block">
               <label for="login-email">E-mail</label>
-              <input id="login-email" type="email" required name="emailLogin">
+              <input id="login-email" type="email" required name="email">
               <% if (locals.errores && errores.email) { %>
               <div class="text-danger">
                 <%= errores.email.msg %>
@@ -31,7 +31,7 @@
             </div>
             <div class="input-block">
               <label for="login-password">Contraseña</label>
-              <input id="login-password" type="password" required name="passwordLogin">
+              <input id="login-password" type="password" required name="password">
             </div>
             <label class="form-check-label ml-4 recordarme">
               <input type="checkbox" class="form-check-input" name="remember_user">Recordarme
@@ -79,7 +79,7 @@
             </div>
             <div class="input-block">
               <label for="clave">Contraseña</label>
-        <input type="password" name="passwordLogin" id="clave" placeholder="Contraseña" value="<%= locals.old && old.clave ? old.clave : ''  %>" />
+        <input type="password" name="password" id="clave" placeholder="Contraseña" />
         <input type="password" name="re-clave" id="re-clave" placeholder="Confirmar contraseña" />
             </div>
           </fieldset>
