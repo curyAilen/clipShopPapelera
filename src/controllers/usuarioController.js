@@ -25,7 +25,7 @@ registerProcess: (req, res) => {
           password: passwordEncriptada 
         }
       ).then((userID)=>{
-        console.log(userID)
+  
         res.redirect("/user/login");
       })    
 		} else {
@@ -55,21 +55,14 @@ loginprocess: (req, res) => {
     }
   }).then((usuario) => {
 
-    if (
-      bcrypt.compareSync(
-        req.body.password,
-        usuario.password
-      )
-    ) {
-      
+    if ( bcrypt.compareSync( req.body.password, usuario.password)) {      
       let usuarioLogeado = {
         nombre: usuario.nombre,
         email: usuario.email,
         direccion: usuario.direccion,
         telefono: usuario.telefono,       
         rol: usuario.rol
-      };
-
+      }
       req.session.login = usuarioLogeado;
 
       if (req.body.remember_user) {
@@ -80,6 +73,7 @@ loginprocess: (req, res) => {
 
       return res.redirect("/");
     } else {
+      console.log("entro")
       res.render('login', {
         error: 'Clave o Email incorrecto',
         old: req.body,
