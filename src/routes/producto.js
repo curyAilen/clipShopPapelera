@@ -23,6 +23,7 @@ router.get('/', productoController.mostrarTienda);
 //Crear un producto nuevo 
 router.get('/altaProducto', productoController.crearProd);
 router.post('/', upload.single('imgProd'), productoController.ingresaProducto);
+router.post('/', productoController.buscador);
 
 
 //detalle productos
