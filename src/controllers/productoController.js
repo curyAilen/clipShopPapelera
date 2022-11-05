@@ -9,15 +9,55 @@ const categoria = db.Categoria;
 
 let productoController = {
     mostrarTienda: (req, res) => { 
+        categoria.findAll()
+        .then((categoria) => {
         producto.findAll({
             include: [{ association: "categoria" }],
         }).then((producto) => {
             res.render("./tienda", {
                 nombre: "Producto",
                 producto: producto,
+                categoria: categoria
             });
-        });
+        })
+    })
     },
+    buscador:(req, res)=>{
+        let precioMax = req.query.max;
+        let precioMin = req.query.min;
+        
+        if ((precioMax != "" && precioMax != undefined)&&(precioMin != "" && precioMin != undefined) ) {
+            categoria.findAll().then((categoria)=>{
+                producto.findAll({
+                    include: [{ association: "categoria" }],
+                    where:{rank:{
+                        [Op.and]:{
+                            [Op.gte]:req.body.min, 
+                            [Op.lte]:req.body.max
+                        }
+                    }}            
+                })              
+        }).then((productoPrecio) => {
+            res.render("./detalleProducto", {
+                titulo: "Detalle del Producto",
+                productoPrecio: productoPrecio,
+                categoria: categoria
+            });
+        })
+    }else{
+        categoria.findAll()
+        .then((categoria) => {
+        producto.findAll({
+            include: [{ association: "categoria" }],
+        }).then((producto) => {
+            res.render("./tienda", {
+                nombre: "Producto",
+                producto: producto,
+                categoria: categoria
+            });
+        })
+    })
+    }},
 
     detalleProducto: (req, res) => {
         let detalleID = req.params.id;
@@ -87,7 +127,7 @@ let productoController = {
 
         if (req.file) {
             imagen = req.file.filename;
-        }
+        }
         producto.update(
             {
                 nombre: req.body.nombre,

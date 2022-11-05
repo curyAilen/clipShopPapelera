@@ -38,39 +38,38 @@ registerProcess: (req, res) => {
 		}
 },
 loginprocess: (req, res) => {
- 
   let loginValidationResult = validationResult(req);
-
   if (loginValidationResult.isEmpty()) {
     return res.render('login', {
       errores: loginValidationResult.mapped(),
       old: req.body,
       titulo: "Login",
       css: "estiloLogin.css"
-    })
-  }
+    })}
   Usuarios.findOne({
     where: {
       email: req.body.email
     }
   }).then((usuario) => {
 
-    if ( bcrypt.compareSync( req.body.password, usuario.password)) {      
+    if (
+      bcrypt.compareSync(
+        req.body.password,
+        usuario.password
+      )
+    ) {
+      
       let usuarioLogeado = {
-        nombre: usuario.nombre,
         email: usuario.email,
-        direccion: usuario.direccion,
-        telefono: usuario.telefono,       
         rol: usuario.rol
-      }
-      req.session.login = usuarioLogeado;
+      };
 
+      req.session.login = usuarioLogeado;
       if (req.body.remember_user) {
         res.cookie("userCookie", usuarioLogeado, {
           maxAge: 1000 * 60 * 60 * 24,
         });
       }
-
       return res.redirect("/");
     } else {
       console.log("entro")
@@ -80,11 +79,8 @@ loginprocess: (req, res) => {
         titulo: 'Login',
         css: 'estiloLogin.css'
       })
-
     }
-  }
-
-  )
+  })
     .catch(() => {
       res.render('login', {
         error: 'Clave o Email incorrecto',
@@ -92,9 +88,7 @@ loginprocess: (req, res) => {
         titulo: 'Login',
         css: 'estiloLogin.css'
       })
-    }
-    )
-    ;
+    });
 },
 login: (req, res) => {
 		res.render("login", {
