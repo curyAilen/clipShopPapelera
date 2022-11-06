@@ -37,42 +37,40 @@ registerProcess: (req, res) => {
 
 		}
 },
+login: (req, res) => {
+  res.render("login", {
+  titulo: "Login"
+  });
+},
 loginprocess: (req, res) => {
   let loginValidationResult = validationResult(req);
-  if (loginValidationResult.isEmpty()) {
+  if (!loginValidationResult.isEmpty()) {
+    console.log("esta vacio loginValidationResult")
     return res.render('login', {
       errores: loginValidationResult.mapped(),
-      old: req.body,
-      titulo: "Login",
-      css: "estiloLogin.css"
+      old: req.body,    
     })}
+    console.log("consulto el email")
   Usuarios.findOne({
     where: {
       email: req.body.email
     }
   }).then((usuario) => {
-
-    if (
-      bcrypt.compareSync(
-        req.body.password,
-        usuario.password
-      )
-    ) {
-      
+    if ( bcrypt.compareSync(req.body.password,usuario.password)) {    
+      console.log("consulto la clave")  
       let usuarioLogeado = {
         email: usuario.email,
         rol: usuario.rol
       };
-
       req.session.login = usuarioLogeado;
       if (req.body.remember_user) {
         res.cookie("userCookie", usuarioLogeado, {
           maxAge: 1000 * 60 * 60 * 24,
         });
       }
-      return res.redirect("/");
+      return res.render('home')
     } else {
-      console.log("entro")
+      console.log("todo invalido")
       res.render('login', {
         error: 'Clave o Email incorrecto',
         old: req.body,
@@ -90,11 +88,7 @@ loginprocess: (req, res) => {
       })
     });
 },
-login: (req, res) => {
-		res.render("login", {
-		titulo: "Login"
-		});
-	},
+
 	
 logout: (req, res) => {
 		res.clearCookie("userCookie");

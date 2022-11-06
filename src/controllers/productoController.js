@@ -8,19 +8,43 @@ const categoria = db.Categoria;
 //1 es oferta
 
 let productoController = {
-    mostrarTienda: (req, res) => { 
+    mostrarTienda: (req, res) => {  
+        let buscar = req.query.buscar;
+
+        if (buscar != "" && buscar != undefined) {
+            categoria.findAll()
+            .then((categoria) => {
+                producto.findAll({
+                    include: [{ association: "categoria" }],
+                    where: {
+                        nombre: {
+                            [Op.like]: `%${buscar}%`
+                        }
+                    }
+                    })              
+                })
+                    .then((producto) => {
+                    res.render('listadoProductos', {
+                        titulo: 'Listado de productos',
+                        css: 'estiloListado.css',
+                        producto: producto,
+                        categoria: categoria
+                    });
+                })
+            }else{
         categoria.findAll()
-        .then((categoria) => {
-        producto.findAll({
-            include: [{ association: "categoria" }],
-        }).then((producto) => {
-            res.render("./tienda", {
-                nombre: "Producto",
-                producto: producto,
-                categoria: categoria
+            .then((categoria) => {
+                producto.findAll({
+                  include: [{ association: "categoria" }],
+        })
+            .then((producto) => {
+                res.render("./tienda", {
+                   nombre: "Producto",
+                   producto: producto,
+                   categoria: categoria
             });
         })
-    })
+    })}
     },
     buscador:(req, res)=>{
         let precioMax = req.query.max;
@@ -30,25 +54,21 @@ let productoController = {
             categoria.findAll().then((categoria)=>{
                 producto.findAll({
                     include: [{ association: "categoria" }],
-                    where:{rank:{
-                        [Op.and]:{
-                            [Op.gte]:req.body.min, 
-                            [Op.lte]:req.body.max
+                    where:{
+                        precio:{[Op.and]:{
+                            [Op.gte]:precioMin, 
+                            [Op.lte]:precioMax
                         }
                     }}            
                 })              
         }).then((productoPrecio) => {
-            res.render("./detalleProducto", {
-                titulo: "Detalle del Producto",
-                productoPrecio: productoPrecio,
-                categoria: categoria
+            res.render("tienda", {              
+                productoPrecio: productoPrecio
             });
         })
     }else{
-        categoria.findAll()
-        .then((categoria) => {
-        producto.findAll({
-            include: [{ association: "categoria" }],
+        categoria.findAll().then((categoria)=>{
+        producto.findAll({include: [{ association: "categoria" }],
         }).then((producto) => {
             res.render("./tienda", {
                 nombre: "Producto",
