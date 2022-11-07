@@ -12,6 +12,7 @@ register: (req, res) => {
     return res.render('login');
 	},
 registerProcess: (req, res) => {
+  
 		let errores = validationResult(req);
 		if (errores.isEmpty()) {
   
@@ -22,7 +23,7 @@ registerProcess: (req, res) => {
           email: req.body.email,
           direccion: req.body.direccion,
           telefono: req.body.telefono,
-          password: req.body.password 
+          password: passwordEncriptada 
         }
       ).then((userID)=>{
   
@@ -34,16 +35,16 @@ registerProcess: (req, res) => {
 			old: req.body,
 			titulo: "Registro"
 		})
-
 		}
 },
+
 login: (req, res) => {
   res.render("login", {
   titulo: "Login"
   });
 },
+
 loginprocess: (req, res) => {
-  res.send(req.body)
   let loginValidationResult = validationResult(req);
   if (!loginValidationResult.isEmpty()) {
     console.log("esta vacio loginValidationResult")
@@ -57,28 +58,22 @@ loginprocess: (req, res) => {
       email: req.body.email
     }
   }).then((usuario) => {
-    console.log("consulto la clave 1")  
-    console.log(usuario.password)
-    let clave =bcrypt.compareSync(usuario.password, req.body.password)
-    console.log(clave)
-    console.log( req.body.password)
-    if (usuario.password == req.body.password) {    
-      console.log("consulto la clave")  
+    if ( bcrypt.compareSync(usuario.dataValues.password, req.body.password)) {    
+      console.log(usuario)  
       let usuarioLogeado = {
-        email: usuario.email,
-        rol: usuario.rol
-      }
+        email: usuario.dataValues.email,
+        rol: usuario.dataValues.rol
+      };
       req.session.login = usuarioLogeado;
       if (req.body.remember_user) {
-        console.log(" Esta logueado ")  
         res.cookie("userCookie", usuarioLogeado, {
           maxAge: 1000 * 60 * 60 * 24,
         });
       }
       return res.render('home')
     } else {
-      console.log("todo invalido")
-      return  res.render('login', {
+      console.log(usuario)
+      res.render('login', {
         error: 'Clave o Email incorrecto',
         old: req.body,
         titulo: 'Login',
@@ -87,7 +82,7 @@ loginprocess: (req, res) => {
     }
   })
     .catch(() => {
-      return  res.render('login', {
+      res.render('login', {
         error: 'Clave o Email incorrecto',
         oldData: req.body,
         titulo: 'Login',

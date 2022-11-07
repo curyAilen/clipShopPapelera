@@ -677,22 +677,31 @@ CREATE TABLE IF NOT EXISTS `productos` (
   `nombre` varchar(155) NOT NULL DEFAULT '0',
   `FKidCategoria` int(10) unsigned NOT NULL DEFAULT 0,
   `precio` decimal(20,2) NOT NULL DEFAULT 0.00,
-  `descripcion` text NOT NULL,
+  `descripcion` text DEFAULT NULL,
   `imagen` varchar(155) NOT NULL,
   `oferta` tinyint(4) NOT NULL,
+  `color` varchar(50) DEFAULT NULL,
+  `peso` decimal(20,2) DEFAULT NULL,
+  `medida` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idProductos`),
   KEY `FKidCategorias` (`FKidCategoria`),
   CONSTRAINT `FKidCategorias` FOREIGN KEY (`FKidCategoria`) REFERENCES `categorias` (`idCategorias`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla clipshop.productos: ~6 rows (aproximadamente)
-INSERT INTO `productos` (`idProductos`, `nombre`, `FKidCategoria`, `precio`, `descripcion`, `imagen`, `oferta`) VALUES
-	(2, 'Films', 2, 20000.00, 'peso: 2kg 10x15x20', 'film-A.jpg', 1),
-	(15, 'Prueba C', 3, 555555.00, 'sgvsdv<sdc', 'Producto1666140915146.jpg', 0),
-	(17, 'Fede', 3, 50.00, 'rollo de papel', 'Producto1666446737286.jpg', 0),
-	(18, 'Prueba C', 3, 40.00, 'sdvaernsfxbsxhg', 'Producto1666446756562.jpg', 0),
-	(19, ' khñkh', 3, 8888.00, '<srfhbdzxfbzdthdgc', 'Producto1666446774032.jpg', 1),
-	(20, 'sdvnsnk', 1, 777.00, 'blab lab wed', 'Producto1666446866046.jpg', 0);
+-- Volcando datos para la tabla clipshop.productos: ~12 rows (aproximadamente)
+INSERT INTO `productos` (`idProductos`, `nombre`, `FKidCategoria`, `precio`, `descripcion`, `imagen`, `oferta`, `color`, `peso`, `medida`) VALUES
+	(2, 'Films', 2, 20000.00, 'peso: 2kg 10x15x20', 'film-A.jpg', 1, 'Verde', 1.00, '10cm x 50cm'),
+	(17, 'Cuadrado', 3, 50.00, 'rollo de papel', 'Producto1666446737286.jpg', 0, 'Rosa', 12.00, NULL),
+	(18, 'Rectangulo ', 3, 40.00, 'sdvaernsfxbsxhg', 'Producto1666446756562.jpg', 0, 'Transparente', 12.00, NULL),
+	(19, 'Cuadrado ', 3, 8888.00, '<srfhbdzxfbzdthdgc', 'Producto1666446774032.jpg', 1, 'Transparente', 13.00, NULL),
+	(20, 'Triangulo', 1, 777.00, 'blab lab wed', 'Producto1666446866046.jpg', 0, NULL, NULL, NULL),
+	(21, 'Cuadrado Rosa', 1, 12458.00, NULL, 'Producto1667744118309.jpg', 0, '', 25.00, NULL),
+	(22, 'Cuadrado Rosa', 3, 12458.00, NULL, 'Producto1667744212223.jpg', 0, 'Rosa', 15.00, ''),
+	(23, 'Cuadrado Rosa', 1, 12458.00, NULL, 'Producto1667745707853.jpg', 0, '', 10.00, NULL),
+	(24, 'Cuadrado  Azul', 3, 12.00, NULL, 'Producto1667745971340.jpg', 0, 'Azul', 2.50, '20cm x 30cm'),
+	(25, 'Cuadrado Violeta', 1, 12458.00, NULL, 'Producto1667747134194.jpg', 0, 'Violeta', 2.50, '20cm x 30cm'),
+	(26, 'Cuadrado Violeta', 4, 15.00, NULL, 'Producto1667747320906.jpg', 1, 'Vileta', 2.50, '10cm x 25cm'),
+	(27, 'Fran film', 3, 1524.00, NULL, 'Producto1667854228697.jpg', 1, 'Azul', 1.50, '');
 
 -- Volcando estructura para tabla clipshop.usuarios
 CREATE TABLE IF NOT EXISTS `usuarios` (
@@ -701,16 +710,14 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `email` varchar(155) NOT NULL,
   `direccion` varchar(255) NOT NULL,
   `telefono` int(11) DEFAULT NULL,
-  `FKCodigoPostal` int(10) unsigned NOT NULL,
+  `FKCodigoPostal` int(10) unsigned DEFAULT NULL,
   `password` varchar(20) NOT NULL,
   `rol` varchar(50) NOT NULL DEFAULT 'user',
   PRIMARY KEY (`idUsuarios`),
   KEY `FKCodigoPostal` (`FKCodigoPostal`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla clipshop.usuarios: ~1 rows (aproximadamente)
-INSERT INTO `usuarios` (`idUsuarios`, `nombre`, `email`, `direccion`, `telefono`, `FKCodigoPostal`, `password`, `rol`) VALUES
-	(5, 'aiLEN', 'ailenaldanacury@gmail.com', 'DIRECCIÓN ', 0, 401, 'ailen', 'user');
+-- Volcando datos para la tabla clipshop.usuarios: ~0 rows (aproximadamente)
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

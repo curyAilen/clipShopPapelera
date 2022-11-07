@@ -37,21 +37,11 @@
             <label class="form-check-label ml-4 recordarme">
               <input type="checkbox" class="form-check-input" name="remember_user">Recordarme
             </label>
-            <% if (typeof error !='undefined' ) { %>
-              <div class="mt-4">
-                  <p class="error">
-                      <%= error %>
-                  </p>
-              </div>
-  
-              <% } %>
-          </fieldset> 
-          
-
+          </fieldset>
           <button type="submit" class="btn botones" id="inicioSesion">Inisiar sesión</button>
         </form>
       </div>
-        <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------REGISTRO------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
+        <!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------REGISTRO---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
         <div class="form-wrapper">
           <button type="button" class="switcher switcher-signup " >
             Registrarse
@@ -68,13 +58,13 @@
             </div>
             <div class="input-block">
               <label for="nombre">Nombre</label>
-              <input type="text" name="nombre" required>
+              <input type="text" name="nombre" required value="a">
             </div>
             <div class="input-block">
               <label for="direccion">Dirección de entrega</label>
-              <input type="text" name="direccion" required>
+              <input type="text" name="direccion" required value="b">
             </div>
-           <!-- <div>
+            <!-- <div>
               <label for="">Elegi tu Código postal</label>
               <input type="number" name="cp" value="1431">
               <label for="cp">Elegi tu barrio</label>
@@ -90,18 +80,9 @@
             </div>
             <div class="input-block">
               <label for="clave">Contraseña</label>
-        <input type="password" name="password" id="clave" placeholder="Contraseña" />
-        <input type="password" name="re-clave" id="re-clave" placeholder="Confirmar contraseña" />
+        <input type="password" name="password" id="clave" placeholder="Contraseña" value="ailencury"/>
+        <input type="password" name="re-clave" id="re-clave" placeholder="Confirmar contraseña" value="ailencury"/>
             </div>
-            <div>
-              <% if (locals.errors && errors) {%>
-                  <% errors.forEach(err=> { %>
-                      <p>
-                          <%= err.msg %>
-                      </p>
-                      <% }) %>
-                          <% } %>
-          </div>
           </fieldset>
           <button type="submit" class="btn botones">Registrarse</button>
         </form> 

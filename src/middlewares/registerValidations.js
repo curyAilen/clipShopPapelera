@@ -1,5 +1,5 @@
 const { body } = require("express-validator");
-const db = require("../../database/models/index");
+const db = require("../../database/models");
 
 const registerValidations = [
     body('nombre')
@@ -16,7 +16,7 @@ const registerValidations = [
         .custom(async (value) => {
             return db.Usuario.findOne({
                 where: {
-                    userEmail: value
+                    email: value
                 }
             }).then(user =>{
                 if (user) {
@@ -28,7 +28,7 @@ const registerValidations = [
     body('password')
         .trim()
         .notEmpty().withMessage("Debes ingresar una clave").bail()
-        .isLength({ min: 8 }).withMessage("La clave debe tener como minimo 8 caracteres").bail(),
+        .isLength({ min: 4 }).withMessage("La clave debe tener como minimo 4 caracteres").bail(),
 
     body('re-clave')
         .trim()

@@ -10,9 +10,9 @@ const categoria = db.Categoria;
 let productoController = {
     mostrarTienda: (req, res) => {  
         let buscar = req.query.buscar;
-        console.log(buscar)
 
         if (buscar != "" && buscar != undefined) {
+            console.log(req.query)
             categoria.findAll()
             .then((categoria) => {
                 producto.findAll({
@@ -36,13 +36,13 @@ let productoController = {
         categoria.findAll()
             .then((categoria) => {
                 producto.findAll({
-                  include: [{ association: "categoria" }],
+                include: [{ association: "categoria" }],
         })
             .then((producto) => {
                 res.render("tienda", {
-                   nombre: "Producto",
-                   producto: producto,
-                   categoria: categoria
+                nombre: "Producto",
+                producto: producto,
+                categoria: categoria
             });
         })
     })}

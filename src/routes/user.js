@@ -10,7 +10,7 @@ const registerValidations = require("../middlewares/registerValidations");
 
 // Register 
 router.get('/registro',  usuarioController.register);
-router.post('/registro',registerValidations,  usuarioController.registerProcess);
+router.post('/registro',  usuarioController.registerProcess);
 
 // Login
 router.get('/login', usuarioController.login);
