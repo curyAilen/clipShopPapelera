@@ -1,56 +1,79 @@
 <%- include ( './partials/head' ); %>
-  <link rel="stylesheet" href="/css/formularios.css">
-  </head>
+<link rel="stylesheet" href="/css/formularios.css">
+</head>
 
-  <body class="">
-    <%- include ( './partials/header' ); %>
-      <%- include ( './partials/contacto' ); %>
+<body class="">
+  <%- include ( './partials/header' ); %>
+  <%- include ( './partials/contacto' ); %>
 
-        <form action="/" method="post" enctype="multipart/form-data" id="formularioAltaProducto">
-          <h2 class="tituloAlta">Alta de producto</h2>
-          <div class="row justify-content-between">
-            <div class="form-group col-6">
-              <label for="nombre">Nombre Producto</label>
-              <input type="text" id="nombre" class="nombre form-control" name="nombre" min="3" max="35">
-            </div>
-            <div class="form-group col-6">
-              <label for="precio">Precio del Producto</label>
-              <input type="number" id="precio" class="precio form-control" name="precio">
-            </div>
-            <div class="form-group col-6">
-              <label for="categoria">Categorias</label>           
-              <select class="form-control" id="categoria" name="categoria">
-                <% for(let i=0; i< categoria.length; i++) { %>
-                  <option value= "<%= categoria[i].idCategorias %>" ><%= categoria[i].nombreCategoria %> </option>
-              <% } %>
-              </select>
-            </div>
-            <div class="form-group  col-6">
-              <p>Es una oferta</p>
-              <div class="form-check ">
-                <input class="form-check-input" type="radio" name="oferta" id="oferta" value="1" checked>
-                <label class="form-check-label" for="oferta">
-                  SI
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="oferta" id="oferta" value="0" checked>
-                <label class="form-check-label" for="oferta">
-                  NO
-                </label>
-              </div>
-            </div>
+  <form action="/tienda" method="post" enctype="multipart/form-data" id="formularioAltaProducto">
+    <h2 class="tituloAlta">Alta de producto</h2>
+    <div class="row justify-content-between">
+      <div class="form-group col-6">
+        <label for="nombre">Nombre Producto</label>
+        <input type="text" id="nombre" class="nombre form-control" name="nombre" min="3" max="35" value="Cuadrado Rosa">
+      </div>
+      <div class="form-group col-6">
+        <label for="precio">Precio del Producto</label>
+        <input type="number" id="precio" class="precio form-control" name="precio" value="12458">
+      </div>
+      <div class="form-group col-6">
+        <label for="categoria">Categorias</label>
+        <select class="form-control" id="categoria" name="categoria">
+          <% for(let i=0; i< categoria.length; i++) { %>
+          <option value="<%= categoria[i].idCategorias %>"><%= categoria[i].nombreCategoria %> </option>
+          <% } %>
+        </select>
+      </div>
+      <div class="form-group  col-6">
+        <p>Es una oferta</p>
+        <div class="form-check form-switch">
+          <input class="form-check-input switch" type="checkbox" role="switch" id="slideOferta" name="oferta" aria-checked="true" value="0">
+          <label class="form-check-label" for="slideOferta">¿Es una oferta?</label>
+        </div>
+      </div>
 
-            <div class="form-group col-6">
-              <label for="descripcion">Descripción</label>
-              <textarea class="form-control descripcion" id="descripcion" rows="2" name="descripcion"></textarea>
-            </div>
-            <div class="form-group ">
-              <label for="imgProd">Imagen de Producto</label>
-              <input type="file" class="form-control-file" name="imgProd" accept="image/png, image/jpeg">
-            </div>
-            <button class="btn botones " id="altaPedidoBtn" type="submit">CREAR</button>
-          </div>
-        </form>
+      <div class="form-group row justify-content-around">
 
-        <%- include ( './partials/footer' ); %>
+        <div class="form-group col-3 px-2 ">
+          <label for="color">Color</label>
+          <input type="text" name="color" class="form-control" value="Rosa">
+        </div>
+        <div class="form-group col-3 px-2">
+          <label for="peso">Peso</label>
+          <input type="number" value="2.5" name="peso" class="form-control">
+        </div>
+        <div class="form-group col-3 px-2">
+          <label for="medida">Medidas</label>
+          <input type="text" value="20cm x 30cm" name="medida" class="form-control">
+        </div>
+      </div>
+      <div class="form-group ">
+        <label for="imgProd">Imagen de Producto</label>
+        <input type="file" class="form-control-file" name="imgProd" accept="image/png, image/jpeg">
+      </div>
+      <button class="btn botones " id="altaPedidoBtn" type="submit">CREAR</button>
+    </div>
+  </form>
+
+
+
+
+  <script>
+    document.querySelectorAll(".switch").forEach((theSwitch) => {
+      theSwitch.addEventListener("click", handleClickEvent, false);
+    });
+
+    function handleClickEvent(evt) {
+      const el = evt.target;
+
+      if (el.getAttribute("aria-checked") === "true") {
+        el.setAttribute("aria-checked", "false");
+        el.value = 1
+      } else {
+        el.setAttribute("aria-checked", "true");
+        el.value = 0
+      }
+    }
+  </script>
+  <%- include ( './partials/footer' ); %>

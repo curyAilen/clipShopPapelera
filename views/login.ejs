@@ -37,7 +37,16 @@
             <label class="form-check-label ml-4 recordarme">
               <input type="checkbox" class="form-check-input" name="remember_user">Recordarme
             </label>
-          </fieldset>
+            <% if (typeof error !='undefined' ) { %>
+              <div class="mt-4">
+                  <p class="error">
+                      <%= error %>
+                  </p>
+              </div>
+  
+              <% } %>
+          </fieldset> 
+          
 
           <button type="submit" class="btn botones" id="inicioSesion">Inisiar sesión</button>
         </form>
@@ -84,6 +93,15 @@
         <input type="password" name="password" id="clave" placeholder="Contraseña" />
         <input type="password" name="re-clave" id="re-clave" placeholder="Confirmar contraseña" />
             </div>
+            <div>
+              <% if (locals.errors && errors) {%>
+                  <% errors.forEach(err=> { %>
+                      <p>
+                          <%= err.msg %>
+                      </p>
+                      <% }) %>
+                          <% } %>
+          </div>
           </fieldset>
           <button type="submit" class="btn botones">Registrarse</button>
         </form> 

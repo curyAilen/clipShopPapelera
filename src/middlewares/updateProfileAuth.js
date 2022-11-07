@@ -16,7 +16,7 @@ function updateProfileAuth(req, res, next) {
     })
     .then((usuario) =>{
         if (usuario.idUsuarios != updateID) {
-            res.redirect(`/user/cuenta/editar/${usuario.id_usuario}`)
+            res.redirect(`/user/cuenta/editar/${usuario.idUsuarios}`)
         }
     });
 

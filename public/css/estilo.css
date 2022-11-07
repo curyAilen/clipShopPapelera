@@ -238,15 +238,19 @@ margin-bottom: 50px;
 
 
 /**************************TIENDA***********************************/
-
-.contieneFiltros {
+.buscador{
     margin: 50px auto;
+    box-shadow: 7px 7px 13px 0px rgba(0, 0, 0, 0.123);
+    border-radius: 15px;
+}
+.botonFiltro{
+    margin-left:  auto;
+    margin-top: 35px;
+}
+.precioFiltro{
+    align-items: baseline;
 }
 
-.contieneFiltros label {
-    font-family: 'Fira Sans', sans-serif;
-    font-weight: 500;
-}
 
 .contieneProductos {
     transition: transform 1071ms ease-out;

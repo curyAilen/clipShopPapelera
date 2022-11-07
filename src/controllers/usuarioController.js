@@ -22,7 +22,7 @@ registerProcess: (req, res) => {
           email: req.body.email,
           direccion: req.body.direccion,
           telefono: req.body.telefono,
-          password: passwordEncriptada 
+          password: req.body.password 
         }
       ).then((userID)=>{
   
@@ -43,6 +43,7 @@ login: (req, res) => {
   });
 },
 loginprocess: (req, res) => {
+  res.send(req.body)
   let loginValidationResult = validationResult(req);
   if (!loginValidationResult.isEmpty()) {
     console.log("esta vacio loginValidationResult")
@@ -56,14 +57,20 @@ loginprocess: (req, res) => {
       email: req.body.email
     }
   }).then((usuario) => {
-    if ( bcrypt.compareSync(req.body.password,usuario.password)) {    
+    console.log("consulto la clave 1")  
+    console.log(usuario.password)
+    let clave =bcrypt.compareSync(usuario.password, req.body.password)
+    console.log(clave)
+    console.log( req.body.password)
+    if (usuario.password == req.body.password) {    
       console.log("consulto la clave")  
       let usuarioLogeado = {
         email: usuario.email,
         rol: usuario.rol
-      };
+      }
       req.session.login = usuarioLogeado;
       if (req.body.remember_user) {
+        console.log(" Esta logueado ")  
         res.cookie("userCookie", usuarioLogeado, {
           maxAge: 1000 * 60 * 60 * 24,
         });
@@ -71,7 +78,7 @@ loginprocess: (req, res) => {
       return res.render('home')
     } else {
       console.log("todo invalido")
-      res.render('login', {
+      return  res.render('login', {
         error: 'Clave o Email incorrecto',
         old: req.body,
         titulo: 'Login',
@@ -80,7 +87,7 @@ loginprocess: (req, res) => {
     }
   })
     .catch(() => {
-      res.render('login', {
+      return  res.render('login', {
         error: 'Clave o Email incorrecto',
         oldData: req.body,
         titulo: 'Login',

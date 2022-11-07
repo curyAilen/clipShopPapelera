@@ -10,6 +10,7 @@ const categoria = db.Categoria;
 let productoController = {
     mostrarTienda: (req, res) => {  
         let buscar = req.query.buscar;
+        console.log(buscar)
 
         if (buscar != "" && buscar != undefined) {
             categoria.findAll()
@@ -24,7 +25,7 @@ let productoController = {
                     })              
                 })
                     .then((producto) => {
-                    res.render('listadoProductos', {
+                    res.render('tienda', {
                         titulo: 'Listado de productos',
                         css: 'estiloListado.css',
                         producto: producto,
@@ -38,7 +39,7 @@ let productoController = {
                   include: [{ association: "categoria" }],
         })
             .then((producto) => {
-                res.render("./tienda", {
+                res.render("tienda", {
                    nombre: "Producto",
                    producto: producto,
                    categoria: categoria
@@ -121,7 +122,10 @@ let productoController = {
                 precio: req.body.precio,
                 descripcion: req.body.descripcion,
                 imagen: req.file.filename,
-                oferta: req.body.oferta                
+                oferta: req.body.oferta,               
+                color: req.body.color,                
+                peso: req.body.peso,         
+                medida: req.body.medida                
             }).then(() => {
                 res.redirect("/tienda");
             })
@@ -154,8 +158,11 @@ let productoController = {
                 FKidCategoria: req.body.categoria,
                 precio: req.body.precio,
                 descripcion: req.body.descripcion,
-                imagen: imagen, 
-                oferta: req.body.oferta,
+                imagen: imagen,
+                oferta: req.body.oferta,               
+                color: req.body.color,                
+                peso: req.body.peso,         
+                medida: req.body.medida   
             },
             {
                 where: {
