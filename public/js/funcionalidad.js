@@ -11,7 +11,8 @@ window.addEventListener("load", function() {
     misCompras.click(function(){
         historialCompras.removeClass("ocultar");
         historialCompras.addClass("mostar");
-        datosUsuarios.addClass("ocultar");
+        datosUsuarios.addClass("ocultar");  
+        datosUsuarios.removeClass("mostrar");      
         adminProductos.addClass("ocultar");
 
     });
@@ -26,6 +27,7 @@ window.addEventListener("load", function() {
         adminProductos.addClass("mostar");
         historialCompras.addClass("ocultar");
         datosUsuarios.addClass("ocultar");
+        datosUsuarios.removeClass("mostrar");     
 
     });
     contacto.click(function(){

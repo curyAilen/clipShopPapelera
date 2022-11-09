@@ -10,7 +10,7 @@ const registerValidations = require("../middlewares/registerValidations");
 
 // Register 
 router.get('/registro',  usuarioController.register);
-router.post('/registro',  usuarioController.registerProcess);
+router.post('/registro', registerValidations, usuarioController.registerProcess);
 
 // Login
 router.get('/login', usuarioController.login);
@@ -18,7 +18,7 @@ router.post('/login',loginValidations, usuarioController.loginprocess);
 
 
 // Profile
-router.get('/cuenta', usuarioController.cuenta);
+router.get('/cuenta', authMiddleware, usuarioController.cuenta);
 //router.get('/cuenta/editar/:id', updateProfileAuth, usuarioController.editprofile);
 //router.post('/cuenta/editar/:id', uploadFile.single('updateprofilephoto'), usuarioController.editedprofile);
 

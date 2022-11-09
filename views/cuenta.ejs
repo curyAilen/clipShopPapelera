@@ -52,27 +52,30 @@
                 </section>
 
 
-                <section id="datosUsuarios" class="container ocultar">
+                <section id="datosUsuarios" class="container mostrar">
                   
                         <div class="row cajaDatosUsuario">
-                            <div class="col-3">
-                                <h4 class="labelDatosUser">Nombre de Usuario: </h4>
-                              
-                            </div>
-                            <div class="col-3">
-                                <h4 class="labelDatosUser">Email: </h4>
-                               
-                            </div>
-                            <div class="col-3">
-                                <h4 class="labelDatosUser">Password: </h4>
-                            </div>
-                            <div class="col-3">
-                                <h4 class="labelDatosUser">Dirección de entrega: </h4>
-                            </div>
-                            <div class="col-3">
-                                <h4 class="labelDatosUser">Código postal: </h4>
-                            </div>
-                            <button class="botones col-2 p-2" id="modificarDatosUser">Modificar</button>
+                            <% if (locals.userLogged) { %>
+                                <h1>Bienvenid@ <%= locals.userLogged.nombre %>.</h1>
+                                <div id="data">
+                                    <p> Nombre: <%= locals.userLogged.nombre %> </p>
+                                    <p> E-mail: <%= locals.userLogged.email %> </p>
+                                    <p> Dirección: <%= locals.userLogged.direccion %> </p>
+                                    <p> Código Postal: <%= locals.userLogged.cp %> </p>
+                                    <p> Contraseña: <%= locals.userLogged.password %> </p>
+                                    <a href="/user/logout" class="botones col-2 p-2 btn">Fuera</a>
+                                    <% if (locals.userLogged.rol == "admin") { %>                                
+                                    <button class="botones col-2 p-2" id="modificarDatosUser">Modificar</button>
+                                    <%}%>
+                                </div>
+                            <% } else {%>
+                                <h1>Tenes que estar logueado.</h1>
+                                
+                            <%}%>
+                                
+                          
+                        
+                          
                         </div>
                     
                 </section>

@@ -63,7 +63,11 @@ loginprocess: (req, res) => {
     if ( bcrypt.compareSync( req.body.password, usuario.dataValues.password)) {    
     
       let usuarioLogeado = {
+        nombre: usuario.nombre,
         email: usuario.email,
+        direccion: usuario.direccion,
+        FKCodigoPostal: usuario.cp,
+        password: usuario.password,
         rol: usuario.rol
       };
       req.session.login = usuarioLogeado;
@@ -72,7 +76,7 @@ loginprocess: (req, res) => {
           maxAge: 1000 * 60 * 60 * 24,
         });
       }
-      return res.render('home')
+      return res.render('cuenta')
     } else {
       console.log("No se logueo")  
       res.render('login', {

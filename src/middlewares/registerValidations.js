@@ -12,18 +12,7 @@ const registerValidations = [
 
     body('email')
         .notEmpty().withMessage("Debes ingresar un email").bail()
-        .isEmail().withMessage("Debe ser un email valido").bail()
-        .custom(async (value) => {
-            return db.Usuario.findOne({
-                where: {
-                    email: value
-                }
-            }).then(user =>{
-                if (user) {
-                    return Promise.reject("Email uso");
-                } 
-            })
-        }).withMessage("Este email ya esta en uso"),
+        .isEmail().withMessage("Debe ser un email valido"),
 
     body('password')
         .trim()
@@ -32,11 +21,7 @@ const registerValidations = [
 
     body('re-clave')
         .trim()
-        .notEmpty().withMessage("Debes confirmar la clave").bail()
-        .custom( (value, { req }) => {
-            let clave = req.body.password;
-            return clave == value
-        }).withMessage("Las contrasenias no coinciden"),
+        .notEmpty().withMessage("Debes confirmar la clave")
     
 ];
 
