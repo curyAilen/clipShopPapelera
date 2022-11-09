@@ -46,23 +46,25 @@ login: (req, res) => {
 
 loginprocess: (req, res) => {
   let loginValidationResult = validationResult(req);
+
   if (!loginValidationResult.isEmpty()) {
-    console.log("esta vacio loginValidationResult")
+    
     return res.render('login', {
       errores: loginValidationResult.mapped(),
       old: req.body,    
     })}
-    console.log("consulto el email")
+  
   Usuarios.findOne({
     where: {
       email: req.body.email
     }
   }).then((usuario) => {
-    if ( bcrypt.compareSync(usuario.dataValues.password, req.body.password)) {    
-      console.log(usuario)  
+  
+    if ( bcrypt.compareSync( req.body.password, usuario.dataValues.password)) {    
+    
       let usuarioLogeado = {
-        email: usuario.dataValues.email,
-        rol: usuario.dataValues.rol
+        email: usuario.email,
+        rol: usuario.rol
       };
       req.session.login = usuarioLogeado;
       if (req.body.remember_user) {
@@ -72,7 +74,7 @@ loginprocess: (req, res) => {
       }
       return res.render('home')
     } else {
-      console.log(usuario)
+      console.log("No se logueo")  
       res.render('login', {
         error: 'Clave o Email incorrecto',
         old: req.body,
