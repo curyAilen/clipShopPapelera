@@ -8,29 +8,29 @@ const categoria = db.Categoria;
 //1 es oferta
 
 let productoController = {
-    mostrarTienda: (req, res) => {  
+    mostrarTienda: (req, res) => {   
         let buscar = req.query.buscar;
 
         if (buscar != "" && buscar != undefined) {
             console.log(req.query)
-            categoria.findAll()
-            .then((categoria) => {
-                producto.findAll({
+            producto.findAll({
                     include: [{ association: "categoria" }],
                     where: {
                         nombre: {
                             [Op.like]: `%${buscar}%`
                         }
                     }
-                    })              
-                })
+                    })                      
                     .then((producto) => {
-                    res.render('tienda', {
+            categoria.findAll()
+                    .then((categoria)=>{
+                        res.render('tienda', {
                         titulo: 'Listado de productos',
                         css: 'estiloListado.css',
                         producto: producto,
                         categoria: categoria
-                    });
+                        })
+                    })   
                 })
             }else{
         categoria.findAll()

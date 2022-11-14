@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
     } 
   });
 const upload = multer({storage});
-
+ 
 //listado productos
 router.get('/', productoController.mostrarTienda);
 
