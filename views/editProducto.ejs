@@ -57,7 +57,7 @@
       <div class="form-group  col-4 contenedorImgInput">
         <label for="imagen">Imagen del producto:</label>
         <img class="imagenProducto " src="/images/imgProd/<%=producto.imagen%>">
-        <input type="file" name="imgProd" id="imagen" <% if(typeof producto.imagen=='undefined' ) {%> required <%}%>/>
+        <input type="file" name="imagen" id="imagen" <% if(typeof producto.imagen=='undefined' ) {%> required <%}%>/>
                   <label for="imagen" style="color: red;" class="errorImagen errorescreate"></label>
                   <% if(typeof producto.imagen !='undefined' ) {%> <input type="hidden" name="imagenOriginal" value="<%= producto.imagen%>">
         <%}%>
@@ -66,7 +66,7 @@
           <div class="row botonesDelEditor t-right">
             <button class="btn botones col-4 my-auto" id="EditPedidoBtn" type="submit">Editar</button>     
 
-          </div>
+          </div> 
         </form>   
 
           <form action="/tienda/<%= producto.idProductos %>?_method=DELETE" method="post" class="row botonesDelEditor">

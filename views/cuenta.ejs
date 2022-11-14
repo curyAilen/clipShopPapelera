@@ -62,10 +62,10 @@
                                     <p> E-mail: <%= locals.userLogged.email %> </p>
                                     <p> Dirección: <%= locals.userLogged.direccion %> </p>
                                     <p> Código Postal: <%= locals.userLogged.cp %> </p>
-                                    <p> Contraseña: <%= locals.userLogged.password %> </p>
-                                    <a href="/user/logout" class="botones col-2 p-2 btn">Fuera</a>
+                                    <p> Contraseña: <%= locals.userLogged.password %> </p>  
+                                    <a href="/user/cuenta/editarPerfil/<%=locals.userLogged.idUsuarios%>" class="botones col-2 p-2 btn">Modificar datos</a>
                                     <% if (locals.userLogged.rol == "admin") { %>                                
-                                    <button class="botones col-2 p-2" id="modificarDatosUser">Modificar</button>
+                                        <a href="/user/listadoClientes" class="botones col-2 p-2 btn" aria-disabled="false">Listar clientes</a>
                                     <%}%>
                                 </div>
                             <% } else {%>

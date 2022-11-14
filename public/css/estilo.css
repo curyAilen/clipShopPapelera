@@ -320,7 +320,32 @@ color: #504e4d;
 .linkADetalle:hover {
     color: #a59384;
 }
+/**************************Editar Perfil***********************************/
+.claveBox{
+    align-items: end;
+}
+.formularioEditPerfil{
+margin: 50px 200px;
 
+}
+.formularioEditPerfil label{
+    color: #a59384;
+    font-weight: 600;
+}
+.formularioEditPerfil .btnEditarGuardar{
+    margin-right: auto;
+}
+/****************************Listado CLientes********************************************/
+.cardUsuarios{
+    box-shadow: 0px 11px 13px 0px rgba(0, 0, 0, 0.51);
+    border-radius: 15px;
+    padding: 15px 25px;
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+
+}
 
 /******************FOOTER*******************************/
 #piePagina .row{

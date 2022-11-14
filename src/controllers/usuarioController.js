@@ -2,7 +2,7 @@ const fs = require("fs");
 const bcrypt = require("bcryptjs");
 const path = require("path");
 const db = require("../../database/models/");
-const { validationResult } = require("express-validator");
+const { validationResult } = require("express-validator"); 
 const Op = db.Sequelize.Op;
 const Usuarios = db.Usuario;
 
@@ -46,9 +46,7 @@ login: (req, res) => {
 
 loginprocess: (req, res) => {
   let loginValidationResult = validationResult(req);
-
-  if (!loginValidationResult.isEmpty()) {
-    
+  if (!loginValidationResult.isEmpty()) {    
     return res.render('login', {
       errores: loginValidationResult.mapped(),
       old: req.body,    
@@ -63,6 +61,7 @@ loginprocess: (req, res) => {
     if ( bcrypt.compareSync( req.body.password, usuario.dataValues.password)) {    
     
       let usuarioLogeado = {
+        idUsuarios: usuario.idUsuarios,
         nombre: usuario.nombre,
         email: usuario.email,
         direccion: usuario.direccion,
@@ -76,7 +75,7 @@ loginprocess: (req, res) => {
           maxAge: 1000 * 60 * 60 * 24,
         });
       }
-      return res.render('cuenta')
+      return res.render('home')
     } else {
       console.log("No se logueo")  
       res.render('login', {
@@ -97,18 +96,58 @@ loginprocess: (req, res) => {
     });
 },
 
+editarPerfil: (req, res) => {
+  Usuarios.findByPk(req.params.id)
+    .then(usuario => {
+      res.render("editarPerfil", {
+        titulo: "Editar perfil",
+        usuario: usuario
+      });
+    })
+},
+
+editedPerfil: (req, res) => {
+  let passwordEncriptada = bcrypt.hashSync(req.body.password, 10);
+
+  console.log(req.file);
+  
+  Usuarios.update({
+    nombre: req.body.nombre,
+    email: req.body.email,
+    direccion: req.body.direccion,
+    telefono: req.body.telefono,
+    password: passwordEncriptada 
+  }, {
+    where: {
+      idUsuarios: req.params.id
+    }
+  });
+	res.clearCookie("userCookie");
+		req.session.destroy();
+  res.redirect("/user/login");
+},
 	
 logout: (req, res) => {
 		res.clearCookie("userCookie");
 		req.session.destroy();
 		res.redirect("/");
 	},
+
 cuenta:(req, res)=>{
     res.render('cuenta', {
 	titulo: "Login",
     css: "estiloLogin.css",
     })
-}
+},
+listadoClientes:(req, res)=>{
+  Usuarios.findAll()
+  .then((usuario) => {
+    res.render("listadoClientes", {
+      nombre: "Listado de clientes",
+      usuario: usuario
+    })
+  })
+},
 };
 
 module.exports = usuarioController;
