@@ -14,7 +14,7 @@
 
                         </div>
                         <div class="" id="filter">
-                            <form action="/tienda" method="get" enctype="multipart/form-data" class="row buscador py-4">
+                            <form action="/tienda" method="get" enctype="multipart/form-data" class="row  estiloDeCaja py-4">
                                 <div class="form-group col-4">
                                     <label for="producto">Buscar por nombre de producto</label>
                                     <input class="form-control" type="text" placeholder="producto" name="buscar" />
@@ -40,18 +40,18 @@
                                                 <% }}%>
                                     </select>
                                 </div>
-                            
-                                <div class="row ">                                    
-                                        <div class="d-flex flex-nowarp  col-6 precioFiltro">
-                                            <label for="Precio " class="col-3">Precio</label>
-                                            <input type="number" value="" name="min" class="form-control ">     
-                                            <p class="mx-4">entre</p>                                   
-                                            <input type="number" value="" name="max" class="form-control ">
-                                        </div> 
-                                </div>  
+
+                                <div class="row ">
+                                    <div class="d-flex flex-nowarp  col-6 precioFiltro">
+                                        <label for="Precio " class="col-3">Precio</label>
+                                        <input type="number" value="" name="min" class="form-control ">
+                                        <p class="mx-4">entre</p>
+                                        <input type="number" value="" name="max" class="form-control ">
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <button type="submit" class="btn  btn-primary col-3 botonFiltro">Buscar</button>
-                                </div>               
+                                </div>
                             </form>
                         </div>
                         <div class="row" id="products">
@@ -64,7 +64,7 @@
                         <div class="row justify-content-around">
 
                             <%for(let i=0; i<producto.length; i++){%>
-                                <div class="contieneProductos col-lg-3 col-md-6">
+                                <div class="contieneProductos estiloDeCaja col-lg-3 col-md-6">
                                     <a href="/tienda/detalle/<%=producto[i].idProductos%>"
                                         class="linkADetalle animacionProd eliminasEstiloLink">
                                         <img src="/images/imgProd/<%=producto[i].imagen%>" alt=""

@@ -72,7 +72,7 @@ loginprocess: (req, res) => {
       req.session.login = usuarioLogeado;
       if (req.body.remember_user) {
         res.cookie("userCookie", usuarioLogeado, {
-          maxAge: 1000 * 60 * 60 * 24,
+          maxAge: 10000 * 60 * 60 * 24,
         });
       }
       return res.render('home')
@@ -99,6 +99,7 @@ loginprocess: (req, res) => {
 editarPerfil: (req, res) => {
   Usuarios.findByPk(req.params.id)
     .then(usuario => {
+      console.log(usuario.nombre)
       res.render("editarPerfil", {
         titulo: "Editar perfil",
         usuario: usuario
@@ -107,25 +108,98 @@ editarPerfil: (req, res) => {
 },
 
 editedPerfil: (req, res) => {
-  let passwordEncriptada = bcrypt.hashSync(req.body.password, 10);
-
-  console.log(req.file);
-  
+  let passwordEncriptada = bcrypt.hashSync(req.body.password, 10);s
   Usuarios.update({
     nombre: req.body.nombre,
     email: req.body.email,
     direccion: req.body.direccion,
-    telefono: req.body.telefono,
-    password: passwordEncriptada 
+    telefono: req.body.telefono
   }, {
     where: {
       idUsuarios: req.params.id
     }
-  });
+  }).then((usuario)=>{
+    res.render('cuenta', {
+      titulo: "Perfil",
+        css: "estiloLogin.css",
+        })
+  })  
 	res.clearCookie("userCookie");
-		req.session.destroy();
+	req.session.destroy();
   res.redirect("/user/login");
 },
+actualizar: (req, res)=>{
+  Usuarios.findByPk(req.params.id)
+  .then(usuario => { 
+    res.render("actualizarPassword", {
+      titulo: "Actualizar contraseña",
+      usuario: usuario
+    });
+  })
+},
+
+actualizarPassword: (req, res) => {
+  let passwordEncriptada = bcrypt.hashSync(req.body.password, 10);
+  Usuarios.findOne({
+    where: {
+      email: req.body.email
+    }
+  }).then((usuario) => {
+  
+    if ( bcrypt.compareSync( req.body.password, usuario.dataValues.password)) {    
+    
+      Usuarios.update({
+        password: req.body.password
+      }, {
+        where: {
+          idUsuarios: req.params.id
+        }
+      }).then((usuario)=>{
+        return res.render('home')
+      })     
+      
+    } else {
+      console.log("no coinciden contraseñas")  
+      res.render('actualziarPassword', {
+        error: 'Clave o Email incorrecto',
+        old: req.body,
+        titulo: 'Login',
+        css: 'estiloLogin.css'
+      })
+    }
+  })
+    .catch(() => {
+      res.render('login', {
+        error: 'Clave o Email incorrecto',
+        oldData: req.body,
+        titulo: 'Login',
+        css: 'estiloLogin.css'
+      })
+    });
+
+
+
+
+
+  Usuarios.update({
+    password: req.body.password
+  }, {
+    where: {
+      idUsuarios: req.params.id
+    }
+  }).then((usuario)=>{
+    res.render('cuenta', {
+      titulo: "Perfil",
+        css: "estiloLogin.css",
+        })
+  })  
+	res.clearCookie("userCookie");
+	req.session.destroy();
+  res.redirect("/user/login");
+
+
+},
+
 	
 logout: (req, res) => {
 		res.clearCookie("userCookie");
@@ -135,7 +209,7 @@ logout: (req, res) => {
 
 cuenta:(req, res)=>{
     res.render('cuenta', {
-	titulo: "Login",
+	titulo: "Perfil",
     css: "estiloLogin.css",
     })
 },

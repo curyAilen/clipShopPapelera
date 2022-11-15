@@ -21,7 +21,16 @@ router.post('/login',loginValidations, usuarioController.loginprocess);
 router.get('/cuenta', authMiddleware, usuarioController.cuenta);
 router.get('/cuenta/editarPerfil/:id', updateProfileAuth, usuarioController.editarPerfil);
 router.post('/cuenta/editarPerfil/:id', usuarioController.editedPerfil);
+
+//Actualizar Password
+router.get('/cuenta/actualizarPassword/:id',  usuarioController.actualizar);
+router.post('/cuenta/actualizarPassword/:id', usuarioController.actualizarPassword);
+
+//Listado Clientes
 router.get('/listadoClientes', authMiddleware, usuarioController.listadoClientes);
+
+
+
 // Logout
 router.get('/logout', usuarioController.logout);
 

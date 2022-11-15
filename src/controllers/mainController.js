@@ -10,7 +10,22 @@ let mainController = {
             titulo: 'nosotros'
          });
     },
- 
+    formularioBanner:(req, res) => {
+        res.render('banners', {
+            titulo: 'banner inicio'
+         });
+    },
+    editBanner:(req, res) => {
+        
+    },
+    formularioVoucher:(req, res) => {
+        res.render('voucher', {
+            titulo: 'voucher descuentos'
+         });
+    },
+    editVoucher:(req, res) => {
+        
+    },
    
 }
 

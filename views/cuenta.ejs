@@ -10,7 +10,7 @@
         <%- include ( './partials/header' ); %>
             <%- include ( './partials/contacto' ); %>
 
-                <section id="miCuenta" class="container">
+                <section id="miCuenta" class="container ">
                     <article class="row justify-content-between mx-auto">
                         <div id="misDatos" class="col-lg-3 col-md-12">
                             <h3 class="botones titulos">Mis Datos</h3>
@@ -20,15 +20,19 @@
                             <h3 class="botones titulos">Mis Compras</h3>
                         </div>
 
+                        <% if (locals.userLogged) { %>
+                            <% if (locals.userLogged.rol == "admin") { %>
 
                         <div id="accionesAdmin" class="col-lg-3 col-md-12">
                             <h3 class="botones titulos">Administración</h3>
                         </div>
+                        <%}%>
+                        <%}%>
                     </article>
                 </section>
 
                 
-                <section id="comprasHistorial" class="container ocultar">
+                <section id="comprasHistorial" class="container ocultar estiloDeCaja">
                     <article class="row mt-2 mb2">
                         
                         <article class="producto">
@@ -52,7 +56,7 @@
                 </section>
 
 
-                <section id="datosUsuarios" class="container mostrar">
+                <section id="datosUsuarios" class="container mostrar estiloDeCaja">
                   
                         <div class="row cajaDatosUsuario">
                             <% if (locals.userLogged) { %>
@@ -62,8 +66,8 @@
                                     <p> E-mail: <%= locals.userLogged.email %> </p>
                                     <p> Dirección: <%= locals.userLogged.direccion %> </p>
                                     <p> Código Postal: <%= locals.userLogged.cp %> </p>
-                                    <p> Contraseña: <%= locals.userLogged.password %> </p>  
                                     <a href="/user/cuenta/editarPerfil/<%=locals.userLogged.idUsuarios%>" class="botones col-2 p-2 btn">Modificar datos</a>
+                                    <a href="/user/cuenta/actualizarPassword/<%=locals.userLogged.idUsuarios%>" class="botones col-2 p-2 mx-2 btn">Modificar contraseña</a>
                                     <% if (locals.userLogged.rol == "admin") { %>                                
                                         <a href="/user/listadoClientes" class="botones col-2 p-2 btn" aria-disabled="false">Listar clientes</a>
                                     <%}%>
@@ -80,13 +84,13 @@
                     
                 </section>
 
-                <section id="adminProductos" class="container ocultar">
+                <section id="adminProductos" class="container ocultar estiloDeCaja">
                     <div class="row justify-content-between">
-                        <a href="/tienda/altaProducto" class="botones titulos col-lg-3 col-md-12 text-center btnAdminProd"> Ingresar un
+                        <a href="/tienda/altaProducto" class="botones col-lg-3 col-md-12 btnAdminProd btn "> Ingresar un
                             producto</a>
-                        <a href="/tienda/editProducto" class="botones titulos col-lg-3 col-md-12 text-center btnAdminProd">Editar
+                        <a href="/ModificarBanner" class="botones col-lg-3 col-md-12 btnAdminProd btn ">Modificar Banner
                             Producto</a>
-                        <a href="/tienda" class="botones titulos col-lg-3 col-md-12 text-center btnAdminProd">Eliminar Producto</a>
+                        <a href="/ModificarVoucher" class="botones col-lg-3 col-md-12 btnAdminProd btn ">Modificar voucher descuento</a>
                     </div>
                 </section>
 
