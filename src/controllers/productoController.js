@@ -125,10 +125,10 @@ let productoController = {
                     peso: req.body.peso,         
                     medida: req.body.medida                
                 }).then((newProducto) => {
-                    console.log(newProducto)
+                    
                     res.redirect("/tienda");
                 })
-           
+    
     },
     edit: (req, res) => {
         producto.findByPk(req.params.id, {

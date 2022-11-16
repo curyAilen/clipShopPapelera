@@ -24,7 +24,7 @@ router.get('/nosotros', mainController.nosotros);
 router.get('/configBanner', mainController.configbanner);
 
 router.get('/altaBanner', mainController.crearBanner);
-router.post('/altaBanner', mainController.altabanner);
+router.post('/altaBanner', upload.single('imgBanner'), mainController.altabanner);
 
 router.get('/editBanner', mainController.editBanner);
 

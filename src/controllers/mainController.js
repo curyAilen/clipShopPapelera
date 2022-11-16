@@ -30,12 +30,11 @@ let mainController = {
         });
     
     },
-    altabanner: (req, res) => {      
-        console.log(req.file.filename)  
+    altabanner: (req, res) => {            
         Banner.create({
-            banner: req.file.filename,               
-            }).then(() => {
-                res.redirect("/");
+            banner: req.file.filename               
+            }).then((newBanner) => {
+                res.redirect("/configBanner");
             })       
     },
     editBanner: (req, res) => {
