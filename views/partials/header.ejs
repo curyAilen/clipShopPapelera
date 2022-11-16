@@ -36,12 +36,13 @@
 
         <% if (!locals.userLogged) { %>
             <div class="col-3 text-end">
-                <li class=" btn me-2 botones"><a href="/user/login" class="nav-link p-0 ">Iniciar Sesión</a>
+                <li class=" btn me-2 botones"><a href="/user/login" class="nav-link p-0 ">Iniciar Sesión <i class="fas fa-sign-in-alt icono ml-1"></i></a>
+                    
                 </li>
             </div>
             <%}else{%>
                 <div class="col-3 text-end">
-                    <li class=" btn me-2 botones"><a href="/user/logout" class="nav-link p-0 ">Cerrar Sesión</a>
+                    <li class=" btn me-2 botones"><a href="/user/logout" class="nav-link p-0 ">Cerrar Sesión<i class="fas fa-sign-out-alt icono ml-1"></i></a>
                     </li>
                 </div>
                 

@@ -1,0 +1,25 @@
+<%- include ( './partials/head' ); %>
+<link rel="stylesheet" href="/css/formularios.css">
+</head>
+
+<body class="">
+  <%- include ( './partials/header' ); %>
+  <%- include ( './partials/contacto' ); %>
+  <% if (locals.userLogged) { %>   
+    <% if (locals.userLogged.rol == "admin") { %>                                
+       
+       
+  <section class="container">
+    <article class="row justify-content-between">
+        <a href="/altaBanner" class="btn botones col-5">Nuevo Banner</a>
+        <a href="/editBanner" class="btn botones col-5">Modificación Banner</a>
+</article>
+    </section>
+
+ <%}else{%> 
+  <h3 class="text-center my-5">Usted no posee credenciales validas para acceder a esta sección.</h3>
+  
+  <%}}%>
+
+
+  <%- include ( './partials/footer' ); %>

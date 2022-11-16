@@ -1,0 +1,33 @@
+<%- include ( './partials/head' ); %>
+<link rel="stylesheet" href="/css/formularios.css">
+</head>
+
+<body class="">
+  <%- include ( './partials/header' ); %>
+  <%- include ( './partials/contacto' ); %>
+
+      <section class="container">
+  <% if (locals.userLogged) { %>   
+    <% if (locals.userLogged.rol == "admin") { %>                                
+       
+
+     
+  <form action="/altaBanner"  method="post" enctype="multipart/form-data" id="formularioAltaBanner" class="estiloDeCaja">
+    <h2 class="">Carga un banner nuevo</h2>
+    <div class="row justify-content-between">
+     
+      <div class="form-group ">
+        <label for="imgBanner">Imagen de banner</label>
+        <input type="file" class="form-control-file" name="imgBanner" accept="image/png, image/jpeg">
+      </div>
+      <button class="btn botones " id="altaPedidoBtn" type="submit">CREAR</button>
+    </div>
+  </form>
+
+ <%}else{%> 
+  <h3 class="text-center my-5">Usted no posee credenciales validas para acceder a esta sección.</h3>
+   </section>
+  <%}}%>
+
+
+  <%- include ( './partials/footer' ); %>

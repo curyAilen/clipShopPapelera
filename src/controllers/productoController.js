@@ -105,7 +105,7 @@ let productoController = {
         });
     },
     crearProd: (req, res) => {
-        db.Categoria.findAll()
+        categoria.findAll()
         .then((categoria) => {
             res.render("altaProducto", {
                 titulo: "Ingresar nuevo producto",
@@ -114,22 +114,21 @@ let productoController = {
         });
     },
     ingresaProducto: (req, res) => {
-    db.Categoria.findAll()
-    .then((categoria) => {
-            producto.create({
-                nombre: req.body.nombre,
-                FKidCategoria: req.body.categoria,
-                precio: req.body.precio,
-                descripcion: req.body.descripcion,
-                imagen: req.file.filename,
-                oferta: req.body.oferta,               
-                color: req.body.color,                
-                peso: req.body.peso,         
-                medida: req.body.medida                
-            }).then(() => {
-                res.redirect("/tienda");
-            })
-        });
+                producto.create({
+                    nombre: req.body.nombre,
+                    FKidCategoria: req.body.categoria,
+                    precio: req.body.precio,
+                    descripcion: req.body.descripcion,
+                    imagen: req.file.filename,
+                    oferta: req.body.oferta,               
+                    color: req.body.color,                
+                    peso: req.body.peso,         
+                    medida: req.body.medida                
+                }).then((newProducto) => {
+                    console.log(newProducto)
+                    res.redirect("/tienda");
+                })
+           
     },
     edit: (req, res) => {
         producto.findByPk(req.params.id, {

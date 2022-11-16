@@ -1,32 +1,64 @@
+const db = require("../../database/models/");
+const Op = db.Sequelize.Op;
+const path = require("path");
+const Banner = db.Banner;
+
 let mainController = {
     main: (req, res) => {
         res.render('home', {
             titulo: 'HOME'
-          
+
         });
     },
     nosotros: (req, res) => {
         res.render('nosotros', {
             titulo: 'nosotros'
-         });
+        });
     },
-    formularioBanner:(req, res) => {
-        res.render('banners', {
-            titulo: 'banner inicio'
-         });
+    configbanner: (req, res) => {
+        res.render('configBanner', {
+            titulo: ''
+        });
     },
-    editBanner:(req, res) => {
-        
+    crearBanner: (req, res) => {
+        Banner.findAll()
+        .then((banner) => {
+            res.render("altaBanner", {
+                titulo: "Ingresar nuevo banner",
+                banner: banner
+            });
+        });
+    
     },
-    formularioVoucher:(req, res) => {
-        res.render('voucher', {
-            titulo: 'voucher descuentos'
-         });
+    altabanner: (req, res) => {      
+        console.log(req.file.filename)  
+        Banner.create({
+            banner: req.file.filename,               
+            }).then(() => {
+                res.redirect("/");
+            })       
     },
-    editVoucher:(req, res) => {
-        
+    editBanner: (req, res) => {
+        res.render('editBanner', {
+            titulo: ''
+        });
     },
-   
+    configVoucher: (req, res) => {
+        res.render('configVoucher', {
+            titulo: ''
+        });
+    },
+    altaVoucher: (req, res) => {
+        res.render('altaVoucher', {
+            titulo: ''
+        });
+    },
+    editVoucher: (req, res) => {
+        res.render('editVoucher', {
+            titulo: ''
+        });
+    },
+
 }
 
 module.exports = mainController;

@@ -137,7 +137,7 @@ actualizar: (req, res)=>{
     });
   })
 },
-
+//////////////EN PROCESO////////////////////////////////
 actualizarPassword: (req, res) => {
   let passwordEncriptada = bcrypt.hashSync(req.body.password, 10);
   Usuarios.findOne({
@@ -199,7 +199,7 @@ actualizarPassword: (req, res) => {
 
 
 },
-
+/////////////////////////////////////////////////
 	
 logout: (req, res) => {
 		res.clearCookie("userCookie");

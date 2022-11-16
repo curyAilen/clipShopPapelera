@@ -5,7 +5,8 @@
   <body class="">
     <%- include ( './partials/header' ); %>
       <%- include ( './partials/contacto' ); %>
-
+      <% if (locals.userLogged) { %>   
+        <% if (locals.userLogged.rol == "admin") { %>              
         <section class="container ">
           <form action="/banners" enctype="application/x-www-form-urlencoded"
             method="post" class="estiloDeCaja" id="formBanner">
@@ -13,6 +14,10 @@
             <button type="submit" class="btn botones btnEditarGuardar">Guardar cambios</button>
           </form>
         </section>
-
+        <%}else{%> 
+          <h3 class="text-center my-5">Usted no posee credenciales validas para acceder a esta sección.</h3>
+          
+          <%}}%>
+        
 
         <%- include ( './partials/footer' ); %></body>
