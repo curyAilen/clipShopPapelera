@@ -26,11 +26,20 @@ router.get('/configBanner', mainController.configbanner);
 router.get('/altaBanner', mainController.crearBanner);
 router.post('/altaBanner', upload.single('imgBanner'), mainController.altabanner);
 
-router.get('/editBanner', mainController.editBanner);
+router.get('/editBanner/:id', mainController.editBanner);
+router.post('/editBanner/:id',upload.single('imgBanner'), mainController.editBanner);
+
+//Borrar
+router.delete('/:id', mainController.delete);
 
 router.get('/configVoucher', mainController.configVoucher);
-router.get('/altaVoucher', mainController.altaVoucher);
-router.get('/editVoucher', mainController.editVoucher);
+
+router.get('/altaVoucher', mainController.crearVoucher);
+router.post('/altaVoucher', mainController.altaVoucher);
+
+router.get('/editVoucher/:id', mainController.editVoucher);
+router.post('/editVoucher/:id', mainController.editVoucher);
+
 
 
 

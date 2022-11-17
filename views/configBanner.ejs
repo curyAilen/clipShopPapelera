@@ -9,11 +9,21 @@
     <% if (locals.userLogged.rol == "admin") { %>                                
        
        
-  <section class="container">
-    <article class="row justify-content-between">
-        <a href="/altaBanner" class="btn botones col-5">Nuevo Banner</a>
-        <a href="/editBanner" class="btn botones col-5">Modificación Banner</a>
-</article>
+  <section class="container mx-auto">
+    <article class="row justify-content-end">
+        <a href="/altaBanner" class="btn botones col-4 mt-5 mb-3">Nuevo Banner<i class="fas fa-plus iconos"></i></a>
+    </article>
+<%for(let i=0; i< banner.length;i++){%>    
+      
+        <div class="row ">
+          <a href="/editBanner/<%=banner[i].idBanners%>" class="col-4 my-4 botones text-center">Editar
+          <i class="fas fa-pencil-alt iconos"></i></a>
+                   
+          <img src="/images/imgBanner/<%=banner[i].banner%>" alt="" class="img-fluid col-10 mx-auto" name="banner"> 
+        </div>            
+                        
+    
+  <%}%>
     </section>
 
  <%}else{%> 

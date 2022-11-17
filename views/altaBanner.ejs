@@ -6,12 +6,14 @@
   <%- include ( './partials/header' ); %>
   <%- include ( './partials/contacto' ); %>
 
-      <section class="container">
+      <section class="">
   <% if (locals.userLogged) { %>   
     <% if (locals.userLogged.rol == "admin") { %>                                
        
 
-     
+     <div class="container">
+
+    
   <form action="/altaBanner"  method="post" enctype="multipart/form-data" id="formularioAltaBanner" class="estiloDeCaja">
     <h2 class="">Carga un banner nuevo</h2>
     <div class="row justify-content-between">
@@ -20,14 +22,15 @@
         <label for="imgBanner">Imagen de banner</label>
         <input type="file" class="form-control-file" name="imgBanner" accept="image/png, image/jpeg">
       </div>
-      <button class="btn botones "  type="submit">CREAR</button>
+      <button class="btn botones "  type="submit">CREAR<i class="fas fa-pencil-alt iconos"></i></button>
     </div>
   </form>
 
  <%}else{%> 
   <h3 class="text-center my-5">Usted no posee credenciales validas para acceder a esta sección.</h3>
-   </section>
-  <%}}%>
 
+  <%}}%>   
+</section>
+ </div>
 
   <%- include ( './partials/footer' ); %>

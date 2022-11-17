@@ -75,7 +75,10 @@ loginprocess: (req, res) => {
           maxAge: 10000 * 60 * 60 * 24,
         });
       }
-      return res.render('home')
+     
+        return res.redirect('/')
+     
+      
     } else {
       console.log("No se logueo")  
       res.render('login', {

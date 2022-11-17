@@ -2,13 +2,18 @@ const db = require("../../database/models/");
 const Op = db.Sequelize.Op;
 const path = require("path");
 const Banner = db.Banner;
+const Voucher = db.Voucher;
 
 let mainController = {
     main: (req, res) => {
-        res.render('home', {
-            titulo: 'HOME'
+        Banner.findAll()
+        .then((banner)=>{
+            res.render('home', {
+            titulo: 'HOME',
+            banner: banner
 
-        });
+        });  
+        })  
     },
     nosotros: (req, res) => {
         res.render('nosotros', {
@@ -16,9 +21,14 @@ let mainController = {
         });
     },
     configbanner: (req, res) => {
-        res.render('configBanner', {
-            titulo: ''
+        Banner.findAll()
+        .then((banner)=>{
+             res.render('configBanner', {
+            titulo: '',
+            banner: banner
         });
+        })
+       
     },
     crearBanner: (req, res) => {
         Banner.findAll()
@@ -38,19 +48,69 @@ let mainController = {
             })       
     },
     editBanner: (req, res) => {
-        res.render('editBanner', {
-            titulo: ''
+        Banner.findByPk(req.params.id)
+          
+        .then((banner)=>{
+            res.render('editBanner', {
+                titulo: 'Edición de banners',
+                banner: banner
+            });
+        })        
+    },
+    editedBanner:(req, res)=>{
+        let imagen = req.body.imagenOriginal;
+
+        if (req.file) {
+            banner = req.file.filename;
+     }
+        Banner.update(
+            {
+                imagen: imagen,
+            },
+            {
+                where: {
+                    idBanners: req.params.id,
+                },
+            })
+            .then((banner)=>{                
+                res.redirect("/");
+                
+            })   
+  },  
+    delete: (req, res) => {
+        Banner.destroy({
+            where: { idBanners: req.params.id },
         });
+
+        res.redirect("/");
     },
     configVoucher: (req, res) => {
-        res.render('configVoucher', {
-            titulo: ''
+        Voucher.findAll()
+        .then((voucher)=>{
+             res.render('configVoucher', {
+            titulo: '',
+            voucher: voucher
         });
+        })
+    },
+    crearVoucher: (req, res) => {
+        Voucher.findAll()
+        .then((voucher) => {
+            res.render("altaVoucher", {
+                titulo: "Ingresar nuevo voucher",
+                voucher: voucher
+            });
+        });
+    
     },
     altaVoucher: (req, res) => {
-        res.render('altaVoucher', {
-            titulo: ''
-        });
+        Voucher.create({
+            voucher: req.body.voucher,   
+            valor: req.body.valor,   
+            fecha: new Date()          
+            }).then((newVoucher) => {
+                res.redirect("/configVoucher");
+            })  
     },
     editVoucher: (req, res) => {
         res.render('editVoucher', {

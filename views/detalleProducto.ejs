@@ -22,7 +22,7 @@
                 <button class="btn botones m-3 float-right "><a href="/carrito" class="eliminasEstiloLink" style="color: rgb(255, 245, 238);">Comprar</a></button>
                 <% if (locals.userLogged) { %>   
                 <% if (locals.userLogged.rol == "admin") { %>                                
-                    <button class="btn botones m-3 float-right "><a href="/tienda/editProducto/<%=producto.idProductos%>" class="eliminasEstiloLink" style="color: rgb(255, 245, 238);">Editar</a></button>
+                    <button class="btn botones m-3 float-right "><a href="/tienda/editProducto/<%=producto.idProductos%>" class="eliminasEstiloLink" style="color: rgb(255, 245, 238);">Editar</a><i class="fas fa-cogs icono"></i></button>
                     <%}%>       <%}%>
 
                 
