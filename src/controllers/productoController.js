@@ -99,11 +99,7 @@ let productoController = {
                 });
             });
     },
-    carrito: (req, res) => {
-        res.render("./carrito", {
-            titulo: "Carrito",
-        });
-    },
+  
     crearProd: (req, res) => {
         categoria.findAll()
         .then((categoria) => {

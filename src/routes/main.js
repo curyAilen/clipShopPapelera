@@ -20,26 +20,38 @@ const upload = multer({storage});
 router.get('/', mainController.main);
 router.get('/nosotros', mainController.nosotros);
 
-//Autogestion
+
+// Obtenemos carrito de compra
+router.get('/carrito', mainController.carrito);
+router.post('/agregarProducto/:id',upload.single('imgProd'), mainController.agregarproducto);
+ 
+//Autogestion Banner
 router.get('/configBanner', mainController.configbanner);
 
+//crear
 router.get('/altaBanner', mainController.crearBanner);
 router.post('/altaBanner', upload.single('imgBanner'), mainController.altabanner);
 
+//Editar
 router.get('/editBanner/:id', mainController.editBanner);
 router.post('/editBanner/:id',upload.single('imgBanner'), mainController.editBanner);
 
 //Borrar
-router.delete('/:id', mainController.delete);
+router.delete('/eliminarBanner/:id', mainController.deleteBanner);
 
+//Autogestion Voucher
 router.get('/configVoucher', mainController.configVoucher);
 
+//Crear
 router.get('/altaVoucher', mainController.crearVoucher);
 router.post('/altaVoucher', mainController.altaVoucher);
 
+//Editar
 router.get('/editVoucher/:id', mainController.editVoucher);
-router.post('/editVoucher/:id', mainController.editVoucher);
+router.post('/editVoucher/:id', mainController.editedVoucher);
 
+//Borrar
+router.delete('/eliminar/:id', mainController.deleteVoucher);
 
 
 

@@ -61,15 +61,17 @@ loginprocess: (req, res) => {
     if ( bcrypt.compareSync( req.body.password, usuario.dataValues.password)) {    
     
       let usuarioLogeado = {
-        idUsuarios: usuario.idUsuarios,
-        nombre: usuario.nombre,
-        email: usuario.email,
-        direccion: usuario.direccion,
-        FKCodigoPostal: usuario.cp,
-        password: usuario.password,
-        rol: usuario.rol
+        idUsuarios: usuario.dataValues.idUsuarios,
+        nombre: usuario.dataValues.nombre,
+        email: usuario.dataValues.email,
+        direccion: usuario.dataValues.direccion,
+        FKCodigoPostal: usuario.dataValues.cp,
+        password: usuario.dataValues.password,
+        rol: usuario.dataValues.rol
       };
+
       req.session.login = usuarioLogeado;
+
       if (req.body.remember_user) {
         res.cookie("userCookie", usuarioLogeado, {
           maxAge: 10000 * 60 * 60 * 24,
@@ -82,19 +84,15 @@ loginprocess: (req, res) => {
     } else {
       console.log("No se logueo")  
       res.render('login', {
-        error: 'Clave o Email incorrecto',
-        old: req.body,
-        titulo: 'Login',
-        css: 'estiloLogin.css'
+        errores: 'Clave o Email incorrecto',
+        old: req.body
       })
     }
   })
     .catch(() => {
       res.render('login', {
-        error: 'Clave o Email incorrecto',
-        oldData: req.body,
-        titulo: 'Login',
-        css: 'estiloLogin.css'
+        errores: 'Clave o Email incorrecto',
+        old: req.body
       })
     });
 },
@@ -111,25 +109,35 @@ editarPerfil: (req, res) => {
 },
 
 editedPerfil: (req, res) => {
-  let passwordEncriptada = bcrypt.hashSync(req.body.password, 10);s
-  Usuarios.update({
-    nombre: req.body.nombre,
-    email: req.body.email,
-    direccion: req.body.direccion,
-    telefono: req.body.telefono
-  }, {
-    where: {
-      idUsuarios: req.params.id
-    }
-  }).then((usuario)=>{
-    res.render('cuenta', {
-      titulo: "Perfil",
-        css: "estiloLogin.css",
-        })
-  })  
-	res.clearCookie("userCookie");
-	req.session.destroy();
-  res.redirect("/user/login");
+  
+
+  if(bcrypt.compareSync( req.body.password, Usuario.password)){
+    Usuarios.update({
+      nombre: req.body.nombre,
+      email: req.body.email,
+      direccion: req.body.direccion,
+      telefono: req.body.telefono
+    }, {
+      where: {
+        idUsuarios: req.params.id
+      }
+    }).then((usuario)=>{
+      res.render('cuenta', {
+        titulo: "Perfil",
+          css: "estiloLogin.css",
+          })
+    res.clearCookie("userCookie");
+    req.session.destroy();
+    res.redirect("/user/login");
+    })  
+    
+  }else{
+    res.render('editarPerfil',{
+      titulo: 'Editar Perfil',
+
+    })
+  }
+  
 },
 actualizar: (req, res)=>{
   Usuarios.findByPk(req.params.id)
@@ -149,8 +157,7 @@ actualizarPassword: (req, res) => {
     }
   }).then((usuario) => {
   
-    if ( bcrypt.compareSync( req.body.password, usuario.dataValues.password)) {    
-    
+    if ( req.body.email, usuario.dataValues.email) {        
       Usuarios.update({
         password: req.body.password
       }, {
@@ -165,9 +172,7 @@ actualizarPassword: (req, res) => {
       console.log("no coinciden contraseñas")  
       res.render('actualziarPassword', {
         error: 'Clave o Email incorrecto',
-        old: req.body,
-        titulo: 'Login',
-        css: 'estiloLogin.css'
+        old: req.body
       })
     }
   })
@@ -179,11 +184,6 @@ actualizarPassword: (req, res) => {
         css: 'estiloLogin.css'
       })
     });
-
-
-
-
-
   Usuarios.update({
     password: req.body.password
   }, {

@@ -15,14 +15,16 @@
                     class="fas fa-plus iconos"></i></a>
                </article>
 
-              <div class="row ">
+              <div class="row justify-content-center">
                 <%for(let i=0; i< voucher.length;i++){%>
-                  <div class="estiloDeCaja col-4">
-                    <h3>Voucher: <%=voucher[i].voucher%>
+                  <div class="estiloDeCaja col-3 mx-3">
+                    <h3 class="nombreVoucher">Voucher: <%=voucher[i].voucher%>
                     </h3>
-                    <h5>Fecha: <%=voucher[i].fecha%>
+                    <h3 class="valorVoucher">Valor: <%=voucher[i].valor%>%
+                    </h3>
+                    <h5 class="fechaVoucher">Fecha: <%=voucher[i].fecha%>
                     </h5>
-                    <a href="/editBanner/<%=voucher[i].idVouchers%>" class="col-4 my-4 botones text-center btn ">Editar
+                    <a href="/editVoucher/<%=voucher[i].idVouchers%>" class="col-4 my-4 botones text-center btn ">Editar
                       <i class="fas fa-pencil-alt iconos"></i></a>
                   </div>
                 <%}%>

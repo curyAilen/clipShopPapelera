@@ -1,0 +1,48 @@
+<%- include ( './partials/head' ); %>
+  <!--<link rel="stylesheet" href="/css/login.css">-->
+  </head>
+
+  <body class="">
+    <%- include ( './partials/header' ); %>
+      <%- include ( './partials/contacto' ); %>
+      <% if (locals.userLogged) { %>
+        <% if (locals.userLogged.rol=="admin" ) { %>
+
+          <form action="/editVoucher/<%=voucher.idVouchers%>" method="post" id="formularioEditVoucher" class="">
+                      
+            <div class="row">
+              <div class="form-group  col-4">
+                <label for="">Voucher:</label>
+                <input type="text" value="<%=voucher.voucher%>"  name="voucher" class="form-control">
+              </div>
+
+              <div class="form-group col-4">
+                <label for="">Monto:</label>
+                <div class="input-group  ">
+                  <input type="number" value="<%=voucher.valor%>" name="valor" class="form-control">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">%</div>
+                  </div>
+                </div>
+              </div>
+              
+
+            </div>
+
+
+
+            <button class="btn botones " type="submit">Guardar<i class="fas fa-pencil-alt iconos"></i></button>
+          
+          </form>                   
+       
+          <form action="/eliminar/<%=voucher.idVouchers%>?_method=DELETE" method="post" class="row botonesDelEditor">
+            <button class="mt-3 my-auto guardar botoneEliminar botones btn col-4">Eliminar <i class="fas fa-trash-alt iconos"></i></button>
+      </form>
+
+          <%}else{%>
+            <h3 class="text-center my-5">Usted no posee credenciales validas para acceder a esta sección.</h3>
+
+            <%}}%>
+        
+
+        <%- include ( './partials/footer' ); %></body>

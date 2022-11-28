@@ -77,11 +77,10 @@ let mainController = {
                 
             })   
   },  
-    delete: (req, res) => {
+    deleteBanner: (req, res) => {
         Banner.destroy({
             where: { idBanners: req.params.id },
         });
-
         res.redirect("/");
     },
     configVoucher: (req, res) => {
@@ -113,10 +112,75 @@ let mainController = {
             })  
     },
     editVoucher: (req, res) => {
-        res.render('editVoucher', {
-            titulo: ''
+        Voucher.findByPk(req.params.id)
+          
+        .then((voucher)=>{
+            res.render('editVoucher', {
+                titulo: 'Edición de vouchers',
+                voucher: voucher
+            });
+        })     
+    },
+    editedVoucher:(req, res)=>{
+        Voucher.update(
+            {
+            voucher: req.body.voucher,   
+            valor: req.body.valor,   
+            fecha: new Date() 
+            },
+            {
+                where: {
+                    idVouchers: req.params.id,
+                },
+            })
+            .then((voucher) => {
+                res.redirect("/configVoucher");
+            })  
+  },  
+    deleteVoucher: (req, res) => {
+        Voucher.destroy({
+            where: { idVouchers: req.params.id },
+        })
+        .then((voucher) => {
+            res.redirect("/configVoucher");
+        })  
+    },
+    carrito: (req, res) => {
+        let productosCarrito = req.session.carrito;
+
+        res.render('carrito', {
+            titulo: 'Carrito',
+            carrito: productosCarrito
         });
     },
+
+    agregarproducto: (req, res) => {
+        let productoAlCarrito= {
+            idProductos: req.params.id,
+            nombre: req.body.nombre,
+            precio: req.body.precio,
+            FKidCategoria: req.body.categoria,
+            descripcion: req.body.descripcion,  
+            color: req.body.color,                
+            peso: req.body.peso,         
+            medida: req.body.medida    
+
+        }
+
+        let productosEnCarrito = req.session.carrito;
+
+        if (productosEnCarrito != null && productosEnCarrito != undefined) {
+            req.session.carrito =  [...productosEnCarrito, productoAlCarrito];
+        } else {
+            req.session.carrito = [];
+            req.session.carrito.push(productoAlCarrito)
+        }
+
+        res.redirect("/tienda");
+    },
+    eliminarProdutoCarrito: (req, res) => {
+        
+    }
 
 }
 

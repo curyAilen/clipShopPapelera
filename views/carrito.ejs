@@ -1,239 +1,203 @@
-<%- include ( './partials/head'); %>
-<link rel="stylesheet" href="/css/carrito.css">
+<%- include ( './partials/head' ); %>
+    <link rel="stylesheet" href="/css/carrito.css">
 
-</head>
+    </head>
 
-<body class="">
+    <body class="">
 
-    <%- include ( './partials/header'); %>
-    <%- include ( './partials/contacto'); %>
+        <%- include ( './partials/header' ); %>
+            <%- include ( './partials/contacto' ); %>
 
-    <!--CARRITO DE COMPRAS-->
-    <div class="container">
-  <div class="contenedor">
-        <section id="carrito">
-            <article class="producto">
-                <header class="envcabezadoProducto">
-                    <a class="remove">
-                        <img src="/images/etiqueteadora.png" alt="">
+                <!--CARRITO DE COMPRAS-->
+                <div class="container " >
 
-                        <h3>Quitar producto</h3>
-                    </a>
-                </header>
+                    <section id="carritoDeCompras" class=" ">
+                        <% if (carrito) { %>
+                            <% carrito.forEach(producto=> { %>
+                                <div class="productoCarrito estiloDeCaja">
+                                    <div class=" row ">
+                                       
+                                        <article class="col-12">
+                                            <h2>
+                                                <%= producto.nombre %>
+                                            </h2>
+                                            <div class="contieneDetalleProducto">
+                                                <p>Medidas: <%if(producto.medida){%>
+                                                        <%=producto.medida%> kg.
+                                                            <%}else{%>
+                                                                -
+                                                                <%}%>
+                                                </p>
+                                                <p>Peso: <%if(producto.peso){%>
+                                                        <%=producto.peso%>
+                                                            <%}else{%>
+                                                                -
+                                                                <%}%>
+                                                </p>
 
-                <div class="content">
+                                                <p> Color:
+                                                    <%if(producto.color){%>
+                                                        <%=producto.color%>
+                                                            <%}else{%>
+                                                                -
+                                                                <%}%>
+                                                </p>
+                                            </div>
+                                        </article>
 
-                    <h1>Lorem ipsum</h1>
+                                    </div>
+                                    <hr>
+                                    <div class="row mt-3 mb-3">
+                                        <article class="col-3 contienBotonesCarrito">
+                                            <div class="botonesCarrito">
+                                                <button class="resta  btn botones mx-4"><i
+                                                        class="fas fa-minus iconos"></i></button>
+                                                <p class="cantidad h5">1</p>
+                                                <button class="suma   btn botones mx-4"><i
+                                                        class="fas fa-plus iconos"></i></button>
+                                                <button class="remover btn botones mx-4"><i
+                                                        class="fas fa-trash-alt iconos"></i></button>
+                                            </div>
+                                        </article>
+                                        <article class="col-7 contienePrecios">
+                                            <div class="mx-5">
+                                                <p class="precioUnidad"> unidad: $
+                                                    <%= producto.precio %>
+                                                </p>
+                                            </div>
+                                            <div class="mx-5">
+                                                <p class="precioTotal"> $
+                                                    <%= producto.precio %>
+                                                </p>
+                                            </div>
+                                        </article>
 
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, numquam quis perspiciatis ea ad
-                    omnis provident laborum dolore in atque.
+                                    </div>
+                                </div>
 
-                    <div title="You have selected this producto to be shipped in the color yellow." style="top: 0"
-                        class="color yellow"></div>
-                    <div style="top: 43px" class="type small">Etiquetas</div>
+
+
+                                <% }) %>
+                                    <% } else { %>
+                                        <article class="productoCarrito">
+                                            <h4>Carrito vacio</h4>
+                                        </article>
+                                        <% } %>
+                    </section>
+                    <footer id="pieCarrito" class="row">
+                            <div class="col-7 ">
+                                <p class="subtotal">Voucher Valor: <span class="valorVoucher">$</span></p>
+                                <input type="text" placeholder="Ingresar Voucher..." class="descuentoVocuher">
+                            </div>
+
+                            <div class="calculoTotales col-4">
+                                <p>Subtotal: <span class="montoSubTotal">$</span></p>
+                                <h1 class="total">Total: <span class="montoTotal">$</span></h1>
+                                <input type="button" value="Comprar" class="botones btn">
+                            </div>
+
+                       
+                    </footer>
+
+                 
+
+
+                    
                 </div>
 
-                <footer class="content">
-                    <span class="restar">-</span>
-                    <span class="contador">2</span>
-                    <span class="sumar">+</span>
-
-                    <h2 class="totalPrecio">
-                        29.98
-                    </h2>
-
-                    <h2 class="precio">
-                        14.99
-                    </h2>
-                </footer>
-            </article>
-
-            <article class="producto">
-                <header  class="envcabezadoProducto">
-                    <a class="remove">
-                        <img src="/images/turnera.png" alt="">
-
-                        <h3>Quitar producto</h3>
-                    </a>
-                </header>
-
-                <div class="content">
-
-                    <h1>Lorem ipsum dolor</h1>
-
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, numquam quis perspiciatis ea ad
-                    omnis provident laborum dolore in atque.
-
-                    <div title="You have selected this producto to be shipped in the color red." style="top: 0"
-                        class="color red"></div>
-                    <div title="You have selected this producto to be shipped sized Small." style="top: 43px"
-                        class="type small">Embalaje</div>
-                </div>
-
-                <footer class="content">
-
-                    <span class="restar">-</span>
-                    <span class="contador">1</span>
-                    <span class="sumar">+</span>
-
-                    <h2 class="totalPrecio">
-                        79.99
-                    </h2>
-
-                    <h2 class="precio">
-                        79.99
-                    </h2>
-                </footer>
-            </article>
-
-            <article class="producto">
-                <header  class="envcabezadoProducto">
-                    <a class="remove">
-                        <img src="/images/cajaEmbalaje.png" alt="">
-
-                        <h3>Quitar producto</h3>
-                    </a>
-                </header>
-
-                <div class="content">
-
-                    <h1>Lorem ipsum dolor ipsdu</h1>
-
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, numquam quis perspiciatis ea ad
-                    omnis provident laborum dolore in atque.
-
-                    <div title="You have selected this producto to be shipped in the color blue." style="top: 0"
-                        class="color yellow"></div>
-                    <div style="top: 43px" class="type small">Embalaje</div>
-                </div>
-
-                <footer class="content">
-
-                    <span class="restar">-</span>
-                    <span class="contador">3</span>
-                    <span class="sumar">+</span>
-
-                    <h2 class="totalPrecio">
-                        53.99
-                    </h2>
-
-                    <h2 class="precio">
-                        17.99
-                    </h2>
-                </footer>
-            </article>
-
-        </section>
-
-    </div>
-
-    <footer id="pieCarrito">
-        <div class="contenedor clearfix">
-
-            <div class="calculoSubtotal">
-                <h2 class="subtotal">Subtotal: <span>163.96</span></h2>
-                <input type="text" placeholder="Ingresar Voucher..." class="descuentoVocuher">
-            </div>
-
-            <div class="calculototales">
-                <h1 class="total">Total: <span>177.16</span></h1>
-             <input type="button" value="Comprar" class="botones btn">
-            </div>
-
-        </div>
-    </footer>
-    </div>
-  
-    <script>
-        ////////////////////////////////////////////////////////////////////
-        ////////////////////////////////////////////////////////////////////
-        ///////////////////////CARRITO//////////////////////////////////////
-        ////////////////////////////////////////////////////////////////////
-        ////////////////////////////////////////////////////////////////////
-        ////////////////////////////////////////////////////////////////////
-        var check = false;
-
-function changeVal(el) {
-    var contador = parseFloat(el.parent().children(".contador").html());
-    var precio = parseFloat(el.parent().children(".precio").html());
-    var eq = Math.round(precio * contador * 100) / 100;
-
-    el.parent().children(".totalPrecio").html("$" + eq);
-
-    changeTotal();
-}
-
-function changeTotal() {
-
-    var precio = 0;
-
-    $(".totalPrecio").each(function (index) {
-        precio += parseFloat($(".totalPrecio").eq(index).html());
-    });
-
-    precio = Math.round(precio * 100) / 100;
-    var voucher = parseFloat($(".descuentoVocuher span").html());
-    var fullPrice = Math.round((precio - voucher) * 100) / 100;
-
-    if (precio == 0) {
-        fullPrice = 0;
-    }
-
-    $(".subtotal span").html(precio);
-    $(".total span").html(fullPrice);
-}
-
-$(document).ready(function () {
-
-    $(".remove").click(function () {
-        var el = $(this);
-        el.parent().parent().addClass("removed");
-        window.setTimeout(
-            function () {
-                el.parent().parent().slideUp('fast', function () {
-                    el.parent().parent().remove();
-                    if ($(".producto").length == 0) {
-                        if (check) {
-                            $("#carrito").html("<h1>UPS!!</h1><p>Lo siento por el momento no puedes realizar ninguna COMPRA, comunicate con la empresa para mayor información</p>");
-                        } else {
-                            $("#carrito").html("<h1>No productos!</h1>");
-                        }
-                    }
+                <script>
+                    /*
+                        ////////////////////////////////////////////////////////////////////
+                        ////////////////////////////////////////////////////////////////////
+                        ///////////////////////CARRITO//////////////////////////////////////
+                        ////////////////////////////////////////////////////////////////////
+                        ////////////////////////////////////////////////////////////////////
+                        ////////////////////////////////////////////////////////////////////
+                        var check = false;
+                
+                function changeVal(el) {
+                    var contador = parseFloat(el.parent().children(".contador").html());
+                    var precio = parseFloat(el.parent().children(".precio").html());
+                    var eq = Math.round(precio * contador * 100) / 100;
+                
+                    el.parent().children(".totalPrecio").html("$" + eq);
+                
                     changeTotal();
+                }
+                
+                function changeTotal() {
+                
+                    var precio = 0;
+                
+                    $(".totalPrecio").each(function (index) {
+                        precio += parseFloat($(".totalPrecio").eq(index).html());
+                    });
+                
+                    precio = Math.round(precio * 100) / 100;
+                    var voucher = parseFloat($(".descuentoVocuher span").html());
+                    var fullPrice = Math.round((precio - voucher) * 100) / 100;
+                
+                    if (precio == 0) {
+                        fullPrice = 0;
+                    }
+                
+                    $(".subtotal span").html(precio);
+                    $(".total span").html(fullPrice);
+                }
+                
+                $(document).ready(function () {
+                
+                    $(".remove").click(function () {
+                        var el = $(this);
+                        el.parent().parent().addClass("removed");
+                        window.setTimeout(
+                            function () {
+                                el.parent().parent().slideUp('fast', function () {
+                                    el.parent().parent().remove();
+                                    if ($(".producto").length == 0) {
+                                        if (check) {
+                                            $("#carrito").html("<h1>UPS!!</h1><p>Lo siento por el momento no puedes realizar ninguna COMPRA, comunicate con la empresa para mayor información</p>");
+                                        } else {
+                                            $("#carrito").html("<h1>No productos!</h1>");
+                                        }
+                                    }
+                                    changeTotal();
+                                });
+                            }, 200);
+                    });
+                
+                    $(".sumar").click(function () {
+                        $(this).parent().children(".contador").html(parseInt($(this).parent().children(".contador").html()) + 1);
+                
+                        $(this).parent().children(".totalPrecio").addClass("added");
+                
+                        var el = $(this);
+                        window.setTimeout(function () { el.parent().children(".totalPrecio").removeClass("added"); changeVal(el); }, 150);
+                    });
+                
+                    $(".restar").click(function () {
+                
+                        child = $(this).parent().children(".contador");
+                
+                        if (parseInt(child.html()) > 1) {
+                            child.html(parseInt(child.html()) - 1);
+                        }
+                
+                        $(this).parent().children(".totalPrecio").addClass("minused");
+                
+                        var el = $(this);
+                        window.setTimeout(function () { el.parent().children(".totalPrecio").removeClass("minused"); changeVal(el); }, 150);
+                    });
+                
+                    window.setTimeout(function () { $(".is-open").removeClass("is-open") }, 1200);
+                
+                    $(".btn").click(function () {
+                        check = true;
+                        $(".remove").click();
+                    });
                 });
-            }, 200);
-    });
+                    */
+                </script>
+                <script src="/js/carrito.js"></script>
 
-    $(".sumar").click(function () {
-        $(this).parent().children(".contador").html(parseInt($(this).parent().children(".contador").html()) + 1);
-
-        $(this).parent().children(".totalPrecio").addClass("added");
-
-        var el = $(this);
-        window.setTimeout(function () { el.parent().children(".totalPrecio").removeClass("added"); changeVal(el); }, 150);
-    });
-
-    $(".restar").click(function () {
-
-        child = $(this).parent().children(".contador");
-
-        if (parseInt(child.html()) > 1) {
-            child.html(parseInt(child.html()) - 1);
-        }
-
-        $(this).parent().children(".totalPrecio").addClass("minused");
-
-        var el = $(this);
-        window.setTimeout(function () { el.parent().children(".totalPrecio").removeClass("minused"); changeVal(el); }, 150);
-    });
-
-    window.setTimeout(function () { $(".is-open").removeClass("is-open") }, 1200);
-
-    $(".btn").click(function () {
-        check = true;
-        $(".remove").click();
-    });
-});
-    </script>
-
-<%- include ( './partials/footer'); %>
+                <%- include ( './partials/footer' ); %>
