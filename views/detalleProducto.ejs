@@ -12,7 +12,11 @@
             <div class="col-md-6 col-sm-10 contieneImgProdDetalle">
                 <img src="/images/imgProd/<%=producto.imagen%>" alt="" class="imgProductoDetalle">
             </div>
-            <div class="col-md-6 col-sm-10 contenedorDetalleProd">
+           
+            <div class="col-md-4 col-sm-10 contenedorDetalleProd">
+                <%if(producto.oferta){%>
+                    <p class="">Oferta!</p>
+                    <%}%>
                 <h4><%= producto.nombre%></h4>
                 <h4>$<%= producto.precio%></h4>
                 <p>Color: <%= producto.color%>, Peso: <%= producto.peso%>, Medidas: <%= producto.medida%></p>
@@ -31,7 +35,7 @@
 
                 <% if (locals.userLogged) { %>   
                 <% if (locals.userLogged.rol == "admin") { %>                                
-                    <button class="btn botones m-3 float-right "><a href="/tienda/editProducto/<%=producto.idProductos%>" class="eliminasEstiloLink" style="color: rgb(255, 245, 238);">Editar</a><i class="fas fa-cogs icono"></i></button>
+                    <button class="btn botones m-3 float-right "><a href="/tienda/editProducto/<%=producto.idProductos%>" class="eliminasEstiloLink" style="color: rgb(255, 245, 238);">Editar</a><i class="fas fa-cogs iconos"></i></button>
                     <%}%>       <%}%>
 
                 

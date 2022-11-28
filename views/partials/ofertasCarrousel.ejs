@@ -1,0 +1,27 @@
+<section id="ofertas">
+<div class="container">
+    <div class="col-md-12">
+        <div class="carousel slide" id="myCarousel">
+            <%for(let i=0; i < producto.length; i++){%>
+                <%if(producto[i].oferta==1){%>
+            <div class="carousel-inner">
+                <div class="item active">
+                  
+                            <div class="col-lg-3 col-xs-3 col-md-3 col-sm-3">
+                                <a href="/tienda/detalle/<%=producto[i].idProductos%>">
+                                    <img src="/images/imgProd/<%=producto[i].imagen%>" class="d-block w-100" alt="...">
+                                </a>
+                            </div>
+                    
+                </div>
+            </div>
+            <%}}%>
+        </div>
+    </div>
+</div>
+    
+
+
+</section>
+
+<script src="/js/ofertasCarrousel.js"></script>

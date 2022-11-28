@@ -3,17 +3,21 @@ const Op = db.Sequelize.Op;
 const path = require("path");
 const Banner = db.Banner;
 const Voucher = db.Voucher;
+const Producto = db.Producto;
 
 let mainController = {
     main: (req, res) => {
-        Banner.findAll()
-        .then((banner)=>{
-            res.render('home', {
+        Producto.findAll().then((producto)=>{
+            Banner.findAll().then((banner)=>{ 
+               res.render('home', {
             titulo: 'HOME',
-            banner: banner
-
-        });  
-        })  
+            banner: banner,
+            producto: producto
+            });
+            
+        })
+        
+    })  
     },
     nosotros: (req, res) => {
         res.render('nosotros', {

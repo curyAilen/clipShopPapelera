@@ -31,11 +31,12 @@
         </select>
       </div>
       <div class="form-group  col-6">
-        <p>Es una oferta</p>
-        <div class="form-check form-switch">
-          <input class="form-check-input switch" type="checkbox" role="switch" id="slideOferta" name="oferta" aria-checked="true" value="0">
-          <label class="form-check-label" for="slideOferta">¿Es una oferta?</label>
-        </div>
+        <label for="oferta">¿Es una oferta?</label>
+        <p>Recorda que en todos los formularios automaticamente los productos no estaran en oferta</p>
+        <select name="oferta" id="oferta" class="form-control text-center col-3">
+        <option value="0">no</option>
+        <option value="1">si</option>
+      </select>
       </div>
       <div class="form-group col-4">
         <div class="form-group row justify-content-around">
@@ -54,7 +55,7 @@
           </div>
         </div>
       </div>
-      <div class="form-group  col-4 contenedorImgInput">
+      <div class="form-group  col-6 contenedorImgInput">
         <label for="imagen">Imagen del producto:</label>
         <img class="imagenProducto " src="/images/imgProd/<%=producto.imagen%>">
         <input type="file" name="imagen" id="imagen" <% if(typeof producto.imagen=='undefined' ) {%> required <%}%>/>
@@ -69,7 +70,7 @@
           </div> 
         </form>   
 
-          <form action="/tienda/<%= producto.idProductos %>?_method=DELETE" method="post" class="row botonesDelEditor">
+    <form action="/tienda/<%= producto.idProductos %>?_method=DELETE" method="post" class=" botonesDelEditor">
         <button class="mt-3 my-auto guardar botoneEliminar botones btn col-4">Eliminar <i class="fas fa-trash-alt iconos"></i></button>
   </form>
   <%}else{%>
@@ -79,22 +80,5 @@
     <% }}%>
 
 
-  <script>
-    document.querySelectorAll(".switch").forEach((theSwitch) => {
-      theSwitch.addEventListener("click", handleClickEvent, false);
-    });
-
-    function handleClickEvent(evt) {
-      const el = evt.target;
-
-      if (el.getAttribute("aria-checked") === "true") {
-        el.setAttribute("aria-checked", "false");
-        el.value = 1
-      } else {
-        el.setAttribute("aria-checked", "true");
-        el.value = 0
-      }
-    }
-  </script>
 
   <%- include ( './partials/footer' ); %>

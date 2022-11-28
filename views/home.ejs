@@ -1,5 +1,5 @@
 <%- include ( './partials/head' ); %>
-
+<link rel="stylesheet" href="/css/ofertasCarrousel.css">
 </head>
 
 <body class="">     
@@ -64,11 +64,10 @@
                     </div>
                 </article>
             </section>
-            <section id="ofertas">
-                
-            </section>
+           
+            <%- include ( './partials/ofertasCarrousel' ); %>
             
-            <!--CATEGORIAS -->
+           
             <section id="categorias" class="container-fluid">
                 <div class="row ">
                     <article id="categoriaEtiquetas" class="col-3 estiloDeCaja">
@@ -97,5 +96,6 @@
                     </article>
                 </div>
             </section>
-
+            
+            <script src="/js/ofertasCarrousel.js"></script>
             <%- include ( './partials/footer' ); %>

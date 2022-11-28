@@ -24,6 +24,7 @@ Violeta: #5424B2
 }
 .iconos{
     font-size: 0.8rem;
+    margin: 0 10px;
     
 }
 
@@ -173,6 +174,9 @@ h6 {
 .bannersPromociones {
     display: none;
 }
+/**************CARUSEL HOME***************************************************/
+
+
 
 
 /***************BOTONERA O BARRA INFORMATIVA ***************************************************/
@@ -293,9 +297,7 @@ color: #504e4d;
 
 
 /*******************DETALLE PRODUCTOS**********************/
-.detalleProducto{
-    height: 500px;
-}
+
 
 .contieneImgProdDetalle {
     text-align: center;
@@ -379,5 +381,12 @@ margin: 50px 200px;
         display: block;
         box-shadow: 0px 11px 13px 0px rgba(0, 0, 0, 0.51);
         margin: 15px 0 50px 0;
+    }
+    #ofertas{
+        box-shadow: 0px 11px 13px 0px rgba(0, 0, 0, 0.51);
+        overflow: hidden;       
+        margin: 50px auto;
+        width: 90%;
+        border-radius: 15px;
     }
 }

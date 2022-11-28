@@ -9,7 +9,7 @@
     <% if (locals.userLogged.rol == "admin") { %>                                
        
        
-  <form action="/tienda" method="post" enctype="multipart/form-data" id="formularioAltaProducto">
+  <form action="/tienda/altaProducto" method="post" enctype="multipart/form-data" id="formularioAltaProducto">
     <h2 class="tituloAlta">Alta de producto</h2>
     <div class="row justify-content-between">
       <div class="form-group col-6">
@@ -50,6 +50,10 @@
           <label for="medida">Medidas</label>
           <input type="text" value="20cm x 30cm" name="medida" class="form-control">
         </div>
+        <div class="form-group col-10 px-2">
+          <label for="descripcion">descripción</label>
+          <textarea name="descripcion" id="" cols="30" rows="3" class="form-control"></textarea>
+          </div>
       </div>
       <div class="form-group ">
         <label for="imgProd">Imagen de Producto</label>
@@ -67,7 +71,7 @@
 
   <script>
     document.querySelectorAll(".switch").forEach((theSwitch) => {
-      theSwitch.addEventListener("click", handleClickEvent, false);
+      theSwitch.addEventListener("click", handleClickEvent, true);
     });
 
     function handleClickEvent(evt) {

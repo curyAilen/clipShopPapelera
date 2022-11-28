@@ -29,7 +29,7 @@ module.exports = (sequelize, dataTypes) => {
             },
             oferta: {
                 type: dataTypes.INTEGER,
-                allowNull: false
+                allowNull: true
             },
             color: {
                 type: dataTypes.STRING,

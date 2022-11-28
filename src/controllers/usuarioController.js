@@ -1,6 +1,7 @@
 const fs = require("fs");
 const bcrypt = require("bcryptjs");
 const path = require("path");
+const nodemailer = require('nodemailer');
 const db = require("../../database/models/");
 const { validationResult } = require("express-validator"); 
 const Op = db.Sequelize.Op;
@@ -78,7 +79,7 @@ loginprocess: (req, res) => {
         });
       }
      
-        return res.redirect('/')
+        return res.redirect('/user/cuenta')
      
       
     } else {
