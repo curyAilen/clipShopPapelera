@@ -7,7 +7,7 @@ Blancos: #fffcfa
 Amarillos: #f7c959
 Gris/Beiges: #a59384 
 Violeta: #5424B2
-*/ 
+*/
 
 
 /***************CSS GENERAL ***************************************************/
@@ -22,28 +22,31 @@ Violeta: #5424B2
     padding: 0 !important;
     margin: 0;
 }
-.iconos{
+
+.iconos {
     font-size: 0.8rem;
     margin: 0 10px;
-    
 }
 
-.ocultar{
+.ocultar {
     display: none;
 }
-.mostrar{
+
+.mostrar {
     display: block;
 }
 
-.estiloDeCaja{
+.estiloDeCaja {
     margin: 15px auto;
     box-shadow: 3px 12px 13px 1px rgb(0 0 0 / 24%);
     padding: 15px 20px;
     border-radius: 15px;
-    }
-.iconos{
+}
+
+.iconos {
     margin: 0 15px;
 }
+
 
 /*************TEXTOS*******************/
 
@@ -61,12 +64,13 @@ h5,
 h6 {
     font-family: 'Noto Sans Display', sans-serif;
 }
+
 #logo {
     max-width: 50%;
 }
 
 .titulos {
-    font-size: 1.3rem;
+    font-size: 1.7rem;
     font-family: 'Noto Sans Display', sans-serif;
     font-weight: 800;
 }
@@ -110,7 +114,7 @@ h6 {
     border-radius: 5px;
     color: rgb(255, 245, 238);
     font-weight: 600;
-    box-shadow: 5px 6px 15px 0px rgba(0,0,0,0.30);
+    box-shadow: 5px 6px 15px 0px rgba(0, 0, 0, 0.30);
 }
 
 .botones:hover {
@@ -174,9 +178,9 @@ h6 {
 .bannersPromociones {
     display: none;
 }
+
+
 /**************CARUSEL HOME***************************************************/
-
-
 
 
 /***************BOTONERA O BARRA INFORMATIVA ***************************************************/
@@ -194,7 +198,6 @@ h6 {
     border: solid 2px #fffcfa;
     background-color: #fffcfa;
     box-shadow: inset 10px 10px 9px -4px rgba(214, 214, 214, 0.877);
-  
     border-radius: 10px;
     align-self: center;
     text-align: center;
@@ -214,17 +217,17 @@ h6 {
 
 
 /******************CATEGORIAS HOME*****************************/
-#categorias div{
-justify-content: space-between;
 
-
-
+#categorias div {
+    justify-content: space-between;
 }
-#categorias article div{
+
+#categorias article div {
     text-align: center;
     color: #37bba5;
 }
-#categorias article:hover{
+
+#categorias article:hover {
     -webkit-animation-name: pulse;
     animation-name: pulse;
     -webkit-animation-duration: 1s;
@@ -232,52 +235,56 @@ justify-content: space-between;
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
 }
+
 #categorias article img {
     width: 30%;
     height: auto;
-   
-}
-#categorias a{
-    text-decoration: none;
-}
-#categorias a:hover{
-    color: #5424B2;
-    
 }
 
+#categorias a {
+    text-decoration: none;
+}
+
+#categorias a:hover {
+    color: #5424B2;
+}
 
 
 /**************************TIENDA***********************************/
 
-.botonFiltro{
-    margin-left:  auto;
+.botonFiltro {
+    margin-left: auto;
     margin-top: 35px;
 }
-.precioFiltro{
+
+.precioFiltro {
     align-items: baseline;
 }
 
 .contieneProductos {
     transition: transform 1071ms ease-out;
-   margin-left: 5px ;
-   margin-right: 5px;
-   padding: 0 !important;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 0 !important;
 }
 
 .contieneProductos:hover {
     transform: translate(-11px, -10px) scale(1.05, 1.05);
 }
-.imgProducto{
+
+.imgProducto {
     border-radius: 12px 12px 0 0;
 }
-.categoriaTienda{
-text-align: end;
-padding: 8px 13px;
-background-color: #00d3a25e;
-margin: 0 -20px;
-color: #504e4d;
+
+.categoriaTienda {
+    text-align: end;
+    padding: 8px 13px;
+    background-color: #00d3a25e;
+    margin: 0 -20px;
+    color: #504e4d;
 }
-.detalleProductoTienda{
+
+.detalleProductoTienda {
     padding: 0 20px;
 }
 
@@ -298,7 +305,6 @@ color: #504e4d;
 
 /*******************DETALLE PRODUCTOS**********************/
 
-
 .contieneImgProdDetalle {
     text-align: center;
 }
@@ -316,23 +322,31 @@ color: #504e4d;
 .linkADetalle:hover {
     color: #a59384;
 }
+
+
 /**************************Editar Perfil***********************************/
-.claveBox{
+
+.claveBox {
     align-items: end;
 }
-.formularioEditPerfil{
-margin: 50px 200px;
 
+.formularioEditPerfil {
+    margin: 50px 200px;
 }
-.formularioEditPerfil label{
+
+.formularioEditPerfil label {
     color: #a59384;
     font-weight: 600;
 }
-.formularioEditPerfil .btnEditarGuardar{
+
+.formularioEditPerfil .btnEditarGuardar {
     margin-right: auto;
 }
+
+
 /****************************Listado CLientes********************************************/
-.cardUsuarios{
+
+.cardUsuarios {
     box-shadow: 0px 11px 13px 0px rgba(0, 0, 0, 0.51);
     border-radius: 15px;
     padding: 15px 25px;
@@ -340,19 +354,24 @@ margin: 50px 200px;
     margin-left: auto;
     margin-right: auto;
     width: 50%;
-
 }
+
+
 /****************************Formulario cambio de clave********************************************/
-#formularioActualizaClave{
+
+#formularioActualizaClave {
     width: 50%;
 }
 
+
 /******************FOOTER*******************************/
-#piePagina .row{
+
+#piePagina .row {
     align-items: center;
     justify-content: space-between;
 }
-#piePagina .contactate div{
+
+#piePagina .contactate div {
     align-self: flex-end;
 }
 
@@ -382,11 +401,13 @@ margin: 50px 200px;
         box-shadow: 0px 11px 13px 0px rgba(0, 0, 0, 0.51);
         margin: 15px 0 50px 0;
     }
-    #ofertas{
-        box-shadow: 0px 11px 13px 0px rgba(0, 0, 0, 0.51);
-        overflow: hidden;       
-        margin: 50px auto;
-        width: 90%;
+    #contieneOfertas {
+        margin: 150px auto;
+    }
+    #ofertas {
+        overflow: hidden;
+        width: 70%;
+        margin: 20px auto;
         border-radius: 15px;
     }
 }

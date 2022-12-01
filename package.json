@@ -26,6 +26,7 @@
     "nodemailer": "^6.8.0",
     "nodemon": "^2.0.20",
     "sequelize": "^6.23.2",
-    "sequelize-cli": "^6.5.1"
+    "sequelize-cli": "^6.5.1",
+    "swiffy-slider": "^1.6.0"
   }
 }

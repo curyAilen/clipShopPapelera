@@ -1,27 +1,53 @@
-<section id="ofertas">
-<div class="container">
-    <div class="col-md-12">
-        <div class="carousel slide" id="myCarousel">
-            <%for(let i=0; i < producto.length; i++){%>
-                <%if(producto[i].oferta==1){%>
-            <div class="carousel-inner">
-                <div class="item active">
-                  
-                            <div class="col-lg-3 col-xs-3 col-md-3 col-sm-3">
-                                <a href="/tienda/detalle/<%=producto[i].idProductos%>">
-                                    <img src="/images/imgProd/<%=producto[i].imagen%>" class="d-block w-100" alt="...">
-                                </a>
-                            </div>
-                    
-                </div>
-            </div>
-            <%}}%>
-        </div>
+<section id="contieneOfertas" class="container-fluid ">
+    <div class="row">
+        <h2 class="col-12 mb-3 text-center titulos">Ofertas</h2>
     </div>
-</div>
-    
+    <main id="ofertas">
+        <div class="swiffy-slider slider-item-show4 slider-item-show2-sm slider-item-ratio-2x1 slider-nav-round slider-nav-sm slider-nav-visible slider-nav-autoplay slider-nav-autopause slider-indicators-round">
+            <ul class="slider-container">
+                <%for(let i=0; i < producto.length; i++){%>
+                    <%if(producto[i].oferta == 1){%>
+                        <li class="m-3">
+                            <div id=" <%=producto[i].idProductos%>">
+                                <div class="card border-0">
+                                    <div class="ratio ratio-1x1">
+                                        <img src="/images/imgProd/<%=producto[i].imagen%>" class="card-img-top" loading="lazy" alt="...">
+                                    </div>
+                                    <div class="card-body p-0 pt-2">
+                                        <div class="d-flex">
+                                            <h3 class="flex-grow-1 h5">
+                                                <%=producto[i].nombre%>
+                                            </h3>
+                                            <p class="px-2">
+                                                <%=producto[i].precio%>
+                                            </p>
 
+                                        </div>
 
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <%}}%>
+
+            </ul>
+
+            <button type="button" class="slider-nav"></button>
+            <button type="button" class="slider-nav slider-nav-next"></button>
+
+            <ul class="slider-indicators">
+                <li class="active"></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </main>
 </section>
 
 <script src="/js/ofertasCarrousel.js"></script>
