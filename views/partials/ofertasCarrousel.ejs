@@ -8,6 +8,7 @@
                 <%for(let i=0; i < producto.length; i++){%>
                     <%if(producto[i].oferta == 1){%>
                         <li class="m-3">
+                            <a href="/tienda/detalle/<%=producto[i].idProductos%>" class="eliminasEstiloLink">
                             <div id=" <%=producto[i].idProductos%>">
                                 <div class="card border-0">
                                     <div class="ratio ratio-1x1">
@@ -27,6 +28,7 @@
                                     </div>
                                 </div>
                             </div>
+                        </a>
                         </li>
                         <%}}%>
 
