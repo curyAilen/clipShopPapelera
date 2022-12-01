@@ -54,6 +54,7 @@ p,
 a {
     font-family: 'Fira Sans', sans-serif;
     color: #a59384;
+    font-size: 1.4rem;
 }
 
 h1,
@@ -174,25 +175,17 @@ h6 {
 }
 
 
-/***************CARUSEL HOME***************************************************/
+/**************CARUSEL HOME***************************************************/
 
 .bannersPromociones {
     display: none;
 }
 
 
-/**************CARUSEL HOME***************************************************/
-
-
 /***************BOTONERA O BARRA INFORMATIVA ***************************************************/
 
 .filaInformativa {
-    width: 85%;
-    margin: 10px auto;
-}
-
-.filaInformativa div {
-    margin: 5px 0;
+    margin: 50px;
 }
 
 .botoneraInformativa {
@@ -207,7 +200,6 @@ h6 {
 
 .botoneraInformativa img {
     width: 30%;
-    padding: 10px;
 }
 
 .botoneraInformativa p {
@@ -239,7 +231,6 @@ h6 {
 
 #categorias article img {
     width: 30%;
-    height: auto;
 }
 
 #categorias a {
@@ -384,11 +375,13 @@ h6 {
     #logo {
         max-width: 50%;
     }
-    .filaInformativa div {
-        margin: 15px auto;
-    }
     .filaInformativa {
-        margin: 150px auto;
+        margin: 100px 50px;
+    }
+    #ofertas {
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 

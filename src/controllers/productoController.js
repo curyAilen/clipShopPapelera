@@ -8,11 +8,11 @@ const categoria = db.Categoria;
 //1 es oferta
 
 let productoController = {
-    mostrarTienda: (req, res) => {   
+    mostrarTienda: (req, res) => {
         let buscar = req.query.buscar;
 
         if (buscar != "" && buscar != undefined) {
-            console.log(req.query)
+
             producto.findAll({
                     include: [{ association: "categoria" }],
                     where: {
@@ -20,72 +20,45 @@ let productoController = {
                             [Op.like]: `%${buscar}%`
                         }
                     }
-                    })                      
-                    .then((producto) => {
-            categoria.findAll()
-                    .then((categoria)=>{
-                        res.render('tienda', {
-                        titulo: 'Listado de productos',
-                        css: 'estiloListado.css',
-                        producto: producto,
-                        categoria: categoria
-                        })
-                    })   
                 })
-            }else{
-        categoria.findAll()
-            .then((categoria) => {
-                producto.findAll({
-                include: [{ association: "categoria" }],
-        })
-            .then((producto) => {
-                res.render("tienda", {
-                nombre: "Producto",
-                producto: producto,
-                categoria: categoria
-            });
-        })
-    })}
+                .then((producto) => {
+                    categoria.findAll()
+                        .then((categoria) => {
+
+                            res.render('tienda', {
+                                titulo: 'Listado de productos',
+                                css: 'estiloListado.css',
+                                producto: producto,
+                                categoria: categoria
+                            })
+                        })
+                })
+        } else {
+            categoria.findAll()
+                .then((categoria) => {
+                    producto.findAll({
+                            include: [{ association: "categoria" }],
+                        })
+                        .then((producto) => {
+                            res.render("tienda", {
+                                nombre: "Producto",
+                                producto: producto,
+                                categoria: categoria
+                            });
+                        })
+                })
+        }
     },
-    buscador:(req, res)=>{
-        let precioMax = req.query.max;
-        let precioMin = req.query.min;
-        
-        if ((precioMax != "" && precioMax != undefined)&&(precioMin != "" && precioMin != undefined) ) {
-            categoria.findAll().then((categoria)=>{
-                producto.findAll({
-                    include: [{ association: "categoria" }],
-                    where:{
-                        precio:{[Op.and]:{
-                            [Op.gte]:precioMin, 
-                            [Op.lte]:precioMax
-                        }
-                    }}            
-                })              
-        }).then((productoPrecio) => {
-            res.render("tienda", {              
-                productoPrecio: productoPrecio
-            });
-        })
-    }else{
-        categoria.findAll().then((categoria)=>{
-        producto.findAll({include: [{ association: "categoria" }],
-        }).then((producto) => {
-            res.render("./tienda", {
-                nombre: "Producto",
-                producto: producto,
-                categoria: categoria
-            });
-        })
-    })
-    }},
+    buscador: (req, res) => {
+        let buscar = req.query.buscar;
+    },
 
     detalleProducto: (req, res) => {
         let detalleID = req.params.id;
 
         producto.findByPk(detalleID, {
-            include: [{ association: "categoria" }],
-        })
+                include: [{ association: "categoria" }],
+            })
             .then((producto) => {
                 res.render("./detalleProducto", {
                     titulo: "Detalle del Producto",
@@ -99,76 +72,74 @@ let productoController = {
                 });
             });
     },
-  
+
     crearProd: (req, res) => {
         categoria.findAll()
-        .then((categoria) => {
-            res.render("altaProducto", {
-                titulo: "Ingresar nuevo producto",
-                categoria: categoria,
+            .then((categoria) => {
+                res.render("altaProducto", {
+                    titulo: "Ingresar nuevo producto",
+                    categoria: categoria,
+                });
             });
-        });
     },
     ingresaProducto: (req, res) => {
-                producto.create({
-                    nombre: req.body.nombre,
-                    FKidCategoria: req.body.categoria,
-                    precio: req.body.precio,
-                    descripcion: req.body.descripcion,
-                    imagen: req.file.filename,
-                    oferta: req.body.oferta,               
-                    color: req.body.color,                
-                    peso: req.body.peso,         
-                    medida: req.body.medida                
-                }).then((newProducto) => {
-                    
-                    res.redirect("/tienda");
-                })
-    
+        producto.create({
+            nombre: req.body.nombre,
+            FKidCategoria: req.body.categoria,
+            precio: req.body.precio,
+            descripcion: req.body.descripcion,
+            imagen: req.file.filename,
+            oferta: req.body.oferta,
+            color: req.body.color,
+            peso: req.body.peso,
+            medida: req.body.medida
+        }).then((newProducto) => {
+
+            res.redirect("/tienda");
+        })
+
     },
     edit: (req, res) => {
         producto.findByPk(req.params.id, {
-            include: [{ association: "categoria" }],
-        })
+                include: [{ association: "categoria" }],
+            })
             .then((producto) => {
                 categoria.findAll()
-                .then((categoria) => {
-                    res.render("./editProducto", {
-                        titulo: "Detalle del Producto",
-                        producto: producto,
-                        categoria: categoria,
+                    .then((categoria) => {
+                        res.render("./editProducto", {
+                            titulo: "Detalle del Producto",
+                            producto: producto,
+                            categoria: categoria,
+                        });
                     });
-                });
             });
     },
     edited: (req, res) => {
         let imagen = req.body.imagenOriginal;
 
         if (req.file) {
-            imagen = req.file.filename;
-        }
-        producto.update(
-            {
+            imagen = req.file.filename;       
+        }
+        producto.update({
                 nombre: req.body.nombre,
                 FKidCategoria: req.body.categoria,
                 precio: req.body.precio,
                 descripcion: req.body.descripcion,
                 imagen: imagen,
-                oferta: req.body.oferta,               
-                color: req.body.color,                
-                peso: req.body.peso,         
-                medida: req.body.medida   
-            },
-            {
+                oferta: req.body.oferta,
+                color: req.body.color,
+                peso: req.body.peso,
+                medida: req.body.medida
+            }, {
                 where: {
                     idProductos: req.params.id,
                 },
             })
-            .then((prod)=>{
+            .then((prod) => {
                 console.log(prod)
                 res.redirect("/tienda");
-                
-            })   
+
+            })
     },
     delete: (req, res) => {
         producto.destroy({

@@ -1,124 +1,78 @@
 <%- include ( './partials/head' ); %>
-<link rel="stylesheet" href="css/detalleProducto.ejs">
+    <link rel="stylesheet" href="css/detalleProducto.ejs">
 
-</head>
+    </head>
 
-<body class="">
-  <%- include ( './partials/header' ); %>
-  <%- include ( './partials/contacto' ); %>
-  <!--TIENDA-->
-  <section class="">
+    <body class="">
+        <%- include ( './partials/header' ); %>
+            <%- include ( './partials/contacto' ); %>
+                <!--TIENDA-->
+                <section class="">
 
-    <article class="container">
-      <div class="" id="search">
+                    <article class="container">
+                        <%- include ( './partials/buscador' ); %>
+                    </article>
 
-      </div>
-      <div class="" id="filter">
-        <form action="/tienda" method="get" enctype="multipart/form-data" class="row  estiloDeCaja py-4">
-          <div class="form-group col-4">
-            <label for="producto">Buscar por nombre de producto</label>
-            <input class="form-control" type="text" placeholder="producto" name="buscar" />
-          </div>
-          <div class="form-group col-4">
-            <label for="categoria">Categorias</label>
-            <select class="form-control" id="categoria" name="categoria">
-              <% for(let i=0; i< categoria.length; i++) { %>
-              <option value="<%= categoria[i].idCategorias %>">
-                <%= categoria[i].nombreCategoria %>
-              </option>
-              <% } %>
-            </select>
-          </div>
-          <div class="form-group col-4">
-            <label for="color">Colores</label>
-            <select class="form-control" id="" name="color">
-              <% for(let i=0; i< producto.length; i++) { %>
-              <% if(producto[i].color){%>
-              <option value="<%= producto[i].idProductos %>">
-                <%= producto[i].color %>
-              </option>
-              <% }}%>
-            </select>
-          </div>
-
-          <div class="row ">
-            <div class="d-flex flex-nowarp  col-6 precioFiltro">
-              <label for="Precio " class="col-3">Precio</label>
-              <input type="number" value="" name="min" class="form-control ">
-              <p class="mx-4">entre</p>
-              <input type="number" value="" name="max" class="form-control ">
-            </div>
-          </div>
-          <div class="row">
-            <button type="submit" class="btn  btn-primary col-3 botonFiltro">Buscar</button>
-          </div>
-        </form>
-      </div>
-      <div class="row" id="products">
-
-      </div>
-    </article>
-
-    <article class="container">
-
-      <div class="row justify-content-around">
-
-        <%for(let i=0; i<producto.length; i++){%>
-        <div class="contieneProductos estiloDeCaja col-lg-3 col-md-6">
-          <a href="/tienda/detalle/<%=producto[i].idProductos%>" class="linkADetalle animacionProd eliminasEstiloLink">
-            <img src="/images/imgProd/<%=producto[i].imagen%>" alt="" class="imgProducto img-fluid">
-            <div class="detalleProductoTienda">
-              <h4 class="nombreProductoTienda titulos">
-                <%=producto[i].nombre%>
-              </h4>
-              <p class="precioProductoTienda">
-                <%=producto[i].precio%>.-
-              </p>
-              <p class="descripcionProductoTienda ">
-                Color:
-                <%if(producto[i].color){%>
-                <%=producto[i].color%>
-                <%}else{%>
-                -
-                <%}%>
+                    <article class="container">
+                        <div class="row justify-content-around">
+                            <%for(let i=0; i<producto.length; i++){%>
+                                <div class="contieneProductos estiloDeCaja col-lg-3 col-md-6">
+                                    <a href="/tienda/detalle/<%=producto[i].idProductos%>" class="linkADetalle animacionProd eliminasEstiloLink">
+                                        <img src="/images/imgProd/<%=producto[i].imagen%>" alt=""
+                                            class="imgProducto img-fluid">
+                                        <div class="detalleProductoTienda">
+                                            <h4 class="nombreProductoTienda titulos">
+                                                <%=producto[i].nombre%>
+                                            </h4>
+                                            <p class="precioProductoTienda">
+                                                <%=producto[i].precio%>.-
+                                            </p>
+                                            <p class="descripcionProductoTienda ">
+                                                Color:
+                                                <%if(producto[i].color){%>
+                                                    <%=producto[i].color%>
+                                                        <%}else{%>
+                                                            -
+                                                            <%}%>
 
                                             </p>
                                             <p class="descripcionProductoTienda ">
                                                 Peso:
                                                 <%if(producto[i].peso){%>
-                <%=producto[i].peso%>
-                <%}else{%>
-                -
-                <%}%>
+                                                    <%=producto[i].peso%>
+                                                        <%}else{%>
+                                                            -
+                                                            <%}%>
 
                                             </p>
                                             <p class="descripcionProductoTienda ">
                                                 Medidas:
                                                 <%if(producto[i].medida){%>
-                <%=producto[i].medida%>
-                <%}else{%>
-                -
-                <%}%>
+                                                    <%=producto[i].medida%>
+                                                        <%}else{%>
+                                                            -
+                                                            <%}%>
 
                                             </p>
                                             <p class="categoriaTienda">
                                                 <%= producto[i].categoria.nombreCategoria %>
-              </p>
-            </div>
-          </a>
-  
-          <form action="/agregarProducto/<%= producto[i].idProductos %>" method="post" id="formularioAgregarCarrito">
-            <input type="text" name="nombre" value="<%= producto[i].nombre %>" style="display: none;">
-            <input type="number" name="precio" value="<%= producto[i].precio %>" style="display: none;">
-            <input type="text" name="categoria" value=" <%= producto[i].categoria.nombreCategoria %>" style="display: none;">
-            <input type="number" name="peso" value="<%= producto[i].peso %>" style="display: none;">
-            <input type="text" name="color" value="<%= producto[i].color %>" style="display: none;">
-            <input type="text" name="medida" value="<%= producto[i].medida %>" style="display: none;">
-            
-            <button type="submit" class="btn botones mx-2 my-3 float-right ">Agregar<i class="fas fa-cart-plus iconos"></i></button>
-        </form>
-        </div>
-        <%}%>
+                                            </p>
+                                        </div>
+                                    </a>
+
+                                    <form action="/agregarProducto/<%= producto[i].idProductos %>" method="post" id="formularioAgregarCarrito">
+                                        <input type="text" name="nombre" value="<%= producto[i].nombre %>" style="display: none;">
+                                        <input type="number" name="precio" value="<%= producto[i].precio %>" style="display: none;">
+                                        <input type="text" name="categoria" value=" <%= producto[i].categoria.nombreCategoria %>" style="display: none;">
+                                        <input type="number" name="peso" value="<%= producto[i].peso %>" style="display: none;">
+                                        <input type="text" name="color" value="<%= producto[i].color %>" style="display: none;">
+                                        <input type="text" name="medida" value="<%= producto[i].medida %>" style="display: none;">
+
+                                        <button type="submit" class="btn botones mx-2 my-3 float-right ">Agregar<i
+                                                class="fas fa-cart-plus iconos"></i></button>
+                                    </form>
+                                </div>
+                                <%}%>
                         </div>
                     </article>
                 </section>

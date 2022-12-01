@@ -1,101 +1,98 @@
 <%- include ( './partials/head' ); %>
-<link rel="stylesheet" href="/css/ofertasCarrousel.css">
-</head>
 
-<body class="">     
-<%- include ( './partials/header'); %>
-        <%- include ( './partials/contacto'); %>
-            <!--BANNER SLIDE-->
-            <main class="bannersPromociones">
-                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        
-                        <%for(let i = 0; i < banner.length; i++){
+    </head>
+
+    <body class="">
+        <%- include ( './partials/header'); %>
+            <%- include ( './partials/contacto'); %>
+                <!--BANNER SLIDE-->
+                <main class="bannersPromociones">
+                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+
+                            <%for(let i = 0; i < banner.length; i++){
                             console.log(banner[i])%>
-                        <div class="carousel-item active">
-                            <img src="/images/imgBanner/<%=banner[i].banner%>" class="d-block w-100" alt="...">
+                                <div class="carousel-item active">
+                                    <img src="/images/imgBanner/<%=banner[i].banner%>" class="d-block w-100" alt="...">
+                                </div>
+                                <%}%>
                         </div>
-                        <%}%>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-                        data-bs-slide="prev">
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">ANTERIOR</span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-                        data-bs-slide="next">
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Siguiente</span>
                     </button>
-                </div>
-            </main>
-            <!--BARRA INFORMATIVA-->
-            <section class="container-fluid">
-                <article class="row filaInformativa">
-                    <div class=" col-md-10 col-lg-3  ">
-                        <div class="botoneraInformativa">
-                            <img src="/images/envioRapido.png" alt="">
-                            <p> Envios rápidos</p>
+                    </div>
+                </main>
+                <!--BARRA INFORMATIVA-->
+                <section class="container-fluid">
+                    <article class="row filaInformativa">
+                        <div class=" col-sm-10 col-lg-3  ">
+                            <div class="botoneraInformativa">
+                                <img src="/images/envioRapido.png" alt="" class="img-fluid">
+                                <p> Envios rápidos</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class=" col-md-10 col-lg-3  ">
-                        <div class="botoneraInformativa">
-                            <img src="/images/envioRapido.png" alt="">
-                            <p> Todos los medios de pagos</p>
+                        <div class=" col-sm-10 col-lg-3  ">
+                            <div class="botoneraInformativa">
+                                <img src="/images/envioRapido.png" alt="" class="img-fluid">
+                                <p> Todos los medios de pagos</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class=" col-md-10 col-lg-3  ">
-                        <div class="botoneraInformativa">
-                            <img src="/images/envioRapido.png" alt="">
-                            <p> Retiro en el local</p>
+                        <div class=" col-sm-10 col-lg-3  ">
+                            <div class="botoneraInformativa">
+                                <img src="/images/envioRapido.png" alt="" class="img-fluid">
+                                <p> Retiro en el local</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class=" col-md-10 col-lg-3  d-none">
-                        <div class="botoneraInformativa">
-                            <img src="/images/envioRapido.png" alt="">
-                            <p> Conos retornables</p>
+                        <div class=" col-sm-10 col-lg-3  d-none">
+                            <div class="botoneraInformativa">
+                                <img src="/images/envioRapido.png" alt="" class="img-fluid">
+                                <p> Conos retornables</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class=" col-md-10 col-lg-3  ">
-                        <div class="botoneraInformativa">
-                            <img src="/images/envioRapido.png" alt="">
-                            <p> Compra segura</p>
+                        <div class=" col-sm-10 col-lg-3  ">
+                            <div class="botoneraInformativa">
+                                <img src="/images/envioRapido.png" alt="" class="img-fluid">
+                                <p> Compra segura</p>
+                            </div>
                         </div>
-                    </div>
-                </article>
-            </section>
-           
-            <%- include ( './partials/ofertasCarrousel' ); %>
-            
-           
-            <section id="categorias" class="container-fluid">
-                <div class="row ">
-                    <article id="categoriaEtiquetas" class="col-3 estiloDeCaja">
-                    <div>
-                            <a href="#">
-                            <h3 class="titulo">Etiquetas </h3>
-                            <img src="/images/etiqueteadora.png" alt="">
-                        </a>
-                    </div>
                     </article>
-                    <article id="categoriaOrgComercio" class="col-3 estiloDeCaja">
-                    <div>
-                            <a href="#">
-                            <h3 class="titulo">Organiza tu comercio </h3>
-                            <img src="/images/etiqueteadora.png" alt="">
-                        </a>
-                    </div>
-                    </article>
-                    <article id="categoriaEmbalaje" class="col-3 estiloDeCaja">
-                    <div>
-                            <a href="">
-                            <h3 class="titulo">Embalaje </h3>
-                            <img src="/images/etiqueteadora.png" alt="">
-                        </a>
-                    </div>
-                    </article>
-                </div>
-            </section>
-            
-            <script src="/js/ofertasCarrousel.js"></script>
-            <%- include ( './partials/footer' ); %>
+                </section>
+
+                <%- include ( './partials/ofertasCarrousel' ); %>
+
+
+                    <section id="categorias" class="container-fluid">
+                        <div class="row ">
+                            <article id="categoriaEtiquetas" class="col-sm-10 col-lg-3   estiloDeCaja">
+                                <div>
+                                    <a href="#">
+                                        <h3 class="titulo">Etiquetas </h3>
+                                        <img src="/images/etiqueteadora.png" alt="" class="img-fluid">
+                                    </a>
+                                </div>
+                            </article>
+                            <article id="categoriaOrgComercio" class="col-sm-10 col-lg-3   estiloDeCaja">
+                                <div>
+                                    <a href="#">
+                                        <h3 class="titulo">Organiza tu comercio </h3>
+                                        <img src="/images/etiqueteadora.png" alt="" class="img-fluid">
+                                    </a>
+                                </div>
+                            </article>
+                            <article id="categoriaEmbalaje" class="col-sm-10 col-lg-3   estiloDeCaja">
+                                <div>
+                                    <a href="">
+                                        <h3 class="titulo">Embalaje </h3>
+                                        <img src="/images/etiqueteadora.png" alt="" class="img-fluid">
+                                    </a>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+
+                    <%- include ( './partials/footer' ); %>
