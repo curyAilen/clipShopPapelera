@@ -66,15 +66,17 @@
                                     <p> E-mail: <%= locals.userLogged.email %> </p>
                                     <p> Dirección: <%= locals.userLogged.direccion %> </p>
                                     <p> Código Postal: <%= locals.userLogged.cp %> </p>
-                                    <a href="/user/cuenta/editarPerfil/<%=locals.userLogged.idUsuarios%>" class="botones col-2 p-2 btn">Modificar datos</a>
-                                    <a href="/user/cuenta/actualizarPassword/<%=locals.userLogged.idUsuarios%>" class="botones col-2 p-2 mx-2 btn">Modificar contraseña</a>
-                                    <% if (locals.userLogged.rol == "admin") { %>                                
-                                        <a href="/user/listadoClientes" class="botones col-2 p-2 btn" aria-disabled="false">Listar clientes</a>
-                                    <%}%>
-                                    <div class="btn align-end text-end" style="float: right;">                                        
-                                            <a href="/user/logout" class="nav-link p-0 estiloBtnUser ">Cerrar sesión<i class="mx-2 fas fa-sign-out-alt iconosUser "></i></a>                                       
-                                    </div>
+                                  
                                 </div>
+                                <a href="/user/cuenta/editarPerfil/<%=locals.userLogged.idUsuarios%>" class="botones btnCuenta col-md-3 col-sm-10 btn">Modificar datos</a>
+                                <a href="/user/cuenta/actualizarPassword/<%=locals.userLogged.idUsuarios%>" class="botones btnCuenta col-md-3 col-sm-10  btn">Modificar contraseña</a>
+                                <% if (locals.userLogged.rol == "admin") { %>                                
+                                <a href="/user/listadoClientes" class="botones btnCuenta col-md-3 col-sm-10 btn" aria-disabled="false">Listar clientes</a>
+                                <%}%>
+                                <div class="btn text-end">                                        
+                                        <a href="/user/logout" class="nav-link estiloBtnUser ">Cerrar sesión<i class="mx-2 fas fa-sign-out-alt iconosUser "></i></a>                                       
+                                </div>
+
                             <% } else {%>
                                 <h1>Tenes que estar logueado.</h1>
                                 

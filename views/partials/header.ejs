@@ -6,11 +6,11 @@
             <img src="/images/logo.png" alt="" id="logo">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navBarDesplegable"
-            aria-controls="navBarDesplegable" aria-expanded="false" aria-label="Toggle navigation">
+            aria-controls="navBarDesplegable" aria-expanded="false" aria-label="Toggle navigation" id="btnBurger">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navBarDesplegable">
-            <ul class="navbar-nav col-4 col-md-auto mb-2 justify-content-start mb-md-0 ulNavBar ">
+            <ul class="navbar-nav mb-2 mb-md-0 ulNavBar ">
                 <li class="nav-item active">
                     <a href="/" class="nav-link px-2 link-secondary">Inicio</a>
                 </li>
@@ -38,7 +38,9 @@
             <%}else{%>
               
                 <div class="contieneCarrito">
-                    <p id="contadorCarrito">00</p>
+                   
+                    <p id="contadorCarrito" class=""> 00</p>
+                   
                 <li class="btn text-end carritoIcono">                    
                     <a href="/carrito" class="nav-link p-0 estiloBtnUser"><i class="fas fa-shopping-cart"></i></a>
                 </li>

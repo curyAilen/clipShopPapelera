@@ -69,18 +69,25 @@
     <script src="/js/funcionalidad.js"></script>
  
     <script>
+      
         /*DESPLEGABLES*/
         $('.toggler, .nav-content a:not(#dropdown-link)').on('click', function () {
             $('.toggler').toggleClass('change');
             $('.nav-content').slideToggle();
-            $('.menu-overlay').toggle();
+            $('.menu-overlay').toggle();            
+          
         });
 
         $('.menu-overlay').on('click', function () {
             $('.toggler').removeClass('change');
             $('.nav-content').slideUp();
             $('.menu-overlay').hide();
+           
+            
         });
+    $("#btnBurger").on('click', function (){
+        $("#contadorCarrito").toggleClass("mover")
+    })
     
         
     </script>

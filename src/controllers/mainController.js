@@ -9,10 +9,12 @@ let mainController = {
     main: (req, res) => {
         Producto.findAll().then((producto) => {
             Banner.findAll().then((banner) => {
+           
                 res.render('home', {
                     titulo: 'HOME',
                     banner: banner,
                     producto: producto
+                  
                 });
 
             })
@@ -150,7 +152,7 @@ let mainController = {
 
         res.render('carrito', {
             titulo: 'Carrito',
-            carrito: productosCarrito
+            carrito: productosCarrito 
         });
     },
 
@@ -178,7 +180,8 @@ let mainController = {
     },
     eliminarProdutoCarrito: (req, res) => {
 
-    }
+    },
+    
 
 }
 
