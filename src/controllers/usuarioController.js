@@ -83,7 +83,7 @@ loginprocess: (req, res) => {
      
       
     } else {
-      console.log("No se logueo")  
+     
       res.render('login', {
         errores: 'Clave o Email incorrecto',
         old: req.body
@@ -101,7 +101,7 @@ loginprocess: (req, res) => {
 editarPerfil: (req, res) => {
   Usuarios.findByPk(req.params.id)
     .then(usuario => {
-      console.log(usuario.nombre)
+     
       res.render("editarPerfil", {
         titulo: "Editar perfil",
         usuario: usuario
@@ -170,7 +170,7 @@ actualizarPassword: (req, res) => {
       })     
       
     } else {
-      console.log("no coinciden contraseñas")  
+  
       res.render('actualziarPassword', {
         error: 'Clave o Email incorrecto',
         old: req.body

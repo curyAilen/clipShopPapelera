@@ -25,7 +25,11 @@ Violeta: #5424B2
 
 .iconos {
     font-size: 0.8rem;
-    margin: 0 10px;
+    margin: 0 15px;
+}
+.iconosUser{
+    font-size: 1.7rem;
+    font-weight: 600; 
 }
 
 .ocultar {
@@ -43,9 +47,6 @@ Violeta: #5424B2
     border-radius: 15px;
 }
 
-.iconos {
-    margin: 0 15px;
-}
 
 
 /*************TEXTOS*******************/
@@ -54,7 +55,7 @@ p,
 a {
     font-family: 'Fira Sans', sans-serif;
     color: #a59384;
-    font-size: 1.4rem;
+    font-size: 0.7rem;
 }
 
 h1,
@@ -64,10 +65,11 @@ h4,
 h5,
 h6 {
     font-family: 'Noto Sans Display', sans-serif;
+
 }
 
 #logo {
-    max-width: 50%;
+    display: none;
 }
 
 .titulos {
@@ -75,7 +77,7 @@ h6 {
     font-family: 'Noto Sans Display', sans-serif;
     font-weight: 800;
 }
-
+/*********************QUIENES SOMOS************************************/
 #quienesSomos div {
     width: 75%;
     padding: 25px 55px;
@@ -103,7 +105,7 @@ h6 {
 }
 
 #barraNav {
-    padding: 10px 50px;
+    padding: 10px 20px;
 }
 
 
@@ -140,6 +142,26 @@ h6 {
     color: #5424B2;
     font-family: 'Fira Sans', sans-serif;
 }
+.estiloBtnUser{
+    font-size: 1rem;
+}
+
+.userIcono{
+    border-radius: 50%;
+    background-color: #f7c959;
+    padding: 0.4rem 0.7rem;
+}
+#contadorCarrito{
+    position: absolute;
+    top: 10px;
+    right: 60px;
+    background: #f7c959ba;
+    color: #5424B2;
+    font-weight: 600;
+    border-radius: 50%;
+    padding: 0.1rem 0.2rem;
+}
+
 
 
 /************ANIMACIÓN BOTON HOVER***************/
@@ -196,6 +218,7 @@ h6 {
     align-self: center;
     text-align: center;
     display: flex;
+    margin: 15px 0;
 }
 
 .botoneraInformativa img {
@@ -207,14 +230,23 @@ h6 {
     margin: auto;
     font-weight: 600;
 }
-
+.contieneCarrito{
+    margin-right: 0;
+    margin-left: auto;
+} 
 
 /******************CATEGORIAS HOME*****************************/
-
+#categorias{
+    margin: 150px 0;
+}
 #categorias div {
     justify-content: space-between;
+    width: 50%;
+    margin: 0 auto;
 }
-
+.imgCategoriaHome{
+    display: none;
+}
 #categorias article div {
     text-align: center;
     color: #37bba5;
@@ -311,9 +343,6 @@ h6 {
     padding: 10px;
 }
 
-.linkADetalle:hover {
-    color: #a59384;
-}
 
 
 /**************************Editar Perfil***********************************/
@@ -367,28 +396,55 @@ h6 {
     align-self: flex-end;
 }
 
-
+#ofertas {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
 /*-----TABLET---------------------------------------------------------------------------********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 
-@media(min-width: 390px) {
+
+@media(min-width: 991px) and (max-width: 1024px){
     /*************LOGO*******************/
     #logo {
-        max-width: 50%;
+        display: block;
+        width: 20%;
+        margin-left: 50px;
     }
-    .filaInformativa {
-        margin: 100px 50px;
+    .filaInformativa div {
+        margin: 15px auto;
     }
     #ofertas {
         width: 50%;
         margin-left: auto;
         margin-right: auto;
     }
+    .imgCategoriaHome{
+        display: block;
+        margin: 0 auto;
+    }
+/************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************* BOTONES E ICONOS TABLET ***********************************************************************************************************************************************************************************************************************************************************************************/
+   
+#contadorCarrito{
+    position: absolute;
+    top: 12px;
+    right: 90px;
+    background: #f7c9598f;
+    color: #5424B2;
+    font-weight: 600;
+    border-radius: 50%;
+    padding: 0.1rem 0.2rem;
+    
+    }
 }
-
-
 /*--------------------------------------------------------------------------------------COMPUTADORA-LAPTOP---------------------------------------------------------------------------********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 
-@media(min-width:991px) {
+@media(min-width: 1025px ) {
+    #logo {
+        display: block;
+        width: 20%;
+        margin-left: 50px;
+    }
     /***************CARUSEL HOME***************************************************/
     .bannersPromociones {
         display: block;
@@ -404,4 +460,45 @@ h6 {
         margin: 20px auto;
         border-radius: 15px;
     }
+        #categorias div {
+        justify-content: space-between;
+        width: 80%;
+       
+}
+.imgCategoriaHome{
+    display: block;
+    margin: 0 auto;
+}
+/************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************* BOTONES E ICONOS PC ***********************************************************************************************************************************************************************************************************************************************************************************/
+.estiloBtnUser{
+    border: none;
+    font-size: 1.4rem;
+    color: #4e0263;
+    
+}
+.estiloBtnUser:hover{
+    border: none;
+}
+.userIcono{
+    border-radius: 50%;
+    background-color: #f7c959;
+   
+}
+.iconoCarrito{
+    border: none;
+    font-size: 1.3rem;
+    color: #4e0263;
+    
+}
+#contadorCarrito{
+    position: absolute;
+    top: 12px;
+    right: 97px;
+    background: #f7c959ba;
+    color: #5424B2;
+    font-weight: 600;
+    border-radius: 50%;
+    padding: 0.2rem 0.5rem;
+}
+
 }

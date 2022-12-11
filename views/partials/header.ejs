@@ -2,7 +2,7 @@
 
 <header class="container-fluid " id="encabezadoPagina">
     <nav class="navbar navbar-expand-lg navbar-light bg-light " id="barraNav">
-        <a href="/" class="col-2 navbar-brand">
+        <a href="/" class="navbar-brand">
             <img src="/images/logo.png" alt="" id="logo">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navBarDesplegable"
@@ -10,7 +10,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navBarDesplegable">
-            <ul class="navbar-nav col-4 col-md-auto mb-2 justify-content-center mb-md-0 ulNavBar ">
+            <ul class="navbar-nav col-4 col-md-auto mb-2 justify-content-start mb-md-0 ulNavBar ">
                 <li class="nav-item active">
                     <a href="/" class="nav-link px-2 link-secondary">Inicio</a>
                 </li>
@@ -21,12 +21,6 @@
                     <a href="/tienda" class="nav-link px-2 link-secondary">Tienda</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/user/cuenta" class="nav-link px-2 link-secondary">Mi Cuenta</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/carrito" class="nav-link px-2 link-secondary">Carrito</a>
-                </li>
-                <li class="nav-item">
                     <a href="/" class="nav-link px-2 link-secondary" data-toggle="modal" data-target="#exampleModal"
                         data-whatever="@mdo">Contacto</a>
                 </li>
@@ -35,16 +29,26 @@
 
 
         <% if (!locals.userLogged) { %>
+           
             <div class="col-3 text-end">
                 <li class=" btn me-2 botones"><a href="/user/login" class="nav-link p-0 ">Iniciar Sesión <i class="fas fa-sign-in-alt icono ml-1"></i></a>
                     
                 </li>
             </div>
             <%}else{%>
-                <div class="col-3 text-end">
-                    <li class=" btn me-2 botones"><a href="/user/logout" class="nav-link p-0 ">Cerrar Sesión<i class="fas fa-sign-out-alt icono ml-1"></i></a>
-                    </li>
+              
+                <div class="contieneCarrito">
+                    <p id="contadorCarrito">00</p>
+                <li class="btn text-end carritoIcono">                    
+                    <a href="/carrito" class="nav-link p-0 estiloBtnUser"><i class="fas fa-shopping-cart"></i></a>
+                </li>
                 </div>
+                <div class="contieneUser">
+                <li class="btn text-end ">
+                    <a href="/user/cuenta" class="nav-link p-0 estiloBtnUser  "><i class="fas fa-user"></i></a>
+                </li>
+                </div>
+                
                 
 
                 <% }%>

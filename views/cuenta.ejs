@@ -71,6 +71,9 @@
                                     <% if (locals.userLogged.rol == "admin") { %>                                
                                         <a href="/user/listadoClientes" class="botones col-2 p-2 btn" aria-disabled="false">Listar clientes</a>
                                     <%}%>
+                                    <div class="btn align-end text-end" style="float: right;">                                        
+                                            <a href="/user/logout" class="nav-link p-0 estiloBtnUser ">Cerrar sesión<i class="mx-2 fas fa-sign-out-alt iconosUser "></i></a>                                       
+                                    </div>
                                 </div>
                             <% } else {%>
                                 <h1>Tenes que estar logueado.</h1>

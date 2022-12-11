@@ -49,9 +49,88 @@ let productoController = {
                 })
         }
     },
-    buscador: (req, res) => {
-        let buscar = req.query.buscar;
+    
+    buscadorEmbalaje: (req, res) => {
+        producto.findAll({
+            include: [{ association: "categoria" }],
+            where: {
+                FKidCategoria: 1           
+            }
+        })
+        .then((producto) => {
+            categoria.findAll()
+                .then((categoria) => {
+
+                    res.render('tiendaRollosPapel', {
+                        titulo: 'Listado de productos',
+                        css: 'estiloListado.css',
+                        producto: producto,
+                        categoria: categoria
+                    })
+                })
+        })
     },
+    buscadorOrganizadores: (req, res) => {
+        producto.findAll({
+            include: [{ association: "categoria" }],
+            where: {
+                FKidCategoria: 2           
+            }
+        })
+        .then((producto) => {
+            categoria.findAll()
+                .then((categoria) => {
+
+                    res.render('tiendaOrganizadores', {
+                        titulo: 'Listado de productos',
+                        css: 'estiloListado.css',
+                        producto: producto,
+                        categoria: categoria
+                    })
+                })
+        })
+    },
+    buscadorRollosPapel: (req, res) => {
+        producto.findAll({
+            include: [{ association: "categoria" }],
+            where: {
+                FKidCategoria: 3           
+            }
+        })
+        .then((producto) => {
+            categoria.findAll()
+                .then((categoria) => {
+
+                    res.render('tiendaRollosPapel', {
+                        titulo: 'Listado de productos',
+                        css: 'estiloListado.css',
+                        producto: producto,
+                        categoria: categoria
+                    })
+                })
+        })
+    },
+    buscadorEtiquetas: (req, res) => {
+        producto.findAll({
+            include: [{ association: "categoria" }],
+            where: {
+                FKidCategoria: 4           
+            }
+        })
+        .then((producto) => {
+            categoria.findAll()
+                .then((categoria) => {
+
+                    res.render('tiendaEtiquetas', {
+                        titulo: 'Listado de productos',
+                        css: 'estiloListado.css',
+                        producto: producto,
+                        categoria: categoria
+                    })
+                })
+        })
+    },
+
 
     detalleProducto: (req, res) => {
         let detalleID = req.params.id;
@@ -136,7 +215,7 @@ let productoController = {
                 },
             })
             .then((prod) => {
-                console.log(prod)
+              
                 res.redirect("/tienda");
 
             })

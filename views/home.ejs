@@ -30,31 +30,31 @@
                 <!--BARRA INFORMATIVA-->
                 <section class="container-fluid">
                     <article class="row filaInformativa">
-                        <div class=" col-sm-10 col-lg-3  ">
+                        <div class=" col-sm-6 col-lg-3  ">
                             <div class="botoneraInformativa">
                                 <img src="/images/envioRapido.png" alt="" class="img-fluid">
                                 <p> Envios rápidos</p>
                             </div>
                         </div>
-                        <div class=" col-sm-10 col-lg-3  ">
+                        <div class=" col-sm-6 col-lg-3  ">
                             <div class="botoneraInformativa">
                                 <img src="/images/envioRapido.png" alt="" class="img-fluid">
                                 <p> Todos los medios de pagos</p>
                             </div>
                         </div>
-                        <div class=" col-sm-10 col-lg-3  ">
+                        <div class=" col-sm-6 col-lg-3  ">
                             <div class="botoneraInformativa">
                                 <img src="/images/envioRapido.png" alt="" class="img-fluid">
                                 <p> Retiro en el local</p>
                             </div>
                         </div>
-                        <div class=" col-sm-10 col-lg-3  d-none">
+                        <div class=" col-sm-6 col-lg-3  d-none">
                             <div class="botoneraInformativa">
                                 <img src="/images/envioRapido.png" alt="" class="img-fluid">
                                 <p> Conos retornables</p>
                             </div>
                         </div>
-                        <div class=" col-sm-10 col-lg-3  ">
+                        <div class=" col-sm-6 col-lg-3  ">
                             <div class="botoneraInformativa">
                                 <img src="/images/envioRapido.png" alt="" class="img-fluid">
                                 <p> Compra segura</p>
@@ -66,30 +66,43 @@
                 <%- include ( './partials/ofertasCarrousel' ); %>
 
 
-                    <section id="categorias" class="container-fluid">
+                    <section id="categorias" class="container-fluid ">
                         <div class="row ">
-                            <article id="categoriaEtiquetas" class="col-sm-10 col-lg-3   estiloDeCaja">
+                            <article id="categoriaEtiquetas" class="col-sm-12  col-lg-3   mt-4">
                                 <div>
-                                    <a href="#">
-                                        <h3 class="titulo">Etiquetas </h3>
-                                        <img src="/images/etiqueteadora.png" alt="" class="img-fluid">
-                                    </a>
+                                    <form action="/tienda/etiquetas">
+                                        <h3 class="titulo">Etiquetas <br>Autoadhesivas</h3>
+                                        
+                                    <button type="submit" class="btn botones mt-4">Ver productos</button>    
+                                    </form>
+                                   
                                 </div>
                             </article>
-                            <article id="categoriaOrgComercio" class="col-sm-10 col-lg-3   estiloDeCaja">
+                            <article id="categoriaOrgComercio" class="col-sm-12  col-lg-3 mt-4">
                                 <div>
-                                    <a href="#">
-                                        <h3 class="titulo">Organiza tu comercio </h3>
-                                        <img src="/images/etiqueteadora.png" alt="" class="img-fluid">
-                                    </a>
+                                    <form action="/tienda/organizadores">
+                                        <h3 class="titulo">Organiza <br>tu comercio</h3>
+                                       
+                                        <button type="submit" class="btn botones mt-4">Ver productos</button>  
+                                    </form>
                                 </div>
                             </article>
-                            <article id="categoriaEmbalaje" class="col-sm-10 col-lg-3   estiloDeCaja">
+                            <article id="categoriaEmbalaje" class="col-sm-12  col-lg-3 mt-4">
                                 <div>
-                                    <a href="">
-                                        <h3 class="titulo">Embalaje </h3>
-                                        <img src="/images/etiqueteadora.png" alt="" class="img-fluid">
-                                    </a>
+                                    <form action="/tienda/embalajes">
+                                        <h3 class="titulo">Productos <br>de embalajes</h3>
+                                        
+                                        <button type="submit" class="btn botones mt-4">Ver productos</button>   
+                                    </form>
+                                </div>
+                            </article>
+                            <article id="categoriaEmbalaje" class="col-sm-12  col-lg-3 mt-4">
+                                <div>
+                                    <form action="/tienda/rollosDePapel">
+                                        <h3 class="titulo">Rollos <br>de papel </h3>
+                                        
+                                        <button type="submit" class="btn botones mt-4">Ver productos</button>   
+                                    </form>
                                 </div>
                             </article>
                         </div>

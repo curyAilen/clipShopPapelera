@@ -19,12 +19,16 @@ const upload = multer({storage});
  
 //listado productos
 router.get('/', productoController.mostrarTienda);
+router.get('/embalajes', productoController.buscadorEmbalaje);
+router.get('/organizadores', productoController.buscadorOrganizadores);
+router.get('/rollosDePapel', productoController.buscadorRollosPapel);
+router.get('/etiquetas', productoController.buscadorEtiquetas);
 
 //Crear un producto nuevo 
 router.get('/altaProducto', productoController.crearProd);
 router.post('/altaProducto', upload.single('imgProd'), productoController.ingresaProducto);
  
-router.post('/', productoController.buscador);
+
 
 
 //detalle productos
