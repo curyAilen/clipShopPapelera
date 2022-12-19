@@ -77,25 +77,7 @@ h6 {
     font-family: 'Noto Sans Display', sans-serif;
     font-weight: 800;
 }
-/*********************QUIENES SOMOS************************************/
-#quienesSomos div {
-    width: 75%;
-    padding: 25px 55px;
-    margin: 100px auto;
-    background: #b291241b;
-    box-shadow: 0px 11px 13px 0px rgba(0, 0, 0, 0.51);
-    border-radius: 15px;
-}
 
-#quienesSomos .titulos {
-    font-size: 2rem;
-    color: #37BBA4;
-    text-shadow: 2px 1px 6px #24242434;
-}
-
-#quienesSomos p {
-    font-size: 1.2rem;
-}
 
 
 /*******************BARRA NAV************************/
@@ -224,7 +206,7 @@ h6 {
     display: flex;
     margin: 15px 0;
 }
-.botoneraInformativa img {
+.imgBtnInformativa{
     width: 30%;
 }
 .botoneraInformativa p {
@@ -267,10 +249,6 @@ h6 {
     animation-fill-mode: both;
 }
 
-#categorias article img {
-    width: 30%;
-}
-
 #categorias a {
     text-decoration: none;
 }
@@ -278,98 +256,6 @@ h6 {
 #categorias a:hover {
     color: #5424B2;
 }
-
-
-/**************************TIENDA***********************************/
-
-.botonFiltro {
-    margin-left: auto;
-    margin-top: 35px;
-}
-
-.precioFiltro {
-    align-items: baseline;
-}
-
-.contieneProductos {
-    transition: transform 1071ms ease-out;
-    margin-left: 5px;
-    margin-right: 5px;
-    padding: 0 !important;
-}
-
-.contieneProductos:hover {
-    transform: translate(-11px, -10px) scale(1.05, 1.05);
-}
-
-.imgProducto {
-    border-radius: 12px 12px 0 0;
-}
-
-.categoriaTienda {
-    text-align: end;
-    padding: 8px 13px;
-    background-color: #00d3a25e;
-    margin: 0 -20px;
-    color: #504e4d;
-}
-
-.detalleProductoTienda {
-    padding: 0 20px;
-}
-
-.detalleProducto {
-    padding: 15px;
-    margin: 10px;
-}
-
-.nombreProductoTienda {
-    margin-top: 10px;
-    text-align: right;
-}
-
-.precioProductoTienda {
-    font-size: 1.5rem;
-}
-
-
-/*******************DETALLE PRODUCTOS**********************/
-
-.contieneImgProdDetalle {
-    text-align: center;
-}
-
-.imgProductoDetalle {
-    margin: auto;
-    width: 50%;
-}
-
-.contenedorDetalleProd {
-    margin: auto;
-    padding: 10px;
-}
-
-
-
-/**************************Editar Perfil***********************************/
-
-.claveBox {
-    align-items: end;
-}
-
-.formularioEditPerfil {
-    margin: 50px 200px;
-}
-
-.formularioEditPerfil label {
-    color: #a59384;
-    font-weight: 600;
-}
-
-.formularioEditPerfil .btnEditarGuardar {
-    margin-right: auto;
-}
-
 
 /****************************Listado CLientes********************************************/
 

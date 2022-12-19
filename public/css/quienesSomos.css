@@ -1,0 +1,19 @@
+/*********************QUIENES SOMOS************************************/
+#quienesSomos div {
+    width: 75%;
+    padding: 25px 55px;
+    margin: 100px auto;
+    background: #b291241b;
+    box-shadow: 0px 11px 13px 0px rgba(0, 0, 0, 0.51);
+    border-radius: 15px;
+}
+
+#quienesSomos .titulos {
+    font-size: 2rem;
+    color: #37BBA4;
+    text-shadow: 2px 1px 6px #24242434;
+}
+
+#quienesSomos p {
+    font-size: 1.2rem;
+}

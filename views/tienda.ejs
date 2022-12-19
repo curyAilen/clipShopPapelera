@@ -1,5 +1,6 @@
 <%- include ( './partials/head' ); %>
-    <link rel="stylesheet" href="css/detalleProducto.ejs">
+
+    <link rel="stylesheet" href="css/tienda.css">
 
     </head>
 
@@ -14,12 +15,13 @@
                     </article>
 
                     <article class="container">
-                        <div class="row justify-content-around">
+                        <div class="row justify-content-around ">
                             <%for(let i=0; i<producto.length; i++){%>
-                                <div class="contieneProductos estiloDeCaja col-lg-3 col-md-6">
+                                <div class="contieneProductos estiloDeCaja col-lg-3 col-sm-10">
                                     <a href="/tienda/detalle/<%=producto[i].idProductos%>" class="linkADetalle animacionProd eliminasEstiloLink">
                                         <img src="/images/imgProd/<%=producto[i].imagen%>" alt=""
                                             class="imgProducto img-fluid">
+                                        </a>
                                         <div class="detalleProductoTienda">
                                             <h4 class="nombreProductoTienda titulos">
                                                 <%=producto[i].nombre%>
@@ -58,7 +60,7 @@
                                                 <%= producto[i].categoria.nombreCategoria %>
                                             </p>
                                         </div>
-                                    </a>
+                                   
 
                                     <form action="/agregarProducto/<%= producto[i].idProductos %>" method="post" id="formularioAgregarCarrito">
                                         <input type="text" name="nombre" value="<%= producto[i].nombre %>" style="display: none;">

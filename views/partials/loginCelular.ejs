@@ -1,0 +1,92 @@
+<%- include ( './partials/head' ); %>
+<link rel="stylesheet" href="/css/login.css">
+</head>
+<body class="">
+  <%- include ( './partials/header' ); %>
+  <%- include ( './partials/contacto' ); %>
+  <!--LOGIN-->
+
+  <section class="forms-section container">
+
+
+        <h3>Inisiar Sesión</h3>
+      
+
+        <!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------LOGIN---------------------------------------------------------------------->
+
+        <form action="/user/login" class="form form-login" method="post">
+          <fieldset>
+            <legend>Ingrese su mail de usuario y contraseña</legend>
+            <div class="input-block">
+              <label for="login-email">E-mail</label>
+              <input id="login-email" type="email" required name="email" value="noni@gmail.com">
+              <% if (locals.errores && errores.email) { %>
+              <div class="text-danger">
+                <%= errores.email.msg %>
+              </div>
+              <% } %>
+            </div>
+            <div class="input-block">
+              <label for="login-password">Contraseña</label>
+              <input id="login-password" type="password" required name="password" value="noniponce">
+            </div>
+            <label class="form-check-label ml-4 recordarme">
+              <input type="checkbox" class="form-check-input" name="remember_user">Recordarme
+            </label>
+          </fieldset>
+          <button type="submit" class="btn botones" id="inicioSesion">Inisiar sesión <i class="fas fa-sign-in-alt icono ml-1"></i></button>
+        </form>
+     
+        <!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------REGISTRO---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <h3>Registro</h3>
+          
+        <form class="form form-signup " action="/user/registro" enctype="application/x-www-form-urlencoded" method="post">
+          <fieldset>
+            <legend>Ingrese los siguientes datos.</legend>
+            <div class="input-block">
+              <label for="emailRegister">E-mail</label>
+              <input type="email" name="email" id="email" placeholder="E-mail" value="<%= locals.old && old.email ? old.email : ''  %>" />
+              <p class="errorEmail erroresRegister"></p>
+            </div>
+            <div class="input-block">
+              <label for="nombre">Nombre</label>
+              <input type="text" name="nombre" required value="a">
+            </div>
+            <div class="input-block">
+              <label for="direccion">Dirección de entrega</label>
+              <input type="text" name="direccion" required value="b">
+            </div>
+            
+            <div class="input-block">
+              <label for="direccionRegister">teléfono (opcional)</label>
+              <input type="number" name="telefono" >
+            </div>
+            <div class="input-block">
+              <label for="clave">Contraseña</label>
+              <i class="fas fa-eye"></i>
+        <input type="password" name="password" id="clave" placeholder="Contraseña" value="ailencury"/>
+        <input type="password" name="re-clave" id="re-clave" placeholder="Confirmar contraseña" value="ailencury"/>
+            </div>
+          </fieldset>
+          <button type="submit" class="btn botones">Registrarse</button>
+        </form> 
+  </section>
+
+
+
+
+  
+  <script>
+    /************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+    const switchers = [...document.querySelectorAll('.switcher')]
+
+    switchers.forEach(item => {
+      item.addEventListener('click', function() {
+        switchers.forEach(item => item.parentElement.classList.remove('is-active'))
+        this.parentElement.classList.add('is-active')
+      })
+    })
+  </script>
+
+
+  <%- include ( './partials/footer' ); %>
