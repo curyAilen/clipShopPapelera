@@ -1,35 +1,35 @@
 <%- include ( './partials/head' ); %>
-<link rel="stylesheet" href="/css/formularios.css">
-</head>
+    <link rel="stylesheet" href="/css/formularios.css">
+    </head>
 
-<body class="">
-  <%- include ( './partials/header' ); %>
-  <%- include ( './partials/contacto' ); %>
-  <% if (locals.userLogged) { %>   
-    <% if (locals.userLogged.rol == "admin") { %>                                
-       
-       
-  <section class="container mx-auto">
-    <article class="row justify-content-end">
-        <a href="/altaBanner" class="btn botones col-4 mt-5 mb-3">Nuevo Banner<i class="fas fa-plus iconos"></i></a>
-    </article>
-<%for(let i=0; i< banner.length;i++){%>    
-      
-        <div class="row ">
-          <a href="/editBanner/<%=banner[i].idBanners%>" class="col-4 my-4 botones text-center">Editar
-          <i class="fas fa-pencil-alt iconos"></i></a>
-                   
-          <img src="/images/imgBanner/<%=banner[i].banner%>" alt="" class="img-fluid col-10 mx-auto" name="banner"> 
-        </div>            
-                        
-    
-  <%}%>
-    </section>
-
- <%}else{%> 
-  <h3 class="text-center my-5">Usted no posee credenciales validas para acceder a esta sección.</h3>
-  
-  <%}}%>
+    <body class="">
+        <%- include ( './partials/header' ); %>
+            <%- include ( './partials/contacto' ); %>
+                <% if (locals.userLogged) { %>
+                    <% if (locals.userLogged.rol == "admin") { %>
 
 
-  <%- include ( './partials/footer' ); %>
+                        <section class="container mx-auto">
+                            <article class="row justify-content-end">
+                                <a href="/altaBanner" class="btn botones col-4 mt-5 mb-3 mx-4">Nuevo Banner<i class="fas fa-plus iconos"></i></a>
+                            </article>
+                            <%for(let i=0; i< banner.length;i++){%>
+
+                                <div class="row  mt-5">
+                                    <a href="/editBanner/<%=banner[i].idBanners%>" class="col-3 botones btn btnBannerEdit">Editar
+                                      <i class="fas fa-pencil-alt iconos"></i></a>
+
+                                    <img src="/images/imgBanner/<%=banner[i].banner%>" alt="" class="img-fluid col-8 bannerEdit" name="banner">
+                                </div>
+
+
+                                <%}%>
+                        </section>
+
+                        <%}else{%>
+                            <h3 class="text-center my-5">Usted no posee credenciales validas para acceder a esta sección.</h3>
+
+                            <%}}%>
+
+
+                                <%- include ( './partials/footer' ); %>

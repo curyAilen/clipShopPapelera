@@ -1,29 +1,30 @@
 <%- include ( './partials/head' ); %>
-  <!--<link rel="stylesheet" href="/css/login.css">-->
-  </head>
+    <link rel="stylesheet" href="/css/formularios.css">
+    </head>
 
-  <body class="">
-    <%- include ( './partials/header' ); %>
-      <%- include ( './partials/contacto' ); %>
-      <% if (locals.userLogged) { %>   
-        <% if (locals.userLogged.rol == "admin") { %>              
-        <section class="container "> 
+    <body class="">
+        <%- include ( './partials/header' ); %>
+            <%- include ( './partials/contacto' ); %>
+                <% if (locals.userLogged) { %>
+                    <% if (locals.userLogged.rol == "admin") { %>
+                        <section class="container " id="eliminarBanner">
 
-              <article class="row justify-content-center">
-                <img class="imagenBanner img-fluid" src="/images/imgBanner/<%=banner.banner%>">
-              </article>   
-          <form action="/eliminarBanner/<%= banner.idBanners%>?_method=DELETE" method="post" class="row botonesDelEditor">
-            <button class="mt-3 my-auto guardar botoneEliminar botones btn col-4">Eliminar <i class="fas fa-trash-alt iconos"></i></button>
-          </form>
-       
-    
-              
-        
-        </section>
-        <%}else{%> 
-          <h3 class="text-center my-5">Usted no posee credenciales validas para acceder a esta sección.</h3>
-          
-          <%}}%>
-        
+                            <article class="row justify-content-center">
+                                <img class="imagenBanner img-fluid" src="/images/imgBanner/<%=banner.banner%>">
+                            </article>
+                            <form action="/eliminarBanner/<%= banner.idBanners%>?_method=DELETE" method="post" class="row botonesDelEditor">
+                                <button class="mt-3 my-auto guardar botoneEliminar botones btn col-4">Eliminar <i class="fas fa-trash-alt iconos"></i></button>
+                            </form>
 
-        <%- include ( './partials/footer' ); %></body>
+
+
+
+                        </section>
+                        <%}else{%>
+                            <h3 class="text-center my-5">Usted no posee credenciales validas para acceder a esta sección.</h3>
+
+                            <%}}%>
+
+
+                                <%- include ( './partials/footer' ); %>
+    </body>
