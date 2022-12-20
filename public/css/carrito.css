@@ -1,61 +1,55 @@
-.productoCarrito {
-    width: 90%;
-    justify-content: baseline;
-}
-
-.contieneDetalleProducto {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-around;
-    align-items: baseline;
-}
-
-.precioUnidad {
-    font-size: 11px;
-}
-
-.botonesCarrito {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-around;
-    align-items: baseline;
-
-}
-
-.contienBotonesCarrito {
-    align-self: self-end;
-    margin-left: auto;
-}
-
-.contienePrecios {
-    align-self: flex-end;
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: end;
-    align-items: baseline;
-    margin-left: auto;
-
-}
-
-#carritoDeCompras {
-    margin: 0 auto;
-    width: 80%;
-}
-
-
-#pieCarrito {
-    width: 90%;
-    justify-content: center;
-    margin: 0 auto;
-}
-
-#pieCarrito h1 {
-    font-size: 24px;
-    font-weight: 300;
-    text-align: center;
-}
-
-
-.calculoTotales {
-    float: right;
-}
+    .productoCarrito {
+        justify-content: baseline;
+    }
+    
+    .contieneDetalleProducto {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        align-items: baseline;
+    }
+    
+    .precioUnidad {
+        font-size: 11px;
+    }
+    
+    .botonesCarrito {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        align-items: baseline;
+    }
+    
+    .contienBotonesCarrito {
+        align-self: self-end;
+        margin-left: auto;
+    }
+    
+    .contienePrecios {
+        align-self: flex-end;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: end;
+        align-items: baseline;
+        margin-left: auto;
+    }
+    
+    #carritoDeCompras {
+        margin: 0 auto;
+    }
+    
+    #pieCarrito {
+        width: 90%;
+        justify-content: center;
+        margin: 0 auto;
+    }
+    
+    #pieCarrito h1 {
+        font-size: 24px;
+        font-weight: 300;
+        text-align: center;
+    }
+    
+    .calculoTotales {
+        float: right;
+    }

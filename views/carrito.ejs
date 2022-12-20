@@ -9,194 +9,202 @@
             <%- include ( './partials/contacto' ); %>
 
                 <!--CARRITO DE COMPRAS-->
-                <div class="container " >
 
-                    <section id="carritoDeCompras" class=" ">
-                        <% if (carrito) { %>
-                            <% carrito.forEach(producto=> { %>
-                                <div class="productoCarrito estiloDeCaja">
-                                    <div class=" row ">
-                                       
-                                        <article class="col-12">
-                                            <h2>
-                                                <%= producto.nombre %>
-                                            </h2>
-                                            <div class="contieneDetalleProducto">
-                                                <p>Medidas: <%if(producto.medida){%>
-                                                        <%=producto.medida%> kg.
-                                                            <%}else{%>
-                                                                -
-                                                                <%}%>
-                                                </p>
-                                                <p>Peso: <%if(producto.peso){%>
-                                                        <%=producto.peso%>
-                                                            <%}else{%>
-                                                                -
-                                                                <%}%>
-                                                </p>
+                <section id="carritoDeCompras" class=" ">
+                    <% if (carrito) { %>
+                        <% carrito.forEach(producto=> { %>
+                            <div class="productoCarrito estiloDeCaja container">
+                                <div class=" row ">
 
-                                                <p> Color:
-                                                    <%if(producto.color){%>
-                                                        <%=producto.color%>
-                                                            <%}else{%>
-                                                                -
-                                                                <%}%>
-                                                </p>
-                                            </div>
-                                        </article>
+                                    <article class="col-12">
+                                        <h2>
+                                            <%= producto.nombre %>
+                                        </h2>
+                                        <div class="contieneDetalleProducto">
+                                            <p>Medidas:
+                                                <%if(producto.medida){%>
+                                                    <%=producto.medida%> kg.
+                                                        <%}else{%>
+                                                            -
+                                                            <%}%>
+                                            </p>
+                                            <p>Peso:
+                                                <%if(producto.peso){%>
+                                                    <%=producto.peso%>
+                                                        <%}else{%>
+                                                            -
+                                                            <%}%>
+                                            </p>
 
-                                    </div>
-                                    <hr>
-                                    <div class="row mt-3 mb-3">
-                                        <article class="col-3 contienBotonesCarrito">
-                                            <div class="botonesCarrito">
-                                                <button class="resta  btn botones mx-4"><i
-                                                        class="fas fa-minus iconos"></i></button>
-                                                <p class="cantidad h5">1</p>
-                                                <button class="suma   btn botones mx-4"><i
-                                                        class="fas fa-plus iconos"></i></button>
-                                                <button class="remover btn botones mx-4"><i
-                                                        class="fas fa-trash-alt iconos"></i></button>
-                                            </div>
-                                        </article>
-                                        <article class="col-7 contienePrecios">
-                                            <div class="mx-5">
-                                                <p class="precioUnidad"> unidad: $
-                                                    <%= producto.precio %>
-                                                </p>
-                                            </div>
-                                            <div class="mx-5">
-                                                <p class="precioTotal"> $
-                                                    <%= producto.precio %>
-                                                </p>
-                                            </div>
-                                        </article>
+                                            <p> Color:
+                                                <%if(producto.color){%>
+                                                    <%=producto.color%>
+                                                        <%}else{%>
+                                                            -
+                                                            <%}%>
+                                            </p>
+                                        </div>
+                                    </article>
 
-                                    </div>
                                 </div>
+                                <hr>
+                                <div class="row mt-3 mb-3">
+                                    <article class="col-3 contienBotonesCarrito">
+                                        <div class="botonesCarrito">
+                                            <button class="resta  btn botones "><i
+                                                        class="fas fa-minus iconos"></i></button>
+                                            <p class="cantidad h5">1</p>
+                                            <button class="suma   btn botones "><i
+                                                        class="fas fa-plus iconos"></i></button>
+                                            <button class="remover btn botones "><i
+                                                        class="fas fa-trash-alt iconos"></i></button>
+                                        </div>
+                                    </article>
+                                    <article class="col-7 contienePrecios">
+                                        <div class="mx-5">
+                                            <p class="precioUnidad"> unidad: $
+                                                <%= producto.precio %>
+                                            </p>
+                                        </div>
+                                        <div class="mx-5">
+                                            <p class="precioTotal"> $
+                                                <%= producto.precio %>
+                                            </p>
+                                        </div>
+                                    </article>
+
+                                </div>
+                            </div>
 
 
 
-                                <% }) %>
-                                    <% } else { %>
-                                        <article class="productoCarrito">
-                                            <h4>Carrito vacio</h4>
+                            <% }) %>
+                                <% } else { %>
+                                    <div class="container">
+
+
+                                        <article class="productoCarrito row">
+                                            <h4 class="col-7 mx-auto">Carrito vacio</h4>
                                         </article>
-                                        <% } %>
-                    </section>
-                    <footer id="pieCarrito" class="row">
-                            <div class="col-7 ">
-                                <p class="subtotal">Voucher Valor: <span class="valorVoucher">$</span></p>
-                                <input type="text" placeholder="Ingresar Voucher..." class="descuentoVocuher">
-                            </div>
-
-                            <div class="calculoTotales col-4">
-                                <p>Subtotal: <span class="montoSubTotal">$</span></p>
-                                <h1 class="total">Total: <span class="montoTotal">$</span></h1>
-                                <input type="button" value="Comprar" class="botones btn">
-                            </div>
-
-                       
-                    </footer>
-
-                 
+                                    </div>
+                                    <% } %>
+                </section>
+                <footer id="pieCarrito" class="container">
+                    <div class="row">
 
 
-                    
-                </div>
+                        <div class="col-7 ">
+                            <p class="subtotal">Voucher Valor: <span class="valorVoucher">$</span></p>
+                            <input type="text" placeholder="Ingresar Voucher..." class="descuentoVocuher">
+                        </div>
+
+                        <div class="calculoTotales col-4">
+                            <p>Subtotal: <span class="montoSubTotal">$</span></p>
+                            <h1 class="total">Total: <span class="montoTotal">$</span></h1>
+                            <input type="button" value="Comprar" class="botones btn">
+                        </div>
+                    </div>
+
+                </footer>
+
+
+
+
+
+
 
                 <script>
                     /*
-                        ////////////////////////////////////////////////////////////////////
-                        ////////////////////////////////////////////////////////////////////
-                        ///////////////////////CARRITO//////////////////////////////////////
-                        ////////////////////////////////////////////////////////////////////
-                        ////////////////////////////////////////////////////////////////////
-                        ////////////////////////////////////////////////////////////////////
-                        var check = false;
-                
-                function changeVal(el) {
-                    var contador = parseFloat(el.parent().children(".contador").html());
-                    var precio = parseFloat(el.parent().children(".precio").html());
-                    var eq = Math.round(precio * contador * 100) / 100;
-                
-                    el.parent().children(".totalPrecio").html("$" + eq);
-                
-                    changeTotal();
-                }
-                
-                function changeTotal() {
-                
-                    var precio = 0;
-                
-                    $(".totalPrecio").each(function (index) {
-                        precio += parseFloat($(".totalPrecio").eq(index).html());
-                    });
-                
-                    precio = Math.round(precio * 100) / 100;
-                    var voucher = parseFloat($(".descuentoVocuher span").html());
-                    var fullPrice = Math.round((precio - voucher) * 100) / 100;
-                
-                    if (precio == 0) {
-                        fullPrice = 0;
-                    }
-                
-                    $(".subtotal span").html(precio);
-                    $(".total span").html(fullPrice);
-                }
-                
-                $(document).ready(function () {
-                
-                    $(".remove").click(function () {
-                        var el = $(this);
-                        el.parent().parent().addClass("removed");
-                        window.setTimeout(
-                            function () {
-                                el.parent().parent().slideUp('fast', function () {
-                                    el.parent().parent().remove();
-                                    if ($(".producto").length == 0) {
-                                        if (check) {
-                                            $("#carrito").html("<h1>UPS!!</h1><p>Lo siento por el momento no puedes realizar ninguna COMPRA, comunicate con la empresa para mayor información</p>");
-                                        } else {
-                                            $("#carrito").html("<h1>No productos!</h1>");
-                                        }
-                                    }
-                                    changeTotal();
-                                });
-                            }, 200);
-                    });
-                
-                    $(".sumar").click(function () {
-                        $(this).parent().children(".contador").html(parseInt($(this).parent().children(".contador").html()) + 1);
-                
-                        $(this).parent().children(".totalPrecio").addClass("added");
-                
-                        var el = $(this);
-                        window.setTimeout(function () { el.parent().children(".totalPrecio").removeClass("added"); changeVal(el); }, 150);
-                    });
-                
-                    $(".restar").click(function () {
-                
-                        child = $(this).parent().children(".contador");
-                
-                        if (parseInt(child.html()) > 1) {
-                            child.html(parseInt(child.html()) - 1);
-                        }
-                
-                        $(this).parent().children(".totalPrecio").addClass("minused");
-                
-                        var el = $(this);
-                        window.setTimeout(function () { el.parent().children(".totalPrecio").removeClass("minused"); changeVal(el); }, 150);
-                    });
-                
-                    window.setTimeout(function () { $(".is-open").removeClass("is-open") }, 1200);
-                
-                    $(".btn").click(function () {
-                        check = true;
-                        $(".remove").click();
-                    });
-                });
-                    */
+                                                                                                                                                ////////////////////////////////////////////////////////////////////
+                                                                                                                                                ////////////////////////////////////////////////////////////////////
+                                                                                                                                                ///////////////////////CARRITO//////////////////////////////////////
+                                                                                                                                                ////////////////////////////////////////////////////////////////////
+                                                                                                                                                ////////////////////////////////////////////////////////////////////
+                                                                                                                                                ////////////////////////////////////////////////////////////////////
+                                                                                                                                                var check = false;
+                                                                                                                                        
+                                                                                                                                        function changeVal(el) {
+                                                                                                                                            var contador = parseFloat(el.parent().children(".contador").html());
+                                                                                                                                            var precio = parseFloat(el.parent().children(".precio").html());
+                                                                                                                                            var eq = Math.round(precio * contador * 100) / 100;
+                                                                                                                                        
+                                                                                                                                            el.parent().children(".totalPrecio").html("$" + eq);
+                                                                                                                                        
+                                                                                                                                            changeTotal();
+                                                                                                                                        }
+                                                                                                                                        
+                                                                                                                                        function changeTotal() {
+                                                                                                                                        
+                                                                                                                                            var precio = 0;
+                                                                                                                                        
+                                                                                                                                            $(".totalPrecio").each(function (index) {
+                                                                                                                                                precio += parseFloat($(".totalPrecio").eq(index).html());
+                                                                                                                                            });
+                                                                                                                                        
+                                                                                                                                            precio = Math.round(precio * 100) / 100;
+                                                                                                                                            var voucher = parseFloat($(".descuentoVocuher span").html());
+                                                                                                                                            var fullPrice = Math.round((precio - voucher) * 100) / 100;
+                                                                                                                                        
+                                                                                                                                            if (precio == 0) {
+                                                                                                                                                fullPrice = 0;
+                                                                                                                                            }
+                                                                                                                                        
+                                                                                                                                            $(".subtotal span").html(precio);
+                                                                                                                                            $(".total span").html(fullPrice);
+                                                                                                                                        }
+                                                                                                                                        
+                                                                                                                                        $(document).ready(function () {
+                                                                                                                                        
+                                                                                                                                            $(".remove").click(function () {
+                                                                                                                                                var el = $(this);
+                                                                                                                                                el.parent().parent().addClass("removed");
+                                                                                                                                                window.setTimeout(
+                                                                                                                                                    function () {
+                                                                                                                                                        el.parent().parent().slideUp('fast', function () {
+                                                                                                                                                            el.parent().parent().remove();
+                                                                                                                                                            if ($(".producto").length == 0) {
+                                                                                                                                                                if (check) {
+                                                                                                                                                                    $("#carrito").html("<h1>UPS!!</h1><p>Lo siento por el momento no puedes realizar ninguna COMPRA, comunicate con la empresa para mayor información</p>");
+                                                                                                                                                                } else {
+                                                                                                                                                                    $("#carrito").html("<h1>No productos!</h1>");
+                                                                                                                                                                }
+                                                                                                                                                            }
+                                                                                                                                                            changeTotal();
+                                                                                                                                                        });
+                                                                                                                                                    }, 200);
+                                                                                                                                            });
+                                                                                                                                        
+                                                                                                                                            $(".sumar").click(function () {
+                                                                                                                                                $(this).parent().children(".contador").html(parseInt($(this).parent().children(".contador").html()) + 1);
+                                                                                                                                        
+                                                                                                                                                $(this).parent().children(".totalPrecio").addClass("added");
+                                                                                                                                        
+                                                                                                                                                var el = $(this);
+                                                                                                                                                window.setTimeout(function () { el.parent().children(".totalPrecio").removeClass("added"); changeVal(el); }, 150);
+                                                                                                                                            });
+                                                                                                                                        
+                                                                                                                                            $(".restar").click(function () {
+                                                                                                                                        
+                                                                                                                                                child = $(this).parent().children(".contador");
+                                                                                                                                        
+                                                                                                                                                if (parseInt(child.html()) > 1) {
+                                                                                                                                                    child.html(parseInt(child.html()) - 1);
+                                                                                                                                                }
+                                                                                                                                        
+                                                                                                                                                $(this).parent().children(".totalPrecio").addClass("minused");
+                                                                                                                                        
+                                                                                                                                                var el = $(this);
+                                                                                                                                                window.setTimeout(function () { el.parent().children(".totalPrecio").removeClass("minused"); changeVal(el); }, 150);
+                                                                                                                                            });
+                                                                                                                                        
+                                                                                                                                            window.setTimeout(function () { $(".is-open").removeClass("is-open") }, 1200);
+                                                                                                                                        
+                                                                                                                                            $(".btn").click(function () {
+                                                                                                                                                check = true;
+                                                                                                                                                $(".remove").click();
+                                                                                                                                            });
+                                                                                                                                        });
+                                                                                                                                            */
                 </script>
                 <script src="/js/carrito.js"></script>
 

@@ -7,28 +7,33 @@
             <%- include ( './partials/contacto' ); %>
                 <% if (locals.userLogged) { %>
                     <% if (locals.userLogged.rol=="admin" ) { %>
-                        <section class="container"> 
+                        <section class="container">
                             <%for(let i=0; i<usuario.length; i++){%>
-                            <article class="row cardUsuarios">
-                                <h3 class="col-12">Cliente: <%= usuario[i].nombre%></h3>
-                                <ul class="col-12">                                
+                                <article class="row cardUsuarios">
+                                    <h3 class="col-12">Cliente:
+                                        <%= usuario[i].nombre%>
+                                    </h3>
+                                    <ul class="col-12">
                                         <li>
-                                            <p> E-mail: <%= usuario[i].email %>
+                                            <p> E-mail:
+                                                <%= usuario[i].email %>
                                             </p>
                                         </li>
                                         <li>
-                                            <p> Dirección: <%= usuario[i].direccion %>
+                                            <p> Dirección:
+                                                <%= usuario[i].direccion %>
                                             </p>
                                         </li>
                                         <li>
-                                            <p> Código Postal: <%= usuario[i].cp %>
+                                            <p> Código Postal:
+                                                <%= usuario[i].cp %>
                                             </p>
                                         </li>
-                                     
-                                
-                                </ul>
-                            </article>  
-                            <%}%>
+
+
+                                    </ul>
+                                </article>
+                                <%}%>
                         </section>
 
 
@@ -36,8 +41,8 @@
 
 
                         <%}else{%>
-                            <h3 class="text-center my-5">Usted no posee credenciales validas para acceder a esta
-                                sección.</h3>
+                            <h3 class="text-center my-5">Usted no posee credenciales validas para acceder a esta sección.
+                            </h3>
 
                             <%}}%>
 

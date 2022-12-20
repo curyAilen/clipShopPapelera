@@ -1,43 +1,46 @@
 <%- include ( './partials/head' ); %>
-  <link rel="stylesheet" href="/css/formularios.css">
-  </head>
+    <link rel="stylesheet" href="/css/formularios.css">
+    </head>
 
-  <body class="">
-    <%- include ( './partials/header' ); %>
-      <%- include ( './partials/contacto' ); %>
-        <% if (locals.userLogged) { %>
-          <% if (locals.userLogged.rol=="admin" ) { %>
-
-
-            <section class="container ">
-              <article class="row justify-content-strats">
-                <a href="/altaVoucher" class="btn botones col-4 mt-5 mb-3">Nuevo Voucher<i
-                    class="fas fa-plus iconos"></i></a>
-               </article>
-
-              <div class="row justify-content-center">
-                <%for(let i=0; i< voucher.length;i++){%>
-                  <div class="estiloDeCaja col-3 mx-3">
-                    <h3 class="nombreVoucher">Voucher: <%=voucher[i].voucher%>
-                    </h3>
-                    <h3 class="valorVoucher">Valor: <%=voucher[i].valor%>%
-                    </h3>
-                    <h5 class="fechaVoucher">Fecha: <%=voucher[i].fecha%>
-                    </h5>
-                    <a href="/editVoucher/<%=voucher[i].idVouchers%>" class="col-4 my-4 botones text-center btn ">Editar
-                      <i class="fas fa-pencil-alt iconos"></i></a>
-                  </div>
-                <%}%>
-              </div>
+    <body class="">
+        <%- include ( './partials/header' ); %>
+            <%- include ( './partials/contacto' ); %>
+                <% if (locals.userLogged) { %>
+                    <% if (locals.userLogged.rol=="admin" ) { %>
 
 
-          
-            </section>
+                        <section class="container contieneVouchers">
+                            <article class="row justify-content-strat">
+                                <a href="/altaVoucher" class="btn botones col-5 mt-5 mb-3 btnVoucher">Nuevo Voucher<i
+                              class="fas fa-plus iconos"></i></a>
+                            </article>
 
-            <%}else{%>
-              <h3 class="text-center my-5">Usted no posee credenciales validas para acceder a esta sección.</h3>
+                            <div class="row justify-content-center">
+                                <%for(let i=0; i< voucher.length;i++){%>
+                                    <div class="estiloDeCaja col-lg-3 mx-2 col-sm-10">
+                                        <h3 class="nombreVoucher">Voucher:
+                                            <%=voucher[i].voucher%>
+                                        </h3>
+                                        <h3 class="valorVoucher">Valor:
+                                            <%=voucher[i].valor%>%
+                                        </h3>
+                                        <h5 class="fechaVoucher">Fecha:
+                                            <%=voucher[i].fecha%>
+                                        </h5>
+                                        <a href="/editVoucher/<%=voucher[i].idVouchers%>" class="col-4 my-4 botones text-center btn ">Editar
+                                      <i class="fas fa-pencil-alt iconos"></i></a>
+                                    </div>
+                                    <%}%>
+                            </div>
 
-              <%}}%>
 
 
-                <%- include ( './partials/footer' ); %>
+                        </section>
+
+                        <%}else{%>
+                            <h3 class="text-center my-5">Usted no posee credenciales validas para acceder a esta sección.</h3>
+
+                            <%}}%>
+
+
+                                <%- include ( './partials/footer' ); %>

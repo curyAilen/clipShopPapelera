@@ -60,29 +60,30 @@
 
                     <div class="row cajaDatosUsuario">
                         <% if (locals.userLogged) { %>
-                            <h1>Bienvenid@ <%= locals.userLogged.nombre %>.</h1>
+                            <h1>Bienvenid@
+                                <%= locals.userLogged.nombre %>.</h1>
                             <div id="data">
-                                <p> Nombre: <%= locals.userLogged.nombre %>
+                                <p> Nombre:
+                                    <%= locals.userLogged.nombre %>
                                 </p>
-                                <p> E-mail: <%= locals.userLogged.email %>
+                                <p> E-mail:
+                                    <%= locals.userLogged.email %>
                                 </p>
-                                <p> Dirección: <%= locals.userLogged.direccion %>
+                                <p> Dirección:
+                                    <%= locals.userLogged.direccion %>
                                 </p>
-                               
 
-                            </div> 
-                            <a href="/user/cuenta/editarPerfil/<%=locals.userLogged.idUsuarios%>"
-                                class="botones btn btnCuenta col-md-3 col-sm-5">Modificar datos</a>
-                            <a href="/user/cuenta/actualizarPassword/<%=locals.userLogged.idUsuarios%>"
-                                class="botones btn btnCuenta col-md-3 col-sm-5">Modificar contraseña</a>
+
+                            </div>
+                            <a href="/user/cuenta/editarPerfil/<%=locals.userLogged.idUsuarios%>" class="botones btn btnCuenta col-md-3 col-sm-5">Modificar datos</a>
+                            <a href="/user/cuenta/actualizarPassword/<%=locals.userLogged.idUsuarios%>" class="botones btn btnCuenta col-md-3 col-sm-5">Modificar contraseña</a>
                             <% if (locals.userLogged.rol=="admin" ) { %>
-                                <a href="/user/listadoClientes" class="botones btn btnCuenta col-md-3 col-sm-5"
-                                    aria-disabled="false">Listar clientes</a>
+                                <a href="/user/listadoClientes" class="botones btn btnCuenta col-md-3 col-sm-5" aria-disabled="false">Listar clientes</a>
                                 <%}%>
-                                 
-                                        <a href="/user/logout" class="nav-link btn btnCuenta text-end col-md-3 col-sm-5">Cerrar sesión<i
+
+                                    <a href="/user/logout" class="nav-link btn btnCuenta text-end col-md-3 col-sm-5">Cerrar sesión<i
                                                 class="mx-2 fas fa-sign-out-alt iconosUser "></i></a>
-                                   
+
 
                                     <% } else {%>
                                         <h1>Tenes que estar logueado.</h1>
@@ -98,12 +99,12 @@
 
                 <section id="adminProductos" class="container ocultar estiloDeCaja">
                     <div class="row justify-content-between">
-                        <a href="/tienda/altaProducto" class="botones col-lg-3 col-md-12 btnAdminProd btn "> Ingresar un
+                        <a href="/tienda/altaProducto" class="botones col-lg-3 col-md-7 btnAdminProd btn "> Ingresar un
                             producto <i class="fas fa-plus iconos"></i></a>
 
-                        <a href="/configBanner" class="botones col-lg-3 col-md-12 btnAdminProd btn ">Banner<i
+                        <a href="/configBanner" class="botones col-lg-3 col-md-7 btnAdminProd btn ">Banner<i
                                 class="fas fa-cogs iconos"></i></a>
-                        <a href="/configVoucher" class="botones col-lg-3 col-md-12 btnAdminProd btn ">Voucher<i
+                        <a href="/configVoucher" class="botones col-lg-3 col-md-7 btnAdminProd btn ">Voucher<i
                                 class="fas fa-cogs iconos"></i></a>
                     </div>
                 </section>

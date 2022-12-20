@@ -1,22 +1,25 @@
-
-#miCuenta h3{
+#miCuenta h3 {
     width: 60%;
     padding: 12px 0;
     border-radius: 10px;
     text-align: center;
     margin: 5px;
 }
-#miCuenta article{
+
+#miCuenta article {
     text-align: -webkit-center;
-    margin: 50px 0;    
+    margin: 50px 0;
 }
+
+
 /***********************************DATOS PERSONALES**************************************/
-#datosUsuarios{
+
+#datosUsuarios {
     width: 75vw;
     margin: 0 auto;
-
 }
-.inputDatosUser{
+
+.inputDatosUser {
     border-radius: 6px;
     padding: 8px;
     border: solid 2px #37BBA4;
@@ -24,22 +27,21 @@
 
 
 /******************************HISTORIAL COMRPAS******************************************/
-.producto {  
+
+.producto {
     margin: 20px 0;
-    width: 75%;    
+    width: 75%;
     position: relative;
     justify-content: center;
-
-
 }
-#comprasHistorial article{
+
+#comprasHistorial article {
     justify-content: center;
 }
 
 .producto img {
     width: 100%;
     background-color: #eee;
-
 }
 
 .producto .envcabezadoProducto,
@@ -60,7 +62,6 @@
     height: 195px;
 }
 
-
 .producto .envcabezadoProducto h3 {
     background: #37BBA4;
     color: #fff;
@@ -73,9 +74,9 @@
     bottom: -50px;
     right: 0;
     left: 0;
-
 }
-.btnrepetirCompra{
+
+.btnrepetirCompra {
     padding: 5px;
     border-radius: 5px;
 }
@@ -105,41 +106,50 @@
     justify-content: end;
     align-items: center;
 }
-.producto footer .totalPrecio{
+
+.producto footer .totalPrecio {
     border-left: solid 2px #fff;
 }
-.producto footer .totalPrecio, .fecha {
+
+.producto footer .totalPrecio,
+.fecha {
     background: #37BBA4;
     color: #fff;
     text-align: end;
     font-weight: 300;
     line-height: 49px;
     padding: 0 30px;
-  
 }
-  /****************************ADMINISTRACIÓN PRODUCTOS***********************************************/
 
-  .btnAdminProd{
-    margin: 12px;
+
+/****************************ADMINISTRACIÓN PRODUCTOS***********************************************/
+
+#adminProductos {
+    width: 85%;
+}
+
+.btnAdminProd {
+    margin: 12px auto;
     height: auto;
-  }
+    width: 85%;
+}
 
 
 /*-----TABLET---------------------------------------------------------------------------********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-@media(min-width: 390px){
+
+@media(min-width: 390px) {
     #miCuenta h3 {
         width: 60%;
         padding: 14px 10px;
+    }
 }
 
-}
 
 /*--------------------------------------------------------------------------------------COMPUTADORA-LAPTOP---------------------------------------------------------------------------********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 
 @media(min-width:991px) {
-    .btnCuenta{
-        margin: 15px ;
+    .btnCuenta {
+        margin: 15px;
         width: auto;
     }
 }
-
