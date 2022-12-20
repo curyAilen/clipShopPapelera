@@ -12,7 +12,18 @@ const registerValidations = [
 
     body('email')
         .notEmpty().withMessage("Debes ingresar un email").bail()
-        .isEmail().withMessage("Debe ser un email valido"),
+        .isEmail().withMessage("Debe ser un email valido").bail()
+        .custom(async (value) => {
+            return db.Usuarios.findOne({
+                where: {
+                    email: value
+                }
+            }).then(user =>{
+                if (user) {
+                    return Promise.reject("Email en uso");
+                } 
+            })
+        }).withMessage("Este email ya esta en uso"),
 
     body('password')
         .trim()

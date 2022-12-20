@@ -8,20 +8,29 @@
 
 
 
-                <section id="quienesSomos" class="container-fluid">
-                    <div class="row">
-                        <h4 class="col-10 titulos">Somos clip Shop</h4>
-                        <p class="col-12">Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde placeat, harum
-                            nesciunt quas dolore dolores
-                            voluptate eligendi? Tempora debitis itaque dolorum porro consequuntur? Numquam expedita
-                            repellat
-                            asperiores</p>
+                <section id="quienesSomos" class="container my-5">
+                    <div class="row my-4">
+                        <h4 class="col-10 titulos">¿Quienes somos?</h4>
+                        <p class="col-12">Clip Shop es una empresa familiar fundada en el 2017, que trabaja tanto productos de embalaje como de ordenamiento del negocio, como por ejemplo: rollos de números, expendedora de números, rollos fiscales, etiquetas térmicas, entre muchos más productos.
+                            Una de nuestras características es que  realizamos entregas en el día tanto en caba como en gba, al mismo tiempo la tienda es 100% online, dando también la posibilidad de retirar el pedido en nuestras oficinas en caso de que así se prefiera. 
+                            Nuestro modelo de negocio se basa en incorporar nuevos productos para poder ofrecer mayor variedad y posibilidades de satisfacer la necesidad de nuestros clientes. 
+                            </p>
+                    </div>
+                    <div class="row my-4">
+                        <h4 class="col-6 titulos">MISIÓN</h4>
+                        <h4 class="col-6 titulos">VISIÓN</h4>
+                    </div>
+                    <div class="row my-4">                        
+                        <p class="col-6">Nuestra misión es lograr que todos los productos sean enviados de manera segura, asegurando que tanto el comerciante como el cliente no sufran las consecuencias de que el producto enviado se vea afectado.
+                        </p>                        
+                        <p class="col-6">Nuestra visión es que todas las personas tengan la posibilidad de embalar sus productos de manera segura, con un costo accesible, y que se logre tener la información adecuada sobre el correcto embalaje. 
+                        </p>
                     </div>
                 </section>
                 <section class="container ">
                     <article class="row justify-content-center">
 
-                        <div class="card mx-1 col-lg-2 col-sm-10 mt-2 mb-2">
+                        <div class="card mx-3 col-4 mt-2 mb-2">
                             <div class="card-img-top">
                                 <img src="/images/usuarios/user_6.jpg" alt="" class="img-fluid">
                             </div>
@@ -33,11 +42,11 @@
                         </div>
 
 
-                        <div class="card mx-1 col-lg-2 col-sm-10 mt-2 mb-2">
+                        <div class="card mx-3 col-4 mt-2 mb-2">
                             <div class="card-img-top">
                                 <img src="/images/usuarios/user_3.jpg" alt="" class="img-fluid">
                             </div>
-                            <h3 class="mb-0">Fcu</h3>
+                            <h3 class="mb-0">Facu</h3>
                             <span> Fecha de incorporación al equipo</span>
                             <p class="card-text mb-auto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
                                 libero praesentium beatae, numquam doloribus harum cupiditate </p>
@@ -45,7 +54,7 @@
                         </div>
 
 
-                        <div class="card mx-1 col-lg-2 col-sm-10 mt-2 mb-2">
+                        <div class="card mx-3 col-4 mt-2 mb-2">
                             <div class="card-img-top">
                                 <img src="/images/usuarios/user_2.jpg" alt="" class="img-fluid">
                             </div>
@@ -57,7 +66,7 @@
                         </div>
 
 
-                        <div class="card mx-1 col-lg-2 col-sm-10 mt-2 mb-2">
+                        <div class="card mx-3 col-4 mt-2 mb-2">
                             <div class="card-img-top">
                                 <img src="/images/usuarios/user_5.jpg" alt="" class="img-fluid">
                             </div>
@@ -69,6 +78,13 @@
                         </div>
                     </article>
                 </section>
+                
+                <section class="container ">
+                    <div class="row justify-content-center mt-5 estiloDeCaja">
+                        <%- include ( './partials/galeriaImagenes' ); %>
+                    </div>                 
+                </section>
+<!--
                 <section id="galeria" class="container contiene mt-5">
                     <h2>Galeria de fotos</h2>
                     <main class="gallery">
@@ -86,7 +102,8 @@
                         </figure>
                         <figure>
                             <img src="/images/user_4.jpg" alt="image" />
-                        </figure>  <figure>
+                        </figure>  
+                        <figure>
                             <img src="/images/user_5.jpg" alt="image" />
                         </figure>
                         <figure>
@@ -115,7 +132,5 @@
                         </figure>
                     </main>
                 </section>
-
-
-
+-->
                 <%- include ( './partials/footer' ); %>

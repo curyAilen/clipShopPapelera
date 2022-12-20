@@ -1,0 +1,101 @@
+<div class="col-12 col-lg-6" id="productGallery">
+
+    <div class="swiffy-slider slider-item-ratio slider-item-ratio-1x1 slider-nav-round slider-nav-nodelay"
+        id="pgallery">
+        <ul class="slider-container">
+            <li><img src="/images/user_4.jpg" loading="lazy" alt="..." data-bs-toggle="modal"
+                    data-bs-target="#productGalleryModal" onclick="imageClick(0)"></li>
+            <li><img src="/images/user_3.jpg" loading="lazy" alt="..." data-bs-toggle="modal"
+                    data-bs-target="#productGalleryModal" onclick="imageClick(1)"></li>
+            <li><img src="/images/user_6.jpg" loading="lazy" alt="..." data-bs-toggle="modal"
+                    data-bs-target="#productGalleryModal" onclick="imageClick(2)"></li>
+            <li><img src="/images/user_1.jpg" loading="lazy" alt="..." data-bs-toggle="modal"
+                    data-bs-target="#productGalleryModal" onclick="imageClick(3)"></li>
+            <li><img src="/images/user_2.jpg" loading="lazy" alt="..." data-bs-toggle="modal"
+                    data-bs-target="#productGalleryModal" onclick="imageClick(4)"></li>
+            <li><img src="/images/user_5.jpg" loading="lazy" alt="..." data-bs-toggle="modal"
+                    data-bs-target="#productGalleryModal" onclick="imageClick(5)"></li>
+        </ul>
+
+        <button type="button" class="slider-nav" aria-label="Go previous"></button>
+        <button type="button" class="slider-nav slider-nav-next" aria-label="Go next"></button>
+    </div>
+
+    <div
+        class="swiffy-slider slider-nav-dark slider-nav-sm slider-nav-chevron slider-item-show4 slider-item-snapstart slider-item-ratio slider-item-ratio-1x1 slider-nav-visible slider-nav-page slider-nav-outside-expand pt-3 d-none d-lg-block">
+        <ul class="slider-container" id="pgallerythumbs" style="cursor:pointer">
+            <li><img src="/images/user_5.jpg" loading="lazy" alt="..." onmouseover="thumbHover(0)"></li>
+            <li><img src="/images/user_4.jpg" loading="lazy" alt="..." onmouseover="thumbHover(1)"></li>
+            <li><img src="/images/user_2.jpg" loading="lazy" alt="..." onmouseover="thumbHover(2)"></li>
+            <li><img src="/images/user_1.jpg" loading="lazy" alt="..." onmouseover="thumbHover(3)"></li>
+            <li><img src="/images/user_3.jpg" loading="lazy" alt="..." onmouseover="thumbHover(4)"></li>
+            <li><img src="/images/user_6.jpg" loading="lazy" alt="..." onmouseover="thumbHover(5)"></li>
+        </ul>
+
+        <button type="button" class="slider-nav" aria-label="Go previous"></button>
+        <button type="button" class="slider-nav slider-nav-next" aria-label="Go next"></button>
+    </div>
+
+    <div class="modal  fade" id="productGalleryModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="swiffy-slider h-100 slider-nav-dark" id="pgalleryModal">
+                        <ul class="slider-container" tabindex="-1">
+                            <li class="d-flex align-items-center justify-content-center"><img
+                                    src="/images/user_6.jpg" loading="lazy" class="mw-100 mh-100" alt="..."
+                                    data-bs-dismiss="modal"></li>
+                            <li class="d-flex align-items-center justify-content-center"><img
+                                    src="/images/user_5.jpg" loading="lazy" class="mw-100 mh-100" alt="..."
+                                    data-bs-dismiss="modal"></li>
+                            <li class="d-flex align-items-center justify-content-center"><img
+                                    src="/images/user_1.jpg" loading="lazy" class="mw-100 mh-100" alt="..."
+                                    data-bs-dismiss="modal"></li>
+                            <li class="d-flex align-items-center justify-content-center"><img
+                                    src="/images/user_4.jpg" loading="lazy" class="mw-100 mh-100" alt="..."
+                                    data-bs-dismiss="modal"></li>
+                            <li class="d-flex align-items-center justify-content-center"><img
+                                    src="/images/user_2.jpg" loading="lazy" class="mw-100 mh-100" alt="..."
+                                    data-bs-dismiss="modal"></li>
+                            <li class="d-flex align-items-center justify-content-center"><img
+                                    src="/images/user_3.jpg" loading="lazy" class="mw-100 mh-100" alt="..."
+                                    data-bs-dismiss="modal"></li>
+                        </ul>
+
+                        <button type="button" class="slider-nav" aria-label="Go previous"></button>
+                        <button type="button" class="slider-nav slider-nav-next" aria-label="Go next"></button>
+                        <ul
+                            class="slider-indicators slider-indicators-dark slider-indicators-highlight slider-indicators-round">
+                            <li class="active"></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function imageClick(imageNumber) {
+        setTimeout(() => {
+            //Find the slider element
+            const sliderElement = document.getElementById('pgalleryModal');
+            //Slide to he right image
+            swiffyslider.slideTo(sliderElement, imageNumber);
+            //Listen to slide end and set focus to the container to enable keyboard navigation
+            swiffyslider.onSlideEnd(sliderElement, () => sliderElement.querySelector(".slider-container").focus());
+        }, 300)
+    }
+
+    function thumbHover(imageNumber) {
+        //Find the slider element
+        const sliderElement = document.getElementById('pgallery');
+        //Slide to he right image
+        swiffyslider.slideTo(sliderElement, imageNumber)
+    }
+</script>
