@@ -24,12 +24,12 @@ CREATE TABLE IF NOT EXISTS `banners` (
   `idBanners` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `banner` varchar(155) NOT NULL DEFAULT '0',
   PRIMARY KEY (`idBanners`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 
 -- Volcando datos para la tabla clipshop.banners: ~2 rows (aproximadamente)
 INSERT INTO `banners` (`idBanners`, `banner`) VALUES
-	(6, 'Banner1669643850425.png'),
-	(9, 'Banner1669645146943.png');
+	(9, 'Banner1669645146943.png'),
+	(10, 'Banner1670514381769.png');
 
 -- Volcando estructura para tabla clipshop.categorias
 CREATE TABLE IF NOT EXISTS `categorias` (
@@ -698,16 +698,16 @@ CREATE TABLE IF NOT EXISTS `productos` (
   PRIMARY KEY (`idProductos`),
   KEY `FKidCategorias` (`FKidCategoria`),
   CONSTRAINT `FKidCategorias` FOREIGN KEY (`FKidCategoria`) REFERENCES `categorias` (`idCategorias`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla clipshop.productos: ~15 rows (aproximadamente)
+-- Volcando datos para la tabla clipshop.productos: ~7 rows (aproximadamente)
 INSERT INTO `productos` (`idProductos`, `nombre`, `FKidCategoria`, `precio`, `descripcion`, `imagen`, `oferta`, `color`, `peso`, `medida`) VALUES
 	(17, 'Cuadrado', 1, 50.00, 'rollo de papel', 'Producto1669646038787.jpg', 0, 'Rosa', 13.00, ''),
-	(19, 'Prueba de slide toggle', 1, 15.00, '<srfhbdzxfbzdthdgc', 'Producto1669646002557.jpg', 1, 'Transparente', 13.00, ''),
-	(20, 'Film', 1, 185.00, 'blab lab wed', 'Producto1669646020731.jpg', 1, 'Azul', 12.00, '25'),
+	(19, 'Prueba de slide toggle', 3, 356.00, '<srfhbdzxfbzdthdgc', 'Producto1669646002557.jpg', 1, 'Transparente', 13.00, ''),
+	(20, 'Film', 3, 185.00, 'blab lab wed', 'Producto1669646020731.jpg', 1, 'Azul', 12.00, '25'),
 	(21, 'Cuadrado Rosa', 1, 12458.00, NULL, 'Producto1667744118309.jpg', 1, '', 25.00, ''),
-	(23, 'Cuadrado Rosa', 1, 12458.00, NULL, 'Producto1667745707853.jpg', 1, '', 10.00, ''),
-	(24, 'Cuadrado  Azul', 1, 12.00, NULL, 'Producto1667745971340.jpg', 1, 'Azul', 2.50, '20cm x 30cm');
+	(23, 'Cuadrado Rosa', 4, 12458.00, NULL, 'Producto1667745707853.jpg', 1, '', 10.00, ''),
+	(24, 'Cuadrado  Azul', 2, 12.00, NULL, 'Producto1667745971340.jpg', 1, 'Azul', 2.50, '20cm x 30cm');
 
 -- Volcando estructura para tabla clipshop.usuarios
 CREATE TABLE IF NOT EXISTS `usuarios` (
@@ -721,15 +721,28 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `rol` varchar(50) NOT NULL DEFAULT 'user',
   PRIMARY KEY (`idUsuarios`),
   KEY `FKCodigoPostal` (`FKCodigoPostal`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla clipshop.usuarios: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla clipshop.usuarios: ~6 rows (aproximadamente)
 INSERT INTO `usuarios` (`idUsuarios`, `nombre`, `email`, `direccion`, `telefono`, `FKCodigoPostal`, `password`, `rol`) VALUES
 	(4, 'Ailen', 'cury.ailena@gmail.com', 'Avenida Estado de Israel 4487', 1168508686, NULL, '$2a$10$b7sFjxISyLrhJGkSMYHzHub/Z36c4JqVkeAD6fp7HSvE5OU30Onw.', 'user'),
 	(6, 'Ailen', 'ailu@ailu.com', 'Soy Administrador', 1168508686, NULL, '$2a$10$BRrCiQPiGWAIAxj7b8TYCewkG8eMKJWP3xTF.Ya4PsdgzimYJEgWu', 'admin'),
 	(9, 'Ailen Cury', 'ailen@gmail.com', 'Prueba dirección', 555555, NULL, '$2a$10$.p53ZobtisbEW7UY53PeQeDIuGqhdlswCK0Lvi81CIJL90C.PqxK.', 'user'),
 	(10, 'Noni', 'noni@gmail.com', 'Casa Noni', 1125689588, NULL, '$2a$10$idhhKteaOhDAUzrZhxsvTux/EbND5Y1ZQ4lRw5JWGaKjTCoYvlkCG', 'admin'),
-	(11, 'ailen', 'cury.ailena@gmail.com', 'Avenida Estado de Israel 4487', 1111, NULL, '$2a$10$3c1K5EwctubuoL5o1zGQjOGqox5fcl2xzlrDErLtfHoAMRIZB2lSW', 'user');
+	(11, 'ailen', 'cury.ailena@gmail.com', 'Avenida Estado de Israel 4487', 1111, NULL, '$2a$10$3c1K5EwctubuoL5o1zGQjOGqox5fcl2xzlrDErLtfHoAMRIZB2lSW', 'user'),
+	(12, 'ahfxrykudlt.ify-u', 'cury.ailena@gmail.com', 'Avenida Estado de Israel 4487', 5555, NULL, '$2a$10$B80MsCkiLV.koQ31E78LFuarqAhBpHpbersEqFIV11IVRWr12RlF6', 'user');
+
+-- Volcando estructura para tabla clipshop.ventas
+CREATE TABLE IF NOT EXISTS `ventas` (
+  `idVentas` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `idProductos` int(10) NOT NULL,
+  `idUsuarios` int(10) NOT NULL,
+  `cantidad` int(10) NOT NULL,
+  `precio` int(10) NOT NULL,
+  PRIMARY KEY (`idVentas`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Volcando datos para la tabla clipshop.ventas: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla clipshop.vouchers
 CREATE TABLE IF NOT EXISTS `vouchers` (
@@ -738,12 +751,12 @@ CREATE TABLE IF NOT EXISTS `vouchers` (
   `valor` int(20) NOT NULL,
   `fecha` date NOT NULL,
   PRIMARY KEY (`idVouchers`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla clipshop.vouchers: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla clipshop.vouchers: ~1 rows (aproximadamente)
 INSERT INTO `vouchers` (`idVouchers`, `voucher`, `valor`, `fecha`) VALUES
-	(1, 'navidadClipShop2022', 25, '2022-11-28'),
-	(5, 'estamosCreciendo2023', 15, '2022-11-28');
+	(5, 'estamosCreciendo2023', 15, '2022-11-28'),
+	(6, '', 150, '2022-12-08');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

@@ -27,6 +27,9 @@ const registerValidations = [
     .notEmpty().withMessage("Debes ingresar una dirección de entrega").bail()
     .isLength({ min: 2 }).withMessage("Debe tener un mínimo de dos caracteres"),
 
+    body('email')
+    .notEmpty().withMessage("Debes ingresar un email").bail()
+    .isEmail().withMessage("Debe ser un email valido"),
 
     body('password')
     .trim()
