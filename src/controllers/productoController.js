@@ -170,12 +170,10 @@ let productoController = {
             nombre: req.body.nombre,
             FKidCategoria: req.body.categoria,
             precio: req.body.precio,
-            descripcion: req.body.descripcion,
             imagen: req.file.filename,
             oferta: req.body.oferta,
-            color: req.body.color,
-            peso: req.body.peso,
-            medida: req.body.medida
+            filtro: req.body.filtro,
+            subfiltro: req.body.subfiltro
         }).then((newProducto) => {
 
             res.redirect("/tienda");

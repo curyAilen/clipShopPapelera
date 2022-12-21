@@ -1,89 +1,81 @@
 <%- include ( './partials/head' ); %>
-<link rel="stylesheet" href="/css/formularios.css">
-</head>
+    <link rel="stylesheet" href="/css/formularios.css">
+    </head>
 
-<body class="">
-  <%- include ( './partials/header' ); %>
-  <%- include ( './partials/contacto' ); %>
-  <% if (locals.userLogged) { %>   
-    <% if (locals.userLogged.rol == "admin") { %>                                
-       
-       
-  <form action="/tienda/altaProducto" method="post" enctype="multipart/form-data" id="formularioAltaProducto">
-    <h2 class="tituloAlta">Alta de producto</h2>
-    <div class="row justify-content-between">
-      <div class="form-group col-6">
-        <label for="nombre">Nombre Producto</label>
-        <input type="text" id="nombre" class="nombre form-control" name="nombre" min="3" max="35" value="Cuadrado Rosa">
-      </div>
-      <div class="form-group col-6">
-        <label for="precio">Precio del Producto</label>
-        <input type="number" id="precio" class="precio form-control" name="precio" value="12458">
-      </div>
-      <div class="form-group col-6">
-        <label for="categoria">Categorias</label>
-        <select class="form-control" id="categoria" name="categoria">
+    <body class="">
+        <%- include ( './partials/header' ); %>
+            <%- include ( './partials/contacto' ); %>
+                <% if (locals.userLogged) { %>
+                    <% if (locals.userLogged.rol == "admin") { %>
+
+
+                        <form action="/tienda/altaProducto" method="post" enctype="multipart/form-data" id="formularioAltaProducto">
+                            <h2 class="tituloAlta">Alta de producto</h2>
+                            <div class="row justify-content-between">
+                                <div class="form-group col-6">
+                                    <label for="nombre">Nombre Producto</label>
+                                    <input type="text" id="nombre" class="nombre form-control" name="nombre" min="3" max="35" value="Cuadrado Rosa">
+                                </div>
+                                <div class="form-group col-6">
+                                    <label for="precio">Precio del Producto</label>
+                                    <input type="number" id="precio" class="precio form-control" name="precio" value="12458">
+                                </div>
+                                <div class="form-group col-6">
+                                    <label for="categoria">Categorias</label>
+                                    <select class="form-control" id="categoria" name="categoria">
           <% for(let i=0; i< categoria.length; i++) { %>
           <option value="<%= categoria[i].idCategorias %>"><%= categoria[i].nombreCategoria %> </option>
           <% } %>
         </select>
-      </div>
-      <div class="form-group  col-6">
-        <p>Es una oferta</p>
-        <div class="form-check form-switch">
-          <input class="form-check-input switch" type="checkbox" role="switch" id="slideOferta" name="oferta" aria-checked="true" value="0">
-          <label class="form-check-label" for="slideOferta">¿Es una oferta?</label>
-        </div>
-      </div>
+                                </div>
+                                <div class="form-group  col-6">
+                                    <p>Es una oferta</p>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input switch" type="checkbox" role="switch" id="slideOferta" name="oferta" aria-checked="true" value="0">
+                                        <label class="form-check-label" for="slideOferta">¿Es una oferta?</label>
+                                    </div>
+                                </div>
 
-      <div class="form-group row justify-content-around">
+                                <div class="form-group row justify-content-around">
 
-        <div class="form-group col-3 px-2 ">
-          <label for="color">Color</label>
-          <input type="text" name="color" class="form-control" value="Rosa">
-        </div>
-        <div class="form-group col-3 px-2">
-          <label for="peso">Peso</label>
-          <input type="number" value="2.5" name="peso" class="form-control">
-        </div>
-        <div class="form-group col-3 px-2">
-          <label for="medida">Medidas</label>
-          <input type="text" value="20cm x 30cm" name="medida" class="form-control">
-        </div>
-        <div class="form-group col-10 px-2">
-          <label for="descripcion">descripción</label>
-          <textarea name="descripcion" id="" cols="30" rows="3" class="form-control"></textarea>
-          </div>
-      </div>
-      <div class="form-group ">
-        <label for="imgProd">Imagen de Producto</label>
-        <input type="file" class="form-control-file" name="imgProd" accept="image/png, image/jpeg">
-      </div>
-      <button class="btn botones " id="altaPedidoBtn" type="submit">CREAR</button>
-    </div>
-  </form>
+                                    <div class="form-group col-3 px-2 ">
+                                        <label for="color">filtro</label>
+                                        <input type="text" name="color" class="form-control" value="Rosa">
+                                    </div>
+                                    <div class="form-group col-3 px-2">
+                                        <label for="peso">subFiltro</label>
+                                        <input type="number" value="2.5" name="peso" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <label for="imgProd">Imagen de Producto</label>
+                                    <input type="file" class="form-control-file" name="imgProd" accept="image/png, image/jpeg">
+                                </div>
+                                <button class="btn botones " id="altaPedidoBtn" type="submit">CREAR</button>
+                            </div>
+                        </form>
 
- <%}else{%> 
-  <h3 class="text-center my-5">Usted no posee credenciales validas para acceder a esta sección.</h3>
-  
-  <%}}%>
+                        <%}else{%>
+                            <h3 class="text-center my-5">Usted no posee credenciales validas para acceder a esta sección.</h3>
+
+                            <%}}%>
 
 
-  <script>
-    document.querySelectorAll(".switch").forEach((theSwitch) => {
-      theSwitch.addEventListener("click", handleClickEvent, true);
-    });
+                                <script>
+                                    document.querySelectorAll(".switch").forEach((theSwitch) => {
+                                        theSwitch.addEventListener("click", handleClickEvent, true);
+                                    });
 
-    function handleClickEvent(evt) {
-      const el = evt.target;
+                                    function handleClickEvent(evt) {
+                                        const el = evt.target;
 
-      if (el.getAttribute("aria-checked") === "true") {
-        el.setAttribute("aria-checked", "false");
-        el.value = 1
-      } else {
-        el.setAttribute("aria-checked", "true");
-        el.value = 0
-      }
-    }
-  </script>
-  <%- include ( './partials/footer' ); %>
+                                        if (el.getAttribute("aria-checked") === "true") {
+                                            el.setAttribute("aria-checked", "false");
+                                            el.value = 1
+                                        } else {
+                                            el.setAttribute("aria-checked", "true");
+                                            el.value = 0
+                                        }
+                                    }
+                                </script>
+                                <%- include ( './partials/footer' ); %>
