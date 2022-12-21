@@ -5,23 +5,11 @@
                 <label for="producto">Buscar por nombre de producto</label>
                 <input class="form-control" type="text" placeholder="producto" name="buscar" />
             </div>
-            <div class="row">
-                <button type="submit" class="btn  btn-primary col-3 botonFiltro">Buscar</button>
-            </div>
-        </form>
-    </div>
-</section>
-<form action="/tienda" method="get" enctype="multipart/form-data" class="row   py-4">
-    
-</form>
 
-<%if(producto.categoria == 1){%>
-    <section class="buscadorEmbalaje">
-        <div class="row">
-            <h3>Categoria Embalaje</h3>
             <div class="form-group col-4">
                 <label for="categoria">Categorias</label>
-                <select class="form-control" id="categoria" name="categoria">
+                <select class="form-control" id="categoria" name="buscarCategoria">
+                    <option value="" selected>Elija una categoria</option>
                     <% for(let i=0; i< categoria.length; i++) { %>
                         <option value="<%= categoria[i].idCategorias %>">
                             <%= categoria[i].nombreCategoria %>
@@ -29,99 +17,9 @@
                         <% } %>
                 </select>
             </div>
-            <div class="form-group col-4">
-                <label for="color">Colores</label>
-                <select class="form-control" id="" name="color">
-                    <% for(let i=0; i< producto.length; i++) { %>
-                        <% if(producto[i].color){%>
-                            <option value="<%= producto[i].idProductos %>">
-                                <%= producto[i].color %>
-                            </option>
-                            <% }}%>
-                </select>
-            </div>
-        </div>
-    </section>
-    <%}else if (producto.categoria==2){%>
-
-        <section class="buscadorOrdenadores">
             <div class="row">
-                <h3>Categoria Ordenadores</h3>
-                <div class="form-group col-4">
-                    <label for="categoria">Categorias</label>
-                    <select class="form-control" id="categoria" name="categoria">
-                        <% for(let i=0; i< categoria.length; i++) { %>
-                            <option value="<%= categoria[i].idCategorias %>">
-                                <%= categoria[i].nombreCategoria %>
-                            </option>
-                            <% } %>
-                    </select>
-                </div>
-                <div class="form-group col-4">
-                    <label for="color">Colores</label>
-                    <select class="form-control" id="" name="color">
-                        <% for(let i=0; i< producto.length; i++) { %>
-                            <% if(producto[i].color){%>
-                                <option value="<%= producto[i].idProductos %>">
-                                    <%= producto[i].color %>
-                                </option>
-                                <% }}%>
-                    </select>
-                </div>
+                <button type="submit" class="btn  btn-primary col-3 botonFiltro">Buscar</button>
             </div>
-        </section>
-        <%}else if (producto.categoria==3){%>
-            <section class="buscadorRollos">
-                <div class="row">
-                    <h3>Categoria Rollos de papel</h3>
-                    <div class="form-group col-4">
-                        <label for="categoria">Categorias</label>
-                        <select class="form-control" id="categoria" name="categoria">
-                            <% for(let i=0; i< categoria.length; i++) { %>
-                                <option value="<%= categoria[i].idCategorias %>">
-                                    <%= categoria[i].nombreCategoria %>
-                                </option>
-                                <% } %>
-                        </select>
-                    </div>
-                    <div class="form-group col-4">
-                        <label for="color">Colores</label>
-                        <select class="form-control" id="" name="color">
-                            <% for(let i=0; i< producto.length; i++) { %>
-                                <% if(producto[i].color){%>
-                                    <option value="<%= producto[i].idProductos %>">
-                                        <%= producto[i].color %>
-                                    </option>
-                                    <% }}%>
-                        </select>
-                    </div>
-                </div>
-            </section>
-            <%}else if (producto.categoria==4){%>
-                <section class="buscadorEtiquetas">
-                    <div class="row">
-                        <h3>Categoria Etiqeutas</h3>
-                        <div class="form-group col-4">
-                            <label for="categoria">Categorias</label>
-                            <select class="form-control" id="categoria" name="categoria">
-                            <% for(let i=0; i< categoria.length; i++) { %>
-                                <option value="<%= categoria[i].idCategorias %>">
-                                    <%= categoria[i].nombreCategoria %>
-                                </option>
-                                <% } %>
-                        </select>
-                        </div>
-                        <div class="form-group col-4">
-                            <label for="color">Colores</label>
-                            <select class="form-control" id="" name="color">
-                            <% for(let i=0; i< producto.length; i++) { %>
-                                <% if(producto[i].color){%>
-                                    <option value="<%= producto[i].idProductos %>">
-                                        <%= producto[i].color %>
-                                    </option>
-                                    <% }}%>
-                        </select>
-                        </div>
-                    </div>
-                </section>
-                <%}%>
+        </form>
+    </div>
+</section>
