@@ -150,7 +150,7 @@ let usuarioController = {
                 });
             })
     },
-    //////////////EN PROCESO////////////////////////////////
+
     actualizarPassword: (req, res) => {
         let passwordEncriptada = bcrypt.hashSync(req.body.password, 10);
         Usuarios.update({
@@ -167,7 +167,7 @@ let usuarioController = {
 
 
     },
-    /////////////////////////////////////////////////
+
 
     logout: (req, res) => {
         res.clearCookie("userCookie");
