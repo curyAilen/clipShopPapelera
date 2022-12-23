@@ -86,55 +86,19 @@
       </div>
     </div>
   </section>
-  <script src="/js/registroValidation.js"></script>
-  <script>
-    /************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+  <script>                   
     const switchers = [...document.querySelectorAll('.switcher')]
 
-                            <form class="form form-signup " action="/user/registro" enctype="application/x-www-form-urlencoded" method="post">
-                                <fieldset>
-                                    <legend>Ingrese los siguientes datos.</legend>
-                                    <div class="input-block">
-                                        <label for="emailRegister">E-mail</label>
-                                        <input type="email" name="email" id="email" value="@gmail.com" value="<%= locals.old && old.email ? old.email : ''  %>" />
-                                        <p class="errorEmail erroresRegister"></p>
-                                    </div>
-                                    <div class="input-block">
-                                        <label for="nombre">Nombre</label>
-                                        <input type="text" name="nombre" required value="a">
-                                    </div>
-                                    <div class="input-block">
-                                        <label for="direccion">Dirección de entrega</label>
-                                        <input type="text" name="direccion" required value="b">
-                                    </div>
+    switchers.forEach(item => {
+        item.addEventListener('click', function() {
+            switchers.forEach(item => item.parentElement.classList.remove('is-active'))
+            this.parentElement.classList.add('is-active')
+        })
+    })
+</script>
+  <script src="/js/registroValidation.js"></script>
+  <script>
 
-                                    <div class="input-block">
-                                        <label for="direccionRegister">teléfono (opcional)</label>
-                                        <input type="number" name="telefono">
-                                    </div>
-                                    <div class="input-block">
-                                        <label for="clave">Contraseña</label>
-                                        <i class="fas fa-eye"></i>
-                                        <input type="password" name="password" id="clave" placeholder="Contraseña" value="ailencury" />
-                                        <input type="password" name="re-clave" id="re-clave" placeholder="Confirmar contraseña" value="ailencury" />
-                                    </div>
-                                </fieldset>
-                                <button type="submit" class="btn botones">Registrarse</button>
-                            </form>
-                        </div>
-                    </div>
-                </section>
-                <script>
-                    /************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-                    const switchers = [...document.querySelectorAll('.switcher')]
-
-                    switchers.forEach(item => {
-                        item.addEventListener('click', function() {
-                            switchers.forEach(item => item.parentElement.classList.remove('is-active'))
-                            this.parentElement.classList.add('is-active')
-                        })
-                    })
-                </script>
 
 
                 <%- include ( './partials/footer' ); %>
