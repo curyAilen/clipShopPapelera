@@ -32,6 +32,7 @@ app.use(methodOverride('_method'));
 app.use('/', express.static(__dirname + '/public/'));
 app.use('/images', express.static(__dirname + '/public/images'))
 app.use('/css', express.static(__dirname + '/public/css'))
+app.use('/js', express.static(__dirname + '/public/js'))
 
 // Rutas
 app.use(express.urlencoded({ extended: false }));

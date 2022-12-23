@@ -48,7 +48,8 @@
             <span class="underline"></span>
           </button>
           
-        <form class="form form-signup " action="/user/registro" enctype="application/x-www-form-urlencoded" method="post">
+        <form class="form form-signup " action="/user/registro" enctype="application/x-www-form-urlencoded" method="post" >
+          
           <fieldset>
             <legend>Ingrese los siguientes datos.</legend>
             <div class="input-block">
@@ -59,21 +60,14 @@
             <div class="input-block">
               <label for="nombre">Nombre</label>
               <input type="text" name="nombre" required value="a">
+              <p class="errorNombre erroresRegister"></p>
             </div>
             <div class="input-block">
               <label for="direccion">Dirección de entrega</label>
-              <input type="text" name="direccion" required value="b">
+              <input type="text" name="direccion" required value="b" id="direccion">
+              <p class="errorDireccion erroresRegister"></p>
             </div>
-            <!-- <div>
-              <label for="">Elegi tu Código postal</label>
-              <input type="number" name="cp" value="1431">
-              <label for="cp">Elegi tu barrio</label>
-              <select class="form-control" id="cp" name="cp">
-                <% // for(let i=0; i< cp.length; i++) { %>
-                  <option value= "<%=// cp[i].idCodPost %>" ><%= //cp[i].barrio, cp[i].cp  %> </option>
-              <%// } %>
-              </select>
-            </div>-->
+            
             <div class="input-block">
               <label for="direccionRegister">teléfono (opcional)</label>
               <input type="number" name="telefono" >
@@ -82,6 +76,7 @@
               <label for="clave">Contraseña</label>
               <i class="fas fa-eye"></i>
         <input type="password" name="password" id="clave" placeholder="Contraseña" value="ailencury"/>
+        <p class="errorPassword erroresRegister"></p>
         <input type="password" name="re-clave" id="re-clave" placeholder="Confirmar contraseña" value="ailencury"/>
             </div>
           </fieldset>
@@ -90,6 +85,7 @@
       </div>
     </div>
   </section>
+  <script src="/js/registroValidation.js"></script>
   <script>
     /************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
     const switchers = [...document.querySelectorAll('.switcher')]
