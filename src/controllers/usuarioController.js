@@ -30,15 +30,18 @@ let usuarioController = {
                 res.redirect("/user/login");
             })
         } else {
-            res.render("login", {
+          
+            res.render("login", {                
                 errores: errores.errores,
                 old: req.body,
-                titulo: "Registro"
+                titulo: "Registro",
+                
             })
         }
     },
 
     login: (req, res) => {
+       
         res.render("login", {
             titulo: "Login"
         });
@@ -47,6 +50,7 @@ let usuarioController = {
     loginprocess: (req, res) => {
         let loginValidationResult = validationResult(req);
         if (!loginValidationResult.isEmpty()) {
+            console.log("tiene errores")
             return res.render('login', {
                 errores: loginValidationResult.mapped(),
                 old: req.body,
@@ -60,17 +64,15 @@ let usuarioController = {
             }).then((usuario) => {
 
                 if (bcrypt.compareSync(req.body.password, usuario.dataValues.password)) {
-
                     let usuarioLogeado = {
                         idUsuarios: usuario.dataValues.idUsuarios,
                         nombre: usuario.dataValues.nombre,
                         email: usuario.dataValues.email,
                         direccion: usuario.dataValues.direccion,
-                        FKCodigoPostal: usuario.dataValues.cp,
                         password: usuario.dataValues.password,
                         rol: usuario.dataValues.rol
                     };
-
+console.log("logueo forma correcta")
                     req.session.login = usuarioLogeado;
 
                     if (req.body.remember_user) {
@@ -83,7 +85,7 @@ let usuarioController = {
 
 
                 } else {
-
+console.log("no logueo")
                     res.render('login', {
                         errores: 'Clave o Email incorrecto',
                         old: req.body

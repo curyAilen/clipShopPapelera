@@ -1,56 +1,56 @@
 <%- include ( './partials/head' ); %>
-    <link rel="stylesheet" href="/css/login.css">
-    </head>
+<link rel="stylesheet" href="/css/login.css">
+</head>
 
-    <body class="">
-        <%- include ( './partials/header' ); %>
-            <%- include ( './partials/contacto' ); %>
-                <!--LOGIN-->
+<body class="">
+  <%- include ( './partials/header' ); %>
+  <%- include ( './partials/contacto' ); %>
+  <!--LOGIN-->
 
-                <section class="forms-section container">
+  <section class="forms-section container">
 
-                    <div class="forms">
-                        <div class="form-wrapper is-active">
-                            <button type="button" class="switcher switcher-login">
+    <div class="forms">
+      <div class="form-wrapper is-active">
+        <button type="button" class="switcher switcher-login">
           Iniciar Sesión
           <span class="underline"></span>
         </button>
 
 
-                            <!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------LOGIN---------------------------------------------------------------------->
+        <!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------LOGIN---------------------------------------------------------------------->
 
-                            <form action="/user/login" class="form form-login" method="post">
-                                <fieldset>
-                                    <legend>Ingrese su mail de usuario y contraseña</legend>
-                                    <div class="input-block">
-                                        <label for="login-email">E-mail</label>
-                                        <input id="login-email" type="email" required name="email" value="noni@gmail.com">
-                                        <% if (locals.errores && errores.email) { %>
-                                            <div class="text-danger">
-                                                <%= errores.email.msg %>
-                                            </div>
-                                            <% } %>
-                                    </div>
-                                    <div class="input-block">
-                                        <label for="login-password">Contraseña</label>
-                                        <input id="login-password" type="password" required name="password" value="noniponce">
-                                    </div>
-                                    <label class="form-check-label ml-4 recordarme">
+        <form action="/user/login" class="form form-login" method="post"  enctype="application/x-www-form-urlencoded">
+          <fieldset>
+            <legend>Ingrese su mail de usuario y contraseña</legend>
+            <div class="input-block">
+              <label for="login-email">E-mail</label>
+              <input id="login-email" type="email" required name="email" value="noni@gmail.com">
+              <% if (locals.errores && errores.email) { %>
+                <div class="text-danger">
+                    <%= errores.email.msg %>
+                </div>
+                <% } %>
+            </div>
+            <div class="input-block">
+              <label for="login-password">Contraseña</label>
+              <input id="login-password" type="password" required name="password" value="noniponce">
+            </div>
+            <label class="form-check-label ml-4 recordarme">
               <input type="checkbox" class="form-check-input" name="remember_user">Recordarme
             </label>
-                                </fieldset>
-                                <button type="submit" class="btn botones" id="inicioSesion">Inisiar sesión <i class="fas fa-sign-in-alt icono ml-1"></i></button>
-                            </form>
-                        </div>
-                        <!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------REGISTRO---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-                        <div class="form-wrapper">
-                            <button type="button" class="switcher switcher-signup ">
-            Registrarse
-            <span class="underline"></span>
-          </button>
-          
+          </fieldset>
+          <button type="submit" class="btn botones" id="inicioSesion">Inisiar sesión <i class="fas fa-sign-in-alt icono ml-1"></i></button>
+        </form>
+      </div>
+      <!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------REGISTRO---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+      <div class="form-wrapper">
+        <button type="button" class="switcher switcher-signup ">
+          Registrarse
+          <span class="underline"></span>
+        </button>
+
         <form class="form form-signup " action="/user/registro" enctype="application/x-www-form-urlencoded" method="post" >
-          
+
           <fieldset>
             <legend>Ingrese los siguientes datos.</legend>
             <div class="input-block">
@@ -68,7 +68,7 @@
               <input type="text" name="direccion" required value="b" id="direccion">
               <p class="errorDireccion erroresRegister"></p>
             </div>
-            
+
             <div class="input-block">
               <label for="direccionRegister">teléfono (opcional)</label>
               <input type="number" name="telefono" >
@@ -77,28 +77,26 @@
               <label for="clave">Contraseña</label>
               <i class="fas fa-eye"></i>
         <input type="password" name="password" id="clave" placeholder="Contraseña" value="ailencury"/>
-        <p class="errorPassword erroresRegister"></p>
+              <p class="errorPassword erroresRegister"></p>
         <input type="password" name="re-clave" id="re-clave" placeholder="Confirmar contraseña" value="ailencury"/>
             </div>
           </fieldset>
           <button type="submit" class="btn botones">Registrarse</button>
-        </form> 
+        </form>
       </div>
     </div>
   </section>
-  <script>                   
+  <%- include ( './partials/footer' ); %>
+  <script>
     const switchers = [...document.querySelectorAll('.switcher')]
 
     switchers.forEach(item => {
-        item.addEventListener('click', function() {
-            switchers.forEach(item => item.parentElement.classList.remove('is-active'))
-            this.parentElement.classList.add('is-active')
-        })
+      item.addEventListener('click', function() {
+        switchers.forEach(item => item.parentElement.classList.remove('is-active'))
+        this.parentElement.classList.add('is-active')
+      })
     })
-</script>
+  </script>
   <script src="/js/registroValidation.js"></script>
   <script>
-
-
-
-                <%- include ( './partials/footer' ); %>
+   

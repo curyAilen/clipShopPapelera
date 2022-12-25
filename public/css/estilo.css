@@ -286,7 +286,16 @@ h6 {
     width: 50%;
 }
 
+/*************error404**********************/
 
+.error404{
+    width: 50%;
+    margin: 50px auto;
+}
+.btn404{
+    width: 40%;
+    align-self: self-end;
+}
 /******************FOOTER*******************************/
 
 #piePagina .row {
