@@ -1,11 +1,11 @@
 module.exports = (sequelize, dataTypes) => {
-    let alias = 'Usuario'; 
+    let alias = 'Usuario';
     let cols = {
         idUsuarios: {
             type: dataTypes.INTEGER.UNSIGNED,
             primaryKey: true,
             autoIncrement: true
-        },        
+        },
         nombre: {
             type: dataTypes.STRING,
             allowNull: false
@@ -18,17 +18,17 @@ module.exports = (sequelize, dataTypes) => {
         direccion: {
             type: dataTypes.STRING,
             allowNull: false
-          
+
         },
         telefono: {
             type: dataTypes.INTEGER,
             allowNull: true
-           
+
         },
         password: {
             type: dataTypes.STRING,
             allowNull: false
-        }, 
+        },
         rol: {
             type: dataTypes.STRING,
             allowNull: true,
@@ -38,16 +38,10 @@ module.exports = (sequelize, dataTypes) => {
     let config = {
         timestamps: false,
         tableName: 'usuarios',
-        freezeTableName:true
+        freezeTableName: true
     }
-    const Usuario = sequelize.define(alias,cols,config);
+    const Usuario = sequelize.define(alias, cols, config);
 
-    Usuario.associate = models => {
-        Usuario.belongsTo(models.Codigopostal, {
-            as: 'codigopostal',
-            foreignKey: 'FKCodigoPostal'
-        });
 
-    };
     return Usuario
 };

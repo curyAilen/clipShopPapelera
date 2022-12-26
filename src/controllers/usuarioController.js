@@ -25,23 +25,24 @@ let usuarioController = {
                 direccion: req.body.direccion,
                 telefono: req.body.telefono,
                 password: passwordEncriptada
+
             }).then((userID) => {
 
                 res.redirect("/user/login");
             })
         } else {
-          
-            res.render("login", {                
+
+            res.render("login", {
                 errores: errores.errores,
                 old: req.body,
                 titulo: "Registro",
-                
+
             })
         }
     },
 
     login: (req, res) => {
-       
+
         res.render("login", {
             titulo: "Login"
         });
@@ -49,11 +50,12 @@ let usuarioController = {
 
     loginprocess: (req, res) => {
         let loginValidationResult = validationResult(req);
-        if (!loginValidationResult.isEmpty()) {
-            console.log("tiene errores")
+
+        if (loginValidationResult.errors.length > 0) {
             return res.render('login', {
                 errores: loginValidationResult.mapped(),
                 old: req.body,
+
             })
         }
 
@@ -61,9 +63,11 @@ let usuarioController = {
                 where: {
                     email: req.body.email
                 }
-            }).then((usuario) => {
 
+            }).then((usuario) => {
+                console.log(usuario)
                 if (bcrypt.compareSync(req.body.password, usuario.dataValues.password)) {
+
                     let usuarioLogeado = {
                         idUsuarios: usuario.dataValues.idUsuarios,
                         nombre: usuario.dataValues.nombre,
@@ -72,10 +76,11 @@ let usuarioController = {
                         password: usuario.dataValues.password,
                         rol: usuario.dataValues.rol
                     };
-console.log("logueo forma correcta")
+
                     req.session.login = usuarioLogeado;
 
                     if (req.body.remember_user) {
+
                         res.cookie("userCookie", usuarioLogeado, {
                             maxAge: 10000 * 60 * 60 * 24,
                         });
@@ -85,7 +90,7 @@ console.log("logueo forma correcta")
 
 
                 } else {
-console.log("no logueo")
+                    console.log("no logueo")
                     res.render('login', {
                         errores: 'Clave o Email incorrecto',
                         old: req.body
@@ -93,6 +98,7 @@ console.log("no logueo")
                 }
             })
             .catch(() => {
+
                 res.render('login', {
                     errores: 'Clave o Email incorrecto',
                     old: req.body
