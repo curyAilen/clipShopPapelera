@@ -54,8 +54,8 @@ Violeta: #5424B2
 p,
 a {
     font-family: 'Fira Sans', sans-serif;
-    color: #a59384;
-    font-size: 0.7rem;
+    color: #7a6b5e;
+    font-size: 0.9rem;
 }
 
 h1,
@@ -72,9 +72,10 @@ h6 {
 }
 
 .titulos {
-    font-size: 1.7rem;
+    font-size: 1rem;
     font-family: 'Noto Sans Display', sans-serif;
     font-weight: 800;
+    color: #012b24;
 }
 
 
@@ -286,16 +287,20 @@ h6 {
     width: 50%;
 }
 
+
 /*************error404**********************/
 
-.error404{
+.error404 {
     width: 50%;
     margin: 50px auto;
 }
-.btn404{
+
+.btn404 {
     width: 40%;
     align-self: self-end;
 }
+
+
 /******************FOOTER*******************************/
 
 #piePagina .row {

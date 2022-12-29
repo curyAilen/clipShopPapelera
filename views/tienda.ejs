@@ -22,45 +22,29 @@
                                         <img src="/images/imgProd/<%=producto[i].imagen%>" alt=""
                                             class="imgProducto img-fluid">
                                         </a>
-                                        <div class="detalleProductoTienda">
-                                            <h4 class="nombreProductoTienda titulos">
-                                                <%=producto[i].nombre%>
-                                            </h4>
-                                            <p class="precioProductoTienda">
-                                                <%=producto[i].precio%>.-
-                                            </p>
-                                            <p class="descripcionProductoTienda ">
-                                                Color:
-                                                <%if(producto[i].color){%>
-                                                    <%=producto[i].color%>
+                                    <div class="detalleProductoTienda">
+                                        <h5 class="nombreProductoTienda titulos">
+                                            <%=producto[i].nombre%>
+                                        </h5>
+                                        <p class="precioProductoTienda">
+                                            $
+                                            <%=producto[i].precio%>.-
+                                        </p>
+                                        <p class="descripcionProductoTienda">
+                                            Detalle:
+                                            <%=producto[i].filtro%>.-
+                                                <%if(producto[i].subfiltro){%>
+                                                    <%=producto[i].subfiltro%>
                                                         <%}else{%>
                                                             -
                                                             <%}%>
+                                        </p>
+                                        <p class="categoriaTienda">
+                                            <%= producto[i].categoria.nombreCategoria %>
+                                        </p>
 
-                                            </p>
-                                            <p class="descripcionProductoTienda ">
-                                                Peso:
-                                                <%if(producto[i].peso){%>
-                                                    <%=producto[i].peso%>
-                                                        <%}else{%>
-                                                            -
-                                                            <%}%>
+                                    </div>
 
-                                            </p>
-                                            <p class="descripcionProductoTienda ">
-                                                Medidas:
-                                                <%if(producto[i].medida){%>
-                                                    <%=producto[i].medida%>
-                                                        <%}else{%>
-                                                            -
-                                                            <%}%>
-
-                                            </p>
-                                            <p class="categoriaTienda">
-                                                <%= producto[i].categoria.nombreCategoria %>
-                                            </p>
-                                        </div>
-                                   
 
                                     <form action="/agregarProducto/<%= producto[i].idProductos %>" method="post" id="formularioAgregarCarrito">
                                         <input type="text" name="nombre" value="<%= producto[i].nombre %>" style="display: none;">
