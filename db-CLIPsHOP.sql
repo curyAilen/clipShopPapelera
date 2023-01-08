@@ -1,6 +1,6 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Versión del servidor:         10.4.27-MariaDB - mariadb.org binary distribution
+-- Versión del servidor:         10.4.17-MariaDB - mariadb.org binary distribution
 -- SO del servidor:              Win64
 -- HeidiSQL Versión:             12.1.0.6537
 -- --------------------------------------------------------
@@ -16,7 +16,7 @@
 
 
 -- Volcando estructura de base de datos para clipshop
-CREATE DATABASE IF NOT EXISTS `clipshop` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+CREATE DATABASE IF NOT EXISTS `clipshop` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 USE `clipshop`;
 
 -- Volcando estructura para tabla clipshop.banners
@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `banners` (
   `idBanners` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `banner` varchar(155) NOT NULL DEFAULT '0',
   PRIMARY KEY (`idBanners`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 
 -- Volcando datos para la tabla clipshop.banners: ~2 rows (aproximadamente)
 INSERT INTO `banners` (`idBanners`, `banner`) VALUES
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `categorias` (
   `idCategorias` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `nombreCategoria` varchar(155) NOT NULL,
   PRIMARY KEY (`idCategorias`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 -- Volcando datos para la tabla clipshop.categorias: ~4 rows (aproximadamente)
 INSERT INTO `categorias` (`idCategorias`, `nombreCategoria`) VALUES
@@ -52,9 +52,9 @@ CREATE TABLE IF NOT EXISTS `codigopostal` (
   `comuna` int(11) NOT NULL,
   `cp` int(10) unsigned NOT NULL,
   PRIMARY KEY (`idCodPost`)
-) ENGINE=InnoDB AUTO_INCREMENT=627 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=627 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla clipshop.codigopostal: ~34 rows (aproximadamente)
+-- Volcando datos para la tabla clipshop.codigopostal: ~626 rows (aproximadamente)
 INSERT INTO `codigopostal` (`idCodPost`, `barrio`, `comuna`, `cp`) VALUES
 	(1, 'Recoleta', 2, 1000),
 	(2, 'Recoleta', 2, 1001),
@@ -696,7 +696,7 @@ CREATE TABLE IF NOT EXISTS `productos` (
   PRIMARY KEY (`idProductos`),
   KEY `FKidCategorias` (`FKidCategoria`),
   CONSTRAINT `FKidCategorias` FOREIGN KEY (`FKidCategoria`) REFERENCES `categorias` (`idCategorias`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=528 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=528 DEFAULT CHARSET=utf8mb4;
 
 -- Volcando datos para la tabla clipshop.productos: ~40 rows (aproximadamente)
 INSERT INTO `productos` (`idProductos`, `nombre`, `FKidCategoria`, `filtro`, `subfiltro`, `precio`, `oferta`, `imagen`) VALUES
@@ -751,15 +751,27 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `password` varchar(155) NOT NULL,
   `rol` varchar(50) NOT NULL DEFAULT 'user',
   PRIMARY KEY (`idUsuarios`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla clipshop.usuarios: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla clipshop.usuarios: ~5 rows (aproximadamente)
 INSERT INTO `usuarios` (`idUsuarios`, `nombre`, `email`, `direccion`, `telefono`, `password`, `rol`) VALUES
 	(6, 'Ailen', 'ailu@ailu.com', 'Soy Administrador', 1168508686, '$2a$10$BRrCiQPiGWAIAxj7b8TYCewkG8eMKJWP3xTF.Ya4PsdgzimYJEgWu', 'admin'),
 	(9, 'Ailen Cury', 'ailen@gmail.com', 'Prueba dirección', 555555, '$2a$10$.p53ZobtisbEW7UY53PeQeDIuGqhdlswCK0Lvi81CIJL90C.PqxK.', 'user'),
 	(10, 'Noni', 'noni@gmail.com', 'Casa Noni', 1125689588, '$2a$10$idhhKteaOhDAUzrZhxsvTux/EbND5Y1ZQ4lRw5JWGaKjTCoYvlkCG', 'admin'),
 	(17, 'Ailen', 'cury.ailena@gmail.com', 'bmun6ybtrvecwd', 0, '$2a$10$DG9oDmTg0jy56mISR3nQtuOpZ7IP07iYnpXApP/Tg5p9oQHonOIne', 'user'),
 	(19, 'a', 'ailenaldanacury@gmail.com', 'b', 0, '$2a$10$wGLW7LUkSAnZk9CVoZS98OtHncek5kaTWhbowB0ohhIC2Wnda5D12', 'user');
+
+-- Volcando estructura para tabla clipshop.ventas
+CREATE TABLE IF NOT EXISTS `ventas` (
+  `idVentas` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `idProductos` int(20) NOT NULL,
+  `idUsuarios` int(20) NOT NULL,
+  `importe` int(20) NOT NULL,
+  `cantidad` int(20) NOT NULL,
+  PRIMARY KEY (`idVentas`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Volcando datos para la tabla clipshop.ventas: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla clipshop.vouchers
 CREATE TABLE IF NOT EXISTS `vouchers` (
@@ -768,9 +780,9 @@ CREATE TABLE IF NOT EXISTS `vouchers` (
   `valor` int(20) NOT NULL,
   `fecha` date NOT NULL,
   PRIMARY KEY (`idVouchers`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla clipshop.vouchers: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla clipshop.vouchers: ~2 rows (aproximadamente)
 INSERT INTO `vouchers` (`idVouchers`, `voucher`, `valor`, `fecha`) VALUES
 	(1, 'navidadClipShop2022', 25, '2022-11-28'),
 	(5, 'estamosCreciendo2023', 15, '2022-11-28');
