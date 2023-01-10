@@ -28,12 +28,8 @@ router.get('/etiquetas', productoController.buscadorEtiquetas);
 router.get('/altaProducto', productoController.crearProd);
 router.post('/altaProducto', upload.single('imgProd'), productoController.ingresaProducto);
  
-
-
-
 //detalle productos
 router.get('/detalle/:id', productoController.detalleProducto);
-
 
 //Modificar Producto
 router.get('/editProducto/:id', productoController.edit);

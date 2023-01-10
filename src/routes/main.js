@@ -3,6 +3,7 @@ let router = express.Router();
 const mainController = require('../controllers/mainController');
 const multer = require ('multer');
 const path = require ('path');
+const authMiddleware = require('../middlewares/authMiddleware');
 
 const storage = multer.diskStorage({ 
     destination: (req, file,cb)=>{
@@ -22,9 +23,10 @@ router.get('/nosotros', mainController.nosotros);
 
 
 // Obtenemos carrito de compra
-router.get('/carrito', mainController.carrito);
-router.post('/agregarProducto/:id',upload.single('imgProd'), mainController.agregarproducto);
- 
+router.get('/carrito', authMiddleware, mainController.carrito);
+//router.post('/agregarProducto/:id',upload.single('imgProd'), mainController.agregarproducto);
+router.get("/carrito/producto/:id", mainController.obtenerProducto);
+
 //Autogestion Banner
 router.get('/configBanner', mainController.configbanner);
 

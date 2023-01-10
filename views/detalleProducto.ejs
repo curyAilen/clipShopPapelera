@@ -22,24 +22,14 @@
                 <p>Color: <%= producto.color%>, Peso: <%= producto.peso%>, Medidas: <%= producto.medida%></p>
                 <p>Categoria: <%= producto.categoria.nombreCategoria %></p>
                 
-                <form action="/agregarProducto/<%= producto.idProductos %>" method="post" id="formularioAgregarCarrito">
-                    <input type="text" name="nombre" value="<%= producto.nombre %>" style="display: none;">
-                    <input type="number" name="precio" value="<%= producto.precio %>" style="display: none;">
-                    <input type="text" name="categoria" value="<%= producto.categoria %>" style="display: none;">
-                    <input type="number" name="peso" value="<%= producto.peso %>" style="display: none;">
-                    <input type="text" name="color" value="<%= producto.color %>" style="display: none;">
-                    <input type="text" name="medida" value="<%= producto.medida %>" style="display: none;">
-                    
-                    <button type="submit" class="btn botones mx-2 my-3 float-right ">Agregar<i class="fas fa-cart-plus iconos"></i></button>
-                </form>
+                <% if (locals.userLogged) { %>
+                    <button data-id="<%= producto.idProductos %>" type="submit" class="btn botones mx-2 my-3 float-right botonAgregarCarrito">Agregar<i class="fas fa-cart-plus iconos"></i></button>
+                <% } %> 
 
                 <% if (locals.userLogged) { %>   
                 <% if (locals.userLogged.rol == "admin") { %>                                
                     <button class="btn botones m-3 float-right "><a href="/tienda/editProducto/<%=producto.idProductos%>" class="eliminasEstiloLink" style="color: rgb(255, 245, 238);">Editar</a><i class="fas fa-cogs iconos"></i></button>
                     <%}%>       <%}%>
-
-                
- 
             </div>
 
         </article>

@@ -17,9 +17,9 @@
     padding: 0 !important;
 }
 
-.contieneProductos:hover {
+/*.contieneProductos:hover {
     transform: translate(-11px, -10px) scale(1.05, 1.05);
-}
+}*/
 
 .imgProducto {
     border-radius: 12px 12px 0 0;

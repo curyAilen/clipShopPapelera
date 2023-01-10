@@ -148,41 +148,17 @@ let mainController = {
             })
     },
     carrito: (req, res) => {
-        let productosCarrito = req.session.carrito;
-
         res.render('carrito', {
-            titulo: 'Carrito',
-            carrito: productosCarrito 
+            titulo: 'Carrito'
         });
     },
 
-    agregarproducto: (req, res) => {
-        let productoAlCarrito = {
-            idProductos: req.params.id,
-            nombre: req.body.nombre,
-            precio: req.body.precio,
-            color: req.body.color,
-            peso: req.body.peso,
-            medida: req.body.medida
-
-        }
-
-        let productosEnCarrito = req.session.carrito;
-
-        if (productosEnCarrito != null && productosEnCarrito != undefined) {
-            req.session.carrito = [...productosEnCarrito, productoAlCarrito];
-        } else {
-            req.session.carrito = [];
-            req.session.carrito.push(productoAlCarrito)
-        }
-
-        res.redirect("/tienda");
-    },
-    eliminarProdutoCarrito: (req, res) => {
-
-    },
-    
-
+    obtenerProducto: async (req, res) => {
+        let product = await Producto.findByPk(req.params.id, {
+            include: [{ association: "categoria" }],
+        });
+        return res.json(product);
+    }
 }
 
 module.exports = mainController;
