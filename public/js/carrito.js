@@ -26,7 +26,13 @@ const restar = (id) => {
         carrito[index].cantidad--;
         localStorage.setItem("carrito", JSON.stringify(carrito));
         mostrarCarrito();
-    }  
+    };  
+};
+
+const subtotalPrecios = (productos) => {
+    return productos.reduce(
+        (acum, value) => acum + (value.precio * value.cantidad)
+    , 0);
 };
 
 const mostrarCarrito = () => {
@@ -73,10 +79,14 @@ const mostrarCarrito = () => {
                         precio: Number(product.precio),
                         cantidad: item.cantidad
                     });
+
                 } else {
                     carrito.splice(index, 1);
                     localStorage.setItem("carrito", JSON.stringify(carrito));
                 };
+            })
+            .then(()=> {
+                document.querySelector(".montoSubTotal").innerText = `$${subtotalPrecios(products)}`;
             })
     }); 
 };
