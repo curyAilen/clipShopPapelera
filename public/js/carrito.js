@@ -22,18 +22,18 @@ const aumentar = (id) => {
 
 const restar = (id) => {
     let index = carrito.findIndex(prod => prod.id == id);
-    
+
     if (carrito[index].cantidad > 1) {
         carrito[index].cantidad--;
         localStorage.setItem("carrito", JSON.stringify(carrito));
         mostrarCarrito();
-    };  
+    };
 };
 
 const subtotalPrecios = (productos) => {
     return productos.reduce(
         (acum, value) => acum + (value.precio * value.cantidad)
-    , 0);
+        , 0);
 };
 
 const totalPrecios = (productos, descuento) => {
@@ -46,10 +46,11 @@ const mostrarCarrito = () => {
     let carritoProductos = document.querySelector(".carritodeproductos");
     carritoProductos.innerHTML = "";
     products = [];
-    
+
     if (carrito.length === 0) {
         carritoProductos.innerHTML = `<h3 style="margin: 1em;"> Carrito vacio </h3>`;
         document.querySelector(".montoSubTotal").innerText = `$0`;
+        document.querySelector(".montoTotal").innerText = "$0";
     }
 
     carrito.forEach((item, index) => {
@@ -80,8 +81,8 @@ const mostrarCarrito = () => {
                 </div>
             </article>
             <hr>`;
-                
-                products.push({
+
+                    products.push({
                         idProductos: product.idProductos,
                         nombre: product.nombre,
                         precio: Number(product.precio),
@@ -93,11 +94,19 @@ const mostrarCarrito = () => {
                     localStorage.setItem("carrito", JSON.stringify(carrito));
                 };
             })
-            .then(()=> {
+            .then(() => {
                 document.querySelector(".montoSubTotal").innerText = `$${subtotalPrecios(products)}`;
                 document.querySelector(".montoTotal").innerText = `$${totalPrecios(products, descuentoPorcentaje)}`;
             })
-    }); 
+    });
+};
+
+const vaciarCarrito = () => {
+    localStorage.removeItem("carrito");
+    document.querySelector(".inputVoucher").value = "";
+    carrito = [];
+    contador.innerText = productosEnElCarrito();
+    mostrarCarrito();
 };
 
 mostrarCarrito();
@@ -120,7 +129,7 @@ botonVerificarVoucher.addEventListener("click", (e) => {
                 descuento.classList.add("valido");
                 descuento.classList.remove("invalido");
                 descuentoPorcentaje = Number(voucher);
-                
+
             } else {
                 descuento.innerText = "VOUCHER INVALIDO";
                 descuento.classList.add("invalido");
@@ -135,6 +144,50 @@ botonVerificarVoucher.addEventListener("click", (e) => {
 const botonComprar = document.querySelector(".botonComprar");
 
 botonComprar.addEventListener("click", (e) => {
-    console.log(products);
+    e.preventDefault();
 
+    if (products.length > 0) {
+
+        let input = document.querySelector(".inputVoucher");
+        let voucher = String(input.value);
+
+        let data = {
+            products
+        };
+
+        if (voucher) data.voucher = voucher;
+
+        fetch("/carrito/comprar", {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(res => res.json())
+            .then(response => {
+                if (response) {
+                    VanillaToasts.create({
+                        title: 'Comprado!',
+                        text: "Tu compra se ha realizado con exito",
+                        type: "success",
+                        timeout: 5000
+                    });
+                    vaciarCarrito();
+                } else {
+                    VanillaToasts.create({
+                        title: 'Error',
+                        text: "Parece que algo salio mal en tu compra",
+                        type: "error",
+                        timeout: 5000
+                    });
+                }
+            })
+            .catch(error => console.error('Error:', error))
+    } else {
+        VanillaToasts.create({
+            title: 'Tu carrito esta vacio!',
+            type: "error",
+            timeout: 5000
+        });
+    }
 });
