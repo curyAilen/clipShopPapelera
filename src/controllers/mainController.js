@@ -158,6 +158,12 @@ let mainController = {
             include: [{ association: "categoria" }],
         });
         return res.json(product);
+    },
+
+    obtenerVoucher: async (req, res) => {
+        let voucher = await Voucher.findOne({ where: { voucher: req.params.voucher } });
+        
+        return voucher ? res.json(voucher.valor): res.json(null);
     }
 }
 

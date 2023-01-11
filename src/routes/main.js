@@ -26,6 +26,7 @@ router.get('/nosotros', mainController.nosotros);
 router.get('/carrito', authMiddleware, mainController.carrito);
 //router.post('/agregarProducto/:id',upload.single('imgProd'), mainController.agregarproducto);
 router.get("/carrito/producto/:id", mainController.obtenerProducto);
+router.get("/carrito/voucher/:voucher", mainController.obtenerVoucher);
 
 //Autogestion Banner
 router.get('/configBanner', mainController.configbanner);

@@ -11,18 +11,21 @@
                 <!--CARRITO DE COMPRAS-->
 
                 <section id="carritoDeCompras" class=" ">
-                            <div class="productoCarrito estiloDeCaja container carritodeproductos">
-                                
-                            </div>
+                    <div class="productoCarrito estiloDeCaja container carritodeproductos">
+
+                    </div>
                 </section>
                 <footer id="pieCarrito" class="container">
-                    <div class="row">
-                        <div class="calculoTotales col-4">
-                            <h4>Subtotal: <span class="montoSubTotal">$0</span></h4>
-                            <input type="button" value="Comprar" class="botones btn botonComprar">
+                        <h5 class="subtotal">Subtotal: <span class="montoSubTotal">$-</span></h5>
+                        <h2>Total: <span class="montoTotal">$-</span></h2>
+                        <div class="voucher">
+                            <p>Tengo un voucher:</p>
+                            <input type="text" class="inputVoucher">
+                            <button class="botones verificarVoucher" style="padding: .5em 1em;">Verificar</button>
+                            <span class="descuento"></span>
                         </div>
+                    <input type="button" value="Comprar" class="botones btn botonComprar">
                     </div>
-
                 </footer>
                 <script src="/js/carrito.js"></script>
                 <%- include ( './partials/footer' ); %>

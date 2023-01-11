@@ -1,5 +1,6 @@
 let carrito = [];
 let products = [];
+let descuentoPorcentaje = 0;
 
 if (localStorage.carrito) {
     carrito = JSON.parse(localStorage.carrito);
@@ -35,6 +36,12 @@ const subtotalPrecios = (productos) => {
     , 0);
 };
 
+const totalPrecios = (productos, descuento) => {
+    let subtotal = subtotalPrecios(productos);
+    let total = subtotal - (subtotal * (descuento / 100));
+    return Math.floor(total);
+};
+
 const mostrarCarrito = () => {
     let carritoProductos = document.querySelector(".carritodeproductos");
     carritoProductos.innerHTML = "";
@@ -42,6 +49,7 @@ const mostrarCarrito = () => {
     
     if (carrito.length === 0) {
         carritoProductos.innerHTML = `<h3 style="margin: 1em;"> Carrito vacio </h3>`;
+        document.querySelector(".montoSubTotal").innerText = `$0`;
     }
 
     carrito.forEach((item, index) => {
@@ -87,11 +95,42 @@ const mostrarCarrito = () => {
             })
             .then(()=> {
                 document.querySelector(".montoSubTotal").innerText = `$${subtotalPrecios(products)}`;
+                document.querySelector(".montoTotal").innerText = `$${totalPrecios(products, descuentoPorcentaje)}`;
             })
     }); 
 };
 
 mostrarCarrito();
+
+
+// ---------- VERIFICAR VOUCHER -----------------
+const botonVerificarVoucher = document.querySelector(".verificarVoucher");
+botonVerificarVoucher.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    let input = document.querySelector(".inputVoucher");
+    let descuento = document.querySelector("span.descuento");
+    let voucherIngresado = String(input.value);
+
+    fetch(`/carrito/voucher/${voucherIngresado}`)
+        .then((res) => res.json())
+        .then((voucher) => {
+            if (voucher) {
+                descuento.innerText = `${voucher}% de DESCUENTO`
+                descuento.classList.add("valido");
+                descuento.classList.remove("invalido");
+                descuentoPorcentaje = Number(voucher);
+                
+            } else {
+                descuento.innerText = "VOUCHER INVALIDO";
+                descuento.classList.add("invalido");
+                descuento.classList.remove("valido");
+                descuentoPorcentaje = 0;
+            };
+            mostrarCarrito();
+        })
+
+});
 
 const botonComprar = document.querySelector(".botonComprar");
 
