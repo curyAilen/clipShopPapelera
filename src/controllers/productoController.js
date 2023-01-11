@@ -15,20 +15,19 @@ let productoController = {
         if ((buscar != "" && buscar != undefined) || (buscarCategoria != undefined && buscarCategoria != "")) {
 
             producto.findAll({
-                    include: [{ association: "categoria" }],
-                    where: {
-                        nombre: {
-                            [Op.like]: `%${buscar}%`
-                        },
-                        FKidCategoria: {
-                            [Op.like]: `%${buscarCategoria}%`
-                        }
+                include: [{ association: "categoria" }],
+                where: {
+                    nombre: {
+                        [Op.like]: `%${buscar}%`
+                    },
+                    FKidCategoria: {
+                        [Op.like]: `%${buscarCategoria}%`
                     }
-                })
+                }
+            })
                 .then((producto) => {
                     categoria.findAll()
                         .then((categoria) => {
-
                             res.render('tienda', {
                                 titulo: 'Listado de productos',
                                 css: 'estiloListado.css',
@@ -41,8 +40,8 @@ let productoController = {
             categoria.findAll()
                 .then((categoria) => {
                     producto.findAll({
-                            include: [{ association: "categoria" }],
-                        })
+                        include: [{ association: "categoria" }],
+                    })
                         .then((producto) => {
                             res.render("tienda", {
                                 nombre: "Producto",
@@ -56,18 +55,17 @@ let productoController = {
 
     buscadorEmbalaje: (req, res) => {
         producto.findAll({
-                include: [{ association: "categoria" }],
-                where: {
-                    FKidCategoria: 1
-                }
-            })
+            include: [{ association: "categoria" }],
+            where: {
+                FKidCategoria: 1
+            }
+        })
             .then((producto) => {
                 categoria.findAll()
                     .then((categoria) => {
 
                         res.render('tienda', {
                             titulo: 'Listado de productos',
-                            css: 'estiloListado.css',
                             producto: producto,
                             categoria: categoria
                         })
@@ -76,39 +74,37 @@ let productoController = {
     },
     buscadorOrganizadores: (req, res) => {
         producto.findAll({
-                include: [{ association: "categoria" }],
-                where: {
-                    FKidCategoria: 2
-                }
-            })
+            include: [{ association: "categoria" }],
+            where: {
+                FKidCategoria: 2
+            }
+        })
             .then((producto) => {
                 categoria.findAll()
                     .then((categoria) => {
 
                         res.render('tienda', {
                             titulo: 'Listado de productos',
-                            css: 'estiloListado.css',
                             producto: producto,
                             categoria: categoria
                         })
                     })
             })
     },
-    
+
     buscadorEtiquetas: (req, res) => {
         producto.findAll({
-                include: [{ association: "categoria" }],
-                where: {
-                    FKidCategoria: 4
-                }
-            })
+            include: [{ association: "categoria" }],
+            where: {
+                FKidCategoria: 4
+            }
+        })
             .then((producto) => {
                 categoria.findAll()
                     .then((categoria) => {
 
                         res.render('tienda', {
                             titulo: 'Listado de productos',
-                            css: 'estiloListado.css',
                             producto: producto,
                             categoria: categoria
                         })
@@ -121,8 +117,8 @@ let productoController = {
         let detalleID = req.params.id;
 
         producto.findByPk(detalleID, {
-                include: [{ association: "categoria" }],
-            })
+            include: [{ association: "categoria" }],
+        })
             .then((producto) => {
                 res.render("./detalleProducto", {
                     titulo: "Detalle del Producto",
@@ -163,8 +159,8 @@ let productoController = {
     },
     edit: (req, res) => {
         producto.findByPk(req.params.id, {
-                include: [{ association: "categoria" }],
-            })
+            include: [{ association: "categoria" }],
+        })
             .then((producto) => {
                 categoria.findAll()
                     .then((categoria) => {
@@ -180,23 +176,23 @@ let productoController = {
         let imagen = req.body.imagenOriginal;
 
         if (req.file) {
-            imagen = req.file.filename;       
+            imagen = req.file.filename;
         }
         producto.update({
-                nombre: req.body.nombre,
-                FKidCategoria: req.body.categoria,
-                precio: req.body.precio,
-                descripcion: req.body.descripcion,
-                imagen: imagen,
-                oferta: req.body.oferta,
-                color: req.body.color,
-                peso: req.body.peso,
-                medida: req.body.medida
-            }, {
-                where: {
-                    idProductos: req.params.id,
-                },
-            })
+            nombre: req.body.nombre,
+            FKidCategoria: req.body.categoria,
+            precio: req.body.precio,
+            descripcion: req.body.descripcion,
+            imagen: imagen,
+            oferta: req.body.oferta,
+            color: req.body.color,
+            peso: req.body.peso,
+            medida: req.body.medida
+        }, {
+            where: {
+                idProductos: req.params.id,
+            },
+        })
             .then((prod) => {
 
                 res.redirect("/tienda");
