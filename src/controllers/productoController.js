@@ -65,7 +65,7 @@ let productoController = {
                 categoria.findAll()
                     .then((categoria) => {
 
-                        res.render('tiendaRollosPapel', {
+                        res.render('tienda', {
                             titulo: 'Listado de productos',
                             css: 'estiloListado.css',
                             producto: producto,
@@ -85,7 +85,7 @@ let productoController = {
                 categoria.findAll()
                     .then((categoria) => {
 
-                        res.render('tiendaOrganizadores', {
+                        res.render('tienda', {
                             titulo: 'Listado de productos',
                             css: 'estiloListado.css',
                             producto: producto,
@@ -94,26 +94,7 @@ let productoController = {
                     })
             })
     },
-    buscadorRollosPapel: (req, res) => {
-        producto.findAll({
-                include: [{ association: "categoria" }],
-                where: {
-                    FKidCategoria: 3
-                }
-            })
-            .then((producto) => {
-                categoria.findAll()
-                    .then((categoria) => {
-
-                        res.render('tiendaRollosPapel', {
-                            titulo: 'Listado de productos',
-                            css: 'estiloListado.css',
-                            producto: producto,
-                            categoria: categoria
-                        })
-                    })
-            })
-    },
+    
     buscadorEtiquetas: (req, res) => {
         producto.findAll({
                 include: [{ association: "categoria" }],
@@ -125,7 +106,7 @@ let productoController = {
                 categoria.findAll()
                     .then((categoria) => {
 
-                        res.render('tiendaEtiquetas', {
+                        res.render('tienda', {
                             titulo: 'Listado de productos',
                             css: 'estiloListado.css',
                             producto: producto,

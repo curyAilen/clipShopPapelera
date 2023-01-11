@@ -21,7 +21,6 @@ const upload = multer({storage});
 router.get('/', productoController.mostrarTienda);
 router.get('/embalajes', productoController.buscadorEmbalaje);
 router.get('/organizadores', productoController.buscadorOrganizadores);
-router.get('/rollosDePapel', productoController.buscadorRollosPapel);
 router.get('/etiquetas', productoController.buscadorEtiquetas);
 
 //Crear un producto nuevo 
