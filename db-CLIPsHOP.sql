@@ -689,7 +689,6 @@ CREATE TABLE IF NOT EXISTS `productos` (
   `nombre` varchar(255) NOT NULL DEFAULT '0',
   `FKidCategoria` int(10) unsigned NOT NULL DEFAULT 0,
   `filtro` varchar(155) NOT NULL,
-  `subfiltro` varchar(155) DEFAULT NULL,
   `precio` decimal(20,2) NOT NULL DEFAULT 0.00,
   `oferta` tinyint(1) DEFAULT 0,
   `imagen` varchar(155) NOT NULL,
@@ -699,47 +698,47 @@ CREATE TABLE IF NOT EXISTS `productos` (
 ) ENGINE=InnoDB AUTO_INCREMENT=528 DEFAULT CHARSET=utf8mb4;
 
 -- Volcando datos para la tabla clipshop.productos: ~40 rows (aproximadamente)
-INSERT INTO `productos` (`idProductos`, `nombre`, `FKidCategoria`, `filtro`, `subfiltro`, `precio`, `oferta`, `imagen`) VALUES
-	(458, 'Film Stretch Transparente- Rollo de 50 cm/2,5 kg', 1, 'film', 'stretch', 0.00, 1, 'Producto1669646038787.jpg'),
-	(459, 'Film Stretch Negro- Rollo de 50 cm/2,5 kg', 1, 'film', 'stretch', 0.00, 0, 'Producto1669646038787.jpg'),
-	(460, 'Film Stretch Verde- Rollo de 50 cm/2,5 kg', 1, 'film', 'stretch', 0.00, 0, 'Producto1669646038787.jpg'),
-	(461, 'Film Stretch Azul- Rollo de 50 cm/2,5 kg', 1, 'film', 'stretch', 0.00, 1, 'Producto1669646038787.jpg'),
-	(462, 'Film Stretch Rojo- Rollo de 50 cm/2,5 kg', 1, 'film', 'stretch', 0.00, 1, 'Producto1669646038787.jpg'),
-	(463, 'Film Stretch Transparente-C/Mango- Rollo de 50cm/2,6kg', 1, 'film', 'con mango', 0.00, 1, 'Producto1669646038787.jpg'),
-	(464, 'Film Stretch Negro-C/Mango- Rollo de 50cm/2,6kg', 1, 'film', 'con mango', 0.00, 1, 'Producto1669646038787.jpg'),
-	(465, 'Film Stretch Transparente- Rollo de 50 cm/4 kg', 1, 'film', 'stretch', 0.00, 1, 'Producto1669646038787.jpg'),
-	(466, 'Film Stretch Negro- Rollo de 50 cm/4 kg', 1, 'film', 'stretch', 0.00, 0, 'Producto1669646038787.jpg'),
-	(467, 'Film Stretch Verde- Rollo de 50 cm/4 kg', 1, 'film', 'stretch', 0.00, 0, 'Producto1669646038787.jpg'),
-	(468, 'Film Stretch Azul- Rollo de 50 cm/4 kg', 1, 'film', 'stretch', 0.00, 0, 'Producto1669646038787.jpg'),
-	(469, 'Film Stretch Rojo- Rollo de 50 cm/4 kg', 1, 'film', 'stretch', 0.00, 1, 'Producto1669646038787.jpg'),
-	(470, 'Film Stretch Transparente- Rollo de 10cm', 1, 'film', 'stretch', 0.00, 0, 'Producto1669646038787.jpg'),
-	(471, 'Film Stretch Negro- Rollo de 10cm', 1, 'film', 'stretch', 0.00, 1, 'Producto1669646038787.jpg'),
-	(472, 'Film Stretch Verde- Rollo de 10cm', 1, 'film', 'stretch', 0.00, 0, 'Producto1669646038787.jpg'),
-	(473, 'Film Stretch Azul- Rollo de 10cm', 1, 'film', 'stretch', 0.00, 1, 'Producto1669646038787.jpg'),
-	(474, 'Film Stretch Rojo- Rollo de 10cm', 1, 'film', 'stretch', 0.00, 0, 'Producto1669646038787.jpg'),
-	(475, 'Film Alimenticio 38x1000', 1, 'film', 'alimenticio', 0.00, 1, 'Producto1669646038787.jpg'),
-	(500, 'Expendedora de Números para Turnos- Roja', 2, 'expendedora', 'sin barral', 0.00, 0, 'Producto1669646038787.jpg'),
-	(501, 'Expendedora de Números para Turnos- Negra', 2, 'expendedora', 'sin barral', 0.00, 0, 'Producto1669646038787.jpg'),
-	(502, 'Expendedora de Números para Turnos- Blanca', 2, 'expendedora', 'sin barral', 0.00, 0, 'Producto1669646038787.jpg'),
-	(503, 'Expendedora de Números para Turnos- Gris', 2, 'expendedora', 'sin barral', 0.00, 1, 'Producto1669646038787.jpg'),
-	(504, 'Expendedora de Números para Turnos- Violeta', 2, 'expendedora', 'sin barral', 0.00, 0, 'Producto1669646038787.jpg'),
-	(505, 'Expendedora de Números para Turnos- Marrón', 2, 'expendedora', 'sin barral', 0.00, 1, 'Producto1669646038787.jpg'),
-	(506, 'Expendedora de Números para Turnos- Naranja', 2, 'expendedora', 'sin barral', 0.00, 0, 'Producto1669646038787.jpg'),
-	(507, 'Expendedora de Números para Turnos- Amarilla', 2, 'expendedora', 'sin barral', 0.00, 1, 'Producto1669646038787.jpg'),
-	(508, 'Expendedora De Números Para Turnos Con Pie Y Cartel', 2, 'expendedora', 'con barral', 0.00, 0, 'Producto1669646038787.jpg'),
-	(509, 'Expendedora De Números Para Turnos Con Pie Y Cartel + Pincha Papel', 2, 'expendedora', 'con barral', 0.00, 1, 'Producto1669646038787.jpg'),
-	(516, 'Etiquetadora Jolly-Jh8- 8 Dígitos', 4, 'etiquetadoras', 'etiquetadoras', 0.00, 1, 'Producto1669646038787.jpg'),
-	(517, 'Etiquetadora OpenComercial', 4, 'etiquetadoras', 'etiquetadoras', 0.00, 0, 'Producto1669646038787.jpg'),
-	(518, 'Entintador para Etiquetadora Jolly', 4, 'etiquetadoras', 'etintadores', 0.00, 0, 'Producto1669646038787.jpg'),
-	(519, 'Entintador OpenComercial', 4, 'etiquetadoras', 'etintadores', 0.00, 0, 'Producto1669646038787.jpg'),
-	(520, 'Rollo de Números para Turnos x 1000 Rojo', 2, 'rollos de numeros', 'x 1000', 0.00, 1, 'Producto1669646038787.jpg'),
-	(521, 'Rollo de Números para Turnos x 1000 Verde', 2, 'rollos de numeros', 'x 1000', 0.00, 0, 'Producto1669646038787.jpg'),
-	(522, 'Rollo de Números para Turnos x 1000 Azul', 2, 'rollos de numeros', 'x 1000', 0.00, 1, 'Producto1669646038787.jpg'),
-	(523, 'Rollo de Números para Turnos x 1000 Amarillo', 2, 'rollos de numeros', 'x 1000', 0.00, 0, 'Producto1669646038787.jpg'),
-	(524, 'Rollo de Números para Turnos x 2000 Rojo', 2, 'rollos de numeros', 'x 2000', 0.00, 1, 'Producto1669646038787.jpg'),
-	(525, 'Rollo de Números para Turnos x 2000 Verde', 2, 'rollos de numeros', 'x 2000', 0.00, 0, 'Producto1669646038787.jpg'),
-	(526, 'Rollo de Números para Turnos x 2000 Amarillo', 2, 'rollos de numeros', 'x 2000', 0.00, 1, 'Producto1669646038787.jpg'),
-	(527, 'Rollo de Números para Turnos x 2000 Azul', 2, 'rollos de numeros', 'x 2000', 0.00, 0, 'Producto1669646038787.jpg');
+INSERT INTO `productos` (`idProductos`, `nombre`, `FKidCategoria`, `filtro`, `precio`, `oferta`, `imagen`) VALUES
+	(458, 'Film Stretch Transparente- Rollo de 50 cm/2,5 kg', 1, 'film stretch', 0.00, 1, 'Producto1669646038787.jpg'),
+	(459, 'Film Stretch Negro- Rollo de 50 cm/2,5 kg', 1, 'film stretch', 0.00, 0, 'Producto1669646038787.jpg'),
+	(460, 'Film Stretch Verde- Rollo de 50 cm/2,5 kg', 1, 'film stretch', 0.00, 0, 'Producto1669646038787.jpg'),
+	(461, 'Film Stretch Azul- Rollo de 50 cm/2,5 kg', 1, 'film stretch', 0.00, 1, 'Producto1669646038787.jpg'),
+	(462, 'Film Stretch Rojo- Rollo de 50 cm/2,5 kg', 1, 'film stretch', 0.00, 1, 'Producto1669646038787.jpg'),
+	(463, 'Film Stretch Transparente-C/Mango- Rollo de 50cm/2,6kg', 1, 'film con mango', 0.00, 1, 'Producto1669646038787.jpg'),
+	(464, 'Film Stretch Negro-C/Mango- Rollo de 50cm/2,6kg', 1, 'film con mango', 0.00, 1, 'Producto1669646038787.jpg'),
+	(465, 'Film Stretch Transparente- Rollo de 50 cm/4 kg', 1, 'film stretch', 0.00, 1, 'Producto1669646038787.jpg'),
+	(466, 'Film Stretch Negro- Rollo de 50 cm/4 kg', 1, 'film stretch', 0.00, 0, 'Producto1669646038787.jpg'),
+	(467, 'Film Stretch Verde- Rollo de 50 cm/4 kg', 1, 'film stretch', 0.00, 0, 'Producto1669646038787.jpg'),
+	(468, 'Film Stretch Azul- Rollo de 50 cm/4 kg', 1, 'film stretch', 0.00, 0, 'Producto1669646038787.jpg'),
+	(469, 'Film Stretch Rojo- Rollo de 50 cm/4 kg', 1, 'film stretch', 0.00, 1, 'Producto1669646038787.jpg'),
+	(470, 'Film Stretch Transparente- Rollo de 10cm', 1, 'film stretch', 0.00, 0, 'Producto1669646038787.jpg'),
+	(471, 'Film Stretch Negro- Rollo de 10cm', 1, 'film stretch', 0.00, 1, 'Producto1669646038787.jpg'),
+	(472, 'Film Stretch Verde- Rollo de 10cm', 1, 'film stretch', 0.00, 0, 'Producto1669646038787.jpg'),
+	(473, 'Film Stretch Azul- Rollo de 10cm', 1, 'film stretch', 0.00, 1, 'Producto1669646038787.jpg'),
+	(474, 'Film Stretch Rojo- Rollo de 10cm', 1, 'film stretch', 0.00, 0, 'Producto1669646038787.jpg'),
+	(475, 'Film Alimenticio 38x1000', 1, 'film alimenticio', 0.00, 1, 'Producto1669646038787.jpg'),
+	(500, 'Expendedora de Números para Turnos- Roja', 2, 'expendedora sin barral', 0.00, 0, 'Producto1669646038787.jpg'),
+	(501, 'Expendedora de Números para Turnos- Negra', 2, 'expendedora sin barral', 0.00, 0, 'Producto1669646038787.jpg'),
+	(502, 'Expendedora de Números para Turnos- Blanca', 2, 'expendedora sin barral', 0.00, 0, 'Producto1669646038787.jpg'),
+	(503, 'Expendedora de Números para Turnos- Gris', 2, 'expendedora sin barral', 0.00, 1, 'Producto1669646038787.jpg'),
+	(504, 'Expendedora de Números para Turnos- Violeta', 2, 'expendedora sin barral', 0.00, 0, 'Producto1669646038787.jpg'),
+	(505, 'Expendedora de Números para Turnos- Marrón', 2, 'expendedora sin barral', 0.00, 1, 'Producto1669646038787.jpg'),
+	(506, 'Expendedora de Números para Turnos- Naranja', 2, 'expendedora sin barral', 0.00, 0, 'Producto1669646038787.jpg'),
+	(507, 'Expendedora de Números para Turnos- Amarilla', 2, 'expendedora sin barral', 0.00, 1, 'Producto1669646038787.jpg'),
+	(508, 'Expendedora De Números Para Turnos Con Pie Y Cartel', 2, 'expendedora con barral', 0.00, 0, 'Producto1669646038787.jpg'),
+	(509, 'Expendedora De Números Para Turnos Con Pie Y Cartel + Pincha Papel', 2, 'expendedora con barral', 0.00, 1, 'Producto1669646038787.jpg'),
+	(516, 'Etiquetadora Jolly-Jh8- 8 Dígitos', 4, 'etiquetadoras', 0.00, 1, 'Producto1669646038787.jpg'),
+	(517, 'Etiquetadora OpenComercial', 4, 'etiquetadoras', 0.00, 0, 'Producto1669646038787.jpg'),
+	(518, 'Entintador para Etiquetadora Jolly', 4, 'etiquetadoras etintadores', 0.00, 0, 'Producto1669646038787.jpg'),
+	(519, 'Entintador OpenComercial', 4, 'etiquetadoras etintadores', 0.00, 0, 'Producto1669646038787.jpg'),
+	(520, 'Rollo de Números para Turnos x 1000 Rojo', 2, 'rollos de numeros x 1000', 0.00, 1, 'Producto1669646038787.jpg'),
+	(521, 'Rollo de Números para Turnos x 1000 Verde', 2, 'rollos de numeros x 1000', 0.00, 0, 'Producto1669646038787.jpg'),
+	(522, 'Rollo de Números para Turnos x 1000 Azul', 2, 'rollos de numeros x 1000', 0.00, 1, 'Producto1669646038787.jpg'),
+	(523, 'Rollo de Números para Turnos x 1000 Amarillo', 2, 'rollos de numeros x 1000', 0.00, 0, 'Producto1669646038787.jpg'),
+	(524, 'Rollo de Números para Turnos x 2000 Rojo', 2, 'rollos de numeros x2000', 0.00, 1, 'Producto1669646038787.jpg'),
+	(525, 'Rollo de Números para Turnos x 2000 Verde', 2, 'rollos de numeros x2000', 0.00, 0, 'Producto1669646038787.jpg'),
+	(526, 'Rollo de Números para Turnos x 2000 Amarillo', 2, 'rollos de numeros x2000', 0.00, 1, 'Producto1669646038787.jpg'),
+	(527, 'Rollo de Números para Turnos x 2000 Azul', 2, 'rollos de numeros x2000', 0.00, 0, 'Producto1669646038787.jpg');
 
 -- Volcando estructura para tabla clipshop.usuarios
 CREATE TABLE IF NOT EXISTS `usuarios` (
@@ -757,7 +756,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 INSERT INTO `usuarios` (`idUsuarios`, `nombre`, `email`, `direccion`, `telefono`, `password`, `rol`) VALUES
 	(6, 'Ailen', 'ailu@ailu.com', 'Soy Administrador', 1168508686, '$2a$10$BRrCiQPiGWAIAxj7b8TYCewkG8eMKJWP3xTF.Ya4PsdgzimYJEgWu', 'admin'),
 	(9, 'Ailen Cury', 'ailen@gmail.com', 'Prueba dirección', 555555, '$2a$10$.p53ZobtisbEW7UY53PeQeDIuGqhdlswCK0Lvi81CIJL90C.PqxK.', 'user'),
-	(10, 'Noni', 'noni@gmail.com', 'Casa Noni', 1125689588, '$2a$10$idhhKteaOhDAUzrZhxsvTux/EbND5Y1ZQ4lRw5JWGaKjTCoYvlkCG', 'admin'),
+	(10, 'Noni', 'noni@gmail.com', 'Casa Noni', 1125689588, '$2a$10$.H5NhqhB5.Zq//T9.Z8cK.HYCvtYmH/0zlARxal4/Fe2x9k.5QVdC', 'admin'),
 	(17, 'Ailen', 'cury.ailena@gmail.com', 'bmun6ybtrvecwd', 0, '$2a$10$DG9oDmTg0jy56mISR3nQtuOpZ7IP07iYnpXApP/Tg5p9oQHonOIne', 'user'),
 	(19, 'a', 'ailenaldanacury@gmail.com', 'b', 0, '$2a$10$wGLW7LUkSAnZk9CVoZS98OtHncek5kaTWhbowB0ohhIC2Wnda5D12', 'user');
 
@@ -784,7 +783,7 @@ CREATE TABLE IF NOT EXISTS `vouchers` (
 
 -- Volcando datos para la tabla clipshop.vouchers: ~2 rows (aproximadamente)
 INSERT INTO `vouchers` (`idVouchers`, `voucher`, `valor`, `fecha`) VALUES
-	(1, 'navidadClipShop2022', 25, '2022-11-28'),
+	(1, 'navidadClipShop2022', 35, '2023-01-08'),
 	(5, 'estamosCreciendo2023', 15, '2022-11-28');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
