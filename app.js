@@ -7,6 +7,7 @@ const path = require("path");
 const rutasMain = require('./src/routes/main.js');
 const rutasProducto = require('./src/routes/producto.js');
 const rutasUsers = require('./src/routes/user.js');
+const rutasContacto = require("./src/routes/contacto.js");
 const userLogged = require('./src/middlewares/userloggedMiddleware');
 const adminMiddleware = require('./src/middlewares/adminMiddleware');
 const session = require('express-session');
@@ -40,6 +41,7 @@ app.use(express.json());
 app.use('/', rutasMain);
 app.use('/user', rutasUsers);
 app.use('/tienda', rutasProducto);
+app.use('/contacto', rutasContacto);
 
 // Ruta de page not found (404)
 

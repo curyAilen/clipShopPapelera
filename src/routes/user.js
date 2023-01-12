@@ -30,8 +30,6 @@ router.post('/cuenta/actualizarPassword/:id', editedPasswordValidations, usuario
 //Listado Clientes
 router.get('/listadoClientes', authMiddleware, usuarioController.listadoClientes);
 
-
-
 // Logout
 router.get('/logout', usuarioController.logout);
 
