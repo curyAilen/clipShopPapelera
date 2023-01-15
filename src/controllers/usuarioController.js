@@ -25,13 +25,10 @@ let usuarioController = {
                 direccion: req.body.direccion,
                 telefono: req.body.telefono,
                 password: passwordEncriptada
-
             }).then((userID) => {
-
                 res.redirect("/user/login");
             })
         } else {
-
             res.render("login", {
                 errores: errores.errores,
                 old: req.body,
