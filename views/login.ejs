@@ -10,7 +10,7 @@
                 <section class="forms-section container">
 
                     <div class="forms">
-                        <div class="form-wrapper is-active">
+                        <div class="form-wrapper <%= locals.registerPage && registerPage ? "" : "is-active" %>">
                             <button type="button" class="switcher switcher-login">
           Iniciar Sesión
           <span class="underline"></span>
@@ -24,12 +24,13 @@
                                     <legend>Ingrese su mail de usuario y contraseña</legend>
                                     <div class="input-block">
                                         <label for="email">E-mail</label>
-                                        <input id="email" type="email" required name="email" value="noni@gmail.com">
-
+                                        <input type="email" id="email" name="emaillogin" placeholder="Email" value="<%= locals.old && old.emaillogin ? old.emaillogin : "" %> ">
+                                        <p class="emailError error"><%= locals.errores && errores.emaillogin ? errores.emaillogin.msg : "" %> </p>
                                     </div>
                                     <div class="input-block">
                                         <label for="login-password">Contraseña</label>
-                                        <input id="login-password" type="password" required name="password" value="noniponce">
+                                        <input id="login-password" type="password" name="passwordlogin" placeholder="Contraseña">
+                                        <p class="passwordError error"><%= locals.errores && errores.passwordemail ? errores.passwordemail.msg : "" %> </p>
                                     </div>
                                     <label class="form-check-label ml-4 recordarme">
               <input type="checkbox" class="form-check-input" name="remember_user">Recordarme
@@ -40,42 +41,41 @@
 
                         </div>
                         <!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------REGISTRO---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-                        <div class="form-wrapper">
+                        <div class="form-wrapper <%= locals.registerPage && registerPage ? "is-active" : "" %>">
                             <button type="button" class="switcher switcher-signup ">
           Registrarse
           <span class="underline"></span>
         </button>
 
-                            <form class="form form-signup " action="/user/registro" enctype="application/x-www-form-urlencoded" method="post">
-
+                            <form class="form form-signup " id="form-registro" action="/user/registro" enctype="application/x-www-form-urlencoded" method="post">
                                 <fieldset>
                                     <legend>Ingrese los siguientes datos.</legend>
                                     <div class="input-block">
                                         <label for="emailRegister">E-mail</label>
-                                        <input type="email" name="email" id="email" placeholder="E-mail" value="<%= locals.old && old.email ? old.email : ''  %>" />
-                                        <p class="errorEmail erroresRegister"></p>
+                                        <input name="email" id="email-register" placeholder="E-mail" value="<%= locals.old && old.email ? old.email : ''  %>" />
+                                        <p class="errorEmail error"><%= locals.errores && errores.email ? errores.email.msg : "" %></p>
                                     </div>
                                     <div class="input-block">
                                         <label for="nombre">Nombre</label>
-                                        <input type="text" name="nombre" required value="a">
-                                        <p class="errorNombre erroresRegister"></p>
+                                        <input id="nombre-register" type="text" name="nombre" placeholder="Nombre" value="<%= locals.old && old.nombre ? old.nombre : ""%>">
+                                        <p class="errorNombre error"><%= locals.errores && errores.nombre ? errores.nombre.msg : "" %></p>
                                     </div>
                                     <div class="input-block">
                                         <label for="direccion">Dirección de entrega</label>
-                                        <input type="text" name="direccion" required value="b" id="direccion">
-                                        <p class="errorDireccion erroresRegister"></p>
+                                        <input type="text" name="direccion" id="direccion-register" placeholder="Dirección" value="<%= locals.old && old.direccion ? old.direccion : ""%>">
+                                        <p class="errorDireccion error"><%= locals.errores && errores.direccion ? errores.direccion.msg : "" %></p>
                                     </div>
 
                                     <div class="input-block">
-                                        <label for="direccionRegister">teléfono (opcional)</label>
-                                        <input type="number" name="telefono">
+                                        <label for="direccionRegister">Teléfono (opcional)</label>
+                                        <input type="number" name="telefono" placeholder="Teléfono" value="<%= locals.old && old.telefono ? old.telefono : ""%>">
                                     </div>
                                     <div class="input-block">
                                         <label for="clave">Contraseña</label>
                                         <i class="fas fa-eye"></i>
-                                        <input type="password" name="password" id="clave" placeholder="Contraseña" value="ailencury" />
-                                        <p class="errorPassword erroresRegister"></p>
-                                        <input type="password" name="re-clave" id="re-clave" placeholder="Confirmar contraseña" value="ailencury" />
+                                        <input type="password" name="password" id="clave-register" placeholder="Contraseña" />
+                                        <p class="errorPassword error"><%= locals.errores && errores.password ? errores.password.msg : "" %></p>
+                                        <input type="password" name="reclave" id="re-clave-register" placeholder="Confirmar contraseña" />
                                     </div>
                                 </fieldset>
                                 <button type="submit" class="btn botones">Registrarse</button>
@@ -94,5 +94,6 @@
                             })
                         })
                     </script>
-                    <script src="/js/registroValidation.js"></script>
+                    <script src="/js/registerValidation.js"></script>
+                    <script src="/js/loginValidation.js"></script>
                     <script>

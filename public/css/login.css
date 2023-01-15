@@ -1,3 +1,8 @@
+p.error {
+    color: red;
+    font-size: .7rem;
+}
+
 .recordarme{
     color: #5424B2;
 }

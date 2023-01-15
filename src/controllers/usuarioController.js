@@ -13,10 +13,10 @@ let usuarioController = {
         return res.render('login');
     },
     registerProcess: (req, res) => {
-
         let errores = validationResult(req);
-        if (errores.isEmpty()) {
 
+        if (errores.isEmpty()) {
+            
             let passwordEncriptada = bcrypt.hashSync(req.body.password, 10);
 
             let userID = Usuarios.create({
@@ -30,10 +30,10 @@ let usuarioController = {
             })
         } else {
             res.render("login", {
-                errores: errores.errores,
-                old: req.body,
+                errores: errores.mapped(),
+                old: {...req.body, telefono: Number(req.body.telefono)},
                 titulo: "Registro",
-
+                registerPage: true
             })
         }
     },
@@ -58,12 +58,11 @@ let usuarioController = {
 
         Usuarios.findOne({
                 where: {
-                    email: req.body.email
+                    email: req.body.emaillogin
                 }
 
             }).then((usuario) => {
-                console.log(usuario)
-                if (bcrypt.compareSync(req.body.password, usuario.dataValues.password)) {
+                if (bcrypt.compareSync(req.body.passwordlogin, usuario.dataValues.password)) {
 
                     let usuarioLogeado = {
                         idUsuarios: usuario.dataValues.idUsuarios,
@@ -84,20 +83,20 @@ let usuarioController = {
                     }
 
                     return res.redirect('/user/cuenta')
-
-
                 } else {
-                    console.log("no logueo")
                     res.render('login', {
-                        errores: 'Clave o Email incorrecto',
+                        errores: {
+                            emaillogin: {msg: 'Clave o Email incorrecto'}
+                        },
                         old: req.body
                     })
                 }
             })
             .catch(() => {
-
                 res.render('login', {
-                    errores: 'Clave o Email incorrecto',
+                    errores: {
+                        emaillogin: {msg: 'Clave o Email incorrecto'}
+                    },
                     old: req.body
                 })
             });
