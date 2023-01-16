@@ -5,6 +5,7 @@ const multer = require ('multer');
 const path = require ('path');
 const authMiddleware = require('../middlewares/authMiddleware');
 const voucherValidation = require("../middlewares/voucherValidation");
+const bannerValidation = require("../middlewares/bannerValidation");
 
 const storage = multer.diskStorage({ 
     destination: (req, file,cb)=>{
@@ -35,7 +36,7 @@ router.get('/configBanner', mainController.configbanner);
 
 //crear
 router.get('/altaBanner', mainController.crearBanner);
-router.post('/altaBanner', upload.single('imgBanner'), mainController.altabanner);
+router.post('/altaBanner', upload.single('imgBanner'), bannerValidation, mainController.altabanner);
 
 //Editar
 router.get('/editBanner/:id', mainController.editBanner);

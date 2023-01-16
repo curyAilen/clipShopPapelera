@@ -39,16 +39,22 @@ let mainController = {
 
     },
     crearBanner: (req, res) => {
-        Banner.findAll()
-            .then((banner) => {
-                res.render("altaBanner", {
-                    titulo: "Ingresar nuevo banner",
-                    banner: banner
-                });
-            });
-
+        return res.render("altaBanner", {
+            titulo: "Ingresar nuevo banner"
+        });
     },
     altabanner: (req, res) => {
+        let bannerValidation = validationResult(req);
+
+        console.log(bannerValidation.mapped());
+
+        if (bannerValidation.errors.length > 0) {
+            return res.render("altaBanner", {
+                titulo: "Ingresar nuevo banner",
+                errores: bannerValidation.mapped()
+            });
+        };
+
         Banner.create({
             banner: req.file.filename
         }).then((newBanner) => {
@@ -167,7 +173,7 @@ let mainController = {
                     voucher: req.body.voucher
                 }
             })
-    
+
             if (nombreVoucherRepetido) {
                 return res.render("editVoucher", {
                     titulo: "Edición de vouchers",
