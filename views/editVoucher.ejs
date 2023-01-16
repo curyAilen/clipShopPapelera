@@ -13,20 +13,20 @@
             <div class="row">
               <div class="form-group  col-4">
                 <label for="">Voucher:</label>
-                <input type="text" value="<%=voucher.voucher%>"  name="voucher" class="form-control">
+                <input type="text" value="<%=locals.old && old.voucher ? old.voucher : voucher.voucher%>"  name="voucher" class="form-control">
+                <p><%= locals.errores && errores.voucher ? errores.voucher.msg : "" %></p>
               </div>
 
               <div class="form-group col-4">
                 <label for="">Monto:</label>
-                <div class="input-group  ">
-                  <input type="number" value="<%=voucher.valor%>" name="valor" class="form-control">
+                <div class="input-group ">
+                  <input type="number" value="<%=locals.old && old.valor ? old.valor : voucher.valor%>" name="valor" class="form-control">
                   <div class="input-group-prepend">
                     <div class="input-group-text">%</div>
                   </div>
+                  <p><%= locals.errores && errores.valor ? errores.valor.msg : "" %></p>
                 </div>
               </div>
-              
-
             </div>
 
 

@@ -4,6 +4,7 @@ const mainController = require('../controllers/mainController');
 const multer = require ('multer');
 const path = require ('path');
 const authMiddleware = require('../middlewares/authMiddleware');
+const voucherValidation = require("../middlewares/voucherValidation");
 
 const storage = multer.diskStorage({ 
     destination: (req, file,cb)=>{
@@ -48,16 +49,14 @@ router.get('/configVoucher', mainController.configVoucher);
 
 //Crear
 router.get('/altaVoucher', mainController.crearVoucher);
-router.post('/altaVoucher', mainController.altaVoucher);
+router.post('/altaVoucher', voucherValidation, mainController.altaVoucher);
 
 //Editar
 router.get('/editVoucher/:id', mainController.editVoucher);
-router.post('/editVoucher/:id', mainController.editedVoucher);
+router.post('/editVoucher/:id', voucherValidation, mainController.editedVoucher);
 
 //Borrar
 router.delete('/eliminar/:id', mainController.deleteVoucher);
-
-
 
 module.exports = router;
 

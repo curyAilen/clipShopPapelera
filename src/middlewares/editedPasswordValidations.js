@@ -4,16 +4,15 @@ const db = require("../../database/models");
 const editedPasswordValidations = [
     body('password')
     .trim()
-    .notEmpty().withMessage("Debes ingresar una clave").bail()
-    .isLength({ min: 4 }).withMessage("La clave debe tener como minimo 4 caracteres").bail(),
-    body('re-clave')
+    .notEmpty().withMessage("Debes ingresar una contraseña").bail()
+    .isLength({ min: 8 }).withMessage("La contraseña debe tener como minimo 8 caracteres").bail(),
+    body('confirmpassword')
     .trim()
-    .notEmpty().withMessage("Debes confirmar la clave").bail()
+    .notEmpty().withMessage("Debes confirmar la contraseña").bail()
     .custom((value, { req }) => {
         let clave = req.body.password;
         return clave == value
-    }).withMessage("Las contrasenias no coinciden"),
-
+    }).withMessage("Las contraseñas no coinciden"),
 ];
 
 module.exports = editedPasswordValidations;

@@ -16,7 +16,7 @@ let usuarioController = {
         let errores = validationResult(req);
 
         if (errores.isEmpty()) {
-            
+
             let passwordEncriptada = bcrypt.hashSync(req.body.password, 10);
 
             let userID = Usuarios.create({
@@ -31,7 +31,7 @@ let usuarioController = {
         } else {
             res.render("login", {
                 errores: errores.mapped(),
-                old: {...req.body, telefono: Number(req.body.telefono)},
+                old: { ...req.body, telefono: Number(req.body.telefono) },
                 titulo: "Registro",
                 registerPage: true
             })
@@ -57,45 +57,45 @@ let usuarioController = {
         }
 
         Usuarios.findOne({
-                where: {
-                    email: req.body.emaillogin
+            where: {
+                email: req.body.emaillogin
+            }
+
+        }).then((usuario) => {
+            if (bcrypt.compareSync(req.body.passwordlogin, usuario.dataValues.password)) {
+
+                let usuarioLogeado = {
+                    idUsuarios: usuario.dataValues.idUsuarios,
+                    nombre: usuario.dataValues.nombre,
+                    email: usuario.dataValues.email,
+                    direccion: usuario.dataValues.direccion,
+                    password: usuario.dataValues.password,
+                    rol: usuario.dataValues.rol
+                };
+
+                req.session.login = usuarioLogeado;
+
+                if (req.body.remember_user) {
+
+                    res.cookie("userCookie", usuarioLogeado, {
+                        maxAge: 10000 * 60 * 60 * 24,
+                    });
                 }
 
-            }).then((usuario) => {
-                if (bcrypt.compareSync(req.body.passwordlogin, usuario.dataValues.password)) {
-
-                    let usuarioLogeado = {
-                        idUsuarios: usuario.dataValues.idUsuarios,
-                        nombre: usuario.dataValues.nombre,
-                        email: usuario.dataValues.email,
-                        direccion: usuario.dataValues.direccion,
-                        password: usuario.dataValues.password,
-                        rol: usuario.dataValues.rol
-                    };
-
-                    req.session.login = usuarioLogeado;
-
-                    if (req.body.remember_user) {
-
-                        res.cookie("userCookie", usuarioLogeado, {
-                            maxAge: 10000 * 60 * 60 * 24,
-                        });
-                    }
-
-                    return res.redirect('/user/cuenta')
-                } else {
-                    res.render('login', {
-                        errores: {
-                            emaillogin: {msg: 'Clave o Email incorrecto'}
-                        },
-                        old: req.body
-                    })
-                }
-            })
+                return res.redirect('/user/cuenta')
+            } else {
+                res.render('login', {
+                    errores: {
+                        emaillogin: { msg: 'Clave o Email incorrecto' }
+                    },
+                    old: req.body
+                })
+            }
+        })
             .catch(() => {
                 res.render('login', {
                     errores: {
-                        emaillogin: {msg: 'Clave o Email incorrecto'}
+                        emaillogin: { msg: 'Clave o Email incorrecto' }
                     },
                     old: req.body
                 })
@@ -113,11 +113,20 @@ let usuarioController = {
             })
     },
 
-    editedPerfil: (req, res) => {
+    editedPerfil: async (req, res) => {
+        let editValidationResult = validationResult(req);
+        const user = await Usuarios.findByPk(req.params.id);
 
-
-        if (bcrypt.compareSync(req.body.password, Usuario.password)) {
-            Usuarios.update({
+        if (editValidationResult.errors.length > 0) {
+            return res.render('editarPerfil', {
+                errores: editValidationResult.mapped(),
+                old: req.body,
+                usuario: user
+            })
+        }
+        
+        if (bcrypt.compareSync(req.body.password, user.dataValues.password)) {
+            await Usuarios.update({
                 nombre: req.body.nombre,
                 email: req.body.email,
                 direccion: req.body.direccion,
@@ -125,24 +134,22 @@ let usuarioController = {
             }, {
                 where: {
                     idUsuarios: req.params.id
-                }
-            }).then((usuario) => {
-                res.render('cuenta', {
-                    titulo: "Perfil",
-                    css: "estiloLogin.css",
-                })
-                res.clearCookie("userCookie");
-                req.session.destroy();
-                res.redirect("/user/login");
+                },
             })
 
+            const userUpdated = await Usuarios.findByPk(req.params.id);
+            
+            req.session.login = userUpdated.dataValues;
+            res.clearCookie("userCookie");
+            res.redirect("/user/cuenta");
         } else {
             res.render('editarPerfil', {
                 titulo: 'Editar Perfil',
-
+                usuario: user,
+                old: req.body,
+                errorPassword: "Contraseña incorrecta" 
             })
-        }
-
+        };
     },
 
     actualizar: (req, res) => {
@@ -155,7 +162,18 @@ let usuarioController = {
             })
     },
 
-    actualizarPassword: (req, res) => {
+    actualizarPassword: async (req, res) => {
+        let editValidationResult = validationResult(req);
+        const user = await Usuarios.findByPk(req.params.id);
+
+        if (editValidationResult.errors.length > 0) {
+            return res.render('actualizarPassword', {
+                errores: editValidationResult.mapped(),
+                titulo: "Actualizar contraseña",
+                usuario: user
+            })
+        }
+
         let passwordEncriptada = bcrypt.hashSync(req.body.password, 10);
         Usuarios.update({
             password: passwordEncriptada

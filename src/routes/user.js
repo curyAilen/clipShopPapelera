@@ -6,8 +6,8 @@ const authMiddleware = require('../middlewares/authMiddleware');
 const updateProfileAuth = require("../middlewares/updateProfileAuth");
 const loginValidations = require("../middlewares/loginValidations");
 const registerValidations = require("../middlewares/registerValidations");
+const editProfileValidation = require("../middlewares/editProfileValidation");
 const editedPasswordValidations = require("../middlewares/editedPasswordValidations");
-
 
 // Register 
 router.get('/registro', usuarioController.register);
@@ -17,11 +17,10 @@ router.post('/registro', registerValidations, usuarioController.registerProcess)
 router.get('/login', usuarioController.login);
 router.post('/login', loginValidations, usuarioController.loginprocess);
 
-
 // Profile
 router.get('/cuenta', authMiddleware, usuarioController.cuenta);
 router.get('/cuenta/editarPerfil/:id', updateProfileAuth, usuarioController.editarPerfil);
-router.post('/cuenta/editarPerfil/:id', usuarioController.editedPerfil);
+router.post('/cuenta/editarPerfil/:id', editProfileValidation, usuarioController.editedPerfil);
 
 //Actualizar Password
 router.get('/cuenta/actualizarPassword/:id', usuarioController.actualizar);

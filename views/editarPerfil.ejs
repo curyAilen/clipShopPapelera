@@ -11,24 +11,27 @@
             method="post" class="formularioEditPerfil estiloDeCaja row">
             <div class="form-group col-lg-6 col-md-10 ">
               <label for="emailRegister">E-mail</label>
-              <input type="email" name="email" id="email" placeholder="E-mail" value="<%= usuario.email %>"  class="form-control"/>
-              <p class="errorEmail erroresRegister"></p>
+              <input name="email" id="email" placeholder="E-mail" value="<%= locals.old && old.email ? old.email : usuario.email %>"  class="form-control"/>
+              <p class="errorEmail erroresRegister"><%= locals.errores && errores.email ? errores.email.msg : "" %></p>
             </div>
             <div class="form-group col-lg-6 col-md-10 ">
               <label for="nombre">Nombre</label>
-              <input type="text" name="nombre" required value="<%= usuario.nombre %>" class="form-control"/>
+              <input type="text" placeholder="Nombre" name="nombre" value="<%= locals.old && old.nombre ? old.nombre : usuario.nombre %>" class="form-control"/>
+              <p><%= locals.errores && errores.nombre ? errores.nombre.msg : "" %></p>
             </div>
             <div class="form-group col-lg-8 col-md-10 ">
               <label for="direccion">Dirección de entrega</label>
-              <input type="text" name="direccion" required value="<%= usuario.direccion %>" class="form-control"/>
+              <input type="text" name="direccion" placeholder="Dirección" value="<%= locals.old && old.direccion ? old.direccion : usuario.direccion %>" class="form-control"/>
+              <p><%= locals.errores && errores.direccion ? errores.direccion.msg : "" %></p>
             </div>
             <div class="form-group col-lg-6 col-md-10 ">
-              <label for="direccionRegister">teléfono (opcional)</label>
-              <input type="number" name="telefono" value="<%= usuario.telefono %>" class="form-control"/>
+              <label for="direccionRegister">Teléfono (opcional)</label>
+              <input type="number" name="telefono" value="<%= locals.old && old.telefono? old.telefono: usuario.telefono%>" class="form-control" placeholder="Teléfono"/>
             </div>
             <div class="form-group d-flex   claveBox col-lg-6 col-md-10 ">
               <label for="clave">Contraseña</label>
-              <input type="password" name="password" id="clave" placeholder="Contraseña"  class="form-control mx-2" value="" required/>
+              <input type="password" name="password" id="clave" placeholder="Contraseña" class="form-control mx-2"/>
+              <p><%= locals.errorPassword && errorPassword ? errorPassword : "" %></p>
             </div>
           
             <button type="submit" class="btn botones btnEditarGuardar mx-auto ">Guardar cambios</button>

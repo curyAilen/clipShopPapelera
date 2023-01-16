@@ -5,6 +5,7 @@ const Banner = db.Banner;
 const Voucher = db.Voucher;
 const Producto = db.Producto;
 const Ventas = db.Ventas;
+const { validationResult } = require("express-validator");
 
 let mainController = {
     main: (req, res) => {
@@ -98,16 +99,36 @@ let mainController = {
             })
     },
     crearVoucher: (req, res) => {
-        Voucher.findAll()
-            .then((voucher) => {
-                res.render("altaVoucher", {
-                    titulo: "Ingresar nuevo voucher",
-                    voucher: voucher
-                });
-            });
+        res.render("altaVoucher", {
+            titulo: "Ingresar nuevo voucher"
+        });
 
     },
-    altaVoucher: (req, res) => {
+    altaVoucher: async (req, res) => {
+        let voucherValidationResult = validationResult(req);
+
+        if (voucherValidationResult.errors.length > 0) {
+            return res.render("altaVoucher", {
+                titulo: "Ingresar nuevo voucher",
+                errores: voucherValidationResult.mapped(),
+                old: req.body
+            });
+        };
+
+        let nombreVoucherRepetido = await Voucher.findOne({
+            where: {
+                voucher: req.body.voucher
+            }
+        })
+
+        if (nombreVoucherRepetido) {
+            return res.render("altaVoucher", {
+                titulo: "Ingresar nuevo voucher",
+                errores: { voucher: { msg: "Ya existe un voucher con este nombre" } },
+                old: req.body
+            });
+        }
+
         Voucher.create({
             voucher: req.body.voucher,
             valor: req.body.valor,
@@ -126,7 +147,37 @@ let mainController = {
                 });
             })
     },
-    editedVoucher: (req, res) => {
+    editedVoucher: async (req, res) => {
+        const voucherEdited = await Voucher.findByPk(req.params.id)
+
+        let voucherValidationResult = validationResult(req);
+
+        if (voucherValidationResult.errors.length > 0) {
+            return res.render("editVoucher", {
+                titulo: "Edición de vouchers",
+                errores: voucherValidationResult.mapped(),
+                old: req.body,
+                voucher: voucherEdited
+            });
+        };
+
+        if (req.body.voucher != voucherEdited.voucher) {
+            let nombreVoucherRepetido = await Voucher.findOne({
+                where: {
+                    voucher: req.body.voucher
+                }
+            })
+    
+            if (nombreVoucherRepetido) {
+                return res.render("editVoucher", {
+                    titulo: "Edición de vouchers",
+                    errores: { voucher: { msg: "Ya existe un voucher con este nombre" } },
+                    old: req.body,
+                    voucher: voucherEdited
+                });
+            }
+        }
+
         Voucher.update({
             voucher: req.body.voucher,
             valor: req.body.valor,
@@ -171,7 +222,7 @@ let mainController = {
         const { idUsuarios } = res.locals.userLogged;
         const { products } = req.body;
         let comprobarVoucher = null;
-        
+
         if (req.body.voucher) {
             comprobarVoucher = await Voucher.findOne({ where: { voucher: req.body.voucher } });
         }
