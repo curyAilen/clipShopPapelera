@@ -3,7 +3,7 @@ const router = express.Router();
 const multer = require ('multer');
 const path = require ('path');
 const productoController = require('../controllers/productoController');
-
+const productValidation = require("../middlewares/productValidation");
 
 const storage = multer.diskStorage({
     destination: (req, file,cb)=>{
@@ -25,14 +25,14 @@ router.get('/etiquetas', productoController.buscadorEtiquetas);
 
 //Crear un producto nuevo 
 router.get('/altaProducto', productoController.crearProd);
-router.post('/altaProducto', upload.single('imgProd'), productoController.ingresaProducto);
+router.post('/altaProducto', upload.single('imgProd'), productValidation, productoController.ingresaProducto);
  
 //detalle productos
 router.get('/detalle/:id', productoController.detalleProducto);
 
 //Modificar Producto
 router.get('/editProducto/:id', productoController.edit);
-router.post('/editProducto/:id', upload.single('imgProd'),productoController.edited)
+router.post('/editProducto/:id', upload.single('imgProd'), productValidation, productoController.edited)
 
 //Borrar Producto
 router.delete('/:id', productoController.delete);

@@ -19,6 +19,10 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.STRING,
             allowNull: false
         },
+        subfiltro: {
+            type: dataTypes.STRING,
+            defaultValue: null
+        },
         precio: {
             type: dataTypes.DECIMAL(20, 2),
             allowNull: false

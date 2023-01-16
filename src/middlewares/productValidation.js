@@ -7,19 +7,31 @@ const productValidation = [
     .isLength({ min: 5 })
     .withMessage("Debes ingresar un mínimo de 5 caracteres"),
   body("categoria")
-    .notEmpty()
-    .withMessage("Debes  ingresar una categoria"),
-
+    .custom(value => {
+      return value != 0;
+    })
+    .withMessage("Debes ingresar una categoria"),
   body("precio")
   .notEmpty()
   .withMessage("El producto debe tener un precio"),
 
-  body('imagen')
+  body("filtro")
+  .notEmpty()
+  .withMessage("Debes agregar un filtro"),
+
+  body("subfiltro")
+  .notEmpty()
+  .withMessage("Debes agregar un subfiltro"),
+
+  body('imgProd')
   .custom((value, { req })=>{
-    //  console.log(req.file);
+      if (req.body.imagenOriginal && !req.file) {
+        return true;
+      };
+
       if (!req.file) {
-        throw new Error('Tenes que subir una imagen')
-      }
+        return false;
+      };
 
       if(req.file.mimetype === 'image/png' || req.file.mimetype === 'image/jpeg' || req.file.mimetype === 'image/jpg'){
           return '.png'; 

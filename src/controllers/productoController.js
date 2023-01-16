@@ -1,3 +1,4 @@
+const { validationResult } = require("express-validator");
 const db = require("../../database/models/");
 const Op = db.Sequelize.Op;
 const path = require("path");
@@ -142,7 +143,20 @@ let productoController = {
                 });
             });
     },
-    ingresaProducto: (req, res) => {
+    ingresaProducto: async (req, res) => {
+        let productValidation = validationResult(req);
+        
+        if (productValidation.errors.length > 0) {
+            const categorias = await categoria.findAll();
+
+            return res.render("altaProducto", {
+                titulo: "Ingresar nuevo producto",
+                categoria: categorias,
+                errores: productValidation.mapped(),
+                old: req.body
+            });
+        };
+        
         producto.create({
             nombre: req.body.nombre,
             FKidCategoria: req.body.categoria,
@@ -152,10 +166,8 @@ let productoController = {
             filtro: req.body.filtro,
             subfiltro: req.body.subfiltro
         }).then((newProducto) => {
-
             res.redirect("/tienda");
-        })
-
+        });
     },
     edit: (req, res) => {
         producto.findByPk(req.params.id, {
@@ -172,12 +184,28 @@ let productoController = {
                     });
             });
     },
-    edited: (req, res) => {
+    edited: async (req, res) => {
+        let productValidation = validationResult(req);
+
+        if (productValidation.errors.length > 0) {
+            const categorias = await categoria.findAll();
+            const product = await producto.findByPk(req.params.id, { include: [{ association: "categoria" }]}) 
+
+            return res.render("editProducto", {
+                titulo: "Ingresar nuevo producto",
+                categoria: categorias,
+                errores: productValidation.mapped(),
+                producto: product,
+                old: req.body
+            });
+        };
+        
         let imagen = req.body.imagenOriginal;
 
         if (req.file) {
             imagen = req.file.filename;
-        }
+        };
+
         producto.update({
             nombre: req.body.nombre,
             FKidCategoria: req.body.categoria,
@@ -185,18 +213,15 @@ let productoController = {
             descripcion: req.body.descripcion,
             imagen: imagen,
             oferta: req.body.oferta,
-            color: req.body.color,
-            peso: req.body.peso,
-            medida: req.body.medida
+            filtro: req.body.filtro,
+            subfiltro: req.body.subfiltro,
         }, {
             where: {
                 idProductos: req.params.id,
             },
         })
             .then((prod) => {
-
                 res.redirect("/tienda");
-
             })
     },
     delete: (req, res) => {

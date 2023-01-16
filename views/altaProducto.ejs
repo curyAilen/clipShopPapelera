@@ -6,57 +6,88 @@
         <%- include ( './partials/header' ); %>
             <%- include ( './partials/contacto' ); %>
                 <% if (locals.userLogged) { %>
-                    <% if (locals.userLogged.rol == "admin") { %>
+                    <% if (locals.userLogged.rol=="admin" ) { %>
 
 
-                        <form action="/tienda/altaProducto" method="post" enctype="multipart/form-data" id="formularioAltaProducto">
+                        <form action="/tienda/altaProducto" method="post" enctype="multipart/form-data"
+                            id="formularioAltaProducto">
                             <h2 class="tituloAlta">Alta de producto</h2>
                             <div class="row justify-content-between">
                                 <div class="form-group col-6">
                                     <label for="nombre">Nombre Producto</label>
-                                    <input type="text" id="nombre" class="nombre form-control" name="nombre" min="3" max="35" value="Cuadrado Rosa">
+                                    <input type="text" id="nombre" class="nombre form-control" name="nombre" min="5"
+                                        max="35" value="<%= locals.old && old.nombre ? old.nombre : "" %>">
+                                    <p>
+                                        <%= locals.errores && errores.nombre ? errores.nombre.msg : "" %>
+                                    </p>
                                 </div>
                                 <div class="form-group col-6">
                                     <label for="precio">Precio del Producto</label>
-                                    <input type="number" id="precio" class="precio form-control" name="precio" value="12458">
+                                    <input type="number" id="precio" class="precio form-control" name="precio"
+                                        value="<%= locals.old && old.precio ? old.precio : "" %>">
+                                    <p>
+                                        <%= locals.errores && errores.precio ? errores.precio.msg : "" %>
+                                    </p>
                                 </div>
                                 <div class="form-group col-6">
                                     <label for="categoria">Categorias</label>
                                     <select class="form-control" id="categoria" name="categoria">
-          <% for(let i=0; i< categoria.length; i++) { %>
-          <option value="<%= categoria[i].idCategorias %>"><%= categoria[i].nombreCategoria %> </option>
-          <% } %>
-        </select>
+                                        <option value="0">Elige una categoria</option>
+                                        <% for(let i=0; i< categoria.length; i++) { %>
+                                            <option value="<%= categoria[i].idCategorias %>" <%=locals.old &&
+                                                old.categoria && old.categoria==categoria[i].idCategorias ? "selected"
+                                                : "" %>><%= categoria[i].nombreCategoria %>
+                                            </option>
+                                            <% } %>
+                                    </select>
+                                    <p>
+                                        <%= locals.errores && errores.categoria ? errores.categoria.msg : "" %>
+                                    </p>
+
                                 </div>
                                 <div class="form-group  col-6">
                                     <p>Es una oferta</p>
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input switch" type="checkbox" role="switch" id="slideOferta" name="oferta" aria-checked="true" value="0">
+                                        <input class="form-check-input switch" type="checkbox" role="switch"
+                                            id="slideOferta" name="oferta" aria-checked="true" <%=locals.old &&
+                                            old.oferta && old.oferta=="1" ? "checked" : "" %>>
                                         <label class="form-check-label" for="slideOferta">¿Es una oferta?</label>
                                     </div>
                                 </div>
-
                                 <div class="form-group row justify-content-around">
 
                                     <div class="form-group col-3 px-2 ">
-                                        <label for="color">filtro</label>
-                                        <input type="text" name="color" class="form-control" value="Rosa">
+                                        <label for="filtro">filtro</label>
+                                        <input type="text" name="filtro" class="form-control"
+                                            value="<%= locals.old && old.filtro ? old.filtro : "" %>">
+                                            <p>
+                                                <%= locals.errores && errores.filtro ? errores.filtro.msg : "" %>
+                                            </p>
                                     </div>
                                     <div class="form-group col-3 px-2">
-                                        <label for="peso">subFiltro</label>
-                                        <input type="number" value="2.5" name="peso" class="form-control">
+                                        <label for="subfiltro">subFiltro</label>
+                                        <input type="text" value="<%= locals.old && old.subfiltro? old.subfiltro: "" %>"
+                                            name="subfiltro" class="form-control">
+                                            <p>
+                                                <%= locals.errores && errores.subfiltro ? errores.subfiltro.msg : "" %>
+                                            </p>
                                     </div>
                                 </div>
                                 <div class="form-group ">
                                     <label for="imgProd">Imagen de Producto</label>
-                                    <input type="file" class="form-control-file" name="imgProd" accept="image/png, image/jpeg">
+                                    <input type="file" class="form-control-file" name="imgProd"
+                                        accept="image/png, image/jpeg">
+                                    <p>
+                                        <%= locals.errores && errores.imgProd ? errores.imgProd.msg : "" %>
+                                    </p>
                                 </div>
                                 <button class="btn botones " id="altaPedidoBtn" type="submit">CREAR</button>
                             </div>
                         </form>
 
                         <%}else{%>
-                            <h3 class="text-center my-5">Usted no posee credenciales validas para acceder a esta sección.</h3>
+                            <h3 class="text-center my-5">Usted no posee credenciales validas para acceder a esta
+                                sección.</h3>
 
                             <%}}%>
 
