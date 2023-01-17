@@ -147,7 +147,6 @@ botonComprar.addEventListener("click", (e) => {
     e.preventDefault();
 
     if (products.length > 0) {
-
         let input = document.querySelector(".inputVoucher");
         let voucher = String(input.value);
 
@@ -157,6 +156,30 @@ botonComprar.addEventListener("click", (e) => {
 
         if (voucher) data.voucher = voucher;
 
+        fetch("/carrito/preferencia", {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }})
+            .then((response) => response.json())
+            .then(preference => {
+                const mp = new MercadoPago('TEST-0ea89e47-c3f0-438d-94d4-0f22159c186c', {
+                    locale: 'es-AR'
+                  });
+                
+                  mp.checkout({
+                    preference: {
+                      id: preference.global
+                    },
+                    render: {
+                      container: '.cho-container',
+                      label: 'Pagar',
+                    }
+                  });
+                  botonComprar.style.display = "none";
+            });
+        /*
         fetch("/carrito/comprar", {
             method: 'POST',
             body: JSON.stringify(data),
@@ -182,12 +205,12 @@ botonComprar.addEventListener("click", (e) => {
                     });
                 }
             })
-            .catch(error => console.error('Error:', error))
+            .catch(error => console.error('Error:', error))*/
     } else {
         VanillaToasts.create({
             title: 'Tu carrito esta vacio!',
             type: "error",
             timeout: 5000
-        });
-    }
+        })
+    };
 });

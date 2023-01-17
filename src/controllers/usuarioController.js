@@ -16,7 +16,6 @@ let usuarioController = {
         let errores = validationResult(req);
 
         if (errores.isEmpty()) {
-
             let passwordEncriptada = bcrypt.hashSync(req.body.password, 10);
 
             let userID = Usuarios.create({

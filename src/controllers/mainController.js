@@ -6,6 +6,7 @@ const Voucher = db.Voucher;
 const Producto = db.Producto;
 const Ventas = db.Ventas;
 const { validationResult } = require("express-validator");
+const { mercadopago } = require("../../mercadopago");
 
 let mainController = {
     main: (req, res) => {
@@ -234,6 +235,7 @@ let mainController = {
         }
 
         products.forEach((product) => {
+
             let { idProductos, precio, cantidad } = product;
             let importe = precio * cantidad;
 
@@ -254,6 +256,38 @@ let mainController = {
 
         })
     },
+
+    preferencia: async (req, res) => {
+        const { products } = req.body;
+        let comprobarVoucher = null;
+
+        if (req.body.voucher) {
+            comprobarVoucher = await Voucher.findOne({ where: { voucher: req.body.voucher } });
+        };
+
+        let preference = {
+            items: []
+        };
+
+        products.forEach((product) => {
+            preference.items.push({
+                title: product.nombre,
+                unit_price: Number(product.precio),
+                quantity: Number(product.cantidad)
+            });
+        });
+
+        mercadopago.preferences
+            .create(preference)
+            .then((response) => {
+                res.json({
+                    global: response.body.id
+                });
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
 }
 
 module.exports = mainController;
