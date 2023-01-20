@@ -3,12 +3,12 @@
         <form action="/tienda" method="get" enctype="multipart/form-data" class="row  estiloDeCaja py-4">
             <div class="form-group col-4">
                 <label for="producto">Buscar por nombre de producto</label>
-                <input class="form-control" type="text" placeholder="producto" name="buscar" />
+                <input class="form-control buscadortitulo" type="text" placeholder="producto" name="buscar" />
             </div>
 
             <div class="form-group col-4">
                 <label for="categoria">Categorias</label>
-                <select class="form-control" id="categoria" name="buscarCategoria">
+                <select class="form-control categorias" id="categoria" name="buscarCategoria">
                     <option value="" selected>Elija una categoria</option>
                     <% for(let i=0; i< categoria.length; i++) { %>
                         <option value="<%= categoria[i].idCategorias %>">
@@ -18,17 +18,9 @@
                 </select>
             </div>
 
-            <div class="form-group col-4">
+            <div class="form-group col-4 filtros">
                 <label for="filtro">Filtros</label>
-                <select class="form-control" id="categoria" name="buscarFiltro">
-                    <option value="" selected>Elija un filtro</option>                   
-                    <% for(let i=0; i< producto.length; i++) { %>
-                        <%   if(producto[i].FKidCategoria == 4){ %>
-                        <option value="<%= producto[i].filtro %>">
-                            <%= producto[i].filtro %>
-                        </option>
-                        <% } %>
-                    <% } %>
+                <select class="form-control filtrosselect" id="categoria" name="buscarFiltro">
                 </select>
             </div>
             <div class="row">

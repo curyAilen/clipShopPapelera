@@ -15,14 +15,6 @@ const productValidation = [
   .notEmpty()
   .withMessage("El producto debe tener un precio"),
 
-  body("filtro")
-  .notEmpty()
-  .withMessage("Debes agregar un filtro"),
-
-  body("subfiltro")
-  .notEmpty()
-  .withMessage("Debes agregar un subfiltro"),
-
   body('imgProd')
   .custom((value, { req })=>{
       if (req.body.imagenOriginal && !req.file) {

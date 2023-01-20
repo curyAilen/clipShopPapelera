@@ -7,6 +7,7 @@ const Producto = db.Producto;
 const Ventas = db.Ventas;
 const { validationResult } = require("express-validator");
 const { mercadopago } = require("../../mercadopago");
+const config = require("../../config");
 
 let mainController = {
     main: (req, res) => {
@@ -258,6 +259,7 @@ let mainController = {
     },
 
     preferencia: async (req, res) => {
+        const user = res.locals.userLogged;
         const { products } = req.body;
         let comprobarVoucher = null;
 
@@ -266,16 +268,37 @@ let mainController = {
         };
 
         let preference = {
-            items: []
+            items: [],
+            back_urls: {
+                success: `${config.main.url}/feedback`,
+                failure: `${config.main.url}/feedback`,
+                pending: `${config.main.url}/feedback`
+            },
+
         };
 
-        products.forEach((product) => {
-            preference.items.push({
-                title: product.nombre,
-                unit_price: Number(product.precio),
-                quantity: Number(product.cantidad)
+        if (user.telefono) {
+            preference.payer.phone = user.telefono;
+        }
+
+        if (comprobarVoucher) {
+            products.forEach((product) => {
+                let unit_price = product.precio - (product.precio * (Number(comprobarVoucher.valor) / 100));
+                preference.items.push({
+                    title: product.nombre,
+                    unit_price,
+                    quantity: Number(product.cantidad)
+                });
             });
-        });
+        } else {
+            products.forEach((product) => {
+                preference.items.push({
+                    title: product.nombre,
+                    unit_price: Number(product.precio),
+                    quantity: Number(product.cantidad)
+                });
+            });
+        }
 
         mercadopago.preferences
             .create(preference)
@@ -287,6 +310,9 @@ let mainController = {
             .catch((error) => {
                 console.log(error);
             });
+    },
+    feedback: (req, res) => {
+        console.log(req.query);
     }
 }
 

@@ -1,87 +1,97 @@
 <%- include ( './partials/head' ); %>
-<link rel="stylesheet" href="/css/formularios.css">
-<link rel="stylesheet" href="/css/detalleProducto.css">
-</head>
+  <link rel="stylesheet" href="/css/formularios.css">
+  <link rel="stylesheet" href="/css/detalleProducto.css">
+  </head>
 
-<body class="container-fluid">
-  <%- include ( './partials/header' ); %>
-  <%- include ( './partials/contacto' ); %>
-  <% if (locals.userLogged) { %>   
-    <% if (locals.userLogged.rol == "admin") { %>                                
-       
-      
-  <form action="/tienda/editProducto/<%= producto.idProductos%>" method="POST" enctype="multipart/form-data" id="formularioEditProducto">
-    <div class="row justify-content-between editarProductoCaja">
-
-      <h2 class="tituloEdit col-12">Modificación de producto</h2>
-      <div class="form-group col-4">
-        <label for="nombreProductoEdit">Nombre Producto</label>
-        <input type="text" id="nombreProductoEdit" class="nombreProductoEdit form-control" name="nombre" min="3" max="35" value="<%= locals.old && old.nombre ? old.nombre : producto.nombre%>">
-        <p><%= locals.errores && errores.nombre ? errores.nombre.msg : "" %></p>
-      </div>
-      <div class="form-group col-4">
-        <label for="precioProductoEdit">Precio del Producto</label>
-        <input type="number" id="precioProductoEdit" class="precioProductoEdit form-control" name="precio" value="<%= locals.old && old.precio ? old.precio : producto.precio%>">
-        <p><%= locals.errores && errores.precio ? errores.precio.msg : "" %></p>
-      </div>
-      <div class="form-group col-4">
-        <label for="categoria">Categorias</label>
-        <select class="form-control" id="categoria" name="categoria">
-          <option value="0">Elige una categoria</option>
-          <% for(let i=0; i< categoria.length; i++) { %>
-          <option <%= locals.producto && producto.FKidCategoria == categoria[i].idCategorias ? "selected" : ""  %>  value="<%= categoria[i].idCategorias %>"><%= categoria[i].nombreCategoria %> </option>
-          <% } %>
-        </select>
-        <p><%= locals.errores && errores.categoria ? errores.categoria.msg : "" %></p>
-      </div>
-      <div class="form-group  col-6">
-        <label for="oferta">¿Es una oferta?</label>
-        <p>Recorda que en todos los formularios automaticamente los productos no estaran en oferta</p>
-        <select name="oferta" id="oferta" class="form-control text-center col-3">
-        <option value="0" >No</option>
-        <option value="1" <%= producto.oferta && producto.oferta == 1 ? "selected" : ""  %>>Si</option>
-      </select>
-      </div>
-      <div class="form-group col-4">
-        <div class="form-group row justify-content-around">
-
-          <div class="form-group">
-            <label for="filtro">Filtro</label>
-            <input type="text" name="filtro" class="form-control" value="<%= locals.old && old.filtro ? old.filtro : producto.filtro%>">
-            <p><%= locals.errores && errores.filtro ? errores.filtro.msg : "" %></p>
-          </div>
-          <div class="form-group">
-            <label for="subfiltro">Subfiltro</label>
-            <input type="text" value="<%= locals.old && old.subfiltro ? old.subfiltro : producto.subfiltro %>" name="subfiltro" class="form-control">
-            <p><%= locals.errores && errores.subfiltro ? errores.subfiltro.msg : "" %></p>
-          </div>
-        </div>
-      </div>
-      <div class="form-group  col-6 contenedorImgInput">
-        <label for="imagen">Imagen del producto:</label>
-        <img style="max-width: 100%;" class="imagenProducto " src="/images/imgProd/<%=producto.imagen%>">
-        <input style="max-width: 100%;" type="file" name="imgProd" id="imagen" accept="image/png, image/jpeg" <% if(typeof producto.imagen=='undefined' ) {%> required <%}%>/>
-                  <label for="imagen" style="color: red;" class="errorImagen errorescreate"></label>
-                  <% if(typeof producto.imagen !='undefined' ) {%> <input type="hidden" name="imagenOriginal" value="<%= producto.imagen%>">
-        <%}%>
-        <p><%= locals.errores && errores.imgProd ? errores.imgProd.msg : "" %></p>
-            </div>   
-          </div>
-          <div class="row botonesDelEditor t-right">
-            <button class="btn botones col-4 my-auto" id="EditPedidoBtn" type="submit">Editar</button>     
-
-          </div> 
-        </form>   
-
-    <form action="/tienda/<%= producto.idProductos %>?_method=DELETE" method="post" class=" botonesDelEditor">
-        <button class="mt-3 my-auto guardar botoneEliminar botones btn col-4">Eliminar <i class="fas fa-trash-alt iconos"></i></button>
-  </form>
-  <%}else{%>
-    
-    <h3  class="text-center my-5">Usted no puede acceder a esta sección. </h3>
-    
-    <% }}%>
+  <body class="container-fluid">
+    <%- include ( './partials/header' ); %>
+      <%- include ( './partials/contacto' ); %>
+        <% if (locals.userLogged) { %>
+          <% if (locals.userLogged.rol=="admin" ) { %>
 
 
+            <form action="/tienda/editProducto/<%= producto.idProductos%>" method="POST" enctype="multipart/form-data"
+              id="formularioEditProducto">
+              <div class="row justify-content-between editarProductoCaja">
 
-  <%- include ( './partials/footer' ); %>
+                <h2 class="tituloEdit col-12">Modificación de producto</h2>
+                <div class="form-group col-4">
+                  <label for="nombreProductoEdit">Nombre Producto</label>
+                  <input type="text" id="nombreProductoEdit" class="nombreProductoEdit form-control" name="nombre"
+                    min="3" max="35" value="<%= locals.old && old.nombre ? old.nombre : producto.nombre%>">
+                  <p>
+                    <%= locals.errores && errores.nombre ? errores.nombre.msg : "" %>
+                  </p>
+                </div>
+                <div class="form-group col-4">
+                  <label for="precioProductoEdit">Precio del Producto</label>
+                  <input type="number" id="precioProductoEdit" class="precioProductoEdit form-control" name="precio"
+                    value="<%= locals.old && old.precio ? old.precio : producto.precio%>">
+                  <p>
+                    <%= locals.errores && errores.precio ? errores.precio.msg : "" %>
+                  </p>
+                </div>
+                <div class="form-group col-4">
+                  <label for="categoria">Categorias</label>
+                  <select class="form-control categorias" id="categoria" name="categoria">
+                    <option value="0">Elige una categoria</option>
+                    <% for(let i=0; i< categoria.length; i++) { %>
+                      <option <%=locals.producto && producto.FKidCategoria==categoria[i].idCategorias ? "selected" : ""
+                        %> value="<%= categoria[i].idCategorias %>"><%= categoria[i].nombreCategoria %>
+                      </option>
+                      <% } %>
+                  </select>
+                  <p>
+                    <%= locals.errores && errores.categoria ? errores.categoria.msg : "" %>
+                  </p>
+                </div>
+                <div class="form-group  col-6">
+                  <label for="oferta">¿Es una oferta?</label>
+                  <p>Recorda que en todos los formularios automaticamente los productos no estaran en oferta</p>
+                  <select name="oferta" id="oferta" class="form-control text-center col-3">
+                    <option value="0">No</option>
+                    <option value="1" <%=producto.oferta && producto.oferta==1 ? "selected" : "" %>>Si</option>
+                  </select>
+                </div>
+                <div class="form-group col-4">
+                  <div class="form-group row justify-content-around">
+
+                    <div class="form-group filtros">
+                      <label for="filtro">filtro</label>
+                      <select name="filtro" class="form-control filtrosselect">
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group  col-6 contenedorImgInput">
+                    <label for="imagen">Imagen del producto:</label>
+                    <img style="max-width: 100%;" class="imagenProducto " src="/images/imgProd/<%=producto.imagen%>">
+                    <input style="max-width: 100%;" type="file" name="imgProd" id="imagen"
+                      accept="image/png, image/jpeg" <% if(typeof producto.imagen=='undefined' ) {%> required <%}%>/>
+                      <label for="imagen" style="color: red;" class="errorImagen errorescreate"></label>
+                      <% if(typeof producto.imagen !='undefined' ) {%> <input type="hidden" name="imagenOriginal"
+                          value="<%= producto.imagen%>">
+                        <%}%>
+                          <p>
+                            <%= locals.errores && errores.imgProd ? errores.imgProd.msg : "" %>
+                          </p>
+                  </div>
+                </div>
+                <div class="row botonesDelEditor t-right">
+                  <button class="btn botones col-4 my-auto" id="EditPedidoBtn" type="submit">Editar</button>
+
+                </div>
+            </form>
+
+            <form action="/tienda/<%= producto.idProductos %>?_method=DELETE" method="post" class=" botonesDelEditor">
+              <button class="mt-3 my-auto guardar botoneEliminar botones btn col-4">Eliminar <i
+                  class="fas fa-trash-alt iconos"></i></button>
+            </form>
+            <%}else{%>
+
+              <h3 class="text-center my-5">Usted no puede acceder a esta sección. </h3>
+
+              <% }}%>
+
+                <script src="/js/buscador.js"></script>
+
+                <%- include ( './partials/footer' ); %>

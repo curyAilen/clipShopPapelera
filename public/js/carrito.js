@@ -164,7 +164,7 @@ botonComprar.addEventListener("click", (e) => {
             }})
             .then((response) => response.json())
             .then(preference => {
-                const mp = new MercadoPago('TEST-0ea89e47-c3f0-438d-94d4-0f22159c186c', {
+                const mp = new MercadoPago('TEST-5b97cd5b-d571-45f8-96e7-ccdb2f8411ba', {
                     locale: 'es-AR'
                   });
                 
@@ -174,7 +174,7 @@ botonComprar.addEventListener("click", (e) => {
                     },
                     render: {
                       container: '.cho-container',
-                      label: 'Pagar',
+                      label: 'Pagar con MercadoPago',
                     }
                   });
                   botonComprar.style.display = "none";

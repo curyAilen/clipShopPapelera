@@ -3,6 +3,9 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 module.exports = {
+    main: {
+        url: "http://localhost:3000"
+    },
     nodemailer: {
         email: process.env.GMAIL,
         password: process.env.GMAIL_APP_PASS

@@ -10,48 +10,38 @@ const categoria = db.Categoria;
 
 let productoController = {
     mostrarTienda: (req, res) => {
-        let buscar = req.query.buscar;
-        let buscarCategoria = req.query.buscarCategoria;
+        const { buscar, buscarCategoria: categorias, buscarFiltro: filtro } = req.query;
 
-        if ((buscar != "" && buscar != undefined) || (buscarCategoria != undefined && buscarCategoria != "")) {
+        let where = {};
 
-            producto.findAll({
-                include: [{ association: "categoria" }],
-                where: {
-                    nombre: {
-                        [Op.like]: `%${buscar}%`
-                    },
-                    FKidCategoria: {
-                        [Op.like]: `%${buscarCategoria}%`
-                    }
-                }
-            })
-                .then((producto) => {
-                    categoria.findAll()
-                        .then((categoria) => {
-                            res.render('tienda', {
-                                titulo: 'Listado de productos',
-                                css: 'estiloListado.css',
-                                producto: producto,
-                                categoria: categoria
-                            })
+        where.nombre = {
+            [Op.like]: `%${buscar || ""}%`
+        };
+
+        if (categorias) {
+            where.FKidCategoria = {
+                [Op.like]: `%${categorias}%`
+            };
+        };
+
+        if (filtro) {
+            where.filtro = filtro;
+        };
+
+        producto.findAll({
+            include: [{ association: "categoria" }], where
+        })
+            .then((producto) => {
+                categoria.findAll()
+                    .then((categoria) => {
+                        res.render('tienda', {
+                            titulo: 'Listado de productos',
+                            css: 'estiloListado.css',
+                            producto: producto,
+                            categoria: categoria
                         })
-                })
-        } else {
-            categoria.findAll()
-                .then((categoria) => {
-                    producto.findAll({
-                        include: [{ association: "categoria" }],
                     })
-                        .then((producto) => {
-                            res.render("tienda", {
-                                nombre: "Producto",
-                                producto: producto,
-                                categoria: categoria
-                            });
-                        })
-                })
-        }
+            });
     },
 
     buscadorEmbalaje: (req, res) => {
@@ -144,8 +134,10 @@ let productoController = {
             });
     },
     ingresaProducto: async (req, res) => {
+
+        console.log(req.body);
         let productValidation = validationResult(req);
-        
+
         if (productValidation.errors.length > 0) {
             const categorias = await categoria.findAll();
 
@@ -156,15 +148,14 @@ let productoController = {
                 old: req.body
             });
         };
-        
+
         producto.create({
             nombre: req.body.nombre,
             FKidCategoria: req.body.categoria,
             precio: req.body.precio,
             imagen: req.file.filename,
             oferta: req.body.oferta,
-            filtro: req.body.filtro,
-            subfiltro: req.body.subfiltro
+            filtro: req.body.filtro
         }).then((newProducto) => {
             res.redirect("/tienda");
         });
@@ -189,7 +180,7 @@ let productoController = {
 
         if (productValidation.errors.length > 0) {
             const categorias = await categoria.findAll();
-            const product = await producto.findByPk(req.params.id, { include: [{ association: "categoria" }]}) 
+            const product = await producto.findByPk(req.params.id, { include: [{ association: "categoria" }] })
 
             return res.render("editProducto", {
                 titulo: "Ingresar nuevo producto",
@@ -199,7 +190,7 @@ let productoController = {
                 old: req.body
             });
         };
-        
+
         let imagen = req.body.imagenOriginal;
 
         if (req.file) {
@@ -213,8 +204,7 @@ let productoController = {
             descripcion: req.body.descripcion,
             imagen: imagen,
             oferta: req.body.oferta,
-            filtro: req.body.filtro,
-            subfiltro: req.body.subfiltro,
+            filtro: req.body.filtro
         }, {
             where: {
                 idProductos: req.params.id,
