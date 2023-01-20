@@ -259,7 +259,6 @@ let mainController = {
     },
 
     preferencia: async (req, res) => {
-        const user = res.locals.userLogged;
         const { products } = req.body;
         let comprobarVoucher = null;
 
@@ -274,13 +273,9 @@ let mainController = {
                 failure: `${config.main.url}/feedback`,
                 pending: `${config.main.url}/feedback`
             },
-
         };
 
-        if (user.telefono) {
-            preference.payer.phone = user.telefono;
-        }
-
+        let precioTotal = 0;
         if (comprobarVoucher) {
             products.forEach((product) => {
                 let unit_price = product.precio - (product.precio * (Number(comprobarVoucher.valor) / 100));
@@ -289,7 +284,24 @@ let mainController = {
                     unit_price,
                     quantity: Number(product.cantidad)
                 });
+                precioTotal += unit_price * Number(product.cantidad);
             });
+
+            mercadopago.preferences
+                .create(preference)
+                .then((response) => {
+                    res.json({
+                        global: response.body.id,
+                        data: {
+                            descuento: comprobarVoucher.valor,
+                            total: precioTotal
+                        }
+                    });
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+
         } else {
             products.forEach((product) => {
                 preference.items.push({
@@ -297,19 +309,23 @@ let mainController = {
                     unit_price: Number(product.precio),
                     quantity: Number(product.cantidad)
                 });
+                precioTotal += Number(product.precio) * Number(product.cantidad);
             });
-        }
 
-        mercadopago.preferences
-            .create(preference)
-            .then((response) => {
-                res.json({
-                    global: response.body.id
+            mercadopago.preferences
+                .create(preference)
+                .then((response) => {
+                    res.json({
+                        global: response.body.id,
+                        data: {
+                            total: precioTotal
+                        }
+                    });
+                })
+                .catch((error) => {
+                    console.log(error);
                 });
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        }
     },
     feedback: (req, res) => {
         console.log(req.query);

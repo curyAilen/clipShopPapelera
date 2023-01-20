@@ -177,7 +177,8 @@ botonComprar.addEventListener("click", (e) => {
                       label: 'Pagar con MercadoPago',
                     }
                   });
-                  botonComprar.style.display = "none";
+
+                  mostrarPago(products, preference.data.total, preference.data.descuento);
             });
         /*
         fetch("/carrito/comprar", {
@@ -214,3 +215,20 @@ botonComprar.addEventListener("click", (e) => {
         })
     };
 });
+
+const mostrarPago = (products, total, descuento) => {
+    let pieCarrito = document.querySelector("#pieCarrito");
+    pieCarrito.innerHTML = `
+        <div class="cuenta">
+            <button class="button-volver" onClick="refresh()">Volver</button>
+            <h4>Cantidad de productos: ${products.length}</h4>
+            ${descuento ? `<h4>Descuento: ${descuento}%</h4>` : ""}
+            <h3>Total: $${total}</h3>
+            <div class="cho-container"></div>
+        </div>
+    `
+};
+
+const refresh = () => {
+    document.location.reload();
+}
