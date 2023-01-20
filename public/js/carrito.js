@@ -143,6 +143,19 @@ botonVerificarVoucher.addEventListener("click", (e) => {
 
 const botonComprar = document.querySelector(".botonComprar");
 
+const mostrarPago = (products, total, descuento) => {
+    let pieCarrito = document.querySelector("#pieCarrito");
+    pieCarrito.innerHTML = `
+        <div class="cuenta">
+            <button class="button-volver" onClick="refresh()">Volver</button>
+            <h4>Cantidad de productos: ${products.length}</h4>
+            ${descuento ? `<h4>Descuento: ${descuento}%</h4>` : ""}
+            <h3>Total: $${total}</h3>
+            <div class="cho-container"></div>
+        </div>
+    `
+};
+
 botonComprar.addEventListener("click", (e) => {
     e.preventDefault();
 
@@ -161,52 +174,39 @@ botonComprar.addEventListener("click", (e) => {
             body: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json'
-            }})
+            }
+        })
             .then((response) => response.json())
             .then(preference => {
-                const mp = new MercadoPago('TEST-5b97cd5b-d571-45f8-96e7-ccdb2f8411ba', {
+                const mp = new MercadoPago('APP_USR-fc1abf29-6c18-45f9-9c3c-e04248810247', {
                     locale: 'es-AR'
-                  });
-                
-                  mp.checkout({
+                });
+
+                mp.checkout({
                     preference: {
-                      id: preference.global
+                        id: preference.global
                     },
                     render: {
-                      container: '.cho-container',
-                      label: 'Pagar con MercadoPago',
+                        container: '.cho-container',
+                        label: 'Pagar con MercadoPago',
                     }
-                  });
+                });
 
-                  mostrarPago(products, preference.data.total, preference.data.descuento);
-            });
-        /*
-        fetch("/carrito/comprar", {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(res => res.json())
-            .then(response => {
-                if (response) {
-                    VanillaToasts.create({
-                        title: 'Comprado!',
-                        text: "Tu compra se ha realizado con exito",
-                        type: "success",
-                        timeout: 5000
-                    });
-                    vaciarCarrito();
-                } else {
-                    VanillaToasts.create({
-                        title: 'Error',
-                        text: "Parece que algo salio mal en tu compra",
-                        type: "error",
-                        timeout: 5000
-                    });
-                }
+                mostrarPago(products, preference.data.total, preference.data.descuento);
             })
-            .catch(error => console.error('Error:', error))*/
+            .then(() => {
+                fetch("/carrito/comprar", {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(() => {
+                        console.log("Compra registrada");
+                    })
+                    .catch(error => console.error('Error:', error))
+            })
     } else {
         VanillaToasts.create({
             title: 'Tu carrito esta vacio!',
@@ -215,19 +215,6 @@ botonComprar.addEventListener("click", (e) => {
         })
     };
 });
-
-const mostrarPago = (products, total, descuento) => {
-    let pieCarrito = document.querySelector("#pieCarrito");
-    pieCarrito.innerHTML = `
-        <div class="cuenta">
-            <button class="button-volver" onClick="refresh()">Volver</button>
-            <h4>Cantidad de productos: ${products.length}</h4>
-            ${descuento ? `<h4>Descuento: ${descuento}%</h4>` : ""}
-            <h3>Total: $${total}</h3>
-            <div class="cho-container"></div>
-        </div>
-    `
-};
 
 const refresh = () => {
     document.location.reload();

@@ -269,9 +269,9 @@ let mainController = {
         let preference = {
             items: [],
             back_urls: {
-                success: `${config.main.url}/feedback`,
-                failure: `${config.main.url}/feedback`,
-                pending: `${config.main.url}/feedback`
+                success: `${config.main.url}/tienda`,
+                failure: `${config.main.url}/tienda`,
+                pending: `${config.main.url}/tienda`
             },
         };
 
@@ -326,9 +326,6 @@ let mainController = {
                     console.log(error);
                 });
         }
-    },
-    feedback: (req, res) => {
-        console.log(req.query);
     }
 }
 
