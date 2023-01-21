@@ -269,9 +269,9 @@ let mainController = {
         let preference = {
             items: [],
             back_urls: {
-                success: `${config.main.url}/tienda`,
-                failure: `${config.main.url}/tienda`,
-                pending: `${config.main.url}/tienda`
+                success: `${config.main.url}/carrito`,
+                failure: `${config.main.url}/carrito`,
+                pending: `${config.main.url}/carrito`
             },
         };
 

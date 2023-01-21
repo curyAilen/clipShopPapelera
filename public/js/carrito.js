@@ -109,6 +109,14 @@ const vaciarCarrito = () => {
     mostrarCarrito();
 };
 
+const urlSearchParams = new URLSearchParams(window.location.search);
+const params = Object.fromEntries(urlSearchParams.entries());
+
+if (params.status && params.status == "approved") {
+    vaciarCarrito();
+    location.replace('localhost:3000/carrito');
+};
+
 mostrarCarrito();
 
 
