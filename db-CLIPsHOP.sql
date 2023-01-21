@@ -1,6 +1,6 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Versión del servidor:         10.4.17-MariaDB - mariadb.org binary distribution
+-- Versión del servidor:         10.4.27-MariaDB - mariadb.org binary distribution
 -- SO del servidor:              Win64
 -- HeidiSQL Versión:             12.1.0.6537
 -- --------------------------------------------------------
@@ -16,7 +16,7 @@
 
 
 -- Volcando estructura de base de datos para clipshop
-CREATE DATABASE IF NOT EXISTS `clipshop` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+CREATE DATABASE IF NOT EXISTS `clipshop` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 USE `clipshop`;
 
 -- Volcando estructura para tabla clipshop.banners
@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `banners` (
   `idBanners` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `banner` varchar(155) NOT NULL DEFAULT '0',
   PRIMARY KEY (`idBanners`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla clipshop.banners: ~2 rows (aproximadamente)
 INSERT INTO `banners` (`idBanners`, `banner`) VALUES
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `categorias` (
   `idCategorias` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `nombreCategoria` varchar(155) NOT NULL,
   PRIMARY KEY (`idCategorias`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla clipshop.categorias: ~4 rows (aproximadamente)
 INSERT INTO `categorias` (`idCategorias`, `nombreCategoria`) VALUES
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `codigopostal` (
   `comuna` int(11) NOT NULL,
   `cp` int(10) unsigned NOT NULL,
   PRIMARY KEY (`idCodPost`)
-) ENGINE=InnoDB AUTO_INCREMENT=627 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=627 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla clipshop.codigopostal: ~626 rows (aproximadamente)
 INSERT INTO `codigopostal` (`idCodPost`, `barrio`, `comuna`, `cp`) VALUES
@@ -695,50 +695,80 @@ CREATE TABLE IF NOT EXISTS `productos` (
   PRIMARY KEY (`idProductos`),
   KEY `FKidCategorias` (`FKidCategoria`),
   CONSTRAINT `FKidCategorias` FOREIGN KEY (`FKidCategoria`) REFERENCES `categorias` (`idCategorias`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=528 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=603 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla clipshop.productos: ~40 rows (aproximadamente)
+-- Volcando datos para la tabla clipshop.productos: ~70 rows (aproximadamente)
 INSERT INTO `productos` (`idProductos`, `nombre`, `FKidCategoria`, `filtro`, `precio`, `oferta`, `imagen`) VALUES
-	(458, 'Film Stretch Transparente- Rollo de 50 cm/2,5 kg', 1, 'film stretch', 0.00, 1, 'Producto1669646038787.jpg'),
-	(459, 'Film Stretch Negro- Rollo de 50 cm/2,5 kg', 1, 'film stretch', 0.00, 0, 'Producto1669646038787.jpg'),
-	(460, 'Film Stretch Verde- Rollo de 50 cm/2,5 kg', 1, 'film stretch', 0.00, 0, 'Producto1669646038787.jpg'),
-	(461, 'Film Stretch Azul- Rollo de 50 cm/2,5 kg', 1, 'film stretch', 0.00, 1, 'Producto1669646038787.jpg'),
-	(462, 'Film Stretch Rojo- Rollo de 50 cm/2,5 kg', 1, 'film stretch', 0.00, 1, 'Producto1669646038787.jpg'),
-	(463, 'Film Stretch Transparente-C/Mango- Rollo de 50cm/2,6kg', 1, 'film con mango', 0.00, 1, 'Producto1669646038787.jpg'),
-	(464, 'Film Stretch Negro-C/Mango- Rollo de 50cm/2,6kg', 1, 'film con mango', 0.00, 1, 'Producto1669646038787.jpg'),
-	(465, 'Film Stretch Transparente- Rollo de 50 cm/4 kg', 1, 'film stretch', 0.00, 1, 'Producto1669646038787.jpg'),
-	(466, 'Film Stretch Negro- Rollo de 50 cm/4 kg', 1, 'film stretch', 0.00, 0, 'Producto1669646038787.jpg'),
-	(467, 'Film Stretch Verde- Rollo de 50 cm/4 kg', 1, 'film stretch', 0.00, 0, 'Producto1669646038787.jpg'),
-	(468, 'Film Stretch Azul- Rollo de 50 cm/4 kg', 1, 'film stretch', 0.00, 0, 'Producto1669646038787.jpg'),
-	(469, 'Film Stretch Rojo- Rollo de 50 cm/4 kg', 1, 'film stretch', 0.00, 1, 'Producto1669646038787.jpg'),
-	(470, 'Film Stretch Transparente- Rollo de 10cm', 1, 'film stretch', 0.00, 0, 'Producto1669646038787.jpg'),
-	(471, 'Film Stretch Negro- Rollo de 10cm', 1, 'film stretch', 0.00, 1, 'Producto1669646038787.jpg'),
-	(472, 'Film Stretch Verde- Rollo de 10cm', 1, 'film stretch', 0.00, 0, 'Producto1669646038787.jpg'),
-	(473, 'Film Stretch Azul- Rollo de 10cm', 1, 'film stretch', 0.00, 1, 'Producto1669646038787.jpg'),
-	(474, 'Film Stretch Rojo- Rollo de 10cm', 1, 'film stretch', 0.00, 0, 'Producto1669646038787.jpg'),
-	(475, 'Film Alimenticio 38x1000', 1, 'film alimenticio', 0.00, 1, 'Producto1669646038787.jpg'),
-	(500, 'Expendedora de Números para Turnos- Roja', 2, 'expendedora sin barral', 0.00, 0, 'Producto1669646038787.jpg'),
-	(501, 'Expendedora de Números para Turnos- Negra', 2, 'expendedora sin barral', 0.00, 0, 'Producto1669646038787.jpg'),
-	(502, 'Expendedora de Números para Turnos- Blanca', 2, 'expendedora sin barral', 0.00, 0, 'Producto1669646038787.jpg'),
-	(503, 'Expendedora de Números para Turnos- Gris', 2, 'expendedora sin barral', 0.00, 1, 'Producto1669646038787.jpg'),
-	(504, 'Expendedora de Números para Turnos- Violeta', 2, 'expendedora sin barral', 0.00, 0, 'Producto1669646038787.jpg'),
-	(505, 'Expendedora de Números para Turnos- Marrón', 2, 'expendedora sin barral', 0.00, 1, 'Producto1669646038787.jpg'),
-	(506, 'Expendedora de Números para Turnos- Naranja', 2, 'expendedora sin barral', 0.00, 0, 'Producto1669646038787.jpg'),
-	(507, 'Expendedora de Números para Turnos- Amarilla', 2, 'expendedora sin barral', 0.00, 1, 'Producto1669646038787.jpg'),
-	(508, 'Expendedora De Números Para Turnos Con Pie Y Cartel', 2, 'expendedora con barral', 0.00, 0, 'Producto1669646038787.jpg'),
-	(509, 'Expendedora De Números Para Turnos Con Pie Y Cartel + Pincha Papel', 2, 'expendedora con barral', 0.00, 1, 'Producto1669646038787.jpg'),
-	(516, 'Etiquetadora Jolly-Jh8- 8 Dígitos', 4, 'etiquetadoras', 0.00, 1, 'Producto1669646038787.jpg'),
-	(517, 'Etiquetadora OpenComercial', 4, 'etiquetadoras', 0.00, 0, 'Producto1669646038787.jpg'),
-	(518, 'Entintador para Etiquetadora Jolly', 4, 'etiquetadoras etintadores', 0.00, 0, 'Producto1669646038787.jpg'),
-	(519, 'Entintador OpenComercial', 4, 'etiquetadoras etintadores', 0.00, 0, 'Producto1669646038787.jpg'),
-	(520, 'Rollo de Números para Turnos x 1000 Rojo', 2, 'rollos de numeros x 1000', 0.00, 1, 'Producto1669646038787.jpg'),
-	(521, 'Rollo de Números para Turnos x 1000 Verde', 2, 'rollos de numeros x 1000', 0.00, 0, 'Producto1669646038787.jpg'),
-	(522, 'Rollo de Números para Turnos x 1000 Azul', 2, 'rollos de numeros x 1000', 0.00, 1, 'Producto1669646038787.jpg'),
-	(523, 'Rollo de Números para Turnos x 1000 Amarillo', 2, 'rollos de numeros x 1000', 0.00, 0, 'Producto1669646038787.jpg'),
-	(524, 'Rollo de Números para Turnos x 2000 Rojo', 2, 'rollos de numeros x2000', 0.00, 1, 'Producto1669646038787.jpg'),
-	(525, 'Rollo de Números para Turnos x 2000 Verde', 2, 'rollos de numeros x2000', 0.00, 0, 'Producto1669646038787.jpg'),
-	(526, 'Rollo de Números para Turnos x 2000 Amarillo', 2, 'rollos de numeros x2000', 0.00, 1, 'Producto1669646038787.jpg'),
-	(527, 'Rollo de Números para Turnos x 2000 Azul', 2, 'rollos de numeros x2000', 0.00, 0, 'Producto1669646038787.jpg');
+	(533, 'Film Stretch Transparente- Rollo de 50 cm/2,5 kg', 1, 'film stretch', 1.00, 1, 'film-A.jpg'),
+	(534, 'Film Stretch Negro- Rollo de 50 cm/2,5 kg', 1, 'film stretch', 1.00, 0, 'film-A.jpg'),
+	(535, 'Film Stretch Verde- Rollo de 50 cm/2,5 kg', 1, 'film stretch', 1.00, 1, 'film-A.jpg'),
+	(536, 'Film Stretch Azul- Rollo de 50 cm/2,5 kg', 1, 'film stretch', 1.00, 1, 'film-A.jpg'),
+	(537, 'Film Stretch Rojo- Rollo de 50 cm/2,5 kg', 1, 'film stretch', 1.00, 1, 'film-A.jpg'),
+	(538, 'Film Stretch Transparente-C/Mango- Rollo de 50cm/2,6kg', 1, 'film con mango', 1.00, 1, 'film-A.jpg'),
+	(539, 'Film Stretch Negro-C/Mango- Rollo de 50cm/2,6kg', 1, 'film con mango', 1.00, 1, 'film-A.jpg'),
+	(540, 'Film Stretch Transparente- Rollo de 50 cm/4 kg', 1, 'film stretch', 1.00, 0, 'film-A.jpg'),
+	(541, 'Film Stretch Negro- Rollo de 50 cm/4 kg', 1, 'film stretch', 1.00, 0, 'film-A.jpg'),
+	(542, 'Film Stretch Verde- Rollo de 50 cm/4 kg', 1, 'film stretch', 1.00, 0, 'film-A.jpg'),
+	(543, 'Film Stretch Azul- Rollo de 50 cm/4 kg', 1, 'film stretch', 1.00, 0, 'film-A.jpg'),
+	(544, 'Film Stretch Rojo- Rollo de 50 cm/4 kg', 1, 'film stretch', 1.00, 0, 'film-B.jpg'),
+	(545, 'Film Stretch Transparente- Rollo de 10cm', 1, 'film stretch', 1.00, 0, 'film-B.jpg'),
+	(546, 'Film Stretch Negro- Rollo de 10cm', 1, 'film stretch', 1.00, 1, 'film-B.jpg'),
+	(547, 'Film Stretch Verde- Rollo de 10cm', 1, 'film stretch', 1.00, 1, 'film-B.jpg'),
+	(548, 'Film Stretch Azul- Rollo de 10cm', 1, 'film stretch', 1.00, 1, 'film-B.jpg'),
+	(549, 'Film Stretch Rojo- Rollo de 10cm', 1, 'film stretch', 1.00, 1, 'film-B.jpg'),
+	(550, 'Film Alimenticio 38x1000', 1, 'film alimenticio', 1.00, 0, 'film-B.jpg'),
+	(551, 'Rollo de burbujas de polietileno- Pluribol 50cm x 50mts', 1, 'pluribol ', 1.00, 0, 'film-B.jpg'),
+	(552, 'Rollo de burbujas de polietileno- Pluribol 1mt x 50mts', 1, 'pluribol ', 1.00, 1, 'film-B.jpg'),
+	(553, 'Rollo de cartón corrugado 1 mt x 25mts', 1, 'corrugado ', 1.00, 1, 'film-B.jpg'),
+	(554, 'Rollo de cartón corrugado 80cm x 25mts', 1, 'corrugado ', 1.00, 1, 'film-B.jpg'),
+	(555, 'Cinta de Embalaje 48 x100', 1, 'cinta ', 1.00, 1, 'film-B.jpg'),
+	(556, 'Cinta de Embalaje frágil', 1, 'cinta ', 1.00, 1, 'film-B.jpg'),
+	(557, 'Rollo de Etiquetas Térmicas 55mm x 44mm', 4, 'etiquetas autoadhesiva ', 1.00, 1, 'etiquetas-A.jpg'),
+	(558, 'Rollo de Etiquetas Térmicas 80mm x 50mm', 4, 'etiquetas autoadhesiva ', 1.00, 1, 'etiquetas-B.jpg'),
+	(559, 'Rollo de Etiquetas Térmicas 80mm x 80mm', 4, 'etiquetas autoadhesiva ', 1.00, 0, 'etiquetas-A.jpg'),
+	(560, 'Rollo de Etiquetas Térmicas 50mm x 25mm', 4, 'etiquetas autoadhesiva ', 1.00, 0, 'etiquetas-B.jpg'),
+	(561, 'Rollo de Etiquetas Térmicas 57mm x 20mm', 4, 'etiquetas autoadhesiva ', 1.00, 0, 'etiquetas-A.jpg'),
+	(562, 'Rollo de Etiquetas Térmicas 60mm x 46mm', 4, 'etiquetas autoadhesiva ', 1.00, 0, 'etiquetas-B.jpg'),
+	(563, 'Rollo de Etiquetas Térmicas 100mm x 152mm', 4, 'etiquetas autoadhesiva ', 1.00, 1, 'etiquetas-A.jpg'),
+	(564, 'Rollo de Etiquetas Térmicas 100mm x 190mm', 4, 'etiquetas autoadhesiva ', 1.00, 1, 'etiquetas-B.jpg'),
+	(565, 'Rollo de Etiquetas Blancas 22mm x 12mm', 4, 'etiquetas autoadhesiva ', 1.00, 0, 'etiquetas-A.jpg'),
+	(566, 'Rollo De Papel Obra Self 76mm X 30mm', 4, 'rollos fiscales ', 1.00, 1, 'ordenadores-A.jpg'),
+	(567, 'Rollo De Papel Obra Self Self 76mm x 20mm', 4, 'rollos fiscales ', 1.00, 1, 'ordenadores-B.jpg'),
+	(568, 'Rollo De Papel Obra 37mm X 40mm', 4, 'rollos fiscales ', 1.00, 0, 'ordenadores-A.jpg'),
+	(569, 'Rollo De Papel Obra 76 mm x 40mm', 4, 'rollos fiscales ', 1.00, 1, 'ordenadores-B.jpg'),
+	(570, 'Rollo De Papel Obra 37mm X 50mm', 4, 'rollos fiscales ', 1.00, 1, 'ordenadores-A.jpg'),
+	(571, 'Rollo De Papel Obra 70mm x 70mm', 4, 'rollos fiscales ', 1.00, 0, 'ordenadores-B.jpg'),
+	(572, 'Rollo De Papel Obra Self Self 76mm x 20mm', 4, 'rollos fiscales ', 1.00, 0, 'ordenadores-A.jpg'),
+	(573, 'Rollo De Papel Obra 44mm X 50mm', 4, 'rollos fiscales ', 1.00, 0, 'ordenadores-B.jpg'),
+	(574, 'Rollo De Papel Obra 44mm X 40mm', 4, 'rollos fiscales ', 1.00, 0, 'ordenadores-A.jpg'),
+	(575, 'Expendedora de Números para Turnos- Roja', 2, 'expendedora sin barral', 1.00, 1, 'ordenadores-B.jpg'),
+	(576, 'Expendedora de Números para Turnos- Negra', 2, 'expendedora sin barral', 1.00, 1, 'ordenadores-A.jpg'),
+	(577, 'Expendedora de Números para Turnos- Blanca', 2, 'expendedora sin barral', 1.00, 1, 'ordenadores-B.jpg'),
+	(578, 'Expendedora de Números para Turnos- Gris', 2, 'expendedora sin barral', 1.00, 0, 'ordenadores-A.jpg'),
+	(579, 'Expendedora de Números para Turnos- Violeta', 2, 'expendedora sin barral', 1.00, 0, 'ordenadores-B.jpg'),
+	(580, 'Expendedora de Números para Turnos- Marrón', 2, 'expendedora sin barral', 1.00, 0, 'ordenadores-A.jpg'),
+	(581, 'Expendedora de Números para Turnos- Naranja', 2, 'expendedora sin barral', 1.00, 0, 'ordenadores-B.jpg'),
+	(582, 'Expendedora de Números para Turnos- Amarilla', 2, 'expendedora sin barral', 1.00, 1, 'ordenadores-A.jpg'),
+	(583, 'Expendedora De Números Para Turnos Con Pie Y Cartel', 2, 'expendedora con barral', 1.00, 1, 'ordenadores-B.jpg'),
+	(584, 'Expendedora De Números Para Turnos Con Pie Y Cartel + Pincha Papel', 2, 'expendedora con barral', 1.00, 1, 'ordenadores-A.jpg'),
+	(585, 'Cartel \'\'Retire su número\'\' Rojo', 2, 'accesorios ', 1.00, 1, 'ordenadores-B.jpg'),
+	(586, 'Cartel \'\'Retire su número\'\' Bordó', 2, 'accesorios ', 1.00, 1, 'ordenadores-A.jpg'),
+	(587, 'Cartel \'\'Retire su número\'\' Negro', 2, 'accesorios ', 1.00, 0, 'ordenadores-B.jpg'),
+	(588, 'Cartel \'\'Retire su número\'\' Azul', 2, 'accesorios ', 1.00, 0, 'ordenadores-A.jpg'),
+	(589, 'Pincha Papel Para Numeros de Turnos', 2, 'accesorios ', 1.00, 0, 'ordenadores-B.jpg'),
+	(590, 'Barral Para Expendedora De Números Con Pie', 2, 'accesorios ', 1.00, 0, 'ordenadores-A.jpg'),
+	(591, 'Etiquetadora Jolly-Jh8- 8 Dígitos', 4, 'etiquetadoras etiquetadoras', 1.00, 0, 'ordenadores-B.jpg'),
+	(592, 'Etiquetadora OpenComercial', 4, 'etiquetadoras etiquetadoras', 1.00, 1, 'etiquetas-B.jpg'),
+	(593, 'Entintador para Etiquetadora Jolly', 4, 'etiquetadoras etintadores', 1.00, 0, 'etiquetas-A.jpg'),
+	(594, 'Entintador OpenComercial', 4, 'etiquetadoras etintadores', 1.00, 0, 'etiquetas-B.jpg'),
+	(595, 'Rollo de Números para Turnos x 1000 Rojo', 2, 'rollos de numeros x 1000', 1.00, 0, 'ordenadores-A.jpg'),
+	(596, 'Rollo de Números para Turnos x 1000 Verde', 2, 'rollos de numeros x 1000', 1.00, 0, 'ordenadores-B.jpg'),
+	(597, 'Rollo de Números para Turnos x 1000 Azul', 2, 'rollos de numeros x 1000', 1.00, 0, 'ordenadores-A.jpg'),
+	(598, 'Rollo de Números para Turnos x 1000 Amarillo', 2, 'rollos de numeros x 1000', 1.00, 0, 'ordenadores-B.jpg'),
+	(599, 'Rollo de Números para Turnos x 2000 Rojo', 2, 'rollos de numeros x 2000', 1.00, 0, 'ordenadores-A.jpg'),
+	(600, 'Rollo de Números para Turnos x 2000 Verde', 2, 'rollos de numeros x 2000', 1.00, 1, 'ordenadores-B.jpg'),
+	(601, 'Rollo de Números para Turnos x 2000 Amarillo', 2, 'rollos de numeros x 2000', 1.00, 1, 'ordenadores-A.jpg'),
+	(602, 'Rollo de Números para Turnos x 2000 Azul', 2, 'rollos de numeros x 2000', 1.00, 1, 'ordenadores-B.jpg');
 
 -- Volcando estructura para tabla clipshop.usuarios
 CREATE TABLE IF NOT EXISTS `usuarios` (
@@ -750,15 +780,13 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `password` varchar(155) NOT NULL,
   `rol` varchar(50) NOT NULL DEFAULT 'user',
   PRIMARY KEY (`idUsuarios`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla clipshop.usuarios: ~5 rows (aproximadamente)
+-- Volcando datos para la tabla clipshop.usuarios: ~3 rows (aproximadamente)
 INSERT INTO `usuarios` (`idUsuarios`, `nombre`, `email`, `direccion`, `telefono`, `password`, `rol`) VALUES
-	(6, 'Ailen', 'ailu@ailu.com', 'Soy Administrador', 1168508686, '$2a$10$BRrCiQPiGWAIAxj7b8TYCewkG8eMKJWP3xTF.Ya4PsdgzimYJEgWu', 'admin'),
-	(9, 'Ailen Cury', 'ailen@gmail.com', 'Prueba dirección', 555555, '$2a$10$.p53ZobtisbEW7UY53PeQeDIuGqhdlswCK0Lvi81CIJL90C.PqxK.', 'user'),
 	(10, 'Noni', 'noni@gmail.com', 'Casa Noni', 1125689588, '$2a$10$.H5NhqhB5.Zq//T9.Z8cK.HYCvtYmH/0zlARxal4/Fe2x9k.5QVdC', 'admin'),
-	(17, 'Ailen', 'cury.ailena@gmail.com', 'bmun6ybtrvecwd', 0, '$2a$10$DG9oDmTg0jy56mISR3nQtuOpZ7IP07iYnpXApP/Tg5p9oQHonOIne', 'user'),
-	(19, 'a', 'ailenaldanacury@gmail.com', 'b', 0, '$2a$10$wGLW7LUkSAnZk9CVoZS98OtHncek5kaTWhbowB0ohhIC2Wnda5D12', 'user');
+	(21, 'Administrador', 'admin@admin.com', 'ClipShop SRL', 1138276318, '$2a$10$jOEYcofW6a6Ub2S.DlJ/5.KRT6AEOsY6V6fX6X.zAUkpoKeD3QFU2', 'admin'),
+	(22, 'User test', 'cury.ailena@gmail.com', 'Avenida Estado de Israel 4487', 1168508686, '$2a$10$edOgQmAjT9PjojFPN.zIN.sCPf9ynJIIOcuQxA8cyaV5uYHd/oT4y', 'user');
 
 -- Volcando estructura para tabla clipshop.ventas
 CREATE TABLE IF NOT EXISTS `ventas` (
@@ -767,10 +795,21 @@ CREATE TABLE IF NOT EXISTS `ventas` (
   `idUsuarios` int(20) NOT NULL,
   `importe` int(20) NOT NULL,
   `cantidad` int(20) NOT NULL,
+  `pedidoNum` int(30) NOT NULL,
+  `fecha` date NOT NULL,
   PRIMARY KEY (`idVentas`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla clipshop.ventas: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla clipshop.ventas: ~8 rows (aproximadamente)
+INSERT INTO `ventas` (`idVentas`, `idProductos`, `idUsuarios`, `importe`, `cantidad`, `pedidoNum`, `fecha`) VALUES
+	(1, 458, 22, 50, 1, 0, '2023-01-21'),
+	(2, 459, 22, 100, 1, 0, '2023-01-21'),
+	(3, 460, 22, 525, 3, 0, '2023-01-21'),
+	(4, 459, 22, 2, 1, 0, '2023-01-21'),
+	(5, 458, 22, 1, 1, 0, '2023-01-21'),
+	(6, 460, 10, 10, 3, 2147483647, '2023-01-21'),
+	(7, 459, 10, 2, 1, 2147483647, '2023-01-21'),
+	(8, 459, 10, 2, 1, 2147483641, '2023-01-21');
 
 -- Volcando estructura para tabla clipshop.vouchers
 CREATE TABLE IF NOT EXISTS `vouchers` (
@@ -779,12 +818,12 @@ CREATE TABLE IF NOT EXISTS `vouchers` (
   `valor` int(20) NOT NULL,
   `fecha` date NOT NULL,
   PRIMARY KEY (`idVouchers`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla clipshop.vouchers: ~2 rows (aproximadamente)
 INSERT INTO `vouchers` (`idVouchers`, `voucher`, `valor`, `fecha`) VALUES
 	(1, 'navidadClipShop2022', 35, '2023-01-08'),
-	(5, 'estamosCreciendo2023', 15, '2022-11-28');
+	(5, 'estamosCreciendo2023', 99, '2023-01-21');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
