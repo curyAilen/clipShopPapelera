@@ -1,4 +1,4 @@
-window.addEventListener("load", function() {
+window.addEventListener("load", function() { 
     let misDatos = $("#misDatos");
     let misCompras = $("#misCompras");
     let historialCompras = $("#comprasHistorial");
@@ -8,6 +8,23 @@ window.addEventListener("load", function() {
     let contacto = $("#contacto");
     let formularioContacto = $("#formularioContacto");
 
+    function mostrarPassword(){
+		var cambio = document.getElementById("login-password");
+		if(cambio.type == "password"){
+			cambio.type = "text";
+			$('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+		}else{
+			cambio.type = "password";
+			$('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+		}
+	} 
+	
+	$(document).ready(function () {
+	//CheckBox mostrar contraseña
+	$('#ShowPassword').click(function () {
+		$('#login-password').attr('type', $(this).is(':checked') ? 'text' : 'password');
+	});
+});
     misCompras.click(function() {
         historialCompras.removeClass("ocultar");
         historialCompras.addClass("mostar");
