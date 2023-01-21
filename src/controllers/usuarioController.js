@@ -6,6 +6,7 @@ const db = require("../../database/models/");
 const { validationResult } = require("express-validator");
 const Op = db.Sequelize.Op;
 const Usuarios = db.Usuario;
+const Ventas = db.Ventas;
 
 
 let usuarioController = {
@@ -189,7 +190,6 @@ let usuarioController = {
 
     },
 
-
     logout: (req, res) => {
         res.clearCookie("userCookie");
         req.session.destroy();
@@ -197,11 +197,15 @@ let usuarioController = {
     },
 
     cuenta: (req, res) => {
-        res.render('cuenta', {
-            titulo: "Perfil",
-            css: "estiloLogin.css",
+        Ventas.findAll()
+        .then(v => {
+        res.render("cuenta", {                
+            v: v
+            });
         })
+    
     },
+
     listadoClientes: (req, res) => {
         Usuarios.findAll()
             .then((usuario) => {

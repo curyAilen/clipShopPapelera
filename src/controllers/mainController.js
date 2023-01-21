@@ -212,19 +212,19 @@ let mainController = {
             titulo: 'Carrito'
         });
     },
-
+   
     obtenerProducto: async (req, res) => {
         let product = await Producto.findByPk(req.params.id, {
             include: [{ association: "categoria" }],
         });
         return res.json(product);
     },
-
     obtenerVoucher: async (req, res) => {
         let voucher = await Voucher.findOne({ where: { voucher: req.params.voucher } });
 
         return voucher ? res.json(voucher.valor) : res.json(null);
     },
+   
 
     comprar: async (req, res) => {
         const { idUsuarios } = res.locals.userLogged;
@@ -243,12 +243,14 @@ let mainController = {
             if (comprobarVoucher) {
                 importe = importe - (importe * (Number(comprobarVoucher.valor) / 100));
             };
-
+ 
             let venta = {
                 idUsuarios,
                 idProductos,
                 cantidad,
-                importe
+                importe,
+                pedidoNum:  Date.now(),
+                fecha: new Date(),
             };
 
             Ventas.create(venta)

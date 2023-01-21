@@ -14,7 +14,7 @@ const storage = multer.diskStorage({
         const newFileName = 'Producto' +  Date.now() + path.extname(file.originalname);
         cb(null, newFileName);
     } 
-  });
+  }); 
 const upload = multer({storage});
  
 //listado productos

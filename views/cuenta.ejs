@@ -30,27 +30,22 @@
                                     <%}%>
                     </article>
                 </section>
+                <section id="comprasHistorial" class="container ocultar ">
+                    <h1>Historial de compra</h1>
+                    <%for (let i = 0; i < v.length; i++) {%>          
+                        <%if (v[i].idUsuarios == locals.userLogged.idUsuarios) {%>                  
+                    <article class="row my-5  justify-content-between estiloDeCaja">     
+                                <h4 class="col-lg-10 col-md-10">N° Pedido: <%=v[i].pedidoNum%></h4>
+                                <h5 class=" col-lg-2 col-md-10 fecha">Fecha: <%=v[i].fecha%></h5>
+                                <p class="col-lg-3 col-md-10 totalPrecio ">Improte abonado: <%=v[i].importe%></p>
+                                <p class="col-lg-3 col-md-10 totalPrecio ">Productos: <%=v[i].idProductos%></p>
+                                <p class=" col-lg-3 col-md-10 fecha">Cantidad de productos: <%=v[i].cantidad%></p>
+                                
 
-
-                <section id="comprasHistorial" class="container ocultar estiloDeCaja">
-                    <article class="row mt-2 mb2">
-
-                        <article class="producto">
-                            <div class="envcabezadoProducto">
-                                <img src="/images/turnera.png" alt="">
-                            </div>
-                            <div class="content">
-                                <h1>Lorem ipsum dolor</h1>
-                            </div>
-                            <footer class="row pieFechaPrecio">
-                                <h5 class="fecha col-2">15/07/22</h5>
-                                <h3 class="totalPrecio col-2">
-                                    79.99
-                                </h3>
-
-                            </footer>
-                        </article>
+                                
                     </article>
+                    <%}}%>  
+               
 
                     </article>
                 </section>
@@ -98,13 +93,13 @@
                 </section>
 
                 <section id="adminProductos" class="container ocultar estiloDeCaja">
-                    <div class="row justify-content-between">
-                        <a href="/tienda/altaProducto" class="botones col-lg-3 col-md-7 btnAdminProd btn "> Ingresar un
+                    <div class="row justify-content-center">
+                        <a href="/tienda/altaProducto" class="botones col-3 btnAdminProd btn "> Ingresar un
                             producto <i class="fas fa-plus iconos"></i></a>
 
-                        <a href="/configBanner" class="botones col-lg-3 col-md-7 btnAdminProd btn ">Banner<i
+                        <a href="/configBanner" class="botones col-3 btnAdminProd btn ">Banner<i
                                 class="fas fa-cogs iconos"></i></a>
-                        <a href="/configVoucher" class="botones col-lg-3 col-md-7 btnAdminProd btn ">Voucher<i
+                        <a href="/configVoucher" class="botones col-3 btnAdminProd btn ">Voucher<i
                                 class="fas fa-cogs iconos"></i></a>
                     </div>
                 </section>

@@ -21,6 +21,14 @@ module.exports = (sequelize, dataTypes) => {
         cantidad: {
             type: dataTypes.INTEGER,
             allowNull: false
+        },   
+        pedidoNum: {
+            type: dataTypes.INTEGER,
+            allowNull: false
+        },  
+        fecha: {
+            type: dataTypes.DATE,
+            allowNull: false,
         },
 
     };

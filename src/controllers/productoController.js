@@ -5,6 +5,7 @@ const path = require("path");
 const producto = db.Producto;
 const categoria = db.Categoria;
 
+
 // 0 es No oferta
 //1 es oferta
 
@@ -43,7 +44,6 @@ let productoController = {
                     })
             });
     },
-
     buscadorEmbalaje: (req, res) => {
         producto.findAll({
             include: [{ association: "categoria" }],
@@ -82,7 +82,6 @@ let productoController = {
                     })
             })
     },
-
     buscadorEtiquetas: (req, res) => {
         producto.findAll({
             include: [{ association: "categoria" }],
@@ -102,8 +101,6 @@ let productoController = {
                     })
             })
     },
-
-
     detalleProducto: (req, res) => {
         let detalleID = req.params.id;
 
@@ -123,7 +120,6 @@ let productoController = {
                 });
             });
     },
-
     crearProd: (req, res) => {
         categoria.findAll()
             .then((categoria) => {
@@ -221,6 +217,8 @@ let productoController = {
 
         res.redirect("/tienda");
     },
+
+   
 };
 
 module.exports = productoController;
