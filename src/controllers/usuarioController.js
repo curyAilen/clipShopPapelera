@@ -197,7 +197,7 @@ let usuarioController = {
     },
 
     cuenta: (req, res) => {
-        Ventas.findAll()
+        Ventas.findAll({ group: 'pedidoNum' })
         .then(v => {
         res.render("cuenta", {                
             v: v
