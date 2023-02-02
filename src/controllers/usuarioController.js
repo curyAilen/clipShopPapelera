@@ -74,15 +74,14 @@ let usuarioController = {
                 };
 
                 req.session.login = usuarioLogeado;
-
+                
                 if (req.body.remember_user) {
-
                     res.cookie("userCookie", usuarioLogeado, {
                         maxAge: 10000 * 60 * 60 * 24,
                     });
                 }
 
-                return res.redirect('/user/cuenta')
+                return res.redirect('/user/cuenta');
             } else {
                 res.render('login', {
                     errores: {
