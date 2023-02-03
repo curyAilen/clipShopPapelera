@@ -5,12 +5,12 @@
          <div class="row mx-5 justify-content-between">
             <img src="/images/mascotaFeliz.png" alt="" class="img-fluid col-1 mascotaFeliz">
           
-                <form class="suscribite col-5 mr-5">
+                <form method="post" action="/suscribirse" class="suscribite col-5 mr-5">
                     <h5>Subscribite a las novedades</h5>
                     <div class="d-flex flex-column flex-sm-row w-100 gap-2">
                         <label for="newsletter1" class="visually-hidden">Email</label>
-                        <input id="newsletter1" type="text" class="form-control" placeholder="Email">
-                        <button class="btn botones" type="button">Subscribirse</button>
+                        <input id="newsletter1" type="email" name="email" class="form-control" placeholder="Email">
+                        <button class="btn botones" type="submit">Subscribirse</button>
                     </div>
                 </form>
          

@@ -4,6 +4,7 @@ const path = require("path");
 const Banner = db.Banner;
 const Voucher = db.Voucher;
 const Producto = db.Producto;
+const Email = db.Email;
 const Ventas = db.Ventas;
 const { validationResult } = require("express-validator");
 const { mercadopago } = require("../../mercadopago");
@@ -328,7 +329,22 @@ let mainController = {
                     console.log(error);
                 });
         }
-    }
+    },
+
+    suscribirse: async (req, res) => {
+        const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+        const { email } = req.body;
+
+        if (validEmail.test(email)) {
+            const emailRepetido = await Email.findOne({ where: { email } });
+            
+            if (!emailRepetido) {
+                await Email.create({ email });       
+            };
+        };
+
+        res.redirect("/");
+    },
 }
 
 module.exports = mainController;
