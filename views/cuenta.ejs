@@ -32,22 +32,27 @@
                 </section>
                 <section id="comprasHistorial" class="container ocultar ">
                     <h1>Historial de compra</h1>
-                    <%for (let i = 0; i < v.length; i++) {%>          
-                        <%if (v[i].idUsuarios == locals.userLogged.idUsuarios) {%>                  
-                    <article class="row my-5  justify-content-between estiloDeCaja">     
-                                <h4 class="col-lg-10 col-md-10">N° Pedido: <%=v[i].pedidoNum%></h4>
-                                <h5 class=" col-lg-2 col-md-10 fecha">Fecha: <%=v[i].fecha%></h5>
-                                <p class="col-lg-3 col-md-10 totalPrecio ">Improte abonado: <%=v[i].importe%></p>
-                                <p class="col-lg-3 col-md-10 totalPrecio ">Productos: <%=v[i].idProductos%></p>
-                                <p class=" col-lg-3 col-md-10 fecha">Cantidad de productos: <%=v[i].cantidad%></p>
-                                
+                    <%for (let i=0; i < v.length; i++) {%>
+                        <%if (v[i].idUsuarios==locals.userLogged.idUsuarios) {%>
+                            <article class="row my-5  justify-content-between estiloDeCaja">
+                                <h4 class="col-lg-10 col-md-10">N° Pedido: <%=v[i].pedidoNum%>
+                                </h4>
+                                <h5 class=" col-lg-2 col-md-10 fecha">Fecha: <%=v[i].fecha%>
+                                </h5>
+                                <p class="col-lg-3 col-md-10 totalPrecio ">Improte abonado: <%=v[i].importe%>
+                                </p>
+                                <p class="col-lg-3 col-md-10 totalPrecio ">Productos: <%=v[i].idProductos%>
+                                </p>
+                                <p class=" col-lg-3 col-md-10 fecha">Cantidad de productos: <%=v[i].cantidad%>
+                                </p>
 
-                                
-                    </article>
-                    <%}}%>  
-               
 
-                    </article>
+
+                            </article>
+                            <%}}%>
+
+
+                                </article>
                 </section>
 
 
@@ -56,7 +61,8 @@
                     <div class="row cajaDatosUsuario">
                         <% if (locals.userLogged) { %>
                             <h1>Bienvenid@
-                                <%= locals.userLogged.nombre %>.</h1>
+                                <%= locals.userLogged.nombre %>.
+                            </h1>
                             <div id="data">
                                 <p> Nombre:
                                     <%= locals.userLogged.nombre %>
@@ -70,14 +76,18 @@
 
 
                             </div>
-                            <a href="/user/cuenta/editarPerfil/<%=locals.userLogged.idUsuarios%>" class="botones btn btnCuenta col-md-3 col-sm-5">Modificar datos</a>
-                            <a href="/user/cuenta/actualizarPassword/<%=locals.userLogged.idUsuarios%>" class="botones btn btnCuenta col-md-3 col-sm-5">Modificar contraseña</a>
+                            <a href="/user/cuenta/editarPerfil/<%=locals.userLogged.idUsuarios%>"
+                                class="botones btn btnCuenta col-md-3 col-sm-5">Modificar datos</a>
+                            <a href="/user/cuenta/actualizarPassword/<%=locals.userLogged.idUsuarios%>"
+                                class="botones btn btnCuenta col-md-3 col-sm-5">Modificar contraseña</a>
                             <% if (locals.userLogged.rol=="admin" ) { %>
-                                <a href="/user/listadoClientes" class="botones btn btnCuenta col-md-3 col-sm-5" aria-disabled="false">Listar clientes</a>
+                                <a href="/user/listadoClientes" class="botones btn btnCuenta col-md-3 col-sm-5"
+                                    aria-disabled="false">Listar clientes</a>
                                 <%}%>
 
-                                    <a href="/user/logout" class="nav-link btn btnCuenta text-end col-md-3 col-sm-5">Cerrar sesión<i
-                                                class="mx-2 fas fa-sign-out-alt iconosUser "></i></a>
+                                    <a href="/user/logout"
+                                        class="nav-link btn btnCuenta text-end col-md-3 col-sm-5">Cerrar sesión<i
+                                            class="mx-2 fas fa-sign-out-alt iconosUser "></i></a>
 
 
                                     <% } else {%>
@@ -89,7 +99,6 @@
 
 
                     </div>
-
                 </section>
 
                 <section id="adminProductos" class="container ocultar estiloDeCaja">
@@ -101,6 +110,8 @@
                                 class="fas fa-cogs iconos"></i></a>
                         <a href="/configVoucher" class="botones col-3 btnAdminProd btn ">Voucher<i
                                 class="fas fa-cogs iconos"></i></a>
+                        <a href="/enviarEmail" class="botones col-4 btnAdminProd btn ">Email<i
+                                class="fas fa-envelope iconos"></i></a>
                     </div>
                 </section>
 

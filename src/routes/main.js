@@ -27,6 +27,9 @@ router.get('/nosotros', mainController.nosotros);
 // Suscribirse
 router.post("/suscribirse", mainController.suscribirse);
 
+// Enviar mail
+router.get("/enviarEmail", mainController.enviarEmail);
+
 // Obtenemos carrito de compra
 router.get('/carrito', authMiddleware, mainController.carrito);
 //router.post('/agregarProducto/:id',upload.single('imgProd'), mainController.agregarproducto);

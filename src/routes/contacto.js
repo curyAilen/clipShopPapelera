@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const nodemailer = require("nodemailer");
 const config = require("../../config");
+const db = require("../../database/models");
 
 // Crear transport
 let transporter = nodemailer.createTransport({
@@ -32,6 +33,30 @@ router.post("/", (req, res) => {
         } else {
             console.log("Email enviado");
             res.status(200).json(req.body);
+        }
+    });
+});
+
+router.post("/enviarEmail", async (req, res) => {
+    const { asunto, mensaje } = req.body;
+
+    const emails = await db.Email.findAll();
+    const emailsToSend = emails.map((email) => email.dataValues.email);
+
+    let mailOptions = {
+        from: config.nodemailer.email,
+        to: emailsToSend,
+        subject: asunto,
+        text: mensaje
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.log(error);
+            res.json(null);
+        } else {
+            console.log("Email enviado");
+            res.redirect("/user/cuenta");
         }
     });
 });

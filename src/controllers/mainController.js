@@ -345,6 +345,10 @@ let mainController = {
 
         res.redirect("/");
     },
-}
+
+    enviarEmail: (req, res) => {
+        res.render("enviarEmail");
+    }
+};
 
 module.exports = mainController;
