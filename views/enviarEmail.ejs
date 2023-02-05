@@ -9,14 +9,27 @@
                     <% if (locals.userLogged.rol=="admin" ) { %>
                         <section class="container mx-auto">
                             <form action="/contacto/enviarEmail" method="post">
+                                <h2 class="my-3">Enviar Email de difusion</h2>
                                 <div class="input-block">
-                                    <input type="text" placeholder="Asunto" name="asunto">
+                                    <input type="text" class="form-control my-3" placeholder="Asunto" name="asunto">
                                 </div>
                                 <div class="input-block">
-                                    <textarea placeholder="Mensaje" name="mensaje"></textarea>
+                                    <textarea placeholder="Mensaje" class="form-control my-3" name="mensaje"></textarea>
                                 </div>
                                 <button type="submit" class="btn botones">Enviar</button>
                             </form>
+                        </section>
+                        <section class="container mx-auto my-5">
+                            <% if (locals.emails && emails) {%>
+                                <h3>Emails que recibiran el mensaje (<%= emails.length  %>) </h3>
+
+                                <% emails.forEach(email => {%>
+                                    <h6><%= email.email  %></h6>
+                                    <%}); %>  
+
+                                <% } else { %>
+                                    <h3>No hay emails suscriptos</h3>
+                                    <% } %> 
                         </section>
                         <%}else{%>
                             <h3 class="text-center my-5">Usted no posee credenciales validas para acceder a esta

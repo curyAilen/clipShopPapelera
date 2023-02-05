@@ -1,0 +1,14 @@
+<%- include ( './partials/head' ); %>
+    <!--<link rel="stylesheet" href="/css/login.css">-->
+    </head>
+
+    <body class="">
+        <%- include ( './partials/header' ); %>
+            <%- include ( './partials/contacto' ); %>
+
+                <section class="container estiloDeCaja">
+                    <h5 style="color: green;"><%= locals.msg && msg ? msg : "" %></h5>
+                </section>
+
+                <%- include ( './partials/footer' ); %>
+    </body>

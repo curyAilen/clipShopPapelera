@@ -3,6 +3,14 @@ p.error {
     font-size: .7rem;
 }
 
+#forgotpass{
+    font-weight: 400;
+    text-decoration: underline;
+    margin: 1em;
+    cursor: pointer;
+    color: #5424B2;
+}
+
 .recordarme{
     color: #5424B2;
 }

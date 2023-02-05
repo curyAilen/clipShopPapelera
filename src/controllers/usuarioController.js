@@ -214,6 +214,10 @@ let usuarioController = {
                 })
             })
     },
+
+    recuperar: (req, res) => {
+        res.render("recuperar");
+    },
 };
 
 module.exports = usuarioController;

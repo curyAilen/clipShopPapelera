@@ -1,0 +1,21 @@
+<%- include ( './partials/head' ); %>
+    <!--<link rel="stylesheet" href="/css/login.css">-->
+    </head>
+
+    <body class="">
+        <%- include ( './partials/header' ); %>
+            <%- include ( './partials/contacto' ); %>
+
+                <section class="container ">
+                    <form action="/contacto/recuperar" method="post" class="estiloDeCaja formrecuperar">
+                        <h2>Recuperar mi contraseña</h2>
+                        <div class="form-group ">
+                            <label>Ingrese el e-mail de la cuenta</label>
+                            <input type="email" name="email" placeholder="Email" class="form-control w-50" />
+                        </div>
+                        <button type="submit" class="btn botones">Enviar</button>
+                    </form>
+                </section>
+
+                <%- include ( './partials/footer' ); %>
+    </body>

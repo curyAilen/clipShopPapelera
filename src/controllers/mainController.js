@@ -347,7 +347,10 @@ let mainController = {
     },
 
     enviarEmail: (req, res) => {
-        res.render("enviarEmail");
+        Email.findAll()
+            .then((emails) => {
+                res.render("enviarEmail", { emails });
+            })
     }
 };
 

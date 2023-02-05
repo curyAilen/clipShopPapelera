@@ -6,6 +6,9 @@ module.exports = {
     main: {
         url: "http://localhost:3000"
     },
+    jwt: {
+        secret: process.env.JWT_SECRET || "secret12345"
+    },
     nodemailer: {
         email: process.env.GMAIL,
         password: process.env.GMAIL_APP_PASS
