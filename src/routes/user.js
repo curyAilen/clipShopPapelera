@@ -27,6 +27,10 @@ router.post('/cuenta/editarPerfil/:id', editProfileValidation, usuarioController
 
 router.get("/recuperar", usuarioController.recuperar);
 
+// Link de recuperacion
+router.get("/recuperar/:id/:token", usuarioController.recuperarLink);
+router.post("/recuperar/:id/:token", editedPasswordValidations, usuarioController.recuperarpost);
+
 //Actualizar Password
 router.get('/cuenta/actualizarPassword/:id', updatePasswordAuth, usuarioController.actualizar);
 router.post('/cuenta/actualizarPassword/:id', editedPasswordValidations, usuarioController.actualizarPassword);

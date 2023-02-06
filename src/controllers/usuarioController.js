@@ -7,7 +7,8 @@ const { validationResult } = require("express-validator");
 const Op = db.Sequelize.Op;
 const Usuarios = db.Usuario;
 const Ventas = db.Ventas;
-
+const config = require("../../config");
+const jwt = require("jsonwebtoken");
 
 let usuarioController = {
     register: (req, res) => {
@@ -217,6 +218,62 @@ let usuarioController = {
 
     recuperar: (req, res) => {
         res.render("recuperar");
+    },
+
+    recuperarLink: async (req, res) => {
+        const { id, token } = req.params;
+
+        const user = await Usuarios.findByPk(id);
+
+        if (!user){
+            return res.redirect("/"); 
+        }; 
+        
+        const secret = config.jwt.secret + user.password;
+    
+        try {
+            const payload = jwt.verify(token, secret);
+            return res.render("recuperarPassword", { email: user.email });
+        } catch (error) {
+            console.log(error.message);
+            return res.redirect("/");
+        }
+    },
+
+    recuperarpost: async (req, res) => {
+        const { id, token } = req.params;
+        const { password } = req.body;
+        
+        const user = await Usuarios.findByPk(id);
+        
+        if (!user){
+            return res.redirect("/"); 
+        }; 
+
+        let editValidationResult = validationResult(req);
+
+        if (editValidationResult.errors.length > 0) {
+            return res.render('recuperarPassword', {
+                errores: editValidationResult.mapped(),
+                email: user.email
+            })
+        };
+
+        const secret = config.jwt.secret + user.password;
+
+        try {
+            const payload = jwt.verify(token, secret);
+            let passwordEncriptada = bcrypt.hashSync(password, 10);
+
+            await Usuarios.update({ password: passwordEncriptada }, { where: { idUsuarios: payload.id, email: payload.email } });
+
+            return res.redirect("/user/login");
+
+        } catch (error) {
+            console.log(error.message);
+            res.redirect("/");
+        }
+
     },
 };
 
