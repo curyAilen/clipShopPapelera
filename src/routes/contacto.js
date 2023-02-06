@@ -84,7 +84,15 @@ router.post("/recuperar", async (req, res) => {
         from: config.nodemailer.email,
         to: usuario.email,
         subject: "Recuperar mi contraseña",
-        text: `Ingresa a este link para cambiar de contraseña: ${link}`
+        text: `Ingresa a este link para cambiar de contraseña: ${link}`,
+        html: `
+            <h1>
+                Recupera tu contraseña
+            </h1>
+            <div>
+                <a style="text-decoration: none; background-color: cadetblue; color: white; font-family: Arial, Helvetica, sans-serif ; padding: 10px; font-weight: 700;" href="${link}">RECUPERAR</a>
+            </div>
+        `
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
