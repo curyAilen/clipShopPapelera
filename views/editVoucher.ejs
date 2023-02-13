@@ -5,44 +5,61 @@
   <body class="">
     <%- include ( './partials/header' ); %>
       <%- include ( './partials/contacto' ); %>
-      <% if (locals.userLogged) { %>
-        <% if (locals.userLogged.rol=="admin" ) { %>
+        <% if (locals.userLogged) { %>
+          <% if (locals.userLogged.rol=="admin" ) { %>
+            <div class="container mt-5 mb-5 estiloDeCaja">
+              <div class="row  ">
 
-          <form action="/editVoucher/<%=voucher.idVouchers%>" method="post" id="formularioEditVoucher" class="">
-                      
-            <div class="row">
-              <div class="form-group  col-4">
-                <label for="">Voucher:</label>
-                <input type="text" value="<%=locals.old && old.voucher ? old.voucher : voucher.voucher%>"  name="voucher" class="form-control">
-                <p><%= locals.errores && errores.voucher ? errores.voucher.msg : "" %></p>
-              </div>
 
-              <div class="form-group col-4">
-                <label for="">Monto:</label>
-                <div class="input-group ">
-                  <input type="number" value="<%=locals.old && old.valor ? old.valor : voucher.valor%>" name="valor" class="form-control">
-                  <div class="input-group-prepend">
-                    <div class="input-group-text">%</div>
+                <form action="/editVoucher/<%=voucher.idVouchers%>" method="post" id="formularioEditVoucher" class="">
+
+                  <div class="">
+                    <h2 class="enfasis"> Agrega un Voucher</h2>
+                    <p>Recordar que si o si se debe eliminar el voucher, si quiero bajar la promoción.</p>
+                    <div class="form-group  col-lg-4 col-md-10">
+                      <label for="" class="enfasis">Voucher:</label>
+                      <input type="text" value="<%=locals.old && old.voucher ? old.voucher : voucher.voucher%>"
+                        name="voucher" class="form-control">
+                      <p>
+                        <%= locals.errores && errores.voucher ? errores.voucher.msg : "" %>
+                      </p>
+                    </div>
+
+                    <div class="form-group col-lg-4 col-md-10">
+                      <label for="" class="enfasis">Monto:</label>
+                      <div class="input-group ">
+                        <input type="number" value="<%=locals.old && old.valor ? old.valor : voucher.valor%>"
+                          name="valor" class="form-control">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text">%</div>
+                        </div>
+                        <p>
+                          <%= locals.errores && errores.valor ? errores.valor.msg : "" %>
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                  <p><%= locals.errores && errores.valor ? errores.valor.msg : "" %></p>
-                </div>
+
+
+
+                  <button class="btn botones col-lg-3 col-md-8 ml-auto" type="submit">Guardar<i
+                      class="fas fa-pencil-alt iconos"></i></button>
+
+                </form>
+
+                <form action="/eliminar/<%=voucher.idVouchers%>?_method=DELETE" method="post" class=" ">
+
+                  <button class="mt-3 guardar botoneEliminar botones btn col-lg-3 col-md-5 ml-auto">Eliminar <i
+                      class="fas fa-trash-alt iconos"></i></button>
+
+
+                </form>
               </div>
+              <%}else{%>
+                <h3 class="text-center my-5">Usted no posee credenciales validas para acceder a esta sección.</h3>
+
+                <%}}%>
             </div>
 
-
-
-            <button class="btn botones " type="submit">Guardar<i class="fas fa-pencil-alt iconos"></i></button>
-          
-          </form>                   
-       
-          <form action="/eliminar/<%=voucher.idVouchers%>?_method=DELETE" method="post" class="row botonesDelEditor">
-            <button class="mt-3 my-auto guardar botoneEliminar botones btn col-4">Eliminar <i class="fas fa-trash-alt iconos"></i></button>
-      </form>
-
-          <%}else{%>
-            <h3 class="text-center my-5">Usted no posee credenciales validas para acceder a esta sección.</h3>
-
-            <%}}%>
-        
-
-        <%- include ( './partials/footer' ); %></body>
+            <%- include ( './partials/footer' ); %>
+  </body>

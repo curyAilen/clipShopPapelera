@@ -6,28 +6,35 @@
         <%- include ( './partials/header' ); %>
             <%- include ( './partials/contacto' ); %>
                 <% if (locals.userLogged) { %>
-                    <% if (locals.userLogged.rol == "admin") { %>
+                    <% if (locals.userLogged.rol=="admin" ) { %>
 
 
                         <section class="container mx-auto">
                             <article class="row justify-content-end">
-                                <a href="/altaBanner" class="btn botones col-4 mt-5 mb-3 mx-4">Nuevo Banner<i class="fas fa-plus iconos"></i></a>
+                                <a href="/altaBanner" class="btn botones col-4 mt-5 mb-3 mx-4">Nuevo Banner<i
+                                        class="fas fa-plus iconos"></i></a>
                             </article>
-                            <%for(let i=0; i< banner.length;i++){%>
-
-                                <div class="row  mt-5">
-                                    <a href="/editBanner/<%=banner[i].idBanners%>" class="col-3 botones btn btnBannerEdit">Editar
-                                      <i class="fas fa-pencil-alt iconos"></i></a>
-
-                                    <img src="/images/imgBanner/<%=banner[i].banner%>" alt="" class="img-fluid col-8 bannerEdit" name="banner">
-                                </div>
-
-
-                                <%}%>
+                            <div class="row  mt-5">
+                                <h4 class="enfasis">Banners actualmente publicados</h4>     
+                                <p>Se recomienda NO tener más de 3 banners, ya que esta pensado para solo 3 espacios, medidas 1920px X 500px</p>
+                              
+                                <%for(let i=0; i< banner.length;i++){%>
+                                    <div class="col-lg-6 col-md-10 my-3" style="text-align: end;">
+                                    <img src="/images/imgBanner/<%=banner[i].banner%>" alt=""
+                                        class="img-fluid bannerEdit" name="banner">
+                                  
+                                        <a href="/editBanner/<%=banner[i].idBanners%>"
+                                        class=" mt-2 botones btn " >Editar
+                                        <i class="fas fa-pencil-alt iconos"></i></a>
+                                    
+                                    </div>
+                                        <%}%>
+                            </div>
                         </section>
 
                         <%}else{%>
-                            <h3 class="text-center my-5">Usted no posee credenciales validas para acceder a esta sección.</h3>
+                            <h3 class="text-center my-5">Usted no posee credenciales validas para acceder a esta
+                                sección.</h3>
 
                             <%}}%>
 

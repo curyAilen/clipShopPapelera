@@ -7,9 +7,9 @@
             <%- include ( './partials/contacto' ); %>
                 <% if (locals.userLogged) { %>
                     <% if (locals.userLogged.rol=="admin" ) { %>
-                        <section class="container mx-auto">
+                        <section class="container mx-auto estiloDeCaja">
                             <form action="/contacto/enviarEmail" method="post">
-                                <h2 class="my-3">Enviar Email de difusion</h2>
+                                <h2 class="my-3 enfasis">Enviar Email de difusion</h2>
                                 <div class="input-block">
                                     <input type="text" class="form-control my-3" placeholder="Asunto" name="asunto">
                                 </div>
@@ -21,7 +21,7 @@
                         </section>
                         <section class="container mx-auto my-5">
                             <% if (locals.emails && emails) {%>
-                                <h3>Emails que recibiran el mensaje (<%= emails.length  %>) </h3>
+                                <h3 class="enfasis">Emails que recibiran el mensaje (<%= emails.length  %>) </h3>
 
                                 <% emails.forEach(email => {%>
                                     <h6><%= email.email  %></h6>

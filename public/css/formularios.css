@@ -8,11 +8,8 @@
     box-shadow: 0px 11px 13px 0px rgba(0, 0, 0, 0.51);
 }
 
-#altaPedidoBtn {
-    width: 20%;
-    margin: 50px auto 0 auto;
     /****************MODIFICAR----PRODUCTO***********/
-}
+
 
 .fechaVoucher {
     font-size: 1rem;
@@ -49,7 +46,11 @@
     width: 70%;
 }
 
-
+/*****************************BANNER-----NUEVO***********************************************/
+#formularioAltaBanner{
+    margin: 100px auto;
+    width: 50%;
+}
 /****************************MODIFICAR----BANNER********************************************/
 
 .btnBannerEdit {
@@ -66,9 +67,7 @@
 
 /****************************MODIFICAR----VOUCHER********************************************/
 
-.contieneVouchers {
-    width: 85%;
-}
+
 
 
 /****************************MODIFICAR----CLAVE********************************************/
@@ -95,5 +94,5 @@
         width: 50%;
     }
     /****************************MODIFICAR----VOUCHER********************************************/
-    .btnVoucher {}
+ 
 }

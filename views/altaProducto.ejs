@@ -11,9 +11,9 @@
 
                         <form action="/tienda/altaProducto" method="post" enctype="multipart/form-data"
                             id="formularioAltaProducto">
-                            <h2 class="tituloAlta">Alta de producto</h2>
+                            <h2 class="tituloAlta enfasis">Alta de producto</h2>
                             <div class="row justify-content-between">
-                                <div class="form-group col-6">
+                                <div class="form-group col-lg-6 col-md-10">
                                     <label for="nombre">Nombre Producto</label>
                                     <input type="text" id="nombre" class="nombre form-control" name="nombre" min="5"
                                         max="35" value="<%= locals.old && old.nombre ? old.nombre : "" %>">
@@ -21,7 +21,7 @@
                                         <%= locals.errores && errores.nombre ? errores.nombre.msg : "" %>
                                     </p>
                                 </div>
-                                <div class="form-group col-6">
+                                <div class="form-group col-lg-6 col-md-10">
                                     <label for="precio">Precio del Producto</label>
                                     <input type="number" id="precio" class="precio form-control" name="precio"
                                         value="<%= locals.old && old.precio ? old.precio : "" %>">
@@ -29,7 +29,7 @@
                                         <%= locals.errores && errores.precio ? errores.precio.msg : "" %>
                                     </p>
                                 </div>
-                                <div class="form-group col-6">
+                                <div class="form-group col-lg-6 col-md-10">
                                     <label for="categoria">Categorias</label>
                                     <select class="form-control categorias" id="categoria" name="categoria">
                                         <option value="0">Elige una categoria</option>
@@ -45,7 +45,7 @@
                                     </p>
 
                                 </div>
-                                <div class="form-group  col-6">
+                                <div class="form-group col-lg-6 col-md-10">
                                     <p>Es una oferta</p>
                                     <div class="form-check form-switch">
                                         <input class="form-check-input switch" type="checkbox" role="switch"
@@ -69,7 +69,7 @@
                                         <%= locals.errores && errores.imgProd ? errores.imgProd.msg : "" %>
                                     </p>
                                 </div>
-                                <button class="btn botones " id="altaPedidoBtn" type="submit">CREAR</button>
+                                <button class="btn botones col-lg-4 col-md-6 ml-auto" id="altaPedidoBtn" type="submit">CREAR</button>
                             </div>
                         </form>
 

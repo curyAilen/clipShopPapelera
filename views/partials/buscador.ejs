@@ -1,12 +1,12 @@
 <section id="buscador">
     <div class="" id="filter">
         <form action="/tienda" method="get" enctype="multipart/form-data" class="row  estiloDeCaja py-4">
-            <div class="form-group col-4">
-                <label for="producto">Buscar por nombre de producto</label>
-                <input class="form-control buscadortitulo" type="text" placeholder="producto" name="buscar" />
+            <div class="form-group col-lg-4 col-md-10">
+                <label for="producto">Producto</label>
+                <input class="form-control buscadortitulo" type="text" placeholder="Nombre del producto" name="buscar" />
             </div>
 
-            <div class="form-group col-4">
+            <div class="form-group col-lg-4 col-md-10">
                 <label for="categoria">Categorias</label>
                 <select class="form-control categorias" id="categoria" name="buscarCategoria">
                     <option value="" selected>Elija una categoria</option>
@@ -18,13 +18,13 @@
                 </select>
             </div>
 
-            <div class="form-group col-4 filtros">
+            <div class="form-group col-lg-4 col-md-10 filtros">
                 <label for="filtro">Filtros</label>
                 <select class="form-control filtrosselect" id="categoria" name="buscarFiltro">
                 </select>
             </div>
             <div class="row">
-                <button type="submit" class="btn  btn-primary col-3 botonFiltro">Buscar</button>
+                <button type="submit" class="btn  btn-primary col-lg-3 col-md-11 botonFiltro">Buscar</button>
             </div>
         </form>
     </div>

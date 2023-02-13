@@ -13,18 +13,18 @@
                 <section id="miCuenta" class="container ">
                     <article class="row justify-content-between mx-auto">
                         <div id="misDatos" class="col-lg-3 col-md-12">
-                            <h3 class="botones titulos">Mis Datos</h3>
+                            <h3 class="botones ">Mis Datos</h3>
                         </div>
 
                         <div id="misCompras" class="col-lg-3 col-md-12">
-                            <h3 class="botones titulos">Mis Compras</h3>
+                            <h3 class="botones ">Mis Compras</h3>
                         </div>
 
                         <% if (locals.userLogged) { %>
                             <% if (locals.userLogged.rol=="admin" ) { %>
 
                                 <div id="accionesAdmin" class="col-lg-3 col-md-12">
-                                    <h3 class="botones titulos">Administración</h3>
+                                    <h3 class="botones ">Administración</h3>
                                 </div>
                                 <%}%>
                                     <%}%>
@@ -32,27 +32,41 @@
                 </section>
                 <section id="comprasHistorial" class="container ocultar ">
                     <h1>Historial de compra</h1>
-                    <%for (let i=0; i < v.length; i++) {%>
-                        <%if (v[i].idUsuarios==locals.userLogged.idUsuarios) {%>
-                            <article class="row my-5  justify-content-between estiloDeCaja">
-                                <h4 class="col-lg-10 col-md-10">N° Pedido: <%=v[i].pedidoNum%>
-                                </h4>
-                                <h5 class=" col-lg-2 col-md-10 fecha">Fecha: <%=v[i].fecha%>
-                                </h5>
-                                <p class="col-lg-3 col-md-10 totalPrecio ">Improte abonado: <%=v[i].importe%>
-                                </p>
-                                <p class="col-lg-3 col-md-10 totalPrecio ">Productos: <%=v[i].idProductos%>
-                                </p>
-                                <p class=" col-lg-3 col-md-10 fecha">Cantidad de productos: <%=v[i].cantidad%>
-                                </p>
+                    <article class="row my-5  justify-content-center ">
+                        <%for (let i=0; i < v.length; i++) {%>
+                            <%if (v[i].idUsuarios==locals.userLogged.idUsuarios) {%>
 
-
-
-                            </article>
-                            <%}}%>
-
-
-                                </article>
+                                <div class="compra col-lg-10 estiloDeCaja">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-6">
+                                            <h3 class="enfasis">N° Pedido:</h3>
+                                            <p>
+                                                <%=v[i].pedidoNum%>
+                                            </p>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6">
+                                            <h4>Fecha de compra:</h4>
+                                            <p>
+                                                <%=v[i].fecha%>
+                                            </p>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6">
+                                            <h4 class="enfasis">Importe Abonado:</h4>
+                                            <p class="totalPrecio ">
+                                                <%=v[i].importe%>
+                                            </p>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6">
+                                            <h4>Cant. de productos:</h4>
+                                            <p class="fecha">
+                                                <%=v[i].cantidad%>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                    </article>
+                    <%}}%>
                 </section>
 
 
@@ -103,14 +117,15 @@
 
                 <section id="adminProductos" class="container ocultar estiloDeCaja">
                     <div class="row justify-content-center">
-                        <a href="/tienda/altaProducto" class="botones col-3 btnAdminProd btn "> Ingresar un
+                        <a href="/tienda/altaProducto" class="botones col-lg-4 col-md-10 mx-3 btnAdminProd btn ">
+                            Ingresar un
                             producto <i class="fas fa-plus iconos"></i></a>
 
-                        <a href="/configBanner" class="botones col-3 btnAdminProd btn ">Banner<i
+                        <a href="/configBanner" class="botones col-lg-4 col-md-10 mx-3 btnAdminProd btn ">Banner<i
                                 class="fas fa-cogs iconos"></i></a>
-                        <a href="/configVoucher" class="botones col-3 btnAdminProd btn ">Voucher<i
+                        <a href="/configVoucher" class="botones col-lg-4 col-md-10 mx-3 btnAdminProd btn ">Voucher<i
                                 class="fas fa-cogs iconos"></i></a>
-                        <a href="/enviarEmail" class="botones col-4 btnAdminProd btn ">Email<i
+                        <a href="/enviarEmail" class="botones col-lg-4 col-md-10 mx-3 btnAdminProd btn ">Email<i
                                 class="fas fa-envelope iconos"></i></a>
                     </div>
                 </section>

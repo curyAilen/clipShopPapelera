@@ -7,33 +7,26 @@
             <%- include ( './partials/contacto' ); %>
                 <% if (locals.userLogged) { %>
                     <% if (locals.userLogged.rol=="admin" ) { %>
+
+
+
                         <section class="container">
-                            <%for(let i=0; i<usuario.length; i++){%>
-                                <article class="row cardUsuarios">
-                                    <h3 class="col-12">Cliente:
-                                        <%= usuario[i].nombre%>
-                                    </h3>
-                                    <ul class="col-12">
-                                        <li>
-                                            <p> E-mail:
-                                                <%= usuario[i].email %>
-                                            </p>
-                                        </li>
-                                        <li>
-                                            <p> Dirección:
-                                                <%= usuario[i].direccion %>
-                                            </p>
-                                        </li>
-                                        <li>
-                                            <p> Código Postal:
-                                                <%= usuario[i].cp %>
-                                            </p>
-                                        </li>
-
-
-                                    </ul>
-                                </article>
-                                <%}%>
+                            <div class="row justify-content-between">
+                                <%for(let i=0; i<usuario.length; i++){%>
+                                    <article class="col-lg-5 col-md-10 mx-2 estiloDeCaja">
+                                        <h3>Cliente: <%= usuario[i].nombre%>
+                                        </h3>
+                                        <ul>
+                                            <li>E-mail: <%= usuario[i].email %>
+                                            </li>
+                                            <li>Dirección: <%= usuario[i].direccion %>
+                                            </li>
+                                            <li>Teléfono: <%= usuario[i].telefono %>
+                                            </li>
+                                        </ul>
+                                    </article>
+                                    <%}%>
+                            </div>
                         </section>
 
 
@@ -41,7 +34,8 @@
 
 
                         <%}else{%>
-                            <h3 class="text-center my-5">Usted no posee credenciales validas para acceder a esta sección.
+                            <h3 class="text-center my-5">Usted no posee credenciales validas para acceder a esta
+                                sección.
                             </h3>
 
                             <%}}%>

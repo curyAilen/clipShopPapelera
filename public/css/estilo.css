@@ -17,7 +17,9 @@ Violeta: #5424B2
     margin: 0;
     padding: 0;
 }
-
+.body{
+    margin: 0;
+}
 #encabezadoPagina {
     padding: 0 !important;
     margin: 0;
@@ -47,6 +49,10 @@ Violeta: #5424B2
     padding: 15px 20px;
     border-radius: 15px;
 }
+.enfasis{
+    color: #5424B2;
+    font-weight: 600;
+    }
 
 
 /*************TEXTOS*******************/
@@ -253,7 +259,6 @@ h6 {
 
 #categorias div {
     justify-content: space-between;
-    width: 50%;
     margin: 0 auto;
 }
 
@@ -289,18 +294,19 @@ h6 {
 .cardUsuarios {
     box-shadow: 0px 11px 13px 0px rgba(0, 0, 0, 0.51);
     border-radius: 15px;
-    padding: 15px 25px;
-    margin-top: 5%;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
+    padding: 15px;
+    margin: 25px auto;
+    width: 70%;
+    
 }
 
 
 /****************************Formulario cambio de clave********************************************/
 
 #formularioActualizaClave {
-    width: 50%;
+    width: 70%;
+    margin-top: 100px;
+    margin-bottom: 100px;
 }
 
 
@@ -321,6 +327,10 @@ h6 {
 
 .mascotaFeliz{
     display: none;
+}
+#piePagina{
+    max-height: 540px;
+
 }
 #ofertas {
     width: 80%;
@@ -429,4 +439,16 @@ h6 {
 .mascotaFeliz{
     display: block;
 }
+ /******************LISTADO CLIENTES**********************/
+ .cardUsuarios {
+    box-shadow: 0px 11px 13px 0px rgba(0, 0, 0, 0.51);
+    border-radius: 15px;
+    padding: 15px;
+    margin: 25px auto;
+    width: auto;
+    
+}
+
+
+
 }

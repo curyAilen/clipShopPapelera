@@ -11,25 +11,45 @@
 
                         <section class="container contieneVouchers">
                             <article class="row justify-content-strat">
-                                <a href="/altaVoucher" class="btn botones col-5 mt-5 mb-3 btnVoucher">Nuevo Voucher<i
-                              class="fas fa-plus iconos"></i></a>
+                                <a href="/altaVoucher" class="btn botones col-lg-3 col-md-10 mt-5 mb-3 btnVoucher ">Nuevo Voucher<i
+                                        class="fas fa-plus iconos"></i></a>
                             </article>
 
-                            <div class="row justify-content-center">
+                            <div class="row justify-content-start">
                                 <%for(let i=0; i< voucher.length;i++){%>
-                                    <div class="estiloDeCaja col-lg-3 mx-2 col-sm-10">
-                                        <h3 class="nombreVoucher">Voucher:
-                                            <%=voucher[i].voucher%>
-                                        </h3>
-                                        <h3 class="valorVoucher">Valor:
-                                            <%=voucher[i].valor%>%
-                                        </h3>
-                                        <h5 class="fechaVoucher">Fecha:
-                                            <%=voucher[i].fecha%>
-                                        </h5>
-                                        <a href="/editVoucher/<%=voucher[i].idVouchers%>" class="col-4 my-4 botones text-center btn ">Editar
-                                      <i class="fas fa-pencil-alt iconos"></i></a>
+                                    <div class="estiloDeCaja col-lg-3 mx-2 col-sm-10 text-center">
+
+                                        <div class="row ">
+                                            <div class="col-lg-10 col-md-12">
+                                                <h3 class="nombreVoucher enfasis">Voucher:</h3>
+                                                <p class="">
+                                                    <%=voucher[i].voucher%>
+                                                </p>
+
+                                            </div>
+                                            <div class="col-lg-6 col-md-10">
+
+                                                <h3 class="valorVoucher enfasis">Valor:</h3>
+                                                <p>
+                                                    <%=voucher[i].valor%>%
+                                                </p>
+                                            </div>
+                                            <div class="col-lg-6 col-md-10">
+                                                <h3 class="fechaVoucher enfasis">Fecha:</h3>
+                                                <p>
+                                                    <%=voucher[i].fecha%>
+                                                </p>
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <a href="/editVoucher/<%=voucher[i].idVouchers%>"
+                                            class="btn botones col-lg-4 col-md-6 ml-auto">Editar
+                                            <i class="fas fa-pencil-alt iconos"></i></a>
                                     </div>
+
                                     <%}%>
                             </div>
 
@@ -38,7 +58,8 @@
                         </section>
 
                         <%}else{%>
-                            <h3 class="text-center my-5">Usted no posee credenciales validas para acceder a esta sección.</h3>
+                            <h3 class="text-center my-5">Usted no posee credenciales validas para acceder a esta
+                                sección.</h3>
 
                             <%}}%>
 

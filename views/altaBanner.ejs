@@ -15,7 +15,7 @@
 
     
   <form action="/altaBanner"  method="post" enctype="multipart/form-data" id="formularioAltaBanner" class="estiloDeCaja">
-    <h2 class="">Carga un banner nuevo</h2>
+    <h2 class="enfasis">Carga un banner nuevo</h2>
     <div class="row justify-content-between">
      
       <div class="form-group ">
@@ -23,7 +23,7 @@
         <input type="file" class="form-control-file" name="imgBanner" accept="image/png, image/jpeg">
         <p><%= locals.errores && errores.imgBanner ? errores.imgBanner.msg : "" %> </p>
       </div>
-      <button class="btn botones "  type="submit">CREAR<i class="fas fa-pencil-alt iconos"></i></button>
+      <button class="btn botones col-lg-4 col-md-6 ml-auto"  type="submit">CREAR<i class="fas fa-pencil-alt iconos"></i></button>
     </div>
   </form>
 
