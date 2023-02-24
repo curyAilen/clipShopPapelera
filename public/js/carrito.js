@@ -1,6 +1,8 @@
 let carrito = [];
 let products = [];
 let descuentoPorcentaje = 0;
+let costoEnvio = 600;
+
 
 if (localStorage.carrito) {
     carrito = JSON.parse(localStorage.carrito);
@@ -35,7 +37,7 @@ const subtotalPrecios = (productos) => {
         (acum, value) => acum + (value.precio * value.cantidad)
         , 0);
 };
-
+/*************************ACÁ SE AGREGO LOS 600 DEL COSTO DE ENVIO */
 const totalPrecios = (productos, descuento) => {
     let subtotal = subtotalPrecios(productos);
     let total = subtotal - (subtotal * (descuento / 100));
@@ -86,7 +88,8 @@ const mostrarCarrito = () => {
                         idProductos: product.idProductos,
                         nombre: product.nombre,
                         precio: Number(product.precio),
-                        cantidad: item.cantidad
+                        cantidad: item.cantidad,
+                        costoEnvio : costoEnvio
                     });
 
                 } else {
@@ -96,7 +99,7 @@ const mostrarCarrito = () => {
             })
             .then(() => {
                 document.querySelector(".montoSubTotal").innerText = `$${subtotalPrecios(products)}`;
-                document.querySelector(".montoTotal").innerText = `$${totalPrecios(products, descuentoPorcentaje)}`;
+                document.querySelector(".montoTotal").innerText = `$${totalPrecios(products, descuentoPorcentaje, costoEnvio)}`;
             })
     });
 };

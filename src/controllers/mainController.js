@@ -297,7 +297,7 @@ let mainController = {
                         global: response.body.id,
                         data: {
                             descuento: comprobarVoucher.valor,
-                            total: precioTotal
+                            total: precioTotal,
                         }
                     });
                 })
@@ -321,7 +321,7 @@ let mainController = {
                     res.json({
                         global: response.body.id,
                         data: {
-                            total: precioTotal
+                            total: precioTotal        
                         }
                     });
                 })
