@@ -213,7 +213,6 @@ let mainController = {
             titulo: 'Carrito'
         });
     },
-   
     obtenerProducto: async (req, res) => {
         let product = await Producto.findByPk(req.params.id, {
             include: [{ association: "categoria" }],
@@ -225,8 +224,6 @@ let mainController = {
 
         return voucher ? res.json(voucher.valor) : res.json(null);
     },
-   
-
     comprar: async (req, res) => {
         const { idUsuarios } = res.locals.userLogged;
         const { products } = req.body;
@@ -244,13 +241,13 @@ let mainController = {
             if (comprobarVoucher) {
                 importe = importe - (importe * (Number(comprobarVoucher.valor) / 100));
             };
- 
+
             let venta = {
                 idUsuarios,
                 idProductos,
                 cantidad,
                 importe,
-                pedidoNum:  Date.now(),
+                pedidoNum: Date.now(),
                 fecha: new Date(),
             };
 
@@ -269,8 +266,14 @@ let mainController = {
             comprobarVoucher = await Voucher.findOne({ where: { voucher: req.body.voucher } });
         };
 
+/*******************************ACÁ AGREGO COSTO ENVIO MANUAL  
+ * costoEnvio = 600 cambiar en carrito.js linea 4 ****************************************/
         let preference = {
-            items: [],
+            items: [{
+                title: "Envio",
+                unit_price: 600,
+                quantity: 1
+            }],
             back_urls: {
                 success: `${config.main.url}/carrito`,
                 failure: `${config.main.url}/carrito`,
@@ -321,7 +324,7 @@ let mainController = {
                     res.json({
                         global: response.body.id,
                         data: {
-                            total: precioTotal        
+                            total: precioTotal
                         }
                     });
                 })
@@ -337,9 +340,9 @@ let mainController = {
 
         if (validEmail.test(email)) {
             const emailRepetido = await Email.findOne({ where: { email } });
-            
+
             if (!emailRepetido) {
-                await Email.create({ email });       
+                await Email.create({ email });
             };
         };
 

@@ -37,7 +37,7 @@ const subtotalPrecios = (productos) => {
         (acum, value) => acum + (value.precio * value.cantidad)
         , 0);
 };
-/*************************ACÁ SE AGREGO LOS 600 DEL COSTO DE ENVIO */
+
 const totalPrecios = (productos, descuento) => {
     let subtotal = subtotalPrecios(productos);
     let total = subtotal - (subtotal * (descuento / 100));
@@ -53,6 +53,7 @@ const mostrarCarrito = () => {
         carritoProductos.innerHTML = `<h3 style="margin: 1em;"> Carrito vacio </h3>`;
         document.querySelector(".montoSubTotal").innerText = `$0`;
         document.querySelector(".montoTotal").innerText = "$0";
+        document.querySelector(".costoEnvio").innerHTML = costoEnvio;
     }
 
     carrito.forEach((item, index) => {
@@ -88,8 +89,7 @@ const mostrarCarrito = () => {
                         idProductos: product.idProductos,
                         nombre: product.nombre,
                         precio: Number(product.precio),
-                        cantidad: item.cantidad,
-                        costoEnvio : costoEnvio
+                        cantidad: item.cantidad
                     });
 
                 } else {
@@ -99,7 +99,7 @@ const mostrarCarrito = () => {
             })
             .then(() => {
                 document.querySelector(".montoSubTotal").innerText = `$${subtotalPrecios(products)}`;
-                document.querySelector(".montoTotal").innerText = `$${totalPrecios(products, descuentoPorcentaje, costoEnvio)}`;
+                document.querySelector(".montoTotal").innerText = `$${totalPrecios(products, descuentoPorcentaje)}`;
             })
     });
 };
@@ -159,9 +159,10 @@ const mostrarPago = (products, total, descuento) => {
     pieCarrito.innerHTML = `
         <div class="cuenta">
             <button class="button-volver" onClick="refresh()">Volver</button>
-            <h4>Cantidad de productos: ${products.length}</h4>
+            <h4 class="mt-4">Cantidad de productos: ${products.length}</h4>
             ${descuento ? `<h4>Descuento: ${descuento}%</h4>` : ""}
-            <h3>Total: $${total}</h3>
+            <p>Consultar por costo de envio fuera de CABA, antes de comprar.</p>
+            <h3>Total: $${total + costoEnvio}</h3>
             <div class="cho-container"></div>
         </div>
     `
