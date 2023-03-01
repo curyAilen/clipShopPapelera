@@ -48,12 +48,12 @@ const mostrarCarrito = () => {
     let carritoProductos = document.querySelector(".carritodeproductos");
     carritoProductos.innerHTML = "";
     products = [];
-
+    document.querySelector(".costoEnvio").innerText = costoEnvio;
     if (carrito.length === 0) {
         carritoProductos.innerHTML = `<h3 style="margin: 1em;"> Carrito vacio </h3>`;
         document.querySelector(".montoSubTotal").innerText = `$0`;
         document.querySelector(".montoTotal").innerText = "$0";
-        document.querySelector(".costoEnvio").innerHTML = costoEnvio;
+        
     }
 
     carrito.forEach((item, index) => {
