@@ -71,7 +71,6 @@ router.post("/recuperar", async (req, res) => {
         return res.render("recuperarfeedback", { msg: "No existe ningun usuario registrado con ese email" });
     };
 
-
     const secret = config.jwt.secret + usuario.password;
     const payload = {
         id: usuario.idUsuarios,
@@ -131,36 +130,106 @@ router.post("/recuperar", async (req, res) => {
     });
 });
 
-module.exports = router;
+router.get("/desuscribirse", (req, res) => {
+    return res.render("desuscribirse");
+});
 
-/*
-    Estimado, si usted recordó su contraseña o no solicitó el cambio de la misma, ignore este mensaje.
-ahi te paso css que tengo:
-énfasis lo uso para el titulo
-.botones {
-    background-color: #f7c959;
-    border: none;
-    border-radius: 5px;
-    color: rgb(255, 245, 238);
-    font-weight: 600;
-    box-shadow: 5px 6px 15px 0px rgba(0, 0, 0, 0.30);
-    font-size: 1rem;
-}
+router.post("/desuscribirse", async (req, res) => {
+    const { email } = req.body;
 
-.botones:hover {
-    transition-duration: 0.8s;
-    background-color: #5424B2;
-    -webkit-animation-name: pulse;
-    animation-name: pulse;
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
-    color: rgb(255, 245, 238);
-}
-.enfasis{
-    color: #5424B2;
-    font-weight: 600;
+    const foundEmail = await db.Email.findOne({ where: { email } });
+
+    if (!foundEmail) {
+        return res.render("recuperarfeedback", { msg: "No existe ningun usuario suscripto con ese mail" });
+    };
+    
+    const secret = config.jwt.secret;
+    const payload = {
+        email
+    };
+
+    const token = jwt.sign(payload, secret, { expiresIn: "30m" });
+    const link = `${config.main.url}/contacto/desuscribirse/confirmar/${token}`;
+
+    let mailOptions = {
+        from: config.nodemailer.email,
+        to: email,
+        subject: "Desuscripcion de las novedades de Clip Shop",
+        text: `Ingresa a este link para desuscribirse: ${link}`,
+        html: `
+            <head>
+                <style>
+                    body {
+                        background-color: #fffcfa;
+                    }
+                
+                    a:link,
+                    a:visited,
+                    a:active,
+                    a:hover {
+                        background-color: #f7c959;
+                        border: none;
+                        border-radius: 5px;
+                        color: rgb(255, 245, 238);
+                        font-weight: 600;
+                        box-shadow: 5px 6px 15px 0px rgba(0, 0, 0, 0.30);
+                        font-size: 26px;
+                        text-decoration: none;
+                    }
+
+                    img{
+                        max-width: 500px;
+                    }
+                </style>
+            </head>
+            <h1 style="color: #5424B2; font-weight: 600">
+                Desuscribirse a novedades de Clip Shop
+            </h1>
+            <h3>Estimado, si usted no solicitó la desuscripcion de su correo, ignore este mensaje.</h3>
+            <div>
+                <a href="${link}">DESUSCRIBIRSE</a>
+            </div>
+            <img src="${imgLogoClipShop}">
+        `
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.log(error);
+            return res.render("recuperarfeedback", { msg: `Ha ocurrido un error, intentalo mas tarde` });
+        } else {
+            console.log("Email enviado");
+            return res.render("recuperarfeedback", { msg: `Hemos enviado un link a tu correo: ${email}` });
+        }
+    });
+});
+
+router.get("/desuscribirse/confirmar/:token", async (req, res) => {
+    const { token } = req.params;
+    const secret = config.jwt.secret;
+
+    try {
+        const payload = jwt.verify(token, secret);
+        return res.render("confirmarDesuscribirse", { token, email: payload.email });
+    } catch (error) {
+        console.log(error.message);
+        return res.redirect("/");
     }
+});
 
-*/
+router.post("/desuscribirse/:token", async (req, res) => {
+    const { token } = req.params;
+    const secret = config.jwt.secret;
+
+    try {
+        const { email } = jwt.verify(token, secret);
+        await db.Email.destroy({ where: { email } });
+
+        return res.redirect("/");
+    } catch (error) {
+        console.log(error);
+        return res.render("recuperarfeedback", { msg: `Ha ocurrido un error, intentalo mas tarde` });   
+    }
+})
+
+module.exports = router;

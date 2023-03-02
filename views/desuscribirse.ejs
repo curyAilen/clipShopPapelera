@@ -1,0 +1,21 @@
+<%- include ( './partials/head' ); %>
+    <!--<link rel="stylesheet" href="/css/login.css">-->
+    </head>
+
+    <body class="">
+        <%- include ( './partials/header' ); %>
+            <%- include ( './partials/contacto' ); %>
+
+                <section class="container ">
+                    <form action="/contacto/desuscribirse" method="post" class="estiloDeCaja formrecuperar">
+                        <h2>Desuscribir mi correo electronico de las novedades de Clip Shop</h2>
+                        <div class="form-group ">
+                            <label>Ingrese su e-mail </label>
+                            <input type="email" name="email" placeholder="Email" class="form-control w-50" />
+                        </div>
+                        <button type="submit" class="btn botones col-lg-4 col-md-6 ml-auto">Enviar</button>
+                    </form>
+                </section>
+
+                <%- include ( './partials/footer' ); %>
+    </body>

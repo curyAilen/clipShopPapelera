@@ -1,0 +1,20 @@
+<%- include ( './partials/head' ); %>
+    <!--<link rel="stylesheet" href="/css/login.css">-->
+    </head>
+
+    <body class="">
+        <%- include ( './partials/header' ); %>
+            <%- include ( './partials/contacto' ); %>
+
+                <section class="container ">
+                    <form action="/contacto/desuscribirse/<%= locals.token && token ? token : "" %>" method="post" class="estiloDeCaja">
+                        <div class="form-group ">
+                            <h2>Desuscribir: <%= locals.email && email ? email : "-@-.com" %></h2>
+                        </div>
+                        <button type="submit" class="btn botones btnEditarGuardar col-lg-4 col-md-6 ml-auto">Confirmar</button>
+                    </form>
+                </section>
+
+
+                <%- include ( './partials/footer' ); %>
+    </body>
