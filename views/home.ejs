@@ -1,11 +1,13 @@
 <%- include ( './partials/head' ); %>
-
+<link rel="stylesheet" href="/css/bienvenida.css">
     </head>
 
     <body class="">
         <%- include ( './partials/header'); %>
+      
             <%- include ( './partials/contacto'); %>
                 <!--BANNER SLIDE-->
+                  <%- include ( './partials/bienvenida'); %>
                 <main class="bannersPromociones">
                     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
@@ -100,4 +102,9 @@
                         </div>
                     </section>
 
+                    <script>
+                        window.addEventListener('load', function() {
+                            $('#bienvenida').modal('show')
+});
+</script>
                     <%- include ( './partials/footer' ); %>

@@ -1,0 +1,13 @@
+#bienvenida{
+    margin-top: 100px;
+}
+.cajaBienvenida{
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+}
+.cajaTextoBienvenida{
+    background-color: rgba(255, 255, 255, 0.921);
+    align-self: start;
+    padding: 15px 20px;
+    border-radius: 15px;
+}
