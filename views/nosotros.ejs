@@ -1,5 +1,6 @@
 <%- include ( './partials/head' ); %>
     <link rel="stylesheet" href="css/nosotros.css">
+    <link rel="stylesheet" href="css/timeline.css">
     </head>
 
     <body class="">
@@ -32,7 +33,7 @@
                         </P>
                     </div>
                 </section>
-                <section class="container " id="historiaMascota">
+                <section class="container d-none" id="historiaMascota">
                 
                         <h4 class="titulos col-12 ">LA HISTORIA DE CAFER</h4>
                         <div class="parte1 row aos-item" data-aos="fade-up" data-aos-duration="2000">
@@ -84,7 +85,8 @@
                         </div>
 
                    
-                </section>
+                </section>   
+                <%- include ( './partials/timeline' ); %>
 
                 <section class="container-fluid " id="staff">
                     <article class="row justify-content-center">
@@ -136,7 +138,7 @@
                     </div>
                 </section>
 
-
+             
 
 
                 <script>
