@@ -67,12 +67,12 @@ let mainController = {
     editBanner: (req, res) => {
         Banner.findByPk(req.params.id)
 
-            .then((banner) => {
-                res.render('editBanner', {
-                    titulo: 'Edición de banners',
-                    banner: banner
-                });
-            })
+        .then((banner) => {
+            res.render('editBanner', {
+                titulo: 'Edición de banners',
+                banner: banner
+            });
+        })
     },
     editedBanner: (req, res) => {
         let imagen = req.body.imagenOriginal;
@@ -81,12 +81,12 @@ let mainController = {
             banner = req.file.filename;
         }
         Banner.update({
-            imagen: imagen,
-        }, {
-            where: {
-                idBanners: req.params.id,
-            },
-        })
+                imagen: imagen,
+            }, {
+                where: {
+                    idBanners: req.params.id,
+                },
+            })
             .then((banner) => {
                 res.redirect("/");
 
@@ -113,7 +113,7 @@ let mainController = {
         });
 
     },
-    altaVoucher: async (req, res) => {
+    altaVoucher: async(req, res) => {
         let voucherValidationResult = validationResult(req);
 
         if (voucherValidationResult.errors.length > 0) {
@@ -149,14 +149,14 @@ let mainController = {
     editVoucher: (req, res) => {
         Voucher.findByPk(req.params.id)
 
-            .then((voucher) => {
-                res.render('editVoucher', {
-                    titulo: 'Edición de vouchers',
-                    voucher: voucher
-                });
-            })
+        .then((voucher) => {
+            res.render('editVoucher', {
+                titulo: 'Edición de vouchers',
+                voucher: voucher
+            });
+        })
     },
-    editedVoucher: async (req, res) => {
+    editedVoucher: async(req, res) => {
         const voucherEdited = await Voucher.findByPk(req.params.id)
 
         let voucherValidationResult = validationResult(req);
@@ -188,22 +188,22 @@ let mainController = {
         }
 
         Voucher.update({
-            voucher: req.body.voucher,
-            valor: req.body.valor,
-            fecha: new Date()
-        }, {
-            where: {
-                idVouchers: req.params.id,
-            },
-        })
+                voucher: req.body.voucher,
+                valor: req.body.valor,
+                fecha: new Date()
+            }, {
+                where: {
+                    idVouchers: req.params.id,
+                },
+            })
             .then((voucher) => {
                 res.redirect("/configVoucher");
             })
     },
     deleteVoucher: (req, res) => {
         Voucher.destroy({
-            where: { idVouchers: req.params.id },
-        })
+                where: { idVouchers: req.params.id },
+            })
             .then((voucher) => {
                 res.redirect("/configVoucher");
             })
@@ -213,18 +213,18 @@ let mainController = {
             titulo: 'Carrito'
         });
     },
-    obtenerProducto: async (req, res) => {
+    obtenerProducto: async(req, res) => {
         let product = await Producto.findByPk(req.params.id, {
             include: [{ association: "categoria" }],
         });
         return res.json(product);
     },
-    obtenerVoucher: async (req, res) => {
+    obtenerVoucher: async(req, res) => {
         let voucher = await Voucher.findOne({ where: { voucher: req.params.voucher } });
 
         return voucher ? res.json(voucher.valor) : res.json(null);
     },
-    comprar: async (req, res) => {
+    comprar: async(req, res) => {
         const { idUsuarios } = res.locals.userLogged;
         const { products } = req.body;
         let comprobarVoucher = null;
@@ -258,7 +258,7 @@ let mainController = {
         })
     },
 
-    preferencia: async (req, res) => {
+    preferencia: async(req, res) => {
         const { products } = req.body;
         let comprobarVoucher = null;
 
@@ -266,8 +266,8 @@ let mainController = {
             comprobarVoucher = await Voucher.findOne({ where: { voucher: req.body.voucher } });
         };
 
-/*******************************ACÁ AGREGO COSTO ENVIO MANUAL  
- * costoEnvio = 600 cambiar en carrito.js linea 4 ****************************************/
+        /*******************************ACÁ AGREGO COSTO ENVIO MANUAL  
+         * costoEnvio = 600 cambiar en carrito.js linea 4 ****************************************/
         let preference = {
             items: [{
                 title: "Envio",
@@ -334,7 +334,7 @@ let mainController = {
         }
     },
 
-    suscribirse: async (req, res) => {
+    suscribirse: async(req, res) => {
         const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
         const { email } = req.body;
 

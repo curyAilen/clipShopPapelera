@@ -14,14 +14,21 @@
                             <div class="row justify-content-between">
                                 <%for(let i=0; i<usuario.length; i++){%>
                                     <article class="col-lg-5 col-md-10 mx-2 estiloDeCaja">
-                                        <h3>Cliente: <%= usuario[i].nombre%>
+                                        <h3>Cliente:
+                                            <%= usuario[i].nombre%>
                                         </h3>
                                         <ul>
-                                            <li>E-mail: <%= usuario[i].email %>
+                                            <li>N° de usuario:
+                                                <%= usuario[i].idUsuarios %>
                                             </li>
-                                            <li>Dirección: <%= usuario[i].direccion %>
+                                            <li>E-mail:
+                                                <%= usuario[i].email %>
                                             </li>
-                                            <li>Teléfono: <%= usuario[i].telefono %>
+                                            <li>Dirección:
+                                                <%= usuario[i].direccion %>
+                                            </li>
+                                            <li>Teléfono:
+                                                <%= usuario[i].telefono %>
                                             </li>
                                         </ul>
                                     </article>
@@ -34,8 +41,7 @@
 
 
                         <%}else{%>
-                            <h3 class="text-center my-5">Usted no posee credenciales validas para acceder a esta
-                                sección.
+                            <h3 class="text-center my-5">Usted no posee credenciales validas para acceder a esta sección.
                             </h3>
 
                             <%}}%>

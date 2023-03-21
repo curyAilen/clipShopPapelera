@@ -21,15 +21,15 @@ botones.forEach((boton) => {
                     VanillaToasts.create({
                         title: 'Se agrego un producto al carrito',
                         type: "success",
-                        timeout: 5000
-                      });  
+                        timeout: 2000
+                    });
                 } else {
                     carrito[index].cantidad++;
                     VanillaToasts.create({
                         title: 'Aumentaste la cantidad de este producto',
                         type: "success",
-                        timeout: 5000
-                      });                    
+                        timeout: 2000
+                    });
                 };
 
                 localStorage.setItem("carrito", JSON.stringify(carrito));

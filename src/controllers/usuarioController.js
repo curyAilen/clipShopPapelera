@@ -32,7 +32,7 @@ let usuarioController = {
         } else {
             res.render("login", {
                 errores: errores.mapped(),
-                old: { ...req.body, telefono: Number(req.body.telefono) },
+                old: {...req.body, telefono: Number(req.body.telefono) },
                 titulo: "Registro",
                 registerPage: true
             })
@@ -58,40 +58,40 @@ let usuarioController = {
         }
 
         Usuarios.findOne({
-            where: {
-                email: req.body.emaillogin
-            }
-
-        }).then((usuario) => {
-            if (bcrypt.compareSync(req.body.passwordlogin, usuario.dataValues.password)) {
-
-                let usuarioLogeado = {
-                    idUsuarios: usuario.dataValues.idUsuarios,
-                    nombre: usuario.dataValues.nombre,
-                    email: usuario.dataValues.email,
-                    direccion: usuario.dataValues.direccion,
-                    password: usuario.dataValues.password,
-                    rol: usuario.dataValues.rol
-                };
-
-                req.session.login = usuarioLogeado;
-                
-                if (req.body.remember_user) {
-                    res.cookie("userCookie", usuarioLogeado, {
-                        maxAge: 10000 * 60 * 60 * 24,
-                    });
+                where: {
+                    email: req.body.emaillogin
                 }
 
-                return res.redirect('/user/cuenta');
-            } else {
-                res.render('login', {
-                    errores: {
-                        emaillogin: { msg: 'Clave o Email incorrecto' }
-                    },
-                    old: req.body
-                })
-            }
-        })
+            }).then((usuario) => {
+                if (bcrypt.compareSync(req.body.passwordlogin, usuario.dataValues.password)) {
+
+                    let usuarioLogeado = {
+                        idUsuarios: usuario.dataValues.idUsuarios,
+                        nombre: usuario.dataValues.nombre,
+                        email: usuario.dataValues.email,
+                        direccion: usuario.dataValues.direccion,
+                        password: usuario.dataValues.password,
+                        rol: usuario.dataValues.rol
+                    };
+
+                    req.session.login = usuarioLogeado;
+
+                    if (req.body.remember_user) {
+                        res.cookie("userCookie", usuarioLogeado, {
+                            maxAge: 10000 * 60 * 60 * 24,
+                        });
+                    }
+
+                    return res.redirect('/user/cuenta');
+                } else {
+                    res.render('login', {
+                        errores: {
+                            emaillogin: { msg: 'Clave o Email incorrecto' }
+                        },
+                        old: req.body
+                    })
+                }
+            })
             .catch(() => {
                 res.render('login', {
                     errores: {
@@ -113,7 +113,7 @@ let usuarioController = {
             })
     },
 
-    editedPerfil: async (req, res) => {
+    editedPerfil: async(req, res) => {
         let editValidationResult = validationResult(req);
         const user = await Usuarios.findByPk(req.params.id);
 
@@ -124,7 +124,7 @@ let usuarioController = {
                 usuario: user
             })
         }
-        
+
         if (bcrypt.compareSync(req.body.password, user.dataValues.password)) {
             await Usuarios.update({
                 nombre: req.body.nombre,
@@ -138,7 +138,7 @@ let usuarioController = {
             })
 
             const userUpdated = await Usuarios.findByPk(req.params.id);
-            
+
             req.session.login = userUpdated.dataValues;
             res.clearCookie("userCookie");
             res.redirect("/user/cuenta");
@@ -147,7 +147,7 @@ let usuarioController = {
                 titulo: 'Editar Perfil',
                 usuario: user,
                 old: req.body,
-                errorPassword: "Contraseña incorrecta" 
+                errorPassword: "Contraseña incorrecta"
             })
         };
     },
@@ -162,7 +162,7 @@ let usuarioController = {
             })
     },
 
-    actualizarPassword: async (req, res) => {
+    actualizarPassword: async(req, res) => {
         let editValidationResult = validationResult(req);
         const user = await Usuarios.findByPk(req.params.id);
 
@@ -195,15 +195,21 @@ let usuarioController = {
         req.session.destroy();
         res.redirect("/");
     },
-
     cuenta: (req, res) => {
-        Ventas.findAll({ group: 'pedidoNum' })
-        .then(v => {
-        res.render("cuenta", {                
-            v: v
-            });
-        })
-    
+
+        Ventas.findAll({
+                group: [
+                    ['pedidoNum', 'idUsuarios']
+                ],
+                [Op.eq]: 'pedidoNum'
+            })
+            .then(ventasH => {
+                res.render("cuenta", {
+                    ventasH: ventasH,
+
+                });
+            })
+
     },
 
     listadoClientes: (req, res) => {
@@ -220,17 +226,17 @@ let usuarioController = {
         res.render("recuperar");
     },
 
-    recuperarLink: async (req, res) => {
+    recuperarLink: async(req, res) => {
         const { id, token } = req.params;
 
         const user = await Usuarios.findByPk(id);
 
-        if (!user){
-            return res.redirect("/"); 
-        }; 
-        
+        if (!user) {
+            return res.redirect("/");
+        };
+
         const secret = config.jwt.secret + user.password;
-    
+
         try {
             const payload = jwt.verify(token, secret);
             return res.render("recuperarPassword", { email: user.email });
@@ -240,15 +246,15 @@ let usuarioController = {
         }
     },
 
-    recuperarpost: async (req, res) => {
+    recuperarpost: async(req, res) => {
         const { id, token } = req.params;
         const { password } = req.body;
-        
+
         const user = await Usuarios.findByPk(id);
-        
-        if (!user){
-            return res.redirect("/"); 
-        }; 
+
+        if (!user) {
+            return res.redirect("/");
+        };
 
         let editValidationResult = validationResult(req);
 
