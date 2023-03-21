@@ -1,30 +1,30 @@
     .productoCarrito {
         justify-content: baseline;
     }
-
+    
     .contieneDetalleProducto {
         display: flex;
         flex-wrap: nowrap;
         justify-content: space-around;
         align-items: baseline;
     }
-
+    
     .precioUnidad {
         font-size: 11px;
     }
-
+    
     .botonesCarrito {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
         align-items: baseline;
     }
-
+    
     .contienBotonesCarrito {
         align-self: self-end;
         margin-left: auto;
     }
-
+    
     .contienePrecios {
         align-self: flex-end;
         display: flex;
@@ -33,52 +33,52 @@
         align-items: baseline;
         margin-left: auto;
     }
-
+    
     #carritoDeCompras {
         margin: 0 auto;
     }
-
+    
     #pieCarrito {
         width: 90%;
         justify-content: center;
         margin: 0 auto;
     }
-
+    
     #pieCarrito h1 {
         font-size: 24px;
         font-weight: 300;
         text-align: center;
     }
-
+    
     .calculoTotales {
         float: right;
     }
-
+    
     div.voucher {
         display: flex;
         margin: 2em 0;
         flex-flow: column nowrap;
     }
-
+    
     div.voucher input {
         width: 100%;
         margin-bottom: 1em;
         outline: none;
     }
-
+    
     div.voucher span.descuento {
         font-weight: 500;
         margin: 1em;
     }
-
+    
     span.descuento.valido {
         color: green;
     }
-
+    
     span.descuento.invalido {
         color: red;
     }
-
+    
     div.cuenta {
         border: 1px solid black;
         width: 100%;
@@ -86,8 +86,8 @@
         margin-top: 2em;
         padding: 1em;
     }
-
-    button.button-volver{
+    
+    button.button-volver {
         border: none;
         outline: none;
         border-radius: 8px;
@@ -96,7 +96,18 @@
         padding: 0.3em;
         margin-bottom: .5em;
     }
-
+    
+    .costoEnvioInterior {
+        color: red;
+        font-weight: 600;
+        font-size: 18px;
+    }
+    
+    .procesaCompra {
+        font-weight: 600;
+        font-size: 18px;
+    }
+    
     @media screen and (min-width: 480px) {
         div.voucher {
             display: flex;
@@ -105,7 +116,6 @@
             align-items: center;
             justify-content: flex-start;
         }
-
         div.voucher input {
             width: 200px;
             margin: 0 1em;

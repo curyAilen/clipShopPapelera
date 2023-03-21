@@ -271,7 +271,7 @@ let mainController = {
         let preference = {
             items: [{
                 title: "Envio",
-                unit_price: 600,
+                unit_price: 10,
                 quantity: 1
             }],
             back_urls: {
