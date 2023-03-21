@@ -200,8 +200,8 @@ let usuarioController = {
         Ventas.findAll({
                 group: [
                     ['pedidoNum', 'idUsuarios']
-                ],
-                [Op.eq]: 'pedidoNum'
+                ]
+              
             })
             .then(ventasH => {
                 res.render("cuenta", {
