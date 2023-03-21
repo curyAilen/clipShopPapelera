@@ -269,11 +269,11 @@ let mainController = {
         /*******************************ACÁ AGREGO COSTO ENVIO MANUAL  
          * costoEnvio = 600 cambiar en carrito.js linea 4 ****************************************/
         let preference = {
-            items: [{
-                title: "Envio",
-                unit_price: 10,
-                quantity: 1
-            }],
+            shipments: {
+                cost: 600,
+                mode: "not_specified",
+            },
+            items: [],
             back_urls: {
                 success: `${config.main.url}/carrito`,
                 failure: `${config.main.url}/carrito`,
