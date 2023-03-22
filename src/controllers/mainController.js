@@ -9,6 +9,7 @@ const Ventas = db.Ventas;
 const { validationResult } = require("express-validator");
 const { mercadopago } = require("../../mercadopago");
 const config = require("../../config");
+const uuid = require("uuid");
 
 let mainController = {
     main: (req, res) => {
@@ -233,6 +234,9 @@ let mainController = {
             comprobarVoucher = await Voucher.findOne({ where: { voucher: req.body.voucher } });
         }
 
+        let pedidoNum = uuid.v4();
+        let fecha = new Date();
+
         products.forEach((product) => {
 
             let { idProductos, precio, cantidad } = product;
@@ -243,12 +247,9 @@ let mainController = {
             };
 
             let venta = {
-                idUsuarios,
-                idProductos,
-                cantidad,
-                importe,
-                pedidoNum: Date.now(),
-                fecha: new Date(),
+                idUsuarios, idProductos,
+                cantidad, importe,
+                pedidoNum, fecha
             };
 
             Ventas.create(venta)

@@ -32,7 +32,7 @@ let usuarioController = {
         } else {
             res.render("login", {
                 errores: errores.mapped(),
-                old: {...req.body, telefono: Number(req.body.telefono) },
+                old: { ...req.body, telefono: Number(req.body.telefono) },
                 titulo: "Registro",
                 registerPage: true
             })
@@ -58,40 +58,40 @@ let usuarioController = {
         }
 
         Usuarios.findOne({
-                where: {
-                    email: req.body.emaillogin
+            where: {
+                email: req.body.emaillogin
+            }
+
+        }).then((usuario) => {
+            if (bcrypt.compareSync(req.body.passwordlogin, usuario.dataValues.password)) {
+
+                let usuarioLogeado = {
+                    idUsuarios: usuario.dataValues.idUsuarios,
+                    nombre: usuario.dataValues.nombre,
+                    email: usuario.dataValues.email,
+                    direccion: usuario.dataValues.direccion,
+                    password: usuario.dataValues.password,
+                    rol: usuario.dataValues.rol
+                };
+
+                req.session.login = usuarioLogeado;
+
+                if (req.body.remember_user) {
+                    res.cookie("userCookie", usuarioLogeado, {
+                        maxAge: 10000 * 60 * 60 * 24,
+                    });
                 }
 
-            }).then((usuario) => {
-                if (bcrypt.compareSync(req.body.passwordlogin, usuario.dataValues.password)) {
-
-                    let usuarioLogeado = {
-                        idUsuarios: usuario.dataValues.idUsuarios,
-                        nombre: usuario.dataValues.nombre,
-                        email: usuario.dataValues.email,
-                        direccion: usuario.dataValues.direccion,
-                        password: usuario.dataValues.password,
-                        rol: usuario.dataValues.rol
-                    };
-
-                    req.session.login = usuarioLogeado;
-
-                    if (req.body.remember_user) {
-                        res.cookie("userCookie", usuarioLogeado, {
-                            maxAge: 10000 * 60 * 60 * 24,
-                        });
-                    }
-
-                    return res.redirect('/user/cuenta');
-                } else {
-                    res.render('login', {
-                        errores: {
-                            emaillogin: { msg: 'Clave o Email incorrecto' }
-                        },
-                        old: req.body
-                    })
-                }
-            })
+                return res.redirect('/user/cuenta');
+            } else {
+                res.render('login', {
+                    errores: {
+                        emaillogin: { msg: 'Clave o Email incorrecto' }
+                    },
+                    old: req.body
+                })
+            }
+        })
             .catch(() => {
                 res.render('login', {
                     errores: {
@@ -113,7 +113,7 @@ let usuarioController = {
             })
     },
 
-    editedPerfil: async(req, res) => {
+    editedPerfil: async (req, res) => {
         let editValidationResult = validationResult(req);
         const user = await Usuarios.findByPk(req.params.id);
 
@@ -162,7 +162,7 @@ let usuarioController = {
             })
     },
 
-    actualizarPassword: async(req, res) => {
+    actualizarPassword: async (req, res) => {
         let editValidationResult = validationResult(req);
         const user = await Usuarios.findByPk(req.params.id);
 
@@ -195,21 +195,50 @@ let usuarioController = {
         req.session.destroy();
         res.redirect("/");
     },
-    cuenta: (req, res) => {
+    cuenta: async (req, res) => {
+        const pedidosNum = await Ventas.findAll({
+            attributes: ["pedidoNum"],
+            group: ["pedidoNum"]
+        });
 
-        Ventas.findAll({
-                group: [
-                    ['pedidoNum', 'idUsuarios']
-                ]
-              
-            })
+        const arrayPedidosNum = pedidosNum.map(pedidoNum => {
+            return pedidoNum.pedidoNum;
+        })
+
+        db.sequelize.query("SELECT idVentas, idUsuarios, fecha, importe, cantidad, pedidoNum, nombre FROM ventas INNER JOIN productos ON productos.idProductos = ventas.idProductos")
             .then(ventasH => {
-                res.render("cuenta", {
-                    ventasH: ventasH,
+                const response = [];
 
+                arrayPedidosNum.forEach(pedido => {
+                    let initialValues = {
+                        pedidoNum: "",
+                        idVentas: null,
+                        idUsuarios: null,
+                        fecha: null,
+                        productos: []
+                    };
+
+                    ventasH[0].forEach(venta => {
+                        if (pedido == venta.pedidoNum) {
+                            initialValues.pedidoNum = pedido;
+                            initialValues.idVentas = venta.idVentas;
+                            initialValues.idUsuarios = venta.idUsuarios;
+                            initialValues.fecha = venta.fecha;
+                            
+                            initialValues.productos.push({
+                                nombre: venta.nombre,
+                                importe: venta.importe,
+                                cantidad: venta.cantidad
+                            });
+                        };
+                    });
+                    response.push(initialValues);
+                });
+
+                return res.render("cuenta", {
+                    ventasH: response,
                 });
             })
-
     },
 
     listadoClientes: (req, res) => {
@@ -226,7 +255,7 @@ let usuarioController = {
         res.render("recuperar");
     },
 
-    recuperarLink: async(req, res) => {
+    recuperarLink: async (req, res) => {
         const { id, token } = req.params;
 
         const user = await Usuarios.findByPk(id);
@@ -246,7 +275,7 @@ let usuarioController = {
         }
     },
 
-    recuperarpost: async(req, res) => {
+    recuperarpost: async (req, res) => {
         const { id, token } = req.params;
         const { password } = req.body;
 

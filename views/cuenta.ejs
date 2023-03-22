@@ -34,45 +34,41 @@
                     <article class="row ">
                         <h1 class="mt-5">Historial de compra</h1>
 
-                        <%for (let i=0; i < ventasH.length; i++) {%>
-                            <%if (ventasH[i].idUsuarios==locals.userLogged.idUsuarios) {%>
+                        <% ventasH.forEach(venta => { %>
+                            <%if (venta.idUsuarios==locals.userLogged.idUsuarios) {%>
                                 <div class=" pedido col-lg-5 col-md-10 ">
                                     <div class="row">
-                                        <p class="col-5"><span class="enfasis h5 mr-2">Mi N° de Usuario: </span>
+                                        <p class="col-5"><span class="enfasis h5 mr-2">N° Usuario: </span>
 
-                                            <%=ventasH[i].idUsuarios%>
+                                            <%=venta.idUsuarios%>
                                         </p>
                                         <p class="col-5"> <span class="enfasis h5 mr-2"> N° Pedido:</span>
-                                            <%=ventasH[i].pedidoNum%>
+                                            <%=venta.pedidoNum%>
 
                                         </p>
                                         <p class="col-5"><span class="enfasis mr-2">Fecha de la compra:</span>
-                                            <%=ventasH[i].fecha%>
-                                        </p>
-                                        <p class="col-5"><span class="enfasis mr-2">Importe abonado:</span>
-                                            <%=ventasH[i].importe%>
-                                        </p>
-                                        <p class="col-5"><span class="enfasis mr-2">Cantidad de Productos:</span>
-                                            <%=ventasH[i].cantidad%>
+                                            <%=venta.fecha%>
                                         </p>
                                         <hr style=" text-align: center;" class="col-9">
                                         <div class="col-10">
                                             <p> <span class="enfasis">Productos:</span></p>
                                             <ul>
-
-                                                <li>
-                                                    <%=ventasH[i].idProductos%>
-                                                </li>
+                                                <% venta.productos.forEach(producto=> { %>                                             
+                                                        <li>
+                                                            <ul>
+                                                                <li>Nombre: <%= producto.nombre  %></li>
+                                                                <li>Cantidad: <%= producto.cantidad  %></li>
+                                                                <li>Importe: <%= producto.importe  %></li>
+                                                            </ul>
+                                                        </li>
+                                                    <% }); %>
 
                                             </ul>
                                         </div>
-                                        <p class="text-right">Compra N°:
-                                            <%=ventasH[i].idVentas%>
-                                        </p>
                                     </div>
                                 </div>
-
-                                <%}}%>
+                                <% } %>
+                        <% })%>
 
                     </article>
 
@@ -80,48 +76,40 @@
                         <% if (locals.userLogged.rol=="admin" ) { %>
                             <h1 class="mt-5">Pedidos historicos</h1>
 
-                            <%for (let i=0; i < ventasH.length; i++) {%>
+                            <% ventasH.forEach(venta=> { %>
                                 <div class=" pedido col-lg-5 col-md-10 ">
                                     <div class="row">
                                         <p class="col-5"><span class="enfasis h5 mr-2">N° Usuario: </span>
 
-                                            <%=ventasH[i].idUsuarios%>
+                                            <%=venta.idUsuarios%>
                                         </p>
                                         <p class="col-5"> <span class="enfasis h5 mr-2"> N° Pedido:</span>
-                                            <%=ventasH[i].pedidoNum%>
+                                            <%=venta.pedidoNum%>
 
                                         </p>
                                         <p class="col-5"><span class="enfasis mr-2">Fecha de la compra:</span>
-                                            <%=ventasH[i].fecha%>
-                                        </p>
-                                        <p class="col-5"><span class="enfasis mr-2">Importe abonado:</span>
-                                            <%=ventasH[i].importe%>
-                                        </p>
-                                        <p class="col-5"><span class="enfasis mr-2">Cantidad de Productos:</span>
-                                            <%=ventasH[i].cantidad%>
+                                            <%=venta.fecha%>
                                         </p>
                                         <hr style=" text-align: center;" class="col-9">
                                         <div class="col-10">
                                             <p> <span class="enfasis">Productos:</span></p>
                                             <ul>
-
-                                                <li>
-                                                    <%=ventasH[i].idProductos%>
-                                                </li>
+                                                <% venta.productos.forEach(producto=> { %>                                             
+                                                        <li>
+                                                            <ul>
+                                                                <li>Nombre: <%= producto.nombre  %></li>
+                                                                <li>Cantidad: <%= producto.cantidad  %></li>
+                                                                <li>Importe: <%= producto.importe  %></li>
+                                                            </ul>
+                                                        </li>
+                                                    <% }); %>
 
                                             </ul>
                                         </div>
-                                        <p class="text-right">Compra N°:
-                                            <%=ventasH[i].idVentas%>
-                                        </p>
                                     </div>
                                 </div>
-
-
-
-
+                               <% }); %>
                                 <%}%>
-                                    <%}%>
 
 
                     </article>
@@ -150,13 +138,17 @@
 
 
                             </div>
-                            <a href="/user/cuenta/editarPerfil/<%=locals.userLogged.idUsuarios%>" class="botones btn btnCuenta col-md-3 col-sm-5">Modificar datos</a>
-                            <a href="/user/cuenta/actualizarPassword/<%=locals.userLogged.idUsuarios%>" class="botones btn btnCuenta col-md-3 col-sm-5">Modificar contraseña</a>
+                            <a href="/user/cuenta/editarPerfil/<%=locals.userLogged.idUsuarios%>"
+                                class="botones btn btnCuenta col-md-3 col-sm-5">Modificar datos</a>
+                            <a href="/user/cuenta/actualizarPassword/<%=locals.userLogged.idUsuarios%>"
+                                class="botones btn btnCuenta col-md-3 col-sm-5">Modificar contraseña</a>
                             <% if (locals.userLogged.rol=="admin" ) { %>
-                                <a href="/user/listadoClientes" class="botones btn btnCuenta col-md-3 col-sm-5" aria-disabled="false">Listar clientes</a>
+                                <a href="/user/listadoClientes" class="botones btn btnCuenta col-md-3 col-sm-5"
+                                    aria-disabled="false">Listar clientes</a>
                                 <%}%>
 
-                                    <a href="/user/logout" class="nav-link btn btnCuenta text-end col-md-3 col-sm-5">Cerrar sesión<i
+                                    <a href="/user/logout"
+                                        class="nav-link btn btnCuenta text-end col-md-3 col-sm-5">Cerrar sesión<i
                                             class="mx-2 fas fa-sign-out-alt iconosUser "></i></a>
 
 

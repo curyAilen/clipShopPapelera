@@ -3,7 +3,6 @@ let products = [];
 let descuentoPorcentaje = 0;
 let costoEnvio = 1;
 
-
 if (localStorage.carrito) {
     carrito = JSON.parse(localStorage.carrito);
 };
