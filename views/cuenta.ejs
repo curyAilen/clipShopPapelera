@@ -34,7 +34,7 @@
                     <article class="row ">
                         <h1 class="mt-5">Historial de compra</h1>
 
-                        <% ventasH.forEach(venta => { %>
+                        <% ventasH.forEach(venta=> { %>
                             <%if (venta.idUsuarios==locals.userLogged.idUsuarios) {%>
                                 <div class=" pedido col-lg-5 col-md-10 ">
                                     <div class="row">
@@ -53,22 +53,30 @@
                                         <div class="col-10">
                                             <p> <span class="enfasis">Productos:</span></p>
                                             <ul>
-                                                <% venta.productos.forEach(producto=> { %>                                             
-                                                        <li>
-                                                            <ul>
-                                                                <li>Nombre: <%= producto.nombre  %></li>
-                                                                <li>Cantidad: <%= producto.cantidad  %></li>
-                                                                <li>Importe: <%= producto.importe  %></li>
-                                                            </ul>
-                                                        </li>
-                                                    <% }); %>
+
+                                             
+                                                  
+                                                        <% venta.productos.forEach(producto=> { %>
+                                                            <li>
+                                                                <%= producto.cantidad %>
+                                                                    <%= producto.nombre %>
+                                                                        <span class="enfasis">Importe </span>$<%=
+                                                                            producto.importe %>.-
+                                                            </li>
+                                                            <!-- <li>Cantidad: </li>
+                                                                <li></li>-->
+                                                            <% }); %>
+
+                                                   
+                                            
+
 
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
                                 <% } %>
-                        <% })%>
+                                    <% })%>
 
                     </article>
 
@@ -94,22 +102,27 @@
                                         <div class="col-10">
                                             <p> <span class="enfasis">Productos:</span></p>
                                             <ul>
-                                                <% venta.productos.forEach(producto=> { %>                                             
-                                                        <li>
-                                                            <ul>
-                                                                <li>Nombre: <%= producto.nombre  %></li>
-                                                                <li>Cantidad: <%= producto.cantidad  %></li>
-                                                                <li>Importe: <%= producto.importe  %></li>
-                                                            </ul>
-                                                        </li>
-                                                    <% }); %>
+
+                                    
+                                                  
+                                                        <% venta.productos.forEach(producto=> { %>
+                                                            <li>
+                                                                <%= producto.cantidad %>
+                                                                    <%= producto.nombre %>
+                                                                        <span class="enfasis">Importe </span>$<%=
+                                                                            producto.importe %>.-
+                                                            </li>
+                                                            <% }); %>
+                                                  
+                                       
+
 
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
-                               <% }); %>
-                                <%}%>
+                                <% }); %>
+                                    <%}%>
 
 
                     </article>
