@@ -37,6 +37,7 @@ router.get("/carrito/producto/:id", mainController.obtenerProducto);
 router.get("/carrito/voucher/:voucher", mainController.obtenerVoucher);
 router.post("/carrito/comprar", mainController.comprar);
 router.post("/carrito/preferencia", mainController.preferencia);
+router.get("/carrito/feedback/:pedidoNum", mainController.feedback);
 
 //Autogestion Banner
 router.get('/configBanner', mainController.configbanner);

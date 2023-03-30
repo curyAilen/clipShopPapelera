@@ -227,14 +227,15 @@ let mainController = {
     },
     comprar: async(req, res) => {
         const { idUsuarios } = res.locals.userLogged;
-        const { products } = req.body;
+        const { products, pedidoNum } = req.body;
         let comprobarVoucher = null;
+
+        console.log(products);
 
         if (req.body.voucher) {
             comprobarVoucher = await Voucher.findOne({ where: { voucher: req.body.voucher } });
         }
 
-        let pedidoNum = uuid.v4();
         let fecha = new Date();
 
         products.forEach((product) => {
@@ -249,7 +250,8 @@ let mainController = {
             let venta = {
                 idUsuarios, idProductos,
                 cantidad, importe,
-                pedidoNum, fecha
+                pedidoNum, fecha,
+                estado: "pending" 
             };
 
             Ventas.create(venta)
@@ -261,6 +263,8 @@ let mainController = {
 
     preferencia: async(req, res) => {
         const { products } = req.body;
+        const pedidoNum = uuid.v4();
+
         let comprobarVoucher = null;
 
         if (req.body.voucher) {
@@ -271,15 +275,16 @@ let mainController = {
          * costoEnvio = 600 cambiar en carrito.js linea 4 ****************************************/
         let preference = {
             shipments: {
-                cost: 600,
+                cost: 0,
                 mode: "not_specified",
             },
             items: [],
             back_urls: {
-                success: `${config.main.url}/carrito`,
-                failure: `${config.main.url}/carrito`,
-                pending: `${config.main.url}/carrito`
+                success: `${config.main.url}/carrito/feedback/${pedidoNum}`,
+                failure: `${config.main.url}/carrito/feedback/${pedidoNum}`,
+                pending: `${config.main.url}/carrito/feedback/${pedidoNum}`
             },
+            auto_return: "approved",
         };
 
         let precioTotal = 0;
@@ -302,6 +307,7 @@ let mainController = {
                         data: {
                             descuento: comprobarVoucher.valor,
                             total: precioTotal,
+                            pedidoNum: pedidoNum
                         }
                     });
                 })
@@ -325,7 +331,8 @@ let mainController = {
                     res.json({
                         global: response.body.id,
                         data: {
-                            total: precioTotal
+                            total: precioTotal,
+                            pedidoNum: pedidoNum
                         }
                     });
                 })
@@ -333,6 +340,22 @@ let mainController = {
                     console.log(error);
                 });
         }
+    },
+
+    feedback: async (req, res) => {
+        const pedidoNum = req.params.pedidoNum;
+        const status = req.query.status;
+
+        const update = await Ventas.update({
+            estado: status
+        }, {
+            where: {
+                pedidoNum
+            }
+        });
+
+        console.log(update)
+        return res.redirect("/user/cuenta");
     },
 
     suscribirse: async(req, res) => {

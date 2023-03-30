@@ -32,7 +32,10 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.DATE,
             allowNull: false,
         },
-
+        estado: {
+            type: dataTypes.STRING(100),
+            allowNull: false,
+        }
     };
     let config = {
         timestamps: false,

@@ -204,6 +204,8 @@ botonComprar.addEventListener("click", (e) => {
                     }
                 });
 
+                data.pedidoNum = preference.data.pedidoNum;
+                
                 mostrarPago(products, preference.data.total, preference.data.descuento);
             })
             .then(() => {
