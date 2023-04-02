@@ -1,3 +1,5 @@
+const db = require(".");
+
 module.exports = (sequelize, dataTypes) => {
     let alias = 'Ventas';
     let cols = {
@@ -9,7 +11,7 @@ module.exports = (sequelize, dataTypes) => {
         idProductos: {
             type: dataTypes.INTEGER,
             allowNull: false
-        }, 
+        },
         idUsuarios: {
             type: dataTypes.INTEGER,
             allowNull: false
@@ -21,16 +23,19 @@ module.exports = (sequelize, dataTypes) => {
         cantidad: {
             type: dataTypes.INTEGER,
             allowNull: false
-        },   
+        },
         pedidoNum: {
             type: dataTypes.INTEGER,
             allowNull: false
-        },  
+        },
         fecha: {
             type: dataTypes.DATE,
             allowNull: false,
         },
-
+        estado: {
+            type: dataTypes.STRING(100),
+            allowNull: false,
+        }
     };
     let config = {
         timestamps: false,
@@ -38,8 +43,6 @@ module.exports = (sequelize, dataTypes) => {
         freezeTableName: true
     }
     const Ventas = sequelize.define(alias, cols, config);
-
-
-
+    
     return Ventas
 };

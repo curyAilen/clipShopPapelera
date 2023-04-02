@@ -30,43 +30,104 @@
                                     <%}%>
                     </article>
                 </section>
-                <section id="comprasHistorial" class="container ocultar ">
-                    <h1>Historial de compra</h1>
-                    <article class="row my-5  justify-content-center ">
-                        <%for (let i=0; i < v.length; i++) {%>
-                            <%if (v[i].idUsuarios==locals.userLogged.idUsuarios) {%>
+                <section id="comprasHistorial" class="container-fluid ocultar ">
+                    <article class="row ">
+                        <h1 class="mt-5">Historial de compra</h1>
 
-                                <div class="compra col-lg-10 estiloDeCaja">
+                        <% ventasH.forEach(venta=> { %>
+                            <%if (venta.idUsuarios==locals.userLogged.idUsuarios) {%>
+                                <div class=" pedido col-lg-5 col-md-10 ">
                                     <div class="row">
-                                        <div class="col-lg-3 col-md-6">
-                                            <h3 class="enfasis">N° Pedido:</h3>
-                                            <p>
-                                                <%=v[i].pedidoNum%>
-                                            </p>
-                                        </div>
-                                        <div class="col-lg-3 col-md-6">
-                                            <h4>Fecha de compra:</h4>
-                                            <p>
-                                                <%=v[i].fecha%>
-                                            </p>
-                                        </div>
-                                        <div class="col-lg-3 col-md-6">
-                                            <h4 class="enfasis">Importe Abonado:</h4>
-                                            <p class="totalPrecio ">
-                                                <%=v[i].importe%>
-                                            </p>
-                                        </div>
-                                        <div class="col-lg-3 col-md-6">
-                                            <h4>Cant. de productos:</h4>
-                                            <p class="fecha">
-                                                <%=v[i].cantidad%>
-                                            </p>
+                                        <p class="col-5"><span class="enfasis h5 mr-2">N° Usuario: </span>
+
+                                            <%=venta.idUsuarios%>
+                                        </p>
+                                        <p class="col-5"> <span class="enfasis h5 mr-2"> N° Pedido:</span>
+                                            <%=venta.pedidoNum%>
+
+                                        </p>
+                                        <p class="col-5"><span class="enfasis mr-2">Fecha de la compra:</span>
+                                            <%=venta.fecha%>
+                                        </p>
+                                        <hr style=" text-align: center;" class="col-9">
+                                        <div class="col-10">
+                                            <p> <span class="enfasis">Productos:</span></p>
+                                            <ul>
+
+                                             
+                                                  
+                                                        <% venta.productos.forEach(producto=> { %>
+                                                            <li>
+                                                                <%= producto.cantidad %>
+                                                                    <%= producto.nombre %>
+                                                                        <span class="enfasis">Importe </span>$<%=
+                                                                            producto.importe %>.-
+                                                            </li>
+                                                            <!-- <li>Cantidad: </li>
+                                                                <li></li>-->
+                                                            <% }); %>
+
+                                                   
+                                            
+
+
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
-                                
+                                <% } %>
+                                    <% })%>
+
                     </article>
-                    <%}}%>
+
+                    <article class="row ">
+                        <% if (locals.userLogged.rol=="admin" ) { %>
+                            <h1 class="mt-5">Pedidos historicos</h1>
+
+                            <% ventasH.forEach(venta=> { %>
+                                <div class=" pedido col-lg-5 col-md-10 ">
+                                    <div class="row">
+                                        <p class="col-5"><span class="enfasis h5 mr-2">N° Usuario: </span>
+
+                                            <%=venta.idUsuarios%>
+                                        </p>
+                                        <p class="col-5"> <span class="enfasis h5 mr-2"> N° Pedido:</span>
+                                            <%=venta.pedidoNum%>
+
+                                        </p>
+                                        <p class="col-5"><span class="enfasis mr-2">Fecha de la compra:</span>
+                                            <%=venta.fecha%>
+                                        </p>
+                                        <hr style=" text-align: center;" class="col-9">
+                                        <div class="col-10">
+                                            <p> <span class="enfasis">Productos:</span></p>
+                                            <ul>
+
+                                    
+                                                  
+                                                        <% venta.productos.forEach(producto=> { %>
+                                                            <li>
+                                                                <%= producto.cantidad %>
+                                                                    <%= producto.nombre %>
+                                                                        <span class="enfasis">Importe </span>$<%=
+                                                                            producto.importe %>.-
+                                                            </li>
+                                                            <% }); %>
+                                                  
+                                       
+
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% }); %>
+                                    <%}%>
+
+
+                    </article>
+
+
                 </section>
 
 

@@ -31,6 +31,7 @@
     "nodemon": "^2.0.20",
     "sequelize": "^6.23.2",
     "sequelize-cli": "^6.5.1",
-    "swiffy-slider": "^1.6.0"
+    "swiffy-slider": "^1.6.0",
+    "uuid": "^9.0.0"
   }
 }

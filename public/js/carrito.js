@@ -1,8 +1,7 @@
 let carrito = [];
 let products = [];
 let descuentoPorcentaje = 0;
-let costoEnvio = 600;
-
+let costoEnvio = 1;
 
 if (localStorage.carrito) {
     carrito = JSON.parse(localStorage.carrito);
@@ -34,8 +33,7 @@ const restar = (id) => {
 
 const subtotalPrecios = (productos) => {
     return productos.reduce(
-        (acum, value) => acum + (value.precio * value.cantidad)
-        , 0);
+        (acum, value) => acum + (value.precio * value.cantidad), 0);
 };
 
 const totalPrecios = (productos, descuento) => {
@@ -53,7 +51,7 @@ const mostrarCarrito = () => {
         carritoProductos.innerHTML = `<h3 style="margin: 1em;"> Carrito vacio </h3>`;
         document.querySelector(".montoSubTotal").innerText = `$0`;
         document.querySelector(".montoTotal").innerText = "$0";
-        
+
     }
 
     carrito.forEach((item, index) => {
@@ -155,15 +153,17 @@ botonVerificarVoucher.addEventListener("click", (e) => {
 const botonComprar = document.querySelector(".botonComprar");
 
 const mostrarPago = (products, total, descuento) => {
-    let pieCarrito = document.querySelector("#pieCarrito");
-    pieCarrito.innerHTML = `
+        let pieCarrito = document.querySelector("#pieCarrito");
+        pieCarrito.innerHTML = `
         <div class="cuenta">
             <button class="button-volver" onClick="refresh()">Volver</button>
             <h4 class="mt-4">Cantidad de productos: ${products.length}</h4>
             ${descuento ? `<h4>Descuento: ${descuento}%</h4>` : ""}
-            <p>Consultar por costo de envio fuera de CABA, antes de comprar.</p>
+            <p class="costoEnvioInterior">Para envios FUERA DE CABA, consultar costo de envio, antes de comprar.</p>
+           
             <h3>Total: $${total + costoEnvio}</h3>
             <div class="cho-container"></div>
+            <p class="procesaCompra mt-4">Una vez realizada la compra, por favor envie un mail a <span class="enfasis">clipshop.srl@gmail.com</span> enviando <span class="enfasis">comprobante de pago y N° de pedido.</span> <br>Este ultimo lo puede encontrar en su historial de compra.</p>
         </div>
     `
 };
@@ -204,6 +204,8 @@ botonComprar.addEventListener("click", (e) => {
                     }
                 });
 
+                data.pedidoNum = preference.data.pedidoNum;
+                
                 mostrarPago(products, preference.data.total, preference.data.descuento);
             })
             .then(() => {
@@ -216,6 +218,8 @@ botonComprar.addEventListener("click", (e) => {
                 })
                     .then(() => {
                         console.log("Compra registrada");
+                        /************************************************************** ACÁ PODRIA IR EL POPUP DE MADNAR TU COMPROBANTE DE COMPRA */
+                       
                     })
                     .catch(error => console.error('Error:', error))
             })

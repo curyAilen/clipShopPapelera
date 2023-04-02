@@ -75,7 +75,7 @@ let usuarioController = {
                 };
 
                 req.session.login = usuarioLogeado;
-                
+
                 if (req.body.remember_user) {
                     res.cookie("userCookie", usuarioLogeado, {
                         maxAge: 10000 * 60 * 60 * 24,
@@ -124,7 +124,7 @@ let usuarioController = {
                 usuario: user
             })
         }
-        
+
         if (bcrypt.compareSync(req.body.password, user.dataValues.password)) {
             await Usuarios.update({
                 nombre: req.body.nombre,
@@ -138,7 +138,7 @@ let usuarioController = {
             })
 
             const userUpdated = await Usuarios.findByPk(req.params.id);
-            
+
             req.session.login = userUpdated.dataValues;
             res.clearCookie("userCookie");
             res.redirect("/user/cuenta");
@@ -147,7 +147,7 @@ let usuarioController = {
                 titulo: 'Editar Perfil',
                 usuario: user,
                 old: req.body,
-                errorPassword: "Contraseña incorrecta" 
+                errorPassword: "Contraseña incorrecta"
             })
         };
     },
@@ -195,15 +195,50 @@ let usuarioController = {
         req.session.destroy();
         res.redirect("/");
     },
+    cuenta: async (req, res) => {
+        const pedidosNum = await Ventas.findAll({
+            attributes: ["pedidoNum"],
+            group: ["pedidoNum"]
+        });
 
-    cuenta: (req, res) => {
-        Ventas.findAll({ group: 'pedidoNum' })
-        .then(v => {
-        res.render("cuenta", {                
-            v: v
-            });
+        const arrayPedidosNum = pedidosNum.map(pedidoNum => {
+            return pedidoNum.pedidoNum;
         })
-    
+
+        db.sequelize.query("SELECT idVentas, idUsuarios, fecha, importe, cantidad, pedidoNum, nombre FROM ventas INNER JOIN productos ON productos.idProductos = ventas.idProductos")
+            .then(ventasH => {
+                const response = [];
+
+                arrayPedidosNum.forEach(pedido => {
+                    let initialValues = {
+                        pedidoNum: "",
+                        idVentas: null,
+                        idUsuarios: null,
+                        fecha: null,
+                        productos: []
+                    };
+
+                    ventasH[0].forEach(venta => {
+                        if (pedido == venta.pedidoNum) {
+                            initialValues.pedidoNum = pedido;
+                            initialValues.idVentas = venta.idVentas;
+                            initialValues.idUsuarios = venta.idUsuarios;
+                            initialValues.fecha = venta.fecha;
+                            
+                            initialValues.productos.push({
+                                nombre: venta.nombre,
+                                importe: venta.importe,
+                                cantidad: venta.cantidad
+                            });
+                        };
+                    });
+                    response.push(initialValues);
+                });
+
+                return res.render("cuenta", {
+                    ventasH: response,
+                });
+            })
     },
 
     listadoClientes: (req, res) => {
@@ -225,12 +260,12 @@ let usuarioController = {
 
         const user = await Usuarios.findByPk(id);
 
-        if (!user){
-            return res.redirect("/"); 
-        }; 
-        
+        if (!user) {
+            return res.redirect("/");
+        };
+
         const secret = config.jwt.secret + user.password;
-    
+
         try {
             const payload = jwt.verify(token, secret);
             return res.render("recuperarPassword", { email: user.email });
@@ -243,12 +278,12 @@ let usuarioController = {
     recuperarpost: async (req, res) => {
         const { id, token } = req.params;
         const { password } = req.body;
-        
+
         const user = await Usuarios.findByPk(id);
-        
-        if (!user){
-            return res.redirect("/"); 
-        }; 
+
+        if (!user) {
+            return res.redirect("/");
+        };
 
         let editValidationResult = validationResult(req);
 

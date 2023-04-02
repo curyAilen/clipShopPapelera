@@ -1,22 +1,20 @@
 -- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Versión del servidor:         10.4.17-MariaDB - mariadb.org binary distribution
+-- Host:                         127.16.5.10
+-- Versión del servidor:         10.4.27-MariaDB - mariadb.org binary distribution
 -- SO del servidor:              Win64
--- HeidiSQL Versión:             12.1.0.6537
+-- HeidiSQL Versión:             11.3.0.6295
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
 /*!50503 SET NAMES utf8mb4 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
 -- Volcando estructura de base de datos para clipshop
-CREATE DATABASE IF NOT EXISTS `clipshop` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+CREATE DATABASE IF NOT EXISTS `clipshop` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 USE `clipshop`;
 
 -- Volcando estructura para tabla clipshop.banners
@@ -24,26 +22,32 @@ CREATE TABLE IF NOT EXISTS `banners` (
   `idBanners` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `banner` varchar(155) NOT NULL DEFAULT '0',
   PRIMARY KEY (`idBanners`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla clipshop.banners: ~2 rows (aproximadamente)
+DELETE FROM `banners`;
+/*!40000 ALTER TABLE `banners` DISABLE KEYS */;
 INSERT INTO `banners` (`idBanners`, `banner`) VALUES
 	(9, 'Banner1669645146943.png'),
 	(10, 'Banner1671467303544.png');
+/*!40000 ALTER TABLE `banners` ENABLE KEYS */;
 
 -- Volcando estructura para tabla clipshop.categorias
 CREATE TABLE IF NOT EXISTS `categorias` (
   `idCategorias` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `nombreCategoria` varchar(155) NOT NULL,
   PRIMARY KEY (`idCategorias`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla clipshop.categorias: ~4 rows (aproximadamente)
+DELETE FROM `categorias`;
+/*!40000 ALTER TABLE `categorias` DISABLE KEYS */;
 INSERT INTO `categorias` (`idCategorias`, `nombreCategoria`) VALUES
 	(1, 'embalaje'),
 	(2, 'ordenadores'),
 	(3, 'rollos de papel'),
 	(4, 'etiquetas autoadhesivas');
+/*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
 
 -- Volcando estructura para tabla clipshop.codigopostal
 CREATE TABLE IF NOT EXISTS `codigopostal` (
@@ -52,9 +56,11 @@ CREATE TABLE IF NOT EXISTS `codigopostal` (
   `comuna` int(11) NOT NULL,
   `cp` int(10) unsigned NOT NULL,
   PRIMARY KEY (`idCodPost`)
-) ENGINE=InnoDB AUTO_INCREMENT=627 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=627 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla clipshop.codigopostal: ~626 rows (aproximadamente)
+DELETE FROM `codigopostal`;
+/*!40000 ALTER TABLE `codigopostal` DISABLE KEYS */;
 INSERT INTO `codigopostal` (`idCodPost`, `barrio`, `comuna`, `cp`) VALUES
 	(1, 'Recoleta', 2, 1000),
 	(2, 'Recoleta', 2, 1001),
@@ -682,15 +688,19 @@ INSERT INTO `codigopostal` (`idCodPost`, `barrio`, `comuna`, `cp`) VALUES
 	(624, 'Villa Luro', 10, 1408),
 	(625, 'Villa Luro', 10, 1416),
 	(626, 'Villa Luro', 10, 1440);
+/*!40000 ALTER TABLE `codigopostal` ENABLE KEYS */;
 
 -- Volcando estructura para tabla clipshop.emails
 CREATE TABLE IF NOT EXISTS `emails` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `email` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla clipshop.emails: ~0 rows (aproximadamente)
+DELETE FROM `emails`;
+/*!40000 ALTER TABLE `emails` DISABLE KEYS */;
+/*!40000 ALTER TABLE `emails` ENABLE KEYS */;
 
 -- Volcando estructura para tabla clipshop.productos
 CREATE TABLE IF NOT EXISTS `productos` (
@@ -704,9 +714,11 @@ CREATE TABLE IF NOT EXISTS `productos` (
   PRIMARY KEY (`idProductos`),
   KEY `FKidCategorias` (`FKidCategoria`),
   CONSTRAINT `FKidCategorias` FOREIGN KEY (`FKidCategoria`) REFERENCES `categorias` (`idCategorias`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=604 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=604 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla clipshop.productos: ~70 rows (aproximadamente)
+DELETE FROM `productos`;
+/*!40000 ALTER TABLE `productos` DISABLE KEYS */;
 INSERT INTO `productos` (`idProductos`, `nombre`, `FKidCategoria`, `filtro`, `precio`, `oferta`, `imagen`) VALUES
 	(533, 'Film Stretch Transparente- Rollo de 50 cm/2,5 kg', 1, 'film stretch', 1.00, 1, 'film-A.jpg'),
 	(534, 'Film Stretch Negro- Rollo de 50 cm/2,5 kg', 1, 'film stretch', 1.00, 0, 'film-A.jpg'),
@@ -778,6 +790,7 @@ INSERT INTO `productos` (`idProductos`, `nombre`, `FKidCategoria`, `filtro`, `pr
 	(600, 'Rollo de Números para Turnos x 2000 Verde', 2, 'rollos de numeros x 2000', 1.00, 1, 'ordenadores-B.jpg'),
 	(601, 'Rollo de Números para Turnos x 2000 Amarillo', 2, 'rollos de numeros x 2000', 1.00, 1, 'ordenadores-A.jpg'),
 	(602, 'Rollo de Números para Turnos x 2000 Azul', 2, 'rollos de numeros x 2000', 1.00, 1, 'ordenadores-B.jpg');
+/*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 
 -- Volcando estructura para tabla clipshop.usuarios
 CREATE TABLE IF NOT EXISTS `usuarios` (
@@ -789,13 +802,16 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `password` varchar(155) NOT NULL,
   `rol` varchar(50) NOT NULL DEFAULT 'user',
   PRIMARY KEY (`idUsuarios`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla clipshop.usuarios: ~3 rows (aproximadamente)
+DELETE FROM `usuarios`;
+/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
 INSERT INTO `usuarios` (`idUsuarios`, `nombre`, `email`, `direccion`, `telefono`, `password`, `rol`) VALUES
 	(10, 'Noni', 'noni@gmail.com', 'Casa Noni', 1125689588, '$2a$10$.H5NhqhB5.Zq//T9.Z8cK.HYCvtYmH/0zlARxal4/Fe2x9k.5QVdC', 'admin'),
 	(21, 'Administrador', 'admin@admin.com', 'ClipShop SRL', 1138276318, '$2a$10$jOEYcofW6a6Ub2S.DlJ/5.KRT6AEOsY6V6fX6X.zAUkpoKeD3QFU2', 'admin'),
 	(22, 'User test', 'cury.ailena@gmail.com', 'Avenida Estado de Israel 4487', 1168508686, '$2a$10$edOgQmAjT9PjojFPN.zIN.sCPf9ynJIIOcuQxA8cyaV5uYHd/oT4y', 'user');
+/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 
 -- Volcando estructura para tabla clipshop.ventas
 CREATE TABLE IF NOT EXISTS `ventas` (
@@ -804,28 +820,36 @@ CREATE TABLE IF NOT EXISTS `ventas` (
   `idUsuarios` int(20) NOT NULL,
   `importe` int(20) NOT NULL,
   `cantidad` int(20) NOT NULL,
-  `pedidoNum` int(30) NOT NULL,
+  `pedidoNum` varchar(100) NOT NULL DEFAULT '',
+  `estado` varchar(50) NOT NULL DEFAULT '',
   `fecha` date NOT NULL,
   PRIMARY KEY (`idVentas`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla clipshop.ventas: ~15 rows (aproximadamente)
-INSERT INTO `ventas` (`idVentas`, `idProductos`, `idUsuarios`, `importe`, `cantidad`, `pedidoNum`, `fecha`) VALUES
-	(1, 458, 22, 50, 1, 0, '2023-01-21'),
-	(2, 459, 22, 100, 1, 0, '2023-01-21'),
-	(3, 460, 22, 525, 3, 0, '2023-01-21'),
-	(4, 459, 22, 2, 1, 0, '2023-01-21'),
-	(5, 458, 22, 1, 1, 0, '2023-01-21'),
-	(6, 460, 10, 10, 3, 2147483647, '2023-01-21'),
-	(7, 459, 10, 2, 1, 2147483647, '2023-01-21'),
-	(8, 459, 10, 2, 1, 2147483641, '2023-01-21'),
-	(9, 533, 10, 4, 4, 2147483647, '2023-01-26'),
-	(10, 535, 10, 2, 2, 2147483647, '2023-01-26'),
-	(11, 535, 10, 0, 2, 2147483647, '2023-01-26'),
-	(12, 533, 10, 0, 4, 2147483647, '2023-01-26'),
-	(13, 533, 10, 50, 100, 2147483647, '2023-01-26'),
-	(14, 537, 10, 3, 3, 2147483647, '2023-01-26'),
-	(15, 534, 10, 1, 1, 2147483647, '2023-01-26');
+-- Volcando datos para la tabla clipshop.ventas: ~19 rows (aproximadamente)
+DELETE FROM `ventas`;
+/*!40000 ALTER TABLE `ventas` DISABLE KEYS */;
+INSERT INTO `ventas` (`idVentas`, `idProductos`, `idUsuarios`, `importe`, `cantidad`, `pedidoNum`, `estado`, `fecha`) VALUES
+	(1, 537, 22, 50, 1, '2147483666', '', '2023-01-21'),
+	(2, 538, 22, 100, 1, '2147483666', '', '2023-01-21'),
+	(3, 539, 22, 50, 3, '2147483666', '', '2023-01-21'),
+	(4, 600, 22, 2, 1, '2147483888', '', '2023-01-21'),
+	(5, 536, 22, 1, 1, '2147483888', '', '2023-01-21'),
+	(6, 460, 10, 10, 3, '2147483647', '', '2023-01-21'),
+	(7, 459, 10, 2, 1, '2147483647', '', '2023-01-21'),
+	(8, 536, 10, 2, 1, '2147483641', '', '2023-01-21'),
+	(9, 533, 10, 4, 4, '2147483647', '', '2023-01-26'),
+	(10, 535, 10, 2, 2, '2147483647', '', '2023-01-26'),
+	(11, 535, 10, 0, 2, '2147483647', '', '2023-01-26'),
+	(12, 533, 10, 0, 4, '2147483555', '', '2023-01-26'),
+	(13, 533, 10, 50, 100, '2147483647', '', '2023-01-26'),
+	(14, 537, 10, 3, 3, '2147483647', '', '2023-01-26'),
+	(15, 534, 10, 1, 1, '2147483587', '', '2023-01-26'),
+	(16, 559, 10, 8, 8, '2147483647', '', '2023-03-21'),
+	(17, 560, 10, 8, 8, '2147483647', '', '2023-03-21'),
+	(18, 561, 10, 8, 8, '2147483647', '', '2023-03-21'),
+	(19, 559, 10, 8, 8, '2147483647', '', '2023-03-21');
+/*!40000 ALTER TABLE `ventas` ENABLE KEYS */;
 
 -- Volcando estructura para tabla clipshop.vouchers
 CREATE TABLE IF NOT EXISTS `vouchers` (
@@ -834,14 +858,16 @@ CREATE TABLE IF NOT EXISTS `vouchers` (
   `valor` int(20) NOT NULL,
   `fecha` date NOT NULL,
   PRIMARY KEY (`idVouchers`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla clipshop.vouchers: ~2 rows (aproximadamente)
+DELETE FROM `vouchers`;
+/*!40000 ALTER TABLE `vouchers` DISABLE KEYS */;
 INSERT INTO `vouchers` (`idVouchers`, `voucher`, `valor`, `fecha`) VALUES
 	(1, 'navidadClipShop2022', 50, '2023-01-26'),
 	(5, 'estamosCreciendo2023', 99, '2023-01-21');
+/*!40000 ALTER TABLE `vouchers` ENABLE KEYS */;
 
-/*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
