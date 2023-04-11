@@ -263,7 +263,7 @@ let mainController = {
 
     preferencia: async(req, res) => {
         const { products } = req.body;
-        const pedidoNum = uuid.v4();
+        const pedidoNum = Date.now();
 
         let comprobarVoucher = null;
 
