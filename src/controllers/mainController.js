@@ -263,7 +263,7 @@ let mainController = {
 
     preferencia: async(req, res) => {
         const { products } = req.body;
-        const pedidoNum = Date.now();
+        const pedidoNum = Math.trunc(Math.random() * (10 ** 10));
 
         let comprobarVoucher = null;
 
