@@ -1,7 +1,7 @@
 let carrito = [];
 let products = [];
 let descuentoPorcentaje = 0;
-let costoEnvio = 1;
+let costoEnvio = 600;
 
 if (localStorage.carrito) {
     carrito = JSON.parse(localStorage.carrito);
@@ -39,7 +39,7 @@ const subtotalPrecios = (productos) => {
 const totalPrecios = (productos, descuento) => {
     let subtotal = subtotalPrecios(productos);
     let total = subtotal - (subtotal * (descuento / 100));
-    return Math.floor(total);
+    return Math.floor(total + costoEnvio);
 };
 
 const mostrarCarrito = () => {
@@ -50,7 +50,7 @@ const mostrarCarrito = () => {
     if (carrito.length === 0) {
         carritoProductos.innerHTML = `<h3 style="margin: 1em;"> Carrito vacio </h3>`;
         document.querySelector(".montoSubTotal").innerText = `$0`;
-        document.querySelector(".montoTotal").innerText = "$0";
+        document.querySelector(".montoTotal").innerText = "$" + 0;
 
     }
 
@@ -163,7 +163,7 @@ const mostrarPago = (products, total, descuento) => {
            
             <h3>Total: $${total + costoEnvio}</h3>
             <div class="cho-container"></div>
-            <p class="procesaCompra mt-4">Una vez realizada la compra, por favor envie un mail a <span class="enfasis">clipshop.srl@gmail.com</span> enviando <span class="enfasis">comprobante de pago y N° de pedido.</span> <br>Este ultimo lo puede encontrar en su historial de compra.</p>
+            <p class="procesaCompra mt-4">Una vez realizada la compra, la podra visualizar en su perfil en "Mis compras"</p>
         </div>
     `
 };

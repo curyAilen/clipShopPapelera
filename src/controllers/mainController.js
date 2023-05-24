@@ -272,11 +272,13 @@ let mainController = {
         };
 
         /*******************************ACÁ AGREGO COSTO ENVIO MANUAL  
-         * costoEnvio = 600 cambiar en carrito.js linea 4 ****************************************/
+         * cost = valor del envio (se aplica en la plataforma de pago)
+         * costoEnvio = 600 cambiar en /public/js/carrito.js linea 4 ****************************************/
         let preference = {
             shipments: {
-                cost: 0,
+                cost: 600,
                 mode: "not_specified",
+               
             },
             items: [],
             back_urls: {
