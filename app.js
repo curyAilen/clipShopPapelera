@@ -54,7 +54,7 @@ app.use((req,res,next) => {
 
 });
 // Levantar el server
-const puerto = 3000;
+const puerto = 3001;
 app.listen(puerto, () => {
     console.log("servidor corriendo en localhost:" + puerto);
 })
